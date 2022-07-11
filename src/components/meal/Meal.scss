@@ -1,0 +1,23 @@
+@import "../../styles/colors.scss";
+
+.meal__wrapper {
+  width: 100%;
+
+  .content {
+    width: 65%;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: $box-shadow;
+    border-radius: 8px;
+    padding: 20px;
+
+    .meal_name {
+      text-align: left;
+      color: $font-black;
+    }
+    .calories_count {
+      text-align: left;
+      color: $font-black;
+    }
+  }
+}
