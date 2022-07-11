@@ -11,9 +11,9 @@ const Meal: React.FC<Props> = ({ meal }) => {
     <div className="meal__wrapper">
       <div className="content">
         <h3 className="meal_name">{meal.name}</h3>
-        <p className="calories_count">{`Calories 456`}</p>
+        <p className="calories_count">{`Calories ◔̯◔`}</p>
         {meal.contents.map((food) => {
-          return <Food food={food} />;
+          return <Food food={food} key={food.id} />;
         })}
       </div>
     </div>
