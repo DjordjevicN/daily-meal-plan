@@ -9,6 +9,9 @@
   height: 60px;
   align-items: center;
   margin-top: 10px;
+  @include resp(584px) {
+    grid-template-columns: 10px 60px 70px 1fr 1fr 1fr;
+  }
   .status {
     background-color: $secondary-blue;
     height: inherit;
