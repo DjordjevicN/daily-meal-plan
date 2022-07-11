@@ -1,3 +1,6 @@
+@import "../../styles/colors.scss";
+@import "../../styles/mixins.scss";
+
 .dayMenu {
   width: 100%;
   .content {
@@ -7,6 +10,19 @@
     .title {
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      .theTitle {
+        @include resp(500px) {
+          font-size: 20px;
+        }
+        @include resp(450px) {
+          font-size: 16px;
+        }
+      }
+      .icon {
+        font-size: 30px;
+        cursor: pointer;
+      }
       max-width: 600px;
       padding: 10px 0;
     }

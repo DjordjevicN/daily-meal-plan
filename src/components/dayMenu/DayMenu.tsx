@@ -3,6 +3,7 @@ import Meal from "../meal/Meal";
 import "./DayMenu.scss";
 import moment from "moment";
 import { data } from "../../Data";
+import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 
 function DayMenu() {
   const [dayId, setDayId] = useState<number>(+moment().format("e"));
@@ -27,9 +28,11 @@ function DayMenu() {
     <div className="dayMenu">
       <div className="content">
         <div className="title">
-          <button onClick={() => prevDay()}>Previous</button>
-          <h1>{`Today's Meal Plan  ${todaysMeal[0].dayName}`}</h1>
-          <button onClick={() => nextDay()}>Next</button>
+          <BsChevronCompactLeft className="icon" onClick={() => prevDay()} />
+
+          <h1 className="theTitle">{`Today's Meal Plan  ${todaysMeal[0].dayName}`}</h1>
+
+          <BsChevronCompactRight className="icon" onClick={() => nextDay()} />
         </div>
         <div className="menu">
           <div className="menu_content">
