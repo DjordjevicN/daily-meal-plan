@@ -1,0 +1,10 @@
+@mixin resp($arg) {
+  @media screen and (max-width: $arg) {
+    @content;
+  }
+}
+@mixin respUp($arg) {
+  @media screen and (min-width: $arg) {
+    @content;
+  }
+}
