@@ -1,7 +1,7 @@
 import React from "react";
 import { IData } from "../../Types";
 import "./Meal.scss";
-import Food from "../food/Food";
+import FoodItems from "../foodItems/FoodItems";
 
 type Props = {
   meal: IData;
@@ -11,9 +11,9 @@ const Meal: React.FC<Props> = ({ meal }) => {
     <div className="meal__wrapper">
       <div className="content">
         <h3 className="meal_name">{meal.name}</h3>
-        <p className="calories_count">{`Calories ◔̯◔`}</p>
+        <p className="calories_count">{`Calories`}</p>
         {meal.contents.map((food) => {
-          return <Food food={food} key={food.id} />;
+          return <FoodItems food={food} key={food.id} />;
         })}
       </div>
     </div>

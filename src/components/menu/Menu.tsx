@@ -12,7 +12,6 @@ function Menu() {
       setLocal(false);
     }
   }, [local]);
-  console.log(local);
 
   return (
     <div className="navMenu">

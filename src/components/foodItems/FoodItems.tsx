@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import { IFood } from "../../Types";
-import "./food.scss";
+import "./FoodItems.scss";
 
 type Props = {
   food: IFood;
 };
-const Food: React.FC<Props> = (props) => {
+const FoodItems: React.FC<Props> = (props) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-
   return (
     <>
       <div
-        className="food"
+        className="foodItems"
         key={props.food.id}
         onClick={() => setIsModalOpen(true)}
       >
@@ -37,4 +36,4 @@ const Food: React.FC<Props> = (props) => {
   );
 };
 
-export default Food;
+export default FoodItems;

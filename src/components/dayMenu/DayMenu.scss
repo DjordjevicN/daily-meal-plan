@@ -7,6 +7,9 @@
     width: 93%;
     max-width: 600px;
     margin: 0 auto;
+    @include resp(400px) {
+      width: 90%;
+    }
     .title {
       display: flex;
       justify-content: space-between;
