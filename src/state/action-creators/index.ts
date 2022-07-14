@@ -29,10 +29,21 @@ export const bankrupt = () => {
 export const getUser = () => {
   return async (dispatch: Dispatch<Action>) => {
     const response = await axios.get("http://localhost:3001/");
-    console.log(response.data[0]);
+    console.log(response);
 
     dispatch({
       type: ActionType.GET_USER,
+    });
+  };
+};
+export const getAllIngredients = () => {
+  return async (dispatch: Dispatch<Action>) => {
+    const response = await axios.get(
+      "http://localhost:3001/get_all_ingredients"
+    );
+    dispatch({
+      type: ActionType.GET_ALL_INGREDIENTS,
+      payload: response.data.results,
     });
   };
 };

@@ -1,4 +1,6 @@
-import { Action, IUser } from "../actions/index";
+import { Action } from "../actions/index";
+import { IUser } from "../../types/databaseTypes";
+
 import { ActionType } from "../action-types";
 
 const initState = {

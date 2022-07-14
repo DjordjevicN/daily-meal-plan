@@ -1,3 +1,4 @@
+import { IIngredients, IUser } from "./../../types/databaseTypes";
 import { ActionType } from "./../action-types/index";
 
 interface DepositAction {
@@ -13,22 +14,15 @@ interface BankruptAction {
 }
 interface GetUserAction {
   type: ActionType.GET_USER;
+  // payload: ActionType.GET_USER;
+}
+interface GetAllIngredientsAction {
+  type: ActionType.GET_ALL_INGREDIENTS;
+  payload: IIngredients[];
 }
 export type Action =
   | BankruptAction
   | WithdrawAction
   | DepositAction
+  | GetAllIngredientsAction
   | GetUserAction;
-
-export interface IUser {
-  id: number;
-  email: string;
-  password: string;
-  name: string;
-  weight: number;
-  height: number;
-  bmi: number;
-  gender: number;
-  age: number;
-  img: string;
-}
