@@ -38,7 +38,7 @@
     box-shadow: $box-shadow;
     padding: 20px;
     @include resp(400px) {
-      width: 95%;
+      width: 85%;
     }
     .form {
       .inputBlock {

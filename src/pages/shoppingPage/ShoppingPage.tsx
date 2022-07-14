@@ -20,10 +20,12 @@ const ShoppingPage = () => {
     base_amount: 0,
     current_amount: 0,
   });
-  console.log(modalState);
 
   const dispatch = useDispatch();
-  const { getAllIngredients } = bindActionCreators(actionCreators, dispatch);
+  const { getAllIngredients, addNewIngredients } = bindActionCreators(
+    actionCreators,
+    dispatch
+  );
   useEffect(() => {
     getAllIngredients();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -35,7 +37,7 @@ const ShoppingPage = () => {
 
   const handleAddNew = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log(modalState);
+    addNewIngredients(modalState);
     setAddIngModal(false);
   };
   return (

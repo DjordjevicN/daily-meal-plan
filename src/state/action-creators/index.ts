@@ -47,3 +47,9 @@ export const getAllIngredients = () => {
     });
   };
 };
+export const addNewIngredients = (value: any) => {
+  return async () => {
+    await axios.post("http://localhost:3001/add_ingredients", value);
+    getAllIngredients();
+  };
+};
