@@ -6,26 +6,13 @@ import { actionCreators, State } from "../../state";
 import { bindActionCreators } from "redux";
 import { RiAddCircleFill } from "react-icons/ri";
 
+import AddIngredientModal from "../../components/modals/addIngredientModal/AddIngredientModal";
+
 const ShoppingPage = () => {
   const [addIngModal, setAddIngModal] = useState<boolean>(false);
-  const [modalState, setModalState] = useState({
-    meal_id: 0,
-    name: "",
-    price: 0,
-    calories: 0,
-    carbs: 0,
-    protein: 0,
-    fat: 0,
-    img: "",
-    base_amount: 0,
-    current_amount: 0,
-  });
 
   const dispatch = useDispatch();
-  const { getAllIngredients, addNewIngredients } = bindActionCreators(
-    actionCreators,
-    dispatch
-  );
+  const { getAllIngredients } = bindActionCreators(actionCreators, dispatch);
   useEffect(() => {
     getAllIngredients();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -34,12 +21,8 @@ const ShoppingPage = () => {
   const allIngredients = useSelector((state: State) => {
     return state.ingredients;
   });
+  console.log(allIngredients);
 
-  const handleAddNew = (event: React.FormEvent) => {
-    event.preventDefault();
-    addNewIngredients(modalState);
-    setAddIngModal(false);
-  };
   return (
     <>
       <div className="shopping">
@@ -58,136 +41,7 @@ const ShoppingPage = () => {
           </div>
         </div>
       </div>
-      {addIngModal && (
-        <div className="addModal">
-          <div className="content">
-            <h2>Add new ingredient</h2>
-            <div className="form">
-              <form onSubmit={handleAddNew}>
-                <div className="inputBlock">
-                  <p className="inputLabel">Name</p>
-                  <div className="inputEl">
-                    <input
-                      type="text"
-                      value={modalState.name}
-                      onChange={(e) => {
-                        setModalState({ ...modalState, name: e.target.value });
-                      }}
-                    />
-                  </div>
-                </div>
-
-                <div className="inputBlock">
-                  <p className="inputLabel">Price</p>
-                  <div className="inputEl">
-                    <input
-                      type="number"
-                      value={modalState.price}
-                      onChange={(e) => {
-                        setModalState({
-                          ...modalState,
-                          price: +e.target.value,
-                        });
-                      }}
-                    />
-                  </div>
-                </div>
-                <div className="inputBlock">
-                  <p className="inputLabel">Base amount</p>
-                  <div className="inputEl">
-                    <input
-                      type="number"
-                      value={modalState.base_amount}
-                      onChange={(e) => {
-                        setModalState({
-                          ...modalState,
-                          base_amount: +e.target.value,
-                        });
-                      }}
-                    />
-                  </div>
-                </div>
-                <div className="inputBlock">
-                  <p className="inputLabel">Current amount</p>
-                  <div className="inputEl">
-                    <input
-                      type="number"
-                      value={modalState.current_amount}
-                      onChange={(e) => {
-                        setModalState({
-                          ...modalState,
-                          current_amount: +e.target.value,
-                        });
-                      }}
-                    />
-                  </div>
-                </div>
-                <div className="inputBlock">
-                  <p className="inputLabel">Calories</p>
-                  <div className="inputEl">
-                    <input
-                      type="number"
-                      value={modalState.calories}
-                      onChange={(e) => {
-                        setModalState({
-                          ...modalState,
-                          calories: +e.target.value,
-                        });
-                      }}
-                    />
-                  </div>
-                </div>
-                <div className="inputBlock">
-                  <p className="inputLabel">Carbs</p>
-                  <div className="inputEl">
-                    <input
-                      type="number"
-                      value={modalState.carbs}
-                      onChange={(e) => {
-                        setModalState({
-                          ...modalState,
-                          carbs: +e.target.value,
-                        });
-                      }}
-                    />
-                  </div>
-                </div>
-                <div className="inputBlock">
-                  <p className="inputLabel">Fat</p>
-                  <div className="inputEl">
-                    <input
-                      type="number"
-                      value={modalState.fat}
-                      onChange={(e) => {
-                        setModalState({ ...modalState, fat: +e.target.value });
-                      }}
-                    />
-                  </div>
-                </div>
-
-                <div className="inputBlock">
-                  <p className="inputLabel">Add image</p>
-                  <div className="inputEl avatar-input">
-                    <input
-                      alt="avatar"
-                      type="file"
-                      onChange={(e) => {
-                        setModalState({
-                          ...modalState,
-                          img: e.target.value,
-                        });
-                      }}
-                    />
-                  </div>
-                </div>
-                <div className="inputBlock button">
-                  <input type="submit" value="Add" />
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      )}
+      {addIngModal && <AddIngredientModal setAddIngModal={setAddIngModal} />}
     </>
   );
 };

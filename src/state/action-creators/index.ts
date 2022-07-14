@@ -48,8 +48,14 @@ export const getAllIngredients = () => {
   };
 };
 export const addNewIngredients = (value: any) => {
-  return async () => {
+  return async (dispatch: any) => {
     await axios.post("http://localhost:3001/add_ingredients", value);
-    getAllIngredients();
+    dispatch(getAllIngredients());
+  };
+};
+export const deleteIngredients = (value: any) => {
+  return async (dispatch: any) => {
+    await axios.post("http://localhost:3001/delete_ing", { value });
+    dispatch(getAllIngredients());
   };
 };

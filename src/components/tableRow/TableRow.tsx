@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { IIngredients } from "../../types/databaseTypes";
+import { useDispatch } from "react-redux";
+import { actionCreators } from "../../state";
 import "./TableRow.scss";
 import { color } from "../../constants/color";
+import { bindActionCreators } from "redux";
 
 interface IProps {
   ingredient: IIngredients;
@@ -9,6 +12,10 @@ interface IProps {
 
 const TableRow = ({ ingredient }: IProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [enableButtons, setEnableButtons] = useState(true);
+  const [openEditIngredientModal, setOpenEditIngredientModal] = useState(false);
+  const dispatch = useDispatch();
+  const { deleteIngredients } = bindActionCreators(actionCreators, dispatch);
   const calculateHowMuchToBuy = () => {
     return ingredient.base_amount - ingredient.current_amount;
   };
@@ -19,6 +26,10 @@ const TableRow = ({ ingredient }: IProps) => {
     return (
       calcWhenToBuy(50, ingredient.base_amount) > ingredient.current_amount
     );
+  };
+  const handleDeleteIngredient = () => {
+    console.log(ingredient.id);
+    deleteIngredients(ingredient.id);
   };
 
   return (
@@ -54,7 +65,29 @@ const TableRow = ({ ingredient }: IProps) => {
       {isOpen && (
         <div className="buyModal">
           <div className="content">
-            <p onClick={() => setIsOpen(false)}>x</p>
+            <input
+              type="number"
+              value={calculateHowMuchToBuy()}
+              onChange={(e) => console.log(e.target.value)}
+            />
+            <button onClick={() => console.log("Both exact amount")}>
+              Add
+            </button>
+            <button
+              disabled={enableButtons}
+              onClick={() => handleDeleteIngredient()}
+            >
+              Delete
+            </button>
+            <button
+              disabled={enableButtons}
+              onClick={() => setOpenEditIngredientModal(true)}
+            >
+              Edit
+            </button>
+            <button onClick={() => setEnableButtons(!enableButtons)}>
+              {enableButtons ? "Enable" : "Disable"}
+            </button>
           </div>
         </div>
       )}

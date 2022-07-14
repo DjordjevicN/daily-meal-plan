@@ -1,0 +1,67 @@
+@import "../../../styles//colors.scss";
+@import "../../../styles/mixins.scss";
+.addModal {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: $dark-screen;
+  .content {
+    max-width: 400px;
+    width: 50%;
+    background-color: $white;
+    border-radius: 8px;
+    box-shadow: $box-shadow;
+    padding: 20px;
+    position: relative;
+    @include resp(400px) {
+      width: 85%;
+    }
+    .closeIcon {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      cursor: pointer;
+    }
+    .form {
+      .inputBlock {
+        width: 100%;
+        margin-top: 10px;
+        p {
+          text-align: left;
+        }
+        .inputEl {
+          border: 1px solid rgba(133, 133, 133, 0.363);
+          border-radius: 8px;
+
+          input {
+            // padding-left: 5px;
+            width: 97%;
+            height: 30px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+          }
+        }
+
+        .avatar-input {
+          border: none;
+        }
+      }
+    }
+    .button {
+      padding-top: 30px;
+      input {
+        width: 100%;
+        height: 30px;
+        border: none;
+        background-color: $secondary-blue;
+        color: $white;
+        font-size: 16px;
+      }
+    }
+  }
+}
