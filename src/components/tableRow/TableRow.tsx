@@ -10,7 +10,7 @@ interface IProps {
 }
 
 const TableRow = ({ ingredient }: IProps) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const indicateIfNeeded = () => {
     return (
@@ -20,7 +20,7 @@ const TableRow = ({ ingredient }: IProps) => {
   };
 
   return (
-    <>
+    <div>
       <div className="tableRow" onClick={() => setIsOpen(!isOpen)}>
         <div
           className="status"
@@ -52,8 +52,10 @@ const TableRow = ({ ingredient }: IProps) => {
           <p>{`${ingredient.current_amount}`}</p>
         </div>
       </div>
-      {isOpen && <BuyAndEditModal ingredient={ingredient} />}
-    </>
+      {isOpen && (
+        <BuyAndEditModal ingredient={ingredient} setIsOpen={setIsOpen} />
+      )}
+    </div>
   );
 };
 

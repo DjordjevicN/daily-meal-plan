@@ -3,8 +3,8 @@ import { ActionType } from "./../action-types/index";
 import { Dispatch } from "redux";
 import axios from "axios";
 
-// const baseUrl = "http://localhost:3001";
-const baseUrl = "http://jelovnik.nikola-djordjevic.com";
+const baseUrl = "http://localhost:3001";
+// const baseUrl = "http://jelovnik.nikola-djordjevic.com";
 
 export const withdrawMoney = (amount: number) => {
   return (dispatch: Dispatch<Action>) => {

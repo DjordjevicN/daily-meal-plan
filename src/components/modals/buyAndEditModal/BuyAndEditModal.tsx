@@ -8,6 +8,7 @@ import { color } from "../../../constants/color";
 import { calculateHowMuchToBuy } from "../../../constants/utilFunc";
 interface IProps {
   ingredient: IIngredients;
+  setIsOpen: (value: boolean) => void;
 }
 const BuyAndEditModal: React.FC<IProps> = (props) => {
   const [enableButtons, setEnableButtons] = useState(true);
@@ -33,9 +34,11 @@ const BuyAndEditModal: React.FC<IProps> = (props) => {
       amount: purchaseAmount + props.ingredient.current_amount,
     };
     buyIngredients(purchaseItem);
+    props.setIsOpen(false);
   };
   const handleSave = () => {
     editIngredients(modalState);
+    setOpenEditIngredientModal(false);
   };
 
   return (
