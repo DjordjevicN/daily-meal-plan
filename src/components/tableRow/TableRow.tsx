@@ -70,6 +70,8 @@ const TableRow = ({ ingredient }: IProps) => {
               value={calculateHowMuchToBuy()}
               onChange={(e) => console.log(e.target.value)}
             />
+            {openEditIngredientModal && <div className="editInputs">lol</div>}
+
             <button onClick={() => console.log("Both exact amount")}>
               Add
             </button>
@@ -81,7 +83,9 @@ const TableRow = ({ ingredient }: IProps) => {
             </button>
             <button
               disabled={enableButtons}
-              onClick={() => setOpenEditIngredientModal(true)}
+              onClick={() =>
+                setOpenEditIngredientModal(!openEditIngredientModal)
+              }
             >
               Edit
             </button>
