@@ -4,7 +4,8 @@ import { Dispatch } from "redux";
 import axios from "axios";
 
 // const baseUrl = "http://localhost:3001";
-const baseUrl = "http://jelovnik.nikola-djordjevic.com";
+const baseUrl = "https://jelovnik.nikola-djordjevic.com/get_all_ingredients";
+// https://jelovnik.nikola-djordjevic.com/get_all_ingredients
 
 export const withdrawMoney = (amount: number) => {
   return (dispatch: Dispatch<Action>) => {
