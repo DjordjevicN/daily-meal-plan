@@ -34,11 +34,6 @@ const ShoppingPage = () => {
             />
           </div>
           <div className="table">
-            <div className="filters">
-              <div className="content">
-                <button>urgent only</button>
-              </div>
-            </div>
             {allIngredients.map((ingredient) => {
               return <TableRow key={ingredient.id} ingredient={ingredient} />;
             })}
