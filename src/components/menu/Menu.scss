@@ -7,6 +7,12 @@
   border-radius: 0 0 15px 15px;
   color: $white;
   padding: 10px;
+  @include resp(400px) {
+    position: fixed;
+    bottom: 0;
+    border-radius: 15px 15px 0 0;
+    width: 100%;
+  }
   .content {
     display: flex;
     justify-content: space-between;

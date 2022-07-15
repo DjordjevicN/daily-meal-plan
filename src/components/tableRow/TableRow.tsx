@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { IIngredients } from "../../types/databaseTypes";
-import { useDispatch } from "react-redux";
-import { actionCreators } from "../../state";
 import "./TableRow.scss";
 import { color } from "../../constants/color";
-import { bindActionCreators } from "redux";
+import BuyAndEditModal from "../modals/buyAndEditModal/BuyAndEditModal";
 
 interface IProps {
   ingredient: IIngredients;
@@ -12,11 +10,8 @@ interface IProps {
 
 const TableRow = ({ ingredient }: IProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [enableButtons, setEnableButtons] = useState(true);
-  const [openEditIngredientModal, setOpenEditIngredientModal] = useState(false);
-  const dispatch = useDispatch();
-  const { deleteIngredients } = bindActionCreators(actionCreators, dispatch);
-  const calculateHowMuchToBuy = () => {
+
+  const calculateHowMuchToBuy = (): number => {
     return ingredient.base_amount - ingredient.current_amount;
   };
   const calcWhenToBuy = (partialValue: number, totalValue: number) => {
@@ -26,10 +21,6 @@ const TableRow = ({ ingredient }: IProps) => {
     return (
       calcWhenToBuy(50, ingredient.base_amount) > ingredient.current_amount
     );
-  };
-  const handleDeleteIngredient = () => {
-    console.log(ingredient.id);
-    deleteIngredients(ingredient.id);
   };
 
   return (
@@ -63,37 +54,10 @@ const TableRow = ({ ingredient }: IProps) => {
         </div>
       </div>
       {isOpen && (
-        <div className="buyModal">
-          <div className="content">
-            <input
-              type="number"
-              value={calculateHowMuchToBuy()}
-              onChange={(e) => console.log(e.target.value)}
-            />
-            {openEditIngredientModal && <div className="editInputs">lol</div>}
-
-            <button onClick={() => console.log("Both exact amount")}>
-              Add
-            </button>
-            <button
-              disabled={enableButtons}
-              onClick={() => handleDeleteIngredient()}
-            >
-              Delete
-            </button>
-            <button
-              disabled={enableButtons}
-              onClick={() =>
-                setOpenEditIngredientModal(!openEditIngredientModal)
-              }
-            >
-              Edit
-            </button>
-            <button onClick={() => setEnableButtons(!enableButtons)}>
-              {enableButtons ? "Enable" : "Disable"}
-            </button>
-          </div>
-        </div>
+        <BuyAndEditModal
+          calculateHowMuchToBuy={calculateHowMuchToBuy}
+          ingredient={ingredient}
+        />
       )}
     </>
   );
