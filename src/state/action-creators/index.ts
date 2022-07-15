@@ -3,6 +3,8 @@ import { ActionType } from "./../action-types/index";
 import { Dispatch } from "redux";
 import axios from "axios";
 
+const baseUrl = "http://localhost:3001";
+
 export const withdrawMoney = (amount: number) => {
   return (dispatch: Dispatch<Action>) => {
     dispatch({
@@ -28,7 +30,7 @@ export const bankrupt = () => {
 };
 export const getUser = () => {
   return async (dispatch: Dispatch<Action>) => {
-    const response = await axios.get("http://localhost:3001/");
+    const response = await axios.get(`${baseUrl}/`);
     console.log(response);
 
     dispatch({
@@ -38,9 +40,7 @@ export const getUser = () => {
 };
 export const getAllIngredients = () => {
   return async (dispatch: Dispatch<Action>) => {
-    const response = await axios.get(
-      "http://localhost:3001/get_all_ingredients"
-    );
+    const response = await axios.get(`${baseUrl}/get_all_ingredients`);
     dispatch({
       type: ActionType.GET_ALL_INGREDIENTS,
       payload: response.data.results,
@@ -49,13 +49,26 @@ export const getAllIngredients = () => {
 };
 export const addNewIngredients = (value: any) => {
   return async (dispatch: any) => {
-    await axios.post("http://localhost:3001/add_ingredients", value);
+    await axios.post(`${baseUrl}/add_ingredients`, value);
     dispatch(getAllIngredients());
   };
 };
 export const deleteIngredients = (value: any) => {
   return async (dispatch: any) => {
-    await axios.post("http://localhost:3001/delete_ing", { value });
+    await axios.post(`${baseUrl}/delete_ing`, { value });
+    dispatch(getAllIngredients());
+  };
+};
+export const buyIngredients = (value: any) => {
+  return async (dispatch: any) => {
+    await axios.post(`${baseUrl}/purchase_made`, { value });
+    dispatch(getAllIngredients());
+  };
+};
+
+export const editIngredients = (value: any) => {
+  return async (dispatch: any) => {
+    await axios.post(`${baseUrl}/edit_ingredients`, { value });
     dispatch(getAllIngredients());
   };
 };

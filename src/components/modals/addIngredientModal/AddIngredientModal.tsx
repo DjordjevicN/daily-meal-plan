@@ -88,6 +88,21 @@ const AddIngredientModal: React.FC<IProps> = ({ setAddIngModal }) => {
               </div>
             </div>
             <div className="inputBlock">
+              <p className="inputLabel">percentage amount</p>
+              <div className="inputEl">
+                <input
+                  type="number"
+                  value={modalState.percentage_amount}
+                  onChange={(e) => {
+                    setModalState({
+                      ...modalState,
+                      percentage_amount: +e.target.value,
+                    });
+                  }}
+                />
+              </div>
+            </div>
+            <div className="inputBlock">
               <p className="inputLabel">Calories</p>
               <div className="inputEl">
                 <input

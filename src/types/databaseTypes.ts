@@ -10,6 +10,7 @@ export interface IIngredients {
   img: string;
   base_amount: number;
   current_amount: number;
+  percentage_amount: number;
 }
 export interface IUser {
   id: number | string;

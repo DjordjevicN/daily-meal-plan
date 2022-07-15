@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { IIngredients } from "../../types/databaseTypes";
 import "./TableRow.scss";
 import { color } from "../../constants/color";
-import { foodNeededpercentage } from "../../constants/utilVars";
+import { calcWhenToBuy, calculateHowMuchToBuy } from "../../constants/utilFunc";
 import BuyAndEditModal from "../modals/buyAndEditModal/BuyAndEditModal";
 
 interface IProps {
@@ -12,15 +12,9 @@ interface IProps {
 const TableRow = ({ ingredient }: IProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const calculateHowMuchToBuy = (): number => {
-    return ingredient.base_amount - ingredient.current_amount;
-  };
-  const calcWhenToBuy = (partialValue: number, totalValue: number) => {
-    return (partialValue / 100) * totalValue;
-  };
   const indicateIfNeeded = () => {
     return (
-      calcWhenToBuy(foodNeededpercentage, ingredient.base_amount) >
+      calcWhenToBuy(ingredient.percentage_amount, ingredient.base_amount) >
       ingredient.current_amount
     );
   };
@@ -44,7 +38,10 @@ const TableRow = ({ ingredient }: IProps) => {
         </div>
         <div className="purchaseAmount">
           <h6>to buy</h6>
-          <p>{`${calculateHowMuchToBuy()} gr`}</p>
+          <p>{`${calculateHowMuchToBuy(
+            ingredient.base_amount,
+            ingredient.current_amount
+          )} gr`}</p>
         </div>
         <div className="currentPrice">
           <h6>current price</h6>
@@ -55,12 +52,7 @@ const TableRow = ({ ingredient }: IProps) => {
           <p>{`${ingredient.current_amount}`}</p>
         </div>
       </div>
-      {isOpen && (
-        <BuyAndEditModal
-          calculateHowMuchToBuy={calculateHowMuchToBuy}
-          ingredient={ingredient}
-        />
-      )}
+      {isOpen && <BuyAndEditModal ingredient={ingredient} />}
     </>
   );
 };

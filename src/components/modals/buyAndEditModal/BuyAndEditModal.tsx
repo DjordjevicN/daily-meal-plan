@@ -4,37 +4,56 @@ import { useDispatch } from "react-redux";
 import { actionCreators } from "../../../state";
 import { IIngredients } from "../../../types/databaseTypes";
 import "./BuyAndEditModal.scss";
-import { initAddIngredientModalState } from "../../../constants/initStates";
 import { color } from "../../../constants/color";
+import { calculateHowMuchToBuy } from "../../../constants/utilFunc";
 interface IProps {
   ingredient: IIngredients;
-  calculateHowMuchToBuy: () => number;
 }
 const BuyAndEditModal: React.FC<IProps> = (props) => {
   const [enableButtons, setEnableButtons] = useState(true);
   const [openEditIngredientModal, setOpenEditIngredientModal] = useState(false);
-  const [modalState, setModalState] = useState(initAddIngredientModalState);
+  const [modalState, setModalState] = useState(props.ingredient);
+  const [purchaseAmount, setPurchaseAmount] = useState<number>(
+    calculateHowMuchToBuy(
+      props.ingredient.base_amount,
+      props.ingredient.current_amount
+    )
+  );
 
   const dispatch = useDispatch();
-  const { deleteIngredients } = bindActionCreators(actionCreators, dispatch);
+  const { deleteIngredients, buyIngredients, editIngredients } =
+    bindActionCreators(actionCreators, dispatch);
 
   const handleDeleteIngredient = () => {
     deleteIngredients(props.ingredient.id);
+  };
+  const handleBuy = () => {
+    const purchaseItem = {
+      id: props.ingredient.id,
+      amount: purchaseAmount + props.ingredient.current_amount,
+    };
+    buyIngredients(purchaseItem);
+  };
+  const handleSave = () => {
+    editIngredients(modalState);
   };
 
   return (
     <div className="buyModal">
       <div className="content">
-        <div className="inputBlock">
-          <p className="inputLabel">How much you both</p>
-          <div className="inputEl">
-            <input
-              type="number"
-              value={props.calculateHowMuchToBuy()}
-              onChange={(e) => console.log(e.target.value)}
-            />
+        {!openEditIngredientModal && (
+          <div className="inputBlock">
+            <p className="inputLabel">How much did you both</p>
+            <div className="inputEl">
+              <input
+                type="number"
+                value={purchaseAmount}
+                onChange={(e) => setPurchaseAmount(+e.target.value)}
+              />
+            </div>
           </div>
-        </div>
+        )}
+
         {openEditIngredientModal && (
           <div className="editInputs">
             <div className="inputBlock">
@@ -42,7 +61,7 @@ const BuyAndEditModal: React.FC<IProps> = (props) => {
               <div className="inputEl">
                 <input
                   type="text"
-                  value={props.ingredient.name}
+                  value={modalState.name}
                   onChange={(e) => {
                     setModalState({ ...modalState, name: e.target.value });
                   }}
@@ -54,7 +73,7 @@ const BuyAndEditModal: React.FC<IProps> = (props) => {
               <div className="inputEl">
                 <input
                   type="number"
-                  value={props.ingredient.price}
+                  value={modalState.price}
                   onChange={(e) => {
                     setModalState({
                       ...modalState,
@@ -69,7 +88,7 @@ const BuyAndEditModal: React.FC<IProps> = (props) => {
               <div className="inputEl">
                 <input
                   type="number"
-                  value={props.ingredient.base_amount}
+                  value={modalState.base_amount}
                   onChange={(e) => {
                     setModalState({
                       ...modalState,
@@ -84,7 +103,7 @@ const BuyAndEditModal: React.FC<IProps> = (props) => {
               <div className="inputEl">
                 <input
                   type="number"
-                  value={props.ingredient.current_amount}
+                  value={modalState.current_amount}
                   onChange={(e) => {
                     setModalState({
                       ...modalState,
@@ -95,11 +114,26 @@ const BuyAndEditModal: React.FC<IProps> = (props) => {
               </div>
             </div>
             <div className="inputBlock">
+              <p className="inputLabel">Percentage amount</p>
+              <div className="inputEl">
+                <input
+                  type="number"
+                  value={modalState.percentage_amount}
+                  onChange={(e) => {
+                    setModalState({
+                      ...modalState,
+                      percentage_amount: +e.target.value,
+                    });
+                  }}
+                />
+              </div>
+            </div>
+            <div className="inputBlock">
               <p className="inputLabel">Calories</p>
               <div className="inputEl">
                 <input
                   type="number"
-                  value={props.ingredient.calories}
+                  value={modalState.calories}
                   onChange={(e) => {
                     setModalState({
                       ...modalState,
@@ -114,7 +148,7 @@ const BuyAndEditModal: React.FC<IProps> = (props) => {
               <div className="inputEl">
                 <input
                   type="number"
-                  value={props.ingredient.carbs}
+                  value={modalState.carbs}
                   onChange={(e) => {
                     setModalState({
                       ...modalState,
@@ -129,7 +163,7 @@ const BuyAndEditModal: React.FC<IProps> = (props) => {
               <div className="inputEl">
                 <input
                   type="number"
-                  value={props.ingredient.fat}
+                  value={modalState.fat}
                   onChange={(e) => {
                     setModalState({ ...modalState, fat: +e.target.value });
                   }}
@@ -153,6 +187,20 @@ const BuyAndEditModal: React.FC<IProps> = (props) => {
             </div>
           </div>
         )}
+        <div className="buyAction">
+          <button
+            className="buy-BTN"
+            disabled={openEditIngredientModal}
+            style={{
+              backgroundColor: !openEditIngredientModal
+                ? color.mainBlue
+                : color.buttonDisabled,
+            }}
+            onClick={() => handleBuy()}
+          >
+            BUY
+          </button>
+        </div>
         <div className="actionBlock">
           <button
             className="enable-BTN"
@@ -187,9 +235,15 @@ const BuyAndEditModal: React.FC<IProps> = (props) => {
 
           <button
             className="add-BTN"
-            onClick={() => console.log("Both exact amount")}
+            disabled={enableButtons}
+            style={{
+              backgroundColor: !enableButtons
+                ? color.mainBlue
+                : color.buttonDisabled,
+            }}
+            onClick={() => handleSave()}
           >
-            Add
+            Save
           </button>
         </div>
       </div>

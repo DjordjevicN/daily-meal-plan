@@ -22,17 +22,23 @@
         }
       }
     }
+    button {
+      padding: 10px 20px;
+      background-color: $button-default;
+      border: none;
+      border-radius: 8px;
+      color: $white;
+      cursor: pointer;
+    }
     .actionBlock {
       display: flex;
       justify-content: space-between;
       margin-top: 20px;
-      button {
-        padding: 10px 20px;
-        background-color: $button-default;
-        border: none;
-        border-radius: 8px;
-        color: $white;
-        cursor: pointer;
+    }
+    .buyAction {
+      margin-top: 10px;
+      .buy-BTN {
+        width: 100%;
       }
     }
   }

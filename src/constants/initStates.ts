@@ -9,4 +9,5 @@ export const initAddIngredientModalState = {
   img: "",
   base_amount: 0,
   current_amount: 0,
+  percentage_amount: 20,
 };
