@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { IIngredients } from "../../types/databaseTypes";
 import "./TableRow.scss";
 import { color } from "../../constants/color";
+import { foodNeededpercentage } from "../../constants/utilVars";
 import BuyAndEditModal from "../modals/buyAndEditModal/BuyAndEditModal";
 
 interface IProps {
@@ -19,13 +20,14 @@ const TableRow = ({ ingredient }: IProps) => {
   };
   const indicateIfNeeded = () => {
     return (
-      calcWhenToBuy(50, ingredient.base_amount) > ingredient.current_amount
+      calcWhenToBuy(foodNeededpercentage, ingredient.base_amount) >
+      ingredient.current_amount
     );
   };
 
   return (
     <>
-      <div className="tableRow" onClick={() => setIsOpen(true)}>
+      <div className="tableRow" onClick={() => setIsOpen(!isOpen)}>
         <div
           className="status"
           style={{

@@ -1,0 +1,39 @@
+@import "../../../styles/colors.scss";
+@import "../../../styles/mixins.scss";
+
+.buyModal {
+  .content {
+    padding: 20px;
+    .inputBlock {
+      margin-top: 10px;
+      .inputLabel {
+        text-align: left;
+      }
+      .inputEl {
+        border: $input-border;
+        border-radius: 8px;
+        height: 30px;
+        display: grid;
+        place-items: center;
+        input {
+          width: 90%;
+          border: none;
+          outline: none;
+        }
+      }
+    }
+    .actionBlock {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      button {
+        padding: 10px 20px;
+        background-color: $button-default;
+        border: none;
+        border-radius: 8px;
+        color: $white;
+        cursor: pointer;
+      }
+    }
+  }
+}
