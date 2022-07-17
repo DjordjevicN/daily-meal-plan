@@ -5,25 +5,52 @@ import { actionCreators } from "../../../state";
 import { bindActionCreators } from "redux";
 import { GrClose } from "react-icons/gr";
 import "./AddIngredientModal.scss";
+// import axios from "axios";
 
 interface IProps {
   setAddIngModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
+interface IIngState {
+  meal_id?: number;
+  name?: string;
+  price?: number;
+  calories?: number;
+  carbs?: number;
+  protein?: number;
+  fat?: number;
+  img?: any;
+  base_amount?: number;
+  current_amount?: number;
+  percentage_amount?: number;
+}
 
 const AddIngredientModal: React.FC<IProps> = ({ setAddIngModal }) => {
-  const [modalState, setModalState] = useState(initAddIngredientModalState);
+  const [modalState, setModalState] = useState<IIngState>(
+    initAddIngredientModalState
+  );
   const dispatch = useDispatch();
 
   const { addNewIngredients } = bindActionCreators(actionCreators, dispatch);
 
+  // const handleFile = async () => {
+  //   const formData = new FormData();
+  //   formData.append("picture", modalState.img);
+  //   formData.append("newIng", "44");
+  //   await fetch("http://localhost:3001/picture", {
+  //     method: "POST",
+  //     body: formData,
+  //   }).then((res) => res.json());
+  // };
   const handleAddNew = (event: React.FormEvent) => {
     event.preventDefault();
+    // handleFile();
     addNewIngredients(modalState);
     setAddIngModal(false);
     setModalState(initAddIngredientModalState);
   };
   return (
     <div className="addModal">
+      {/* <img src={`http://localhost:3001/uploads/2eggs.jpg`} alt="tablica" /> */}
       <div className="content">
         <GrClose className="closeIcon" onClick={() => setAddIngModal(false)} />
         <h2>Add new ingredient</h2>
@@ -154,7 +181,7 @@ const AddIngredientModal: React.FC<IProps> = ({ setAddIngModal }) => {
                   onChange={(e) => {
                     setModalState({
                       ...modalState,
-                      img: e.target.value,
+                      img: e.target.files ? e.target.files[0] : null,
                     });
                   }}
                 />

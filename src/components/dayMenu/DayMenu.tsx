@@ -9,19 +9,21 @@ function DayMenu() {
   const [dayId, setDayId] = useState<number>(+moment().format("e"));
 
   const nextDay = () => {
-    if (dayId === 7) {
-      setDayId(1);
+    if (dayId === 6) {
+      setDayId(0);
     } else {
       setDayId(dayId + 1);
     }
   };
   const prevDay = () => {
-    if (dayId === 1) {
-      setDayId(7);
+    if (dayId === 0) {
+      setDayId(6);
     } else {
       setDayId(dayId - 1);
     }
   };
+  console.log(dayId);
+
   const todaysMeal = data.filter((item) => item.day === dayId);
 
   return (
