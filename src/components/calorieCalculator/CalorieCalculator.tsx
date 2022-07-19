@@ -21,7 +21,15 @@ const CalorieCalculator = () => {
         <h2 className="title">How many calories do i need to eat</h2>
         <div className="calculation">
           {showResult ? (
-            <h1>{calculateCalorie(formState)}</h1>
+            <div className="result">
+              <h1>{`${calculateCalorie(formState)} cal a day`}</h1>
+              <h2>Let us create a perfect meal for you every day</h2>
+              <div className="actions">
+                <button>
+                  <a href="/login">Create Account</a>
+                </button>
+              </div>
+            </div>
           ) : (
             <form onSubmit={handleSubmit}>
               <div className="inputBlock">
