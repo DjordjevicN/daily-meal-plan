@@ -23,3 +23,6 @@ export const calculateCalorie = (obj: ICaloriesCalculateState) => {
 
   return result + 400;
 };
+export const isLocal = () => {
+  return window.location.hostname === "localhost";
+};

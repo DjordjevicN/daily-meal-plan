@@ -2,10 +2,11 @@ import { Action } from "./../actions/index";
 import { ActionType } from "./../action-types/index";
 import { Dispatch } from "redux";
 import axios from "axios";
+import { isLocal } from "../../constants/utilFunc";
 
-// const baseUrl = "http://localhost:3001";
-const baseUrl = "https://jelovnik.nikola-djordjevic.com";
-
+const baseUrl = isLocal()
+  ? "http://localhost:3001"
+  : "https://jelovnik.nikola-djordjevic.com";
 export const withdrawMoney = (amount: number) => {
   return (dispatch: Dispatch<Action>) => {
     dispatch({

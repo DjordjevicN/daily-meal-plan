@@ -7,7 +7,9 @@
   border-radius: 0 0 15px 15px;
   color: $white;
   padding: 10px;
-
+  @include resp(500px) {
+    width: 90%;
+  }
   .content {
     display: flex;
     justify-content: space-between;
@@ -23,6 +25,9 @@
       color: $white;
       text-decoration: none;
       padding: 0 5px;
+      @include resp(500px) {
+        font-size: 13px;
+      }
     }
   }
 }

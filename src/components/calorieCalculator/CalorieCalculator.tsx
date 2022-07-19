@@ -30,7 +30,7 @@ const CalorieCalculator = () => {
                 </p>
                 <div className="inputEl">
                   <input
-                    type="text"
+                    type="number"
                     value={formState.age}
                     onChange={(e) => {
                       setFormState({ ...formState, age: +e.target.value });
@@ -60,7 +60,7 @@ const CalorieCalculator = () => {
                 </p>
                 <div className="inputEl">
                   <input
-                    type="text"
+                    type="number"
                     value={formState.weight}
                     onChange={(e) => {
                       setFormState({ ...formState, weight: +e.target.value });
@@ -74,7 +74,7 @@ const CalorieCalculator = () => {
                 </p>
                 <div className="inputEl">
                   <input
-                    type="text"
+                    type="number"
                     value={formState.height}
                     onChange={(e) => {
                       setFormState({ ...formState, height: +e.target.value });
@@ -105,7 +105,7 @@ const CalorieCalculator = () => {
                 </p>
                 <div className="inputEl">
                   <input
-                    type="text"
+                    type="number"
                     value={formState.bodyFat}
                     onChange={(e) => {
                       setFormState({ ...formState, bodyFat: +e.target.value });
