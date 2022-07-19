@@ -1,0 +1,72 @@
+@import "../../styles/colors.scss";
+@import "../../styles/mixins.scss";
+
+.calculator_wrapper {
+  background-color: $main-blue;
+  border-radius: 15px;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  .content {
+    padding-top: 60px;
+    width: 80%;
+    display: grid;
+    place-items: center;
+    .title {
+      color: $white;
+    }
+    .calculation {
+      form {
+        padding: 50px 0;
+        margin: 0 auto;
+        max-width: 500px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        .inputBlock {
+          margin-top: 20px;
+          width: 100%;
+          max-width: 200px;
+          @include resp(860px) {
+            max-width: none;
+          }
+          p {
+            text-align: left;
+            color: white;
+            padding-left: 7px;
+          }
+          .inputEl {
+            border: $input-border;
+            border-radius: 8px;
+
+            input,
+            select {
+              padding-left: 5px;
+              width: 100%;
+              height: 30px;
+              border: none;
+              outline: none;
+              font-size: 16px;
+              color: white;
+              border-radius: 8px;
+              background-color: $main-blue;
+            }
+          }
+        }
+        .button {
+          width: 100%;
+          margin-top: 30px;
+          input {
+            border: none;
+            border-radius: 8px;
+            width: 100%;
+            background-color: $button-default;
+            color: $white;
+            height: 30px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

@@ -21,6 +21,7 @@ const ShoppingPage = () => {
   const allIngredients = useSelector((state: State) => {
     return state.ingredients;
   });
+  console.log(allIngredients);
 
   return (
     <>

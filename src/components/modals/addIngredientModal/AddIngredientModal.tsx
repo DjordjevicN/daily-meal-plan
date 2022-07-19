@@ -5,7 +5,6 @@ import { actionCreators } from "../../../state";
 import { bindActionCreators } from "redux";
 import { GrClose } from "react-icons/gr";
 import "./AddIngredientModal.scss";
-// import axios from "axios";
 
 interface IProps {
   setAddIngModal: React.Dispatch<React.SetStateAction<boolean>>;

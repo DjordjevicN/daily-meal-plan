@@ -1,10 +1,28 @@
 import React from "react";
-import DayMenu from "../../components/dayMenu/DayMenu";
+import CalorieCalculator from "../../components/calorieCalculator/CalorieCalculator";
+import "./HomePage.scss";
 
 function HomePage() {
   return (
     <div className="homePage">
-      <DayMenu />
+      <div className="content">
+        <div className="hero">
+          <div className="content">
+            <div className="text">
+              <div className="content">
+                <h1 className="small">MY DAILY</h1>
+                <h1 className="big">MEAL</h1>
+              </div>
+            </div>
+            <div className="image">
+              <img src="images/heroimg.png" alt="" />
+            </div>
+          </div>
+        </div>
+        <div className="calculator">
+          <CalorieCalculator />
+        </div>
+      </div>
     </div>
   );
 }

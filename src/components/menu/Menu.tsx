@@ -23,12 +23,14 @@ function Menu() {
           <div className="navigation">
             <a href="/">HOME</a>
             <a href="/shopping">SHOPPING</a>
+            <a href="/plan">PLAN</a>
             <a href="/login">LOGIN</a>
           </div>
         ) : (
           <div className="navigation">
-            <Link to="/">PLAN</Link>
+            <Link to="/">HOME</Link>
             <Link to="/shopping">SHOPPING</Link>
+            <Link to="/plan">PLAN</Link>
             <Link to="/login">LOGIN</Link>
           </div>
         )}

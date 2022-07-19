@@ -11,3 +11,12 @@ export const initAddIngredientModalState = {
   current_amount: 0,
   percentage_amount: 20,
 };
+
+export const calorieCalculatorInitState = {
+  age: 0,
+  gender: "",
+  weight: 0,
+  height: 0,
+  activity: "",
+  bodyFat: 0,
+};

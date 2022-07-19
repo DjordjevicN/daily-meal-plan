@@ -1,3 +1,5 @@
+import { ICaloriesCalculateState } from "./types";
+
 export const calcWhenToBuy = (partialValue: number, totalValue: number) => {
   return (partialValue / 100) * totalValue;
 };
@@ -6,4 +8,18 @@ export const calculateHowMuchToBuy = (
   currentAmount: number
 ): number => {
   return baseAmount - currentAmount;
+};
+
+export const calculateCalorie = (obj: ICaloriesCalculateState) => {
+  const age = obj.age;
+  const height = obj.height * 2.54;
+  const weight = obj.weight / 2.2;
+  let result = 0;
+  if (obj.gender === "male") {
+    result = Math.round(66.5 + 13.75 * weight + 5.003 * height - 6.75 * age);
+  } else {
+    result = Math.round(655.1 + 9.563 * weight + 1.85 * height - 4.676 * age);
+  }
+
+  return result + 400;
 };
