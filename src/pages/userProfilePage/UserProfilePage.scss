@@ -11,10 +11,16 @@
     background-color: $main-blue;
     width: $content_width;
     margin: 0 auto;
+    @include resp(500px) {
+      width: 95%;
+    }
     form {
       .inputBlock {
         width: 50%;
         margin: 16px auto;
+        @include resp(500px) {
+          width: 95%;
+        }
         .inputLabel {
           text-align: left;
           padding-left: 7px;
@@ -44,6 +50,9 @@
           color: $white;
           height: 35px;
           border-radius: 4px;
+          @include resp(500px) {
+            width: 95%;
+          }
         }
       }
     }

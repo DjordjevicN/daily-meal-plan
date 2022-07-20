@@ -7,11 +7,13 @@
   width: 100%;
   display: grid;
   place-items: center;
+
   .content {
     padding-top: 60px;
     width: 80%;
     display: grid;
     place-items: center;
+
     .title {
       color: $white;
       @include resp(500px) {

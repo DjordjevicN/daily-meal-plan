@@ -25,14 +25,14 @@ export interface IUser {
   email: string;
   password: string;
   name: string;
-  weight: number;
-  height: number;
-  bmi?: number;
-  gender: number;
-  age: number;
+  weight: number | undefined;
+  height: number | undefined;
+  bmi?: number | undefined;
+  gender: number | undefined;
+  age: number | undefined;
   img: string;
-  calories?: number;
-  fat?: number;
+  calories?: number | undefined;
+  fat?: number | undefined;
   activity_level?: string;
   plan_id?: number;
 }
