@@ -155,7 +155,7 @@ const UserProfilePage = () => {
               >
                 <option value="low">Low</option>
                 <option value="medium">Medium</option>
-                <option value="heigh">Heigh</option>
+                <option value="high">Heigh</option>
               </select>
             </div>
           </div>
