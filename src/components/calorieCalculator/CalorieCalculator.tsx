@@ -3,6 +3,7 @@ import "./CalorieCalculator.scss";
 import { calorieCalculatorInitState } from "../../constants/initStates";
 import { ICaloriesCalculateState } from "../../constants/types";
 import { calculateCalorie } from "../../constants/utilFunc";
+import { Link } from "react-router-dom";
 
 const CalorieCalculator = () => {
   const [formState, setFormState] = useState<ICaloriesCalculateState>(
@@ -26,7 +27,7 @@ const CalorieCalculator = () => {
               <h2>Let us create a perfect meal for you every day</h2>
               <div className="actions">
                 <button>
-                  <a href="/profile">Create Account</a>
+                  <Link to="/profile">Create Account</Link>
                 </button>
               </div>
             </div>
