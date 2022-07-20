@@ -1,5 +1,5 @@
 import { Action } from "../actions/index";
-import { IIngredients } from "../../types/databaseTypes";
+import { IIngredients } from "../../constants/types";
 
 import { ActionType } from "../action-types";
 

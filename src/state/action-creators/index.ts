@@ -7,29 +7,7 @@ import { isLocal } from "../../constants/utilFunc";
 const baseUrl = isLocal()
   ? "http://localhost:3001"
   : "https://jelovnik.nikola-djordjevic.com";
-export const withdrawMoney = (amount: number) => {
-  return (dispatch: Dispatch<Action>) => {
-    dispatch({
-      type: ActionType.WITHDRAW,
-      payload: amount,
-    });
-  };
-};
-export const depositMoney = (amount: number) => {
-  return (dispatch: Dispatch<Action>) => {
-    dispatch({
-      type: ActionType.DEPOSIT,
-      payload: amount,
-    });
-  };
-};
-export const bankrupt = () => {
-  return (dispatch: Dispatch<Action>) => {
-    dispatch({
-      type: ActionType.BANKRUPT,
-    });
-  };
-};
+
 export const getUser = () => {
   return async (dispatch: Dispatch<Action>) => {
     const response = await axios.get(`${baseUrl}/`);
@@ -50,7 +28,11 @@ export const getAllIngredients = () => {
   };
 };
 export const addNewIngredients = (value: any) => {
+  console.log(value);
+
   return async (dispatch: any) => {
+    console.log(value);
+
     await axios.post(`${baseUrl}/add_ingredients`, value);
     dispatch(getAllIngredients());
   };

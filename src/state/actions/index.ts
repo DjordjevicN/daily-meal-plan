@@ -1,4 +1,4 @@
-import { IIngredients, IUser } from "./../../types/databaseTypes";
+import { IIngredients, IUser } from "../../constants/types";
 import { ActionType } from "./../action-types/index";
 
 interface DepositAction {

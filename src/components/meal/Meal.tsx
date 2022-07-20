@@ -1,5 +1,5 @@
 import React from "react";
-import { IData } from "../../Types";
+import { IData } from "../../constants/types";
 import "./Meal.scss";
 import FoodItems from "../foodItems/FoodItems";
 

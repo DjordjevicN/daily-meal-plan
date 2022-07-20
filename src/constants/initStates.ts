@@ -20,3 +20,19 @@ export const calorieCalculatorInitState = {
   activity: "",
   bodyFat: 0,
 };
+export const userProfileInitState = {
+  id: 0,
+  email: "",
+  password: "",
+  name: "",
+  weight: 0,
+  height: 1,
+  bmi: 0,
+  gender: 1,
+  age: 0,
+  img: "",
+  calories: 0,
+  fat: 0,
+  activity_level: "",
+  plan_id: 1,
+};

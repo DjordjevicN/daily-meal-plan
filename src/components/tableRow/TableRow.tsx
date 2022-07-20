@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IIngredients } from "../../types/databaseTypes";
+import { IIngredients } from "../../constants/types";
 import "./TableRow.scss";
 import { color } from "../../constants/color";
 import { calcWhenToBuy, calculateHowMuchToBuy } from "../../constants/utilFunc";

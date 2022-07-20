@@ -26,7 +26,7 @@ const CalorieCalculator = () => {
               <h2>Let us create a perfect meal for you every day</h2>
               <div className="actions">
                 <button>
-                  <a href="/login">Create Account</a>
+                  <a href="/profile">Create Account</a>
                 </button>
               </div>
             </div>

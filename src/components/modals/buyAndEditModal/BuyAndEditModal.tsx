@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { bindActionCreators } from "redux";
 import { useDispatch } from "react-redux";
 import { actionCreators } from "../../../state";
-import { IIngredients } from "../../../types/databaseTypes";
+import { IIngredients } from "../../../constants/types";
 import "./BuyAndEditModal.scss";
 import { color } from "../../../constants/color";
 import { calculateHowMuchToBuy } from "../../../constants/utilFunc";

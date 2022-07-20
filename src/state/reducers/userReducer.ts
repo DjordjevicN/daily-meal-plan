@@ -1,5 +1,5 @@
 import { Action } from "../actions/index";
-import { IUser } from "../../types/databaseTypes";
+import { IUser } from "../../constants/types";
 
 import { ActionType } from "../action-types";
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IFood } from "../../Types";
+import { IFood } from "../../constants/types";
 import "./FoodItems.scss";
 
 type Props = {
