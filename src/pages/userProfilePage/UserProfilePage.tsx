@@ -2,13 +2,19 @@ import React, { useState } from "react";
 import { IUser } from "../../constants/types";
 import { userProfileInitState } from "../../constants/initStates";
 import "./UserProfilePage.scss";
+import { useDispatch } from "react-redux";
+import { actionCreators } from "../../state";
+import { bindActionCreators } from "redux";
 
 const UserProfilePage = () => {
   const [profileState, setProfileState] = useState<IUser>(userProfileInitState);
+  const dispatch = useDispatch();
 
+  const { createUser } = bindActionCreators(actionCreators, dispatch);
   const handleCreateAccount = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log(profileState);
+    createUser(profileState);
+    window.location.href = "/login";
   };
   return (
     <div className="profile">

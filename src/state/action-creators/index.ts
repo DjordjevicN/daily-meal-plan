@@ -3,14 +3,15 @@ import { ActionType } from "./../action-types/index";
 import { Dispatch } from "redux";
 import axios from "axios";
 import { isLocal } from "../../constants/utilFunc";
+import routes from "../../constants/routes";
 
 const baseUrl = isLocal()
   ? "http://localhost:3001"
   : "https://jelovnik.nikola-djordjevic.com";
-
+// USER
 export const getUser = () => {
   return async (dispatch: Dispatch<Action>) => {
-    const response = await axios.get(`${baseUrl}/`);
+    const response = await axios.get(`${baseUrl}${routes.GET_USER}`);
     console.log(response);
 
     dispatch({
@@ -18,6 +19,20 @@ export const getUser = () => {
     });
   };
 };
+export const createUser = (value: any) => {
+  return async (dispatch: Dispatch<Action>) => {
+    console.log(value);
+
+    const response = await axios.post(`${baseUrl}${routes.CREATE_USER}`, value);
+    console.log(response);
+
+    // dispatch({
+    //   type: ActionType.GET_USER,
+    // });
+  };
+};
+
+// INGREDIENTS
 export const getAllIngredients = () => {
   return async (dispatch: Dispatch<Action>) => {
     const response = await axios.get(`${baseUrl}/get_all_ingredients`);
