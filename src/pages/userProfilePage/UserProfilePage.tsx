@@ -1,176 +1,58 @@
 import React, { useState } from "react";
-import { IUser } from "../../constants/types";
-import { userProfileInitState } from "../../constants/initStates";
+
 import "./UserProfilePage.scss";
-import { useDispatch } from "react-redux";
-import { actionCreators } from "../../state";
-import { bindActionCreators } from "redux";
+import EditUserProfileInformation from "../../components/modals/editUserProfileInformation/EditUserProfileInformation";
 
 const UserProfilePage = () => {
-  const [profileState, setProfileState] = useState<IUser>(userProfileInitState);
-  const dispatch = useDispatch();
+  const [openModal, setOpenModal] = useState(false);
 
-  const { createUser } = bindActionCreators(actionCreators, dispatch);
-  const handleCreateAccount = (event: React.FormEvent) => {
-    event.preventDefault();
-    createUser(profileState);
-    window.location.href = "/login";
-  };
   return (
-    <div className="profile">
-      <div className="content">
-        <form onSubmit={handleCreateAccount}>
-          <div className="inputBlock">
-            <p className="inputLabel">Image</p>
-            <div className="inputEl">
-              <input
-                type="file"
-                onChange={(e) => {
-                  setProfileState({ ...profileState, img: e.target.value });
-                }}
-              />
+    <>
+      <div className="profile">
+        <div className="content">
+          <div className="avatar">
+            <img src="images/logoColor.png" alt="avatar" />
+          </div>
+          <div className="info">
+            <div className="personal">
+              <p>
+                <span>Name:</span>Nikola
+              </p>
+              <p>
+                <span>Email:</span>nikola.dj.87@gmail.com
+              </p>
+
+              <p>
+                <span>Password:</span>654654
+              </p>
+              <p>
+                <span>Age:</span>35
+              </p>
+            </div>
+            <div className="body">
+              <p>
+                <span>Weight:</span>187
+              </p>
+              <p>
+                <span>Height:</span>110
+              </p>
+              <p>
+                <span>Gender:</span>Male
+              </p>
+              <p>
+                <span>Calories:</span>2250
+              </p>
             </div>
           </div>
-          <div className="inputBlock">
-            <p className="inputLabel">Email</p>
-            <div className="inputEl">
-              <input
-                type="text"
-                value={profileState.email}
-                onChange={(e) => {
-                  setProfileState({ ...profileState, email: e.target.value });
-                }}
-              />
-            </div>
+          <div className="actions">
+            <button className="editProfile" onClick={() => setOpenModal(true)}>
+              Edit Profile
+            </button>
           </div>
-          <div className="inputBlock">
-            <p className="inputLabel">Password</p>
-            <div className="inputEl">
-              <input
-                type="password"
-                value={profileState.password}
-                onChange={(e) => {
-                  setProfileState({
-                    ...profileState,
-                    password: e.target.value,
-                  });
-                }}
-              />
-            </div>
-          </div>
-          <div className="inputBlock">
-            <p className="inputLabel">Name</p>
-            <div className="inputEl">
-              <input
-                type="text"
-                value={profileState.name}
-                onChange={(e) => {
-                  setProfileState({ ...profileState, name: e.target.value });
-                }}
-              />
-            </div>
-          </div>
-          <div className="inputBlock">
-            <p className="inputLabel">Weight in kg</p>
-            <div className="inputEl">
-              <input
-                type="text"
-                value={profileState.weight}
-                onChange={(e) => {
-                  setProfileState({ ...profileState, weight: +e.target.value });
-                }}
-              />
-            </div>
-          </div>
-          <div className="inputBlock">
-            <p className="inputLabel">Height in cm</p>
-            <div className="inputEl">
-              <input
-                type="text"
-                value={profileState.height}
-                onChange={(e) => {
-                  setProfileState({ ...profileState, height: +e.target.value });
-                }}
-              />
-            </div>
-          </div>
-          <div className="inputBlock">
-            <p className="inputLabel">Gender</p>
-            <div className="inputEl">
-              <select
-                name="Gender"
-                onChange={(e) => {
-                  setProfileState({ ...profileState, gender: +e.target.value });
-                }}
-              >
-                <option value={1}>Male</option>
-                <option value={0}>Female</option>
-              </select>
-            </div>
-          </div>
-          <div className="inputBlock">
-            <p className="inputLabel">Age</p>
-            <div className="inputEl">
-              <input
-                type="text"
-                value={profileState.age}
-                onChange={(e) => {
-                  setProfileState({ ...profileState, age: +e.target.value });
-                }}
-              />
-            </div>
-          </div>
-          <div className="inputBlock">
-            <p className="inputLabel">Calories per day</p>
-            <div className="inputEl">
-              <input
-                type="text"
-                value={profileState.calories}
-                onChange={(e) => {
-                  setProfileState({
-                    ...profileState,
-                    calories: +e.target.value,
-                  });
-                }}
-              />
-            </div>
-          </div>
-          <div className="inputBlock">
-            <p className="inputLabel">Fat</p>
-            <div className="inputEl">
-              <input
-                type="text"
-                value={profileState.fat}
-                onChange={(e) => {
-                  setProfileState({ ...profileState, fat: +e.target.value });
-                }}
-              />
-            </div>
-          </div>
-          <div className="inputBlock">
-            <p className="inputLabel">Activity level</p>
-            <div className="inputEl">
-              <select
-                name="activity"
-                onChange={(e) => {
-                  setProfileState({
-                    ...profileState,
-                    activity_level: e.target.value,
-                  });
-                }}
-              >
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">Heigh</option>
-              </select>
-            </div>
-          </div>
-          <div className="button">
-            <input type="submit" value="Create Account" />
-          </div>
-        </form>
+        </div>
       </div>
-    </div>
+      {openModal && <EditUserProfileInformation setOpenModal={setOpenModal} />}
+    </>
   );
 };
 

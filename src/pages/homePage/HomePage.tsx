@@ -15,7 +15,7 @@ function HomePage() {
               </div>
             </div>
             <div className="image">
-              <img src="images/heroimg.png" alt="" />
+              <img src="images/logo800.png" alt="" />
             </div>
           </div>
         </div>

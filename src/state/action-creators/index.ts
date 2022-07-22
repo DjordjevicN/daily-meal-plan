@@ -19,16 +19,21 @@ export const getUser = () => {
     });
   };
 };
+export const loginUser = (value: any) => {
+  console.log("ACTION CREATOR", value);
+
+  // return async (dispatch: Dispatch<Action>) => {
+  //   const response = await axios.get(`${baseUrl}${routes.LOGIN_USER}`, value);
+  //   console.log(response);
+
+  //   dispatch({
+  //     type: ActionType.GET_USER,
+  //   });
+  // };
+};
 export const createUser = (value: any) => {
   return async (dispatch: Dispatch<Action>) => {
-    console.log(value);
-
-    const response = await axios.post(`${baseUrl}${routes.CREATE_USER}`, value);
-    console.log(response);
-
-    // dispatch({
-    //   type: ActionType.GET_USER,
-    // });
+    await axios.post(`${baseUrl}${routes.CREATE_USER}`, value);
   };
 };
 

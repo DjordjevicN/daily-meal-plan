@@ -1,6 +1,7 @@
 @import "../../styles/colors.scss";
 @import "../../styles/mixins.scss";
 @import "../../styles/constants.scss";
+
 .navMenu {
   background-color: $main-blue;
   width: $content_width;
@@ -13,21 +14,26 @@
   }
   .content {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     width: 90%;
     margin: 0 auto;
+
     .logo {
       p {
         margin: 0;
         font-weight: 900;
       }
     }
-    a {
-      color: $white;
-      text-decoration: none;
-      padding: 0 5px;
-      @include resp(500px) {
-        font-size: 13px;
+    .navigation {
+      display: flex;
+      a {
+        color: $white;
+        text-decoration: none;
+        padding: 0 5px;
+        @include resp(500px) {
+          font-size: 13px;
+        }
       }
     }
   }

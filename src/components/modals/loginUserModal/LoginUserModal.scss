@@ -1,0 +1,71 @@
+@import "../../../styles/colors.scss";
+@import "../../../styles/mixins.scss";
+@import "../../../styles/constants.scss";
+
+.loginModal {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  background-color: $dark-screen;
+  .content {
+    background-color: $main-blue;
+    padding: 20px;
+    border-radius: 8px;
+    width: 30%;
+    @include resp(500px) {
+      width: 80%;
+    }
+    .form {
+      .modalTitle {
+        color: $white;
+        margin: 30px;
+      }
+      .inputBlock {
+        margin-top: 20px;
+        .inputLabel {
+          text-align: left;
+          padding-left: 7px;
+          color: white;
+        }
+        .inputEl {
+          background-color: $white;
+          width: 98%;
+          margin: 0 auto;
+          text-align: left;
+          border-radius: 8px;
+
+          input {
+            height: 30px;
+            width: 90%;
+            border: none;
+            margin: 2px;
+            outline: none;
+          }
+        }
+      }
+      .button {
+        input {
+          color: white;
+          margin-top: 40px;
+          background-color: $button-default;
+          width: 100%;
+          border: none;
+          height: 30px;
+          border-radius: 4px;
+        }
+      }
+      .dontHaveAcc {
+        text-align: right;
+        margin-top: 20px;
+        p {
+          color: $button-default;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

@@ -3,13 +3,15 @@ import "./CalorieCalculator.scss";
 import { calorieCalculatorInitState } from "../../constants/initStates";
 import { ICaloriesCalculateState } from "../../constants/types";
 import { calculateCalorie } from "../../constants/utilFunc";
-import { Link } from "react-router-dom";
+
+import CreateUserModal from "../../components/modals/createUserModal/CreateUserModal";
 
 const CalorieCalculator = () => {
   const [formState, setFormState] = useState<ICaloriesCalculateState>(
     calorieCalculatorInitState
   );
   const [showResult, setShowResult] = useState(false);
+  const [openCreateUserModal, setOpenCreateUserModal] = useState(false);
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     console.log(calculateCalorie(formState));
@@ -18,6 +20,9 @@ const CalorieCalculator = () => {
 
   return (
     <div className="calculator_wrapper">
+      {openCreateUserModal && (
+        <CreateUserModal setOpenCreateUserModal={setOpenCreateUserModal} />
+      )}
       <div className="content">
         <h2 className="title">How many calories do i need to eat</h2>
         <div className="calculation">
@@ -26,8 +31,8 @@ const CalorieCalculator = () => {
               <h1>{`${calculateCalorie(formState)} cal a day`}</h1>
               <h2>Let us create a perfect meal for you every day</h2>
               <div className="actions">
-                <button>
-                  <Link to="/profile">Create Account</Link>
+                <button onClick={() => setOpenCreateUserModal(true)}>
+                  Create Account
                 </button>
               </div>
             </div>
