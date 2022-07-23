@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./LoginUserModal.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { actionCreators, State } from "../../../state";
+import { useDispatch } from "react-redux";
+import { actionCreators } from "../../../state";
 import { bindActionCreators } from "redux";
 import { GrClose } from "react-icons/gr";
 
@@ -15,14 +15,8 @@ const LoginUserModal: React.FC<IProps> = (props) => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const { loginUser } = bindActionCreators(actionCreators, dispatch);
-  const user = useSelector((state: State) => {
-    return state.user;
-  });
   const handleLogin = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log(email);
-    console.log(password);
-    console.log(user);
     const value = { email, password };
     loginUser(value);
   };

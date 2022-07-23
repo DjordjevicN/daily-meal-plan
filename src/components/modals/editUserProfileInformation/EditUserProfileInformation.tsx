@@ -17,13 +17,12 @@ const EditUserProfileInformation: React.FC<IProps> = (props) => {
   });
   const [profileState, setProfileState] = useState<IUser>(user);
   const dispatch = useDispatch();
-  const { getUser } = bindActionCreators(actionCreators, dispatch);
+  const { updateUser } = bindActionCreators(actionCreators, dispatch);
 
   const handleUpdateAccount = (event: React.FormEvent) => {
     event.preventDefault();
     props.setOpenModal(false);
-    console.log(profileState);
-    console.log(getUser);
+    updateUser(profileState);
   };
 
   return (
@@ -138,11 +137,11 @@ const EditUserProfileInformation: React.FC<IProps> = (props) => {
             <div className="inputEl">
               <input
                 type="text"
-                value={profileState.calories}
+                value={profileState.calories_needed}
                 onChange={(e) => {
                   setProfileState({
                     ...profileState,
-                    calories: +e.target.value,
+                    calories_needed: +e.target.value,
                   });
                 }}
               />

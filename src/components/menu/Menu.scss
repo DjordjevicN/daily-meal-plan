@@ -27,13 +27,16 @@
     }
     .navigation {
       display: flex;
-      a {
-        color: $white;
-        text-decoration: none;
+      @include resp(500px) {
+        font-size: 13px;
+      }
+      .link-item {
+        cursor: pointer;
         padding: 0 5px;
-        @include resp(500px) {
-          font-size: 13px;
-        }
+        color: $white;
+      }
+      a {
+        text-decoration: none;
       }
     }
   }

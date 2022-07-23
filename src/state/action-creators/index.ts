@@ -9,31 +9,43 @@ const baseUrl = isLocal()
   ? "http://localhost:3001"
   : "https://jelovnik.nikola-djordjevic.com";
 // USER
-export const getUser = () => {
-  return async (dispatch: Dispatch<Action>) => {
-    const response = await axios.get(`${baseUrl}${routes.GET_USER}`);
-    console.log(response);
+export const getUser = (value: any) => {
+  console.log(value);
 
+  return async (dispatch: Dispatch<Action>) => {
+    const response = await axios.post(`${baseUrl}${routes.GET_USER}`, {
+      value,
+    });
     dispatch({
-      type: ActionType.GET_USER,
+      type: ActionType.LOGIN_USER,
+      payload: response.data[0],
     });
   };
 };
 export const loginUser = (value: any) => {
-  console.log("ACTION CREATOR", value);
-
-  // return async (dispatch: Dispatch<Action>) => {
-  //   const response = await axios.get(`${baseUrl}${routes.LOGIN_USER}`, value);
-  //   console.log(response);
-
-  //   dispatch({
-  //     type: ActionType.GET_USER,
-  //   });
-  // };
+  return async (dispatch: Dispatch<Action>) => {
+    const response = await axios.post(`${baseUrl}${routes.LOGIN_USER}`, value);
+    if (response.data.error) {
+      return console.log(response.data.msg);
+    }
+    localStorage.setItem("userId", response.data[0].id.toString());
+    dispatch({
+      type: ActionType.LOGIN_USER,
+      payload: response.data[0],
+    });
+  };
 };
 export const createUser = (value: any) => {
   return async (dispatch: Dispatch<Action>) => {
     await axios.post(`${baseUrl}${routes.CREATE_USER}`, value);
+  };
+};
+export const updateUser = (value: any) => {
+  return async (dispatch: any) => {
+    const response = await axios.post(`${baseUrl}${routes.UPDATE_USER}`, value);
+    if (response.status === 200) {
+      return dispatch(getUser(value.id));
+    }
   };
 };
 

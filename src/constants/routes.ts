@@ -1,8 +1,9 @@
 const routes = {
+  UPDATE_USER: "/update_user",
   CREATE_USER: "/create_user",
-  GET_USER: "get_user_by_id",
-  LOGIN_USER: "login_user",
-  GET_ALL_USERS: "get_all_users",
+  GET_USER: "/get_user_by_id",
+  LOGIN_USER: "/login_user",
+  GET_ALL_USERS: "/get_all_users",
   GET_ALL_DAYS: "/get_all_days",
   GET_DAY_BY_ID: "/get_day_by_id",
   CREATE_DAY: "/create_day",

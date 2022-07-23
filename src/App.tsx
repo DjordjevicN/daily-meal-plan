@@ -6,7 +6,17 @@ import Menu from "./components/menu/Menu";
 import PlanPage from "./pages/planPage/PlanPage";
 import UserProfilePage from "./pages/userProfilePage/UserProfilePage";
 
+import { useDispatch } from "react-redux";
+import { actionCreators } from "./state";
+import { bindActionCreators } from "redux";
+
 function App() {
+  const dispatch = useDispatch();
+  const { getUser } = bindActionCreators(actionCreators, dispatch);
+  if (localStorage.getItem("userId")) {
+    getUser(localStorage.getItem("userId"));
+  }
+
   return (
     <div className="App">
       <Menu />

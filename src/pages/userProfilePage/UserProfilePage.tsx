@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 import "./UserProfilePage.scss";
 import EditUserProfileInformation from "../../components/modals/editUserProfileInformation/EditUserProfileInformation";
+import { State } from "../../state";
 
 const UserProfilePage = () => {
   const [openModal, setOpenModal] = useState(false);
+  const user = useSelector((state: State) => state.user);
 
   return (
     <>
@@ -16,31 +19,35 @@ const UserProfilePage = () => {
           <div className="info">
             <div className="personal">
               <p>
-                <span>Name:</span>Nikola
+                <span>Name:</span>
+                {user.name}
               </p>
               <p>
-                <span>Email:</span>nikola.dj.87@gmail.com
-              </p>
-
-              <p>
-                <span>Password:</span>654654
+                <span>Email:</span>
+                {user.email}
               </p>
               <p>
-                <span>Age:</span>35
+                <span>Age:</span>
+                {user.age}
+              </p>
+              <p>
+                <span>Gender:</span>
+                {user.gender}
               </p>
             </div>
             <div className="body">
               <p>
-                <span>Weight:</span>187
+                <span>Weight:</span>
+                {user.weight}
               </p>
               <p>
-                <span>Height:</span>110
+                <span>Height:</span>
+                {user.height}
               </p>
+
               <p>
-                <span>Gender:</span>Male
-              </p>
-              <p>
-                <span>Calories:</span>2250
+                <span>Calories:</span>
+                {user.calories_needed}
               </p>
             </div>
           </div>

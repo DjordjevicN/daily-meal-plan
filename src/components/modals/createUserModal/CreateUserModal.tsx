@@ -135,11 +135,11 @@ const CreateUserModal: React.FC<IProps> = (props) => {
             <div className="inputEl">
               <input
                 type="text"
-                value={profileState.calories}
+                value={profileState.calories_needed}
                 onChange={(e) => {
                   setProfileState({
                     ...profileState,
-                    calories: +e.target.value,
+                    calories_needed: +e.target.value,
                   });
                 }}
               />

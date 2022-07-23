@@ -31,7 +31,7 @@ export interface IUser {
   gender: number | undefined;
   age: number | undefined;
   img: string;
-  calories?: number | undefined;
+  calories_needed?: number | undefined;
   fat?: number | undefined;
   activity_level?: string;
   plan_id?: number;

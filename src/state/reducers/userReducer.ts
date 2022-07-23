@@ -7,6 +7,8 @@ const reducer = (state: IUser = userProfileInitState, action: Action) => {
   switch (action.type) {
     case ActionType.GET_USER:
       return state;
+    case ActionType.LOGIN_USER:
+      return action.payload;
 
     default:
       return state;

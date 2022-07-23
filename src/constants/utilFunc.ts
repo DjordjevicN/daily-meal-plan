@@ -26,3 +26,7 @@ export const calculateCalorie = (obj: ICaloriesCalculateState) => {
 export const isLocal = () => {
   return window.location.hostname === "localhost";
 };
+
+export const isUserLoggedIn = () => {
+  return false;
+};

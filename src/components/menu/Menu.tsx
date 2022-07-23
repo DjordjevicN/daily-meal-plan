@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./Menu.scss";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import LoginUserModal from "../../components/modals/loginUserModal/LoginUserModal";
 import CreateUserModal from "../modals/createUserModal/CreateUserModal";
+import { State } from "../../state";
 
 function Menu() {
   const [local, setLocal] = useState(true);
@@ -16,6 +18,11 @@ function Menu() {
       setLocal(false);
     }
   }, [local]);
+  const user = useSelector((state: State) => state.user);
+
+  const isUserLoggedIn = () => {
+    return user.id !== 0;
+  };
   const handleSwitchToCreateAcc = () => {
     setOpenLoginModal(false);
     setOpenCreateAccModal(true);
@@ -39,12 +46,18 @@ function Menu() {
               <a className="link-item" href="/plan">
                 Plan
               </a>
-              <p className="link-item" onClick={() => setOpenLoginModal(true)}>
-                Login
-              </p>
-              <a className="link-item" href="/profile">
-                Profile
-              </a>
+              {isUserLoggedIn() ? (
+                <a className="link-item" href="/profile">
+                  Profile
+                </a>
+              ) : (
+                <p
+                  className="link-item"
+                  onClick={() => setOpenLoginModal(true)}
+                >
+                  Login
+                </p>
+              )}
             </div>
           ) : (
             <div className="navigation">
@@ -54,12 +67,15 @@ function Menu() {
               <Link className="link-item" to="/shopping">
                 Shopping
               </Link>
-              <p className="link-item" onClick={() => setOpenLoginModal(true)}>
-                Login
-              </p>
-              <Link className="link-item" to="/login">
-                Login
-              </Link>
+              {isUserLoggedIn() ? (
+                <a className="link-item" href="/profile">
+                  Profile
+                </a>
+              ) : (
+                <Link className="link-item" to="/login">
+                  Login
+                </Link>
+              )}
             </div>
           )}
         </div>
