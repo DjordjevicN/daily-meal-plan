@@ -30,17 +30,9 @@ const CreateUserModal: React.FC<IProps> = (props) => {
         </div>
 
         <form onSubmit={handleCreateAccount}>
-          <div className="inputBlock">
-            <p className="inputLabel">Image</p>
-            <div className="inputEl">
-              <input
-                type="file"
-                onChange={(e) => {
-                  setProfileState({ ...profileState, img: e.target.value });
-                }}
-              />
-            </div>
-          </div>
+          <h2 className="modalTitle">Sign Up</h2>
+          <div className="line" />
+
           <div className="inputBlock">
             <p className="inputLabel">Email</p>
             <div className="inputEl">
@@ -130,33 +122,7 @@ const CreateUserModal: React.FC<IProps> = (props) => {
               />
             </div>
           </div>
-          <div className="inputBlock">
-            <p className="inputLabel">Calories per day</p>
-            <div className="inputEl">
-              <input
-                type="text"
-                value={profileState.calories_needed}
-                onChange={(e) => {
-                  setProfileState({
-                    ...profileState,
-                    calories_needed: +e.target.value,
-                  });
-                }}
-              />
-            </div>
-          </div>
-          <div className="inputBlock">
-            <p className="inputLabel">Fat</p>
-            <div className="inputEl">
-              <input
-                type="text"
-                value={profileState.fat}
-                onChange={(e) => {
-                  setProfileState({ ...profileState, fat: +e.target.value });
-                }}
-              />
-            </div>
-          </div>
+
           <div className="inputBlock">
             <p className="inputLabel">Activity level</p>
             <div className="inputEl">

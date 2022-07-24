@@ -2,8 +2,8 @@ import "./App.scss";
 import { Route, Switch } from "react-router-dom";
 import HomePage from "./pages/homePage/HomePage";
 import ShoppingPage from "./pages/shoppingPage/ShoppingPage";
-import PlanPage from "./pages/planPage/PlanPage";
 import UserProfilePage from "./pages/userProfilePage/UserProfilePage";
+import Dashboard from "./pages/dashboard/Dashboard";
 
 import { useDispatch } from "react-redux";
 import { actionCreators } from "./state";
@@ -20,9 +20,9 @@ function App() {
     <div className="App">
       <Switch>
         <Route path="/" exact component={HomePage} />
-        <Route path="/plan" component={PlanPage} />
         <Route path="/shopping" component={ShoppingPage} />
         <Route path="/profile" component={UserProfilePage} />
+        <Route path="/dashboard" component={Dashboard} />
       </Switch>
     </div>
   );

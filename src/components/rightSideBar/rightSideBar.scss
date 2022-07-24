@@ -6,7 +6,7 @@
   position: fixed;
   z-index: 100;
   width: 500px;
-  height: 100vh;
+  height: 100%;
   right: 0;
   background-color: #f8f8f8;
   box-shadow: -8px 4px 36px 0px rgba(0, 0, 0, 0.37);
@@ -15,7 +15,7 @@
   }
   .content {
     width: 90%;
-    margin: 50px auto;
+    margin: 30px auto;
     height: 100vh;
   }
 }
