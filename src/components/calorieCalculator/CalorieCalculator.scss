@@ -12,7 +12,7 @@
   place-items: center;
   margin: 0 auto;
   @include resp(500px) {
-    width: 90%;
+    width: 100%;
   }
 
   .content {
@@ -60,6 +60,9 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+        @include resp(500px) {
+          width: 90%;
+        }
         .inputBlock {
           margin-top: 20px;
           width: 100%;

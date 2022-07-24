@@ -8,10 +8,6 @@
   background-image: url("../../../public/images/bg.png");
   background-repeat: no-repeat;
   background-size: cover;
-
-  @include resp(500px) {
-    background-image: none;
-  }
   .bg {
     background: rgb(201, 214, 220);
     background: linear-gradient(
@@ -30,11 +26,17 @@
     max-width: 1900px;
     width: 90%;
     margin: 0 auto;
+    @include resp(500px) {
+      width: 100%;
+    }
 
     .hero {
-      padding-top: 120px;
+      @include resp(500px) {
+        background-color: rgba(255, 255, 255, 0.856);
+      }
       .content {
         width: 50%;
+        padding-top: 120px;
         margin: 0 auto;
         @include resp(500px) {
           width: 90%;
@@ -42,6 +44,11 @@
         .small {
           text-align: left;
           margin-top: 20px;
+          font-weight: 700;
+
+          @include resp(500px) {
+            padding-bottom: 30px;
+          }
         }
       }
     }

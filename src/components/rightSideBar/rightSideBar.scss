@@ -10,6 +10,9 @@
   right: 0;
   background-color: #f8f8f8;
   box-shadow: -8px 4px 36px 0px rgba(0, 0, 0, 0.37);
+  @include resp(500px) {
+    width: 98%;
+  }
   .content {
     width: 90%;
     margin: 50px auto;

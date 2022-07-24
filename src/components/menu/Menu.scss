@@ -35,6 +35,9 @@
       .link-item {
         padding: 0 20px;
         margin-left: 20px;
+        @include resp(500px) {
+          padding: 0 10px;
+        }
       }
       .link {
         color: $orange-main;
@@ -56,6 +59,10 @@
         transition: 0.3s;
         &:hover {
           background-color: $orange-hover;
+        }
+        @include resp(500px) {
+          width: 70px;
+          height: 38px;
         }
       }
     }
