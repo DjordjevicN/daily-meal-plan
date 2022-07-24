@@ -2,11 +2,18 @@
 @import "../../styles/mixins.scss";
 
 .calculator_wrapper {
-  background-color: $main-blue;
+  background-color: white;
+  box-shadow: $box-shadow;
+  border: 1px solid rgba(236, 236, 236, 0.692);
   border-radius: 15px;
-  width: 100%;
+  max-width: 900px;
+  width: 70%;
   display: grid;
   place-items: center;
+  margin: 0 auto;
+  @include resp(500px) {
+    width: 90%;
+  }
 
   .content {
     padding-top: 60px;
@@ -15,7 +22,7 @@
     place-items: center;
 
     .title {
-      color: $white;
+      color: $font-dark;
       @include resp(500px) {
         font-size: 18px;
       }
@@ -23,15 +30,23 @@
     .calculation {
       .result {
         padding: 50px 0;
-        color: $white;
+        color: $orange-main;
         h2 {
+          color: $font-dark;
           margin-top: 30px;
         }
         button {
           margin-top: 50px;
-          padding: 10px 40px;
-          background-color: $button-default;
+          padding: 10px 90px;
+          background-color: $orange-main;
           border: none;
+          border-radius: 8px;
+          color: white;
+          cursor: pointer;
+          transition: 0.3s;
+          &:hover {
+            background-color: $orange-hover;
+          }
           a {
             text-decoration: none;
             color: white;
@@ -58,13 +73,11 @@
             padding-left: 7px;
           }
           .inputEl {
-            background-color: white;
-
+            border: $input-border;
             border-radius: 8px;
 
             input,
             select {
-              background-color: white;
               width: 90%;
               height: 30px;
               border: none;
@@ -85,10 +98,14 @@
             border: none;
             border-radius: 8px;
             width: 100%;
-            background-color: $button-default;
+            background-color: $orange-main;
             color: $white;
-            height: 30px;
+            height: 38px;
             cursor: pointer;
+            transition: 0.3s;
+            &:hover {
+              background-color: $orange-hover;
+            }
           }
         }
       }

@@ -2,41 +2,61 @@
 @import "../../styles/mixins.scss";
 @import "../../styles/constants.scss";
 
-.navMenu {
-  background-color: $main-blue;
-  width: $content_width;
-  margin: 0 auto;
-  border-radius: 0 0 15px 15px;
-  color: $white;
-  padding: 10px;
-  @include resp(500px) {
-    width: 90%;
-  }
+.mainNavMenu {
+  background-color: $blue-main;
+  width: 100%;
   .content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     width: 90%;
     margin: 0 auto;
-
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    @include resp(500px) {
+      justify-content: flex-end;
+    }
     .logo {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      img {
+        width: 50px;
+      }
       p {
-        margin: 0;
+        color: $orange-main;
+        font-size: 24px;
         font-weight: 900;
+      }
+      @include resp(500px) {
+        display: none;
       }
     }
     .navigation {
-      display: flex;
-      @include resp(500px) {
-        font-size: 13px;
-      }
       .link-item {
-        cursor: pointer;
-        padding: 0 5px;
-        color: $white;
+        padding: 0 20px;
+        margin-left: 20px;
       }
-      a {
+      .link {
+        color: $orange-main;
         text-decoration: none;
+        cursor: pointer;
+        transition: 0.3s;
+        &:hover {
+          color: $orange-hover;
+        }
+      }
+      .button {
+        background-color: $orange-main;
+        width: 150px;
+        height: 38px;
+        border: none;
+        border-radius: 8px;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+        &:hover {
+          background-color: $orange-hover;
+        }
       }
     }
   }

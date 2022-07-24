@@ -29,6 +29,7 @@ const LoginUserModal: React.FC<IProps> = (props) => {
         </div>
         <div className="form">
           <h2 className="modalTitle">Login</h2>
+          <div className="line" />
           <form onSubmit={handleLogin}>
             <div className="inputBlock">
               <p className="inputLabel">Email</p>
@@ -45,7 +46,7 @@ const LoginUserModal: React.FC<IProps> = (props) => {
               <p className="inputLabel">Password</p>
               <div className="inputEl">
                 <input
-                  type="text"
+                  type="password"
                   onChange={(e) => {
                     setPassword(e.target.value);
                   }}

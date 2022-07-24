@@ -5,12 +5,15 @@ import { useSelector } from "react-redux";
 import LoginUserModal from "../../components/modals/loginUserModal/LoginUserModal";
 import CreateUserModal from "../modals/createUserModal/CreateUserModal";
 import { State } from "../../state";
+import RightSideBar from "../../components/rightSideBar/RightSideBar";
 
 function Menu() {
   const [local, setLocal] = useState(true);
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const [openCreateAccModal, setOpenCreateAccModal] = useState(false);
-
+  const isUserLoggedIn = () => {
+    return user.id !== 0;
+  };
   useEffect(() => {
     if (window.location.hostname === "localhost") {
       setLocal(true);
@@ -18,77 +21,99 @@ function Menu() {
       setLocal(false);
     }
   }, [local]);
+
   const user = useSelector((state: State) => state.user);
 
-  const isUserLoggedIn = () => {
-    return user.id !== 0;
-  };
   const handleSwitchToCreateAcc = () => {
     setOpenLoginModal(false);
     setOpenCreateAccModal(true);
   };
-
+  const handleRedirect = () => {
+    return (window.location.href = "/");
+  };
   return (
     <>
-      <div className="navMenu">
+      <RightSideBar isOpen={openLoginModal}>
+        <LoginUserModal
+          setOpenLoginModal={setOpenLoginModal}
+          handleSwitchToCreateAcc={handleSwitchToCreateAcc}
+        />
+      </RightSideBar>
+      <RightSideBar isOpen={openCreateAccModal}>
+        <CreateUserModal setOpenCreateUserModal={setOpenCreateAccModal} />
+      </RightSideBar>
+      <div className="mainNavMenu">
         <div className="content">
-          <div className="logo">
-            <p>MDM</p>
+          <div className="logo" onClick={() => handleRedirect()}>
+            <img src="images/LOGO-MAIN.png" alt="Logo" />
+            <p>Meal Plan</p>
           </div>
           {window.location.hostname === "localhost" ? (
             <div className="navigation">
-              <a className="link-item" href="/">
+              <a className="link-item link" href="/">
                 Home
               </a>
-              <a className="link-item" href="/shopping">
-                Shopping
-              </a>
-              <a className="link-item" href="/plan">
-                Plan
-              </a>
-              {isUserLoggedIn() ? (
-                <a className="link-item" href="/profile">
-                  Profile
+              {isUserLoggedIn() && (
+                <a className="link-item link" href="/dashboard">
+                  Dashboard
                 </a>
-              ) : (
-                <p
-                  className="link-item"
+              )}
+              {!isUserLoggedIn() && (
+                <button
+                  className="link-item button"
+                  onClick={() => setOpenCreateAccModal(true)}
+                >
+                  Sign Up
+                </button>
+              )}
+              {!isUserLoggedIn() && (
+                <button
+                  className="link-item button"
                   onClick={() => setOpenLoginModal(true)}
                 >
                   Login
-                </p>
+                </button>
               )}
             </div>
           ) : (
             <div className="navigation">
-              <Link className="link-item" to="/">
+              <Link className="link-item link" to="/">
                 Home
               </Link>
-              <Link className="link-item" to="/shopping">
-                Shopping
-              </Link>
-              {isUserLoggedIn() ? (
-                <a className="link-item" href="/profile">
-                  Profile
-                </a>
-              ) : (
-                <Link className="link-item" to="/login">
-                  Login
+              {isUserLoggedIn() && (
+                <Link className="link-item" to="/dashboard">
+                  Dashboard
                 </Link>
+              )}
+              {!isUserLoggedIn() && (
+                <button
+                  className="link-item button"
+                  onClick={() => setOpenCreateAccModal(true)}
+                >
+                  Sign Up
+                </button>
+              )}
+              {!isUserLoggedIn() && (
+                <button
+                  className="link-item button"
+                  onClick={() => setOpenLoginModal(true)}
+                >
+                  Login
+                </button>
               )}
             </div>
           )}
         </div>
       </div>
-      {openLoginModal && (
+      {/* {openLoginModal && (
         <LoginUserModal
           setOpenLoginModal={setOpenLoginModal}
           handleSwitchToCreateAcc={handleSwitchToCreateAcc}
         />
-      )}
-      {openCreateAccModal && (
+      )} */}
+      {/* {openCreateAccModal && (
         <CreateUserModal setOpenCreateUserModal={setOpenCreateAccModal} />
-      )}
+      )} */}
     </>
   );
 }

@@ -1,29 +1,32 @@
 import React from "react";
 import CalorieCalculator from "../../components/calorieCalculator/CalorieCalculator";
 import "./HomePage.scss";
+import Menu from "../../components/menu/Menu";
 
 function HomePage() {
   return (
-    <div className="homePage">
-      <div className="content">
-        <div className="hero">
-          <div className="content">
-            <div className="text">
-              <div className="content">
-                <h1 className="small">MY DAILY</h1>
-                <h1 className="big">MEAL</h1>
-              </div>
-            </div>
-            <div className="image">
-              <img src="images/logo800.png" alt="" />
+    <>
+      <Menu />
+      <div className="homePage">
+        <div className="bg" />
+        <div className="content">
+          <div className="hero">
+            <div className="content">
+              <h1 className="big">Let’s Automate Your Meals</h1>
+              <p className="small">
+                Welcome to the platform that is going to make meal planning
+                easier! We will calculate your calorie needs, help you create
+                and update your shopping list, and make sure you are always set
+                with the right amount of good food!
+              </p>
             </div>
           </div>
-        </div>
-        <div className="calculator">
-          <CalorieCalculator />
+          <div className="calculator">
+            <CalorieCalculator />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

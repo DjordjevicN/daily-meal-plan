@@ -14,7 +14,6 @@ const CalorieCalculator = () => {
   const [openCreateUserModal, setOpenCreateUserModal] = useState(false);
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log(calculateCalorie(formState));
     setShowResult(true);
   };
 
@@ -24,7 +23,7 @@ const CalorieCalculator = () => {
         <CreateUserModal setOpenCreateUserModal={setOpenCreateUserModal} />
       )}
       <div className="content">
-        <h2 className="title">How many calories do i need to eat</h2>
+        <h2 className="title">Let’s Calculate Calorie Needs</h2>
         <div className="calculation">
           {showResult ? (
             <div className="result">
