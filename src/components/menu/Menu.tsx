@@ -29,7 +29,7 @@ function Menu() {
     setOpenCreateAccModal(true);
   };
   const handleRedirect = () => {
-    return (window.location.href = "/");
+    return (window.location.href = "/dashboard");
   };
   return (
     <>
@@ -105,15 +105,6 @@ function Menu() {
           )}
         </div>
       </div>
-      {/* {openLoginModal && (
-        <LoginUserModal
-          setOpenLoginModal={setOpenLoginModal}
-          handleSwitchToCreateAcc={handleSwitchToCreateAcc}
-        />
-      )} */}
-      {/* {openCreateAccModal && (
-        <CreateUserModal setOpenCreateUserModal={setOpenCreateAccModal} />
-      )} */}
     </>
   );
 }

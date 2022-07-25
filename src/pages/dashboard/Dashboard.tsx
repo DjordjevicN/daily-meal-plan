@@ -25,6 +25,20 @@ const Dashboard = () => {
     }
   };
 
+  const getMargin = () => {
+    let viewportWidth = window.innerWidth;
+    let result = "0px";
+    if (viewportWidth < 615) {
+      return (result = "0px");
+    }
+    if (isMenuOpen) {
+      result = "260px";
+    } else {
+      result = "120px";
+    }
+    return result;
+  };
+
   return (
     <div className="layout">
       <LeftSidebar
@@ -35,7 +49,9 @@ const Dashboard = () => {
       />
       <div
         className="dashboard"
-        style={{ marginLeft: isMenuOpen ? "260px" : "120px" }}
+        style={{
+          marginLeft: getMargin(),
+        }}
       >
         <div className="content">{getPage()}</div>
       </div>

@@ -13,6 +13,9 @@
       .navContent {
         display: flex;
         align-items: center;
+        @include resp(1122px) {
+          flex-direction: column;
+        }
         .screenTitle {
           font-size: 36px;
           color: $orange-main;
@@ -22,6 +25,9 @@
           display: flex;
           align-items: center;
           padding-left: 30px;
+          @include resp(1122px) {
+            padding-left: 0px;
+          }
           .box {
             width: 300px;
             .day {
@@ -59,8 +65,10 @@
       .menu_content {
         width: 100%;
         display: flex;
-        justify-content: space-between;
-
+        justify-content: space-around;
+        @include resp(1122px) {
+          display: block;
+        }
         .meal {
         }
         .stats {
