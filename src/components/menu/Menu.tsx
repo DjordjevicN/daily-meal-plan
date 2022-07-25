@@ -29,7 +29,7 @@ function Menu() {
     setOpenCreateAccModal(true);
   };
   const handleRedirect = () => {
-    return (window.location.href = "/dashboard");
+    return (window.location.href = "/");
   };
   return (
     <>
@@ -69,7 +69,8 @@ function Menu() {
               {!isUserLoggedIn() && (
                 <button
                   className="link-item button"
-                  onClick={() => setOpenLoginModal(true)}
+                  // onClick={() => setOpenLoginModal(true)}
+                  onClick={() => (window.location.href = ".dashboard")}
                 >
                   Login
                 </button>
