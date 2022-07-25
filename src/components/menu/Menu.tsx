@@ -69,8 +69,7 @@ function Menu() {
               {!isUserLoggedIn() && (
                 <button
                   className="link-item button"
-                  // onClick={() => setOpenLoginModal(true)}
-                  onClick={() => (window.location.href = ".dashboard")}
+                  onClick={() => (window.location.href = "/dashboard")}
                 >
                   Login
                 </button>
@@ -97,7 +96,7 @@ function Menu() {
               {!isUserLoggedIn() && (
                 <button
                   className="link-item button"
-                  onClick={() => setOpenLoginModal(true)}
+                  onClick={() => (window.location.href = "/dashboard")}
                 >
                   Login
                 </button>
