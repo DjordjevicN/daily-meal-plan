@@ -15,8 +15,10 @@ const FoodItems: React.FC<Props> = (props) => {
         onClick={() => setIsModalOpen(true)}
       >
         <img className="foodImage" src={props.food.img} alt="meal " />
-        <h5 className="foodTitle">{props.food.name}</h5>
-        <p className="foodWeight">{props.food.amount}</p>
+        <div className="foodInfo">
+          <h5 className="foodTitle">{props.food.name}</h5>
+          <p className="foodWeight">{props.food.amount}</p>
+        </div>
       </div>
       {isModalOpen && (
         <div className="mealModal">

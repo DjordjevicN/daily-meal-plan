@@ -8,7 +8,6 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import { useDispatch } from "react-redux";
 import { actionCreators } from "./state";
 import { bindActionCreators } from "redux";
-
 function App() {
   const dispatch = useDispatch();
   const { getUser } = bindActionCreators(actionCreators, dispatch);

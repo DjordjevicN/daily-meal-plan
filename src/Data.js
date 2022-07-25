@@ -9,6 +9,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 160,
             name: "Integralna Proja",
             weight: "60",
             amount: "10x10r",
@@ -16,6 +21,11 @@ export const data = [
           },
           {
             id: 2,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Kiselo Mleko",
             weight: "140",
             amount: "140gr",
@@ -29,6 +39,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Potaz od povrca",
             weight: "60",
             img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
@@ -41,6 +56,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Bolognese",
             weight: "300",
             amount: "1",
@@ -54,6 +74,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Jabuka",
             weight: "150",
             amount: "1",
@@ -61,6 +86,11 @@ export const data = [
           },
           {
             id: 2,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Badem",
             weight: "30",
             amount: "6 kom",
@@ -74,6 +104,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Jaja",
             weight: "250",
             amount: "3kom",
@@ -81,6 +116,11 @@ export const data = [
           },
           {
             id: 2,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Kiselo Mleko",
             weight: "140",
             amount: "140gr",
@@ -88,6 +128,11 @@ export const data = [
           },
           {
             id: 3,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Tonus",
             weight: "140",
             amount: "140gr",
@@ -107,6 +152,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Pasteta od mesa",
             weight: "60",
             amount: "60gr",
@@ -114,6 +164,11 @@ export const data = [
           },
           {
             id: 2,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Kiselo Mleko",
             weight: "140",
             amount: "140gr",
@@ -134,6 +189,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Potaz od povrca",
             weight: "60",
             img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
@@ -146,6 +206,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Ratatouille",
             weight: "300",
             amount: "1",
@@ -159,6 +224,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Jabuka",
             weight: "150",
             amount: "1",
@@ -166,6 +236,11 @@ export const data = [
           },
           {
             id: 2,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Badem",
             weight: "30",
             amount: "6 kom",
@@ -179,6 +254,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Pilece belo",
             weight: "250",
             amount: "250gr",
@@ -198,6 +278,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Pasteta od mesa",
             weight: "60",
             amount: "60gr",
@@ -205,6 +290,11 @@ export const data = [
           },
           {
             id: 2,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Kiselo Mleko",
             weight: "140",
             amount: "140gr",
@@ -212,6 +302,11 @@ export const data = [
           },
           {
             id: 3,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Tonus",
             weight: "1",
             amount: "1",
@@ -225,6 +320,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Potaz od povrca",
             weight: "60",
             img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
@@ -237,6 +337,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Ratatouille",
             weight: "300",
             amount: "1",
@@ -250,6 +355,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Jabuka",
             weight: "150",
             amount: "1",
@@ -257,6 +367,11 @@ export const data = [
           },
           {
             id: 2,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Badem",
             weight: "30",
             amount: "6 kom",
@@ -270,6 +385,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Pilece belo",
             weight: "250",
             amount: "250gr",
@@ -290,6 +410,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Integralna Proja",
             weight: "60",
             amount: "10x10",
@@ -297,6 +422,11 @@ export const data = [
           },
           {
             id: 2,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Kiselo Mleko",
             weight: "140",
             amount: "140gr",
@@ -310,6 +440,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Potaz od povrca",
             weight: "60",
             img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
@@ -322,6 +457,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Riba",
             weight: "300",
             amount: "2x",
@@ -331,10 +471,20 @@ export const data = [
       },
       {
         meal_no: 4,
+        price: 100,
+        fat: 30,
+        carbs: 20,
+        calories: 366,
+        protein: 60,
         name: "Snack",
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Jabuka",
             weight: "150",
             amount: "1",
@@ -342,6 +492,11 @@ export const data = [
           },
           {
             id: 2,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Badem",
             weight: "30",
             amount: "6 kom",
@@ -355,6 +510,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Mesana Salata",
             weight: "250",
             amount: "250gr",
@@ -375,6 +535,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Integralna Proja",
             weight: "60",
             amount: "10x10",
@@ -382,6 +547,11 @@ export const data = [
           },
           {
             id: 2,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Kiselo Mleko",
             weight: "140",
             amount: "140gr",
@@ -395,6 +565,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Potaz od povrca",
             weight: "60",
             img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
@@ -407,6 +582,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Riba",
             weight: "300",
             amount: "2x",
@@ -420,6 +600,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Jabuka",
             weight: "150",
             amount: "1",
@@ -427,6 +612,11 @@ export const data = [
           },
           {
             id: 2,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Badem",
             weight: "30",
             amount: "6 kom",
@@ -440,6 +630,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Mesana Salata",
             weight: "250",
             amount: "250gr",
@@ -459,6 +654,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Ovsene Pahuljice",
             weight: "60",
             amount: "160gr",
@@ -472,6 +672,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Potaz od povrca",
             weight: "60",
             img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
@@ -484,6 +689,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Punjena paprika sa sirom",
             weight: "300",
             amount: "1",
@@ -497,6 +707,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Jabuka",
             weight: "150",
             amount: "1",
@@ -504,6 +719,11 @@ export const data = [
           },
           {
             id: 2,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Badem",
             weight: "30",
             amount: "6 kom",
@@ -517,6 +737,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Tunjevina",
             weight: "250",
             amount: "250gr",
@@ -536,6 +761,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Pasteta od mesa",
             weight: "60",
             amount: "60gr",
@@ -543,6 +773,11 @@ export const data = [
           },
           {
             id: 2,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Kiselo Mleko",
             weight: "140",
             amount: "140gr",
@@ -550,6 +785,11 @@ export const data = [
           },
           {
             id: 3,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Tonus",
             weight: "140",
             amount: "140gr",
@@ -563,6 +803,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Potaz od povrca",
             weight: "60",
             img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
@@ -575,6 +820,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Pilece Belo, pirinac, salata",
             weight: "300",
             amount: "150",
@@ -588,6 +838,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Jabuka",
             weight: "150",
             amount: "1",
@@ -595,6 +850,11 @@ export const data = [
           },
           {
             id: 2,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Badem",
             weight: "30",
             amount: "6 kom",
@@ -608,6 +868,11 @@ export const data = [
         contents: [
           {
             id: 1,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Jaja",
             weight: "250",
             amount: "3 kom",
@@ -615,6 +880,11 @@ export const data = [
           },
           {
             id: 2,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Kiselo Mleko",
             weight: "140",
             amount: "140gr",
@@ -622,6 +892,11 @@ export const data = [
           },
           {
             id: 3,
+            price: 100,
+            fat: 30,
+            carbs: 20,
+            calories: 366,
+            protein: 60,
             name: "Tonus",
             weight: "140",
             amount: "140gr",

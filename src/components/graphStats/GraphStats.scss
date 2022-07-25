@@ -1,0 +1,45 @@
+@import "../../styles/colors.scss";
+@import "../../styles/mixins.scss";
+@import "../../styles/constants.scss";
+
+.graphStats {
+  width: 400px;
+  margin: 0 auto;
+
+  &__content {
+    padding: 20px;
+    .chart {
+      width: 250px;
+      margin: 50px auto;
+    }
+    .title {
+      margin-bottom: 30px;
+      border-bottom: 2px solid $orange-main;
+    }
+    .writtenStats {
+      &__content {
+        width: 170px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        font-size: 20px;
+        font-weight: 700;
+        .protein {
+          color: $protein-color;
+        }
+        .fat {
+          color: $fat-color;
+        }
+        .carbs {
+          color: $carbs-color;
+        }
+        .label {
+          text-align: left;
+        }
+        .values {
+          text-align: right;
+        }
+      }
+    }
+  }
+}

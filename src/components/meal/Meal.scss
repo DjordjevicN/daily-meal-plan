@@ -2,22 +2,52 @@
 @import "../../styles/mixins.scss";
 
 .meal__wrapper {
-  width: 100%;
-  .content {
-    width: 65%;
-    max-width: 600px;
-    margin: 0 auto;
-    box-shadow: $box-shadow;
-    border-radius: 8px;
-    padding: 20px;
-
-    .meal_name {
-      text-align: left;
-      color: $font-black;
+  width: 430px;
+  margin-top: 3px;
+  box-shadow: $box-shadow;
+  border-radius: 8px;
+  background-color: rgb(255, 255, 255);
+  .meal_content {
+    text-align: left;
+    padding: 5px 10px;
+    .nameAndAction {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .meal_name {
+        font-size: 20px;
+        color: $font-dark;
+        font-weight: 700;
+      }
+      button {
+        border: 1px solid $orange-main;
+        background: none;
+        width: 100px;
+        height: 20px;
+        border-radius: 8px;
+        color: $orange-main;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.3s;
+        &:hover {
+          background-color: $orange-main;
+          color: white;
+        }
+      }
+      .icon {
+        cursor: pointer;
+        color: $font-dark;
+        &:hover {
+          transition-duration: 0.3s;
+          transform: rotate(-180deg);
+        }
+      }
     }
+
     .calories_count {
-      text-align: left;
-      color: $font-black;
+      font-size: 14px;
+      color: $font-dark;
+      margin-bottom: 14px;
     }
   }
 }

@@ -4,30 +4,73 @@
 .dayMenu {
   width: 100%;
   .content {
+    padding: 15px 15px 0 15px;
     width: 93%;
-    max-width: 600px;
     margin: 0 auto;
-    @include resp(400px) {
-      width: 90%;
+    margin-bottom: 60px;
+    .screenNavigation {
+      width: 100%;
+      .navContent {
+        display: flex;
+        align-items: center;
+        .screenTitle {
+          font-size: 36px;
+          color: $orange-main;
+          font-weight: 900;
+        }
+        .nav-item {
+          display: flex;
+          align-items: center;
+          padding-left: 30px;
+          .box {
+            width: 300px;
+            .day {
+              padding: 0 20px;
+              font-size: 24px;
+            }
+          }
+
+          .icon {
+            border-radius: 50px;
+            padding: 7px;
+            font-size: 24px;
+            cursor: pointer;
+            transition: 0.3s;
+            &:hover {
+              background-color: $orange-main;
+              color: white;
+            }
+          }
+        }
+      }
     }
-    .title {
+    .line {
+      width: 100%;
+      height: 2px;
+      background-color: $orange-main;
+      margin-bottom: 30px;
+    }
+    .menu {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      .theTitle {
-        @include resp(500px) {
-          font-size: 20px;
+
+      width: 100%;
+      height: 100%;
+      .menu_content {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        .meal {
         }
-        @include resp(450px) {
-          font-size: 16px;
+        .stats {
+          box-shadow: $box-shadow;
+          background-color: white;
+          justify-self: end;
+          width: 450px;
+          border-radius: 8px;
         }
       }
-      .icon {
-        font-size: 30px;
-        cursor: pointer;
-      }
-      max-width: 600px;
-      padding: 10px 0;
     }
   }
 }
