@@ -67,10 +67,16 @@ const LeftSidebar: React.FC<IProps> = (props) => {
             <div
               id="settings"
               className="link-item"
-              onClick={() => props.setPage(pages.SETTINGS)}
+              onClick={() => props.setPage(pages.CREATOR)}
+              style={{
+                color:
+                  pages.CREATOR === props.page
+                    ? color.orangeMain
+                    : color.fontLight,
+              }}
             >
               <FiSettings />
-              {props.isMenuOpen ? <p>Settings</p> : null}
+              {props.isMenuOpen ? <p>Creator</p> : null}
             </div>
             <div id="calculate" className="link-item">
               <RiGridLine />
@@ -116,12 +122,12 @@ const LeftSidebar: React.FC<IProps> = (props) => {
               <p>Shopping</p>
             </div>
             <div
-              id="settings"
+              id="creator"
               className="link-item"
-              onClick={() => props.setPage(pages.SETTINGS)}
+              onClick={() => props.setPage(pages.CREATOR)}
             >
               <FiSettings />
-              <p>Settings</p>
+              <p>Creator</p>
             </div>
             <div id="calculate" className="link-item">
               <RiGridLine />

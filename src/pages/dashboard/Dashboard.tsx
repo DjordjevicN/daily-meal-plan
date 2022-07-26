@@ -4,6 +4,7 @@ import "./dashboard.scss";
 import DayMenu from "../../components/dayMenu/DayMenu";
 import ShoppingPage from "../shoppingPage/ShoppingPage";
 import { pages } from "../../constants/pages";
+import Creator from "../../components/creator/Creator";
 
 const Dashboard = () => {
   const [page, setPage] = useState(pages.MEAL_PLAN);
@@ -17,8 +18,8 @@ const Dashboard = () => {
       case pages.SHOPPING:
         return <ShoppingPage />;
 
-      case pages.SETTINGS:
-        return <ShoppingPage />;
+      case pages.CREATOR:
+        return <Creator />;
 
       default:
         <DayMenu />;

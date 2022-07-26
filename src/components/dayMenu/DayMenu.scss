@@ -12,7 +12,11 @@
       padding: 0;
     }
     .screenNavigation {
+      margin-bottom: 30px;
       width: 100%;
+      @include resp(400px) {
+        margin-bottom: 0;
+      }
       .navContent {
         display: flex;
         align-items: center;

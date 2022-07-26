@@ -1,0 +1,141 @@
+@import "../../../../styles/colors.scss";
+@import "../../../../styles/mixins.scss";
+
+.createMealForm {
+  margin-top: 20px;
+  width: 100%;
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr;
+    gap: 10px;
+    // MAIN INFO SECTION
+    .mainInfo {
+      &__content {
+        width: 90%;
+        .formName {
+          font-size: 24px;
+          color: $orange-main;
+          font-weight: 400;
+        }
+        .form {
+          display: flex;
+          flex-direction: column;
+          .formInput {
+            margin-top: 20px;
+            .label {
+              color: $font-dark;
+            }
+            input {
+              width: 100%;
+              height: 30px;
+              border: none;
+              outline: none;
+              border-radius: 8px;
+              box-shadow: $box-shadow;
+              padding: 5px;
+            }
+          }
+        }
+      }
+    }
+    // INGREDIENT SECTION
+    .ingredientsNeeded {
+      width: 100%;
+
+      &__content {
+        .formName {
+          font-size: 24px;
+          color: $orange-main;
+          font-weight: 400;
+          padding-left: 28px;
+        }
+        .ingSearch {
+          width: 90%;
+          margin: 40px auto;
+          position: relative;
+          .inputBlock {
+            position: relative;
+            display: flex;
+            background-color: white;
+            padding: 1px 10px;
+            border-radius: 8px;
+
+            input {
+              width: 97%;
+              padding: 10px;
+              border: none;
+              outline: none;
+              font-size: 16px;
+            }
+            .searchButton {
+              display: grid;
+              place-items: center;
+            }
+          }
+          .searchResults {
+            position: absolute;
+            width: 100%;
+            height: 200px;
+            overflow-y: scroll;
+            background-color: rgb(240, 240, 240);
+            margin-top: 5px;
+            box-shadow: $box-shadow;
+
+            &__content {
+              width: 90%;
+              margin: 10px auto;
+              .emptySearch {
+                span {
+                  color: $orange-main;
+                }
+              }
+            }
+          }
+        }
+
+        .addedIngredients {
+          width: 100%;
+          &__content {
+            width: 90%;
+            margin: 0 auto;
+          }
+        }
+      }
+    }
+    // COOKING STEPS
+    .cookingSteps {
+      &__content {
+        width: 95%;
+        margin: 0 auto;
+        .steps {
+          margin-top: 35px;
+        }
+        .titleAndAction {
+          display: flex;
+          align-items: center;
+          .formName {
+            font-size: 24px;
+            color: $orange-main;
+            font-weight: 400;
+          }
+          .addBTN {
+            margin-left: 50px;
+            padding: 5px;
+            color: $orange-main;
+            display: flex;
+            align-items: center;
+            border-radius: 4px;
+            cursor: pointer;
+            &:hover {
+              background-color: $orange-main;
+              color: white;
+            }
+            p {
+              padding-left: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

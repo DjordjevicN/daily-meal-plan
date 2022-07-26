@@ -1,0 +1,24 @@
+@import "../../../../styles/colors.scss";
+@import "../../../../styles/mixins.scss";
+
+.addStepInput {
+  margin-top: 10px;
+  width: 100%;
+  &__content {
+    .stepNum {
+      font-size: 20px;
+      color: $font-dark;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .textareaInput {
+      width: 100%;
+      min-height: 100px;
+      resize: vertical;
+      outline: none;
+      border-radius: 8px;
+      border: none;
+      box-shadow: $box-shadow;
+    }
+  }
+}

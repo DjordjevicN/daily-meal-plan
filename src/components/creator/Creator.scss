@@ -1,0 +1,43 @@
+@import "../../styles/colors.scss";
+@import "../../styles/mixins.scss";
+@import "../../styles/constants.scss";
+
+.creator {
+  width: 100%;
+  &__content {
+    width: 98%;
+    margin: 0 auto;
+
+    .screenTitle {
+      h2 {
+        font-size: 36px;
+        color: $orange-main;
+      }
+    }
+    .creative {
+      width: 100%;
+      text-align: left;
+      button {
+        margin-top: 30px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: $orange-main;
+        font-size: 24px;
+        border-bottom: 2px solid $orange-main;
+      }
+      .createMealBlock {
+        &__content {
+          button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: $orange-main;
+            font-size: 24px;
+            border-bottom: 2px solid $orange-main;
+          }
+        }
+      }
+    }
+  }
+}
