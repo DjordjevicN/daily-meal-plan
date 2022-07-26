@@ -59,6 +59,21 @@ export const getAllIngredients = () => {
     });
   };
 };
+export const getIngredientByName = (value: any) => {
+  return async (dispatch: Dispatch<Action>) => {
+    console.log(value);
+
+    const response = await axios.post(`${baseUrl}/get_ingredient_by_name`, {
+      value,
+    });
+    console.log(response.data.results);
+
+    dispatch({
+      type: ActionType.GET_ING_BY_NAME,
+      payload: response.data.results,
+    });
+  };
+};
 export const addNewIngredients = (value: any) => {
   console.log(value);
 

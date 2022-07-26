@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Creator.scss";
+import CreateIngredient from "./creatorForms/createIngredient/CreateIngredient";
 import CreateMealForm from "./creatorForms/createMealForm/CreateMealForm";
 
 const Creator = () => {
@@ -41,7 +42,11 @@ const Creator = () => {
               >
                 Create Ingredient
               </button>
-              {isCreateIngredient && <div className="creator_form">form</div>}
+              {isCreateIngredient && (
+                <CreateIngredient
+                  setIsCreateIngredient={setIsCreateIngredient}
+                />
+              )}
             </div>
           </div>
         </div>

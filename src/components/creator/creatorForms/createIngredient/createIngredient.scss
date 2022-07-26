@@ -1,0 +1,75 @@
+@import "../../../../styles/colors.scss";
+@import "../../../../styles/mixins.scss";
+
+.createIngredient {
+  width: 450px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #f8f8f8;
+  box-shadow: -3px 3px 15px rgba(92, 92, 92, 0.527);
+  &__content {
+    .modalTitle {
+      font-size: 24px;
+      font-weight: 700;
+      color: $orange-main;
+      text-align: center;
+      margin: 50px 0;
+    }
+    .exitBtn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+    .formBox {
+      width: 75%;
+      margin: 0 auto;
+      form {
+        .fileInputBlock {
+          margin-top: 15px;
+        }
+        .inputBlock {
+          margin-top: 15px;
+          width: 100%;
+          .inputLabel {
+            color: $font-dark;
+          }
+          .inputEl {
+            width: 100%;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: $box-shadow;
+            display: grid;
+            place-items: center;
+            input {
+              border: none;
+              height: 30px;
+              width: 90%;
+              padding: 5px;
+              color: $font-dark;
+              outline: none;
+            }
+          }
+        }
+        .button {
+          width: 100%;
+
+          input {
+            margin-top: 20px;
+            width: 100%;
+            background-color: $orange-main;
+            border: none;
+            cursor: pointer;
+            color: white;
+            height: 40px;
+            border-radius: 8px;
+            &:hover {
+              background-color: $orange-hover;
+            }
+          }
+        }
+      }
+    }
+  }
+}
