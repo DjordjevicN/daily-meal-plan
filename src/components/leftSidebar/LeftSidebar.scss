@@ -93,6 +93,11 @@
       align-items: center;
       .link-item {
         color: $font-light;
+        @include resp(330px) {
+          p {
+            font-size: 13px;
+          }
+        }
       }
     }
   }

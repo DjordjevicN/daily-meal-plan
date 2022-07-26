@@ -78,7 +78,7 @@ function DayMenu() {
           </div>
         </div>
 
-        <div className="line" />
+        {/* <div className="line" /> */}
         <div className="menu">
           <div className="menu_content">
             <div className="meal">

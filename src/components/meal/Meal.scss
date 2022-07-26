@@ -11,6 +11,9 @@
   @include resp(1122px) {
     margin: 3px auto;
   }
+  @include resp(500px) {
+    width: 100%;
+  }
 
   .meal_content {
     text-align: left;

@@ -58,6 +58,9 @@ function Menu() {
                   Dashboard
                 </a>
               )}
+              <a className="link-item link" href="/dashboard">
+                Dashboard
+              </a>
               {!isUserLoggedIn() && (
                 <button
                   className="link-item button"
@@ -69,7 +72,7 @@ function Menu() {
               {!isUserLoggedIn() && (
                 <button
                   className="link-item button"
-                  onClick={() => (window.location.href = "/dashboard")}
+                  onClick={() => setOpenLoginModal(true)}
                 >
                   Login
                 </button>
@@ -85,6 +88,9 @@ function Menu() {
                   Dashboard
                 </Link>
               )}
+              <Link className="link-item" to="/dashboard">
+                Dashboard
+              </Link>
               {!isUserLoggedIn() && (
                 <button
                   className="link-item button"
@@ -96,7 +102,7 @@ function Menu() {
               {!isUserLoggedIn() && (
                 <button
                   className="link-item button"
-                  onClick={() => (window.location.href = "/dashboard")}
+                  onClick={() => setOpenLoginModal(true)}
                 >
                   Login
                 </button>

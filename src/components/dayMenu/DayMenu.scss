@@ -8,6 +8,9 @@
     width: 93%;
     margin: 0 auto;
     margin-bottom: 60px;
+    @include resp(330px) {
+      padding: 0;
+    }
     .screenNavigation {
       width: 100%;
       .navContent {
@@ -20,6 +23,9 @@
           font-size: 36px;
           color: $orange-main;
           font-weight: 900;
+          @include resp(330px) {
+            font-size: 24px;
+          }
         }
         .nav-item {
           display: flex;
@@ -30,9 +36,18 @@
           }
           .box {
             width: 300px;
+            @include resp(500px) {
+              width: 200px;
+            }
+            @include resp(330px) {
+              width: 150px;
+            }
             .day {
               padding: 0 20px;
               font-size: 24px;
+              @include resp(330px) {
+                font-size: 16px;
+              }
             }
           }
 
@@ -40,6 +55,9 @@
             border-radius: 50px;
             padding: 7px;
             font-size: 24px;
+            @include resp(330px) {
+              font-size: 20px;
+            }
             cursor: pointer;
             transition: 0.3s;
             &:hover {
@@ -75,8 +93,15 @@
           box-shadow: $box-shadow;
           background-color: white;
           justify-self: end;
-          width: 450px;
+          width: 430px;
           border-radius: 8px;
+          @include resp(1122px) {
+            justify-self: center;
+            margin: 30px auto;
+          }
+          @include resp(500px) {
+            width: 100%;
+          }
         }
       }
     }
