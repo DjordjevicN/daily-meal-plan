@@ -17,8 +17,13 @@ interface GetAllIngredientsAction {
   type: ActionType.GET_ALL_INGREDIENTS;
   payload: IIngredients[];
 }
+interface GetIngByName {
+  type: ActionType.GET_ING_BY_NAME;
+  payload: IIngredients[];
+}
 export type Action =
   | CreateUser
   | GetAllIngredientsAction
   | GetUserAction
-  | LoginUserAction;
+  | LoginUserAction
+  | GetIngByName;

@@ -36,3 +36,12 @@ export const userProfileInitState = {
   activity_level: "",
   plan_id: 1,
 };
+export const createMealInitState = {
+  id: 0,
+  user_id: 0,
+  name: "",
+  image: "",
+  videoUrl: "",
+  ingredients: [],
+  steps: [],
+};
