@@ -1,0 +1,29 @@
+@import "../../../../styles/colors.scss";
+@import "../../../../styles/mixins.scss";
+
+.addedStep {
+  background-color: white;
+  position: relative;
+  border-radius: 8px;
+  margin-top: 10px;
+  box-shadow: $box-shadow;
+  .actions {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50px;
+  }
+  &__content {
+    padding: 10px;
+    .stepNum {
+      font-size: 20px;
+      color: $orange-main;
+    }
+    .stepDescription {
+      margin-top: 10px;
+    }
+  }
+}

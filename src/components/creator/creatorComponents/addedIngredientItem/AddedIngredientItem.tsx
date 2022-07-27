@@ -46,9 +46,7 @@ const AddedIngredientItem: React.FC<IProps> = ({
           <select
             onChange={(e) => setIngState({ ...ingState, unit: e.target.value })}
           >
-            <option value="gr" selected>
-              gr
-            </option>
+            <option value="gr">gr</option>
             <option value="Kg">Kg</option>
             <option value="piece">piece</option>
             <option value="cup">cup</option>

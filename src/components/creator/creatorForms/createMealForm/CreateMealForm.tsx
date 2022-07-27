@@ -9,6 +9,7 @@ import { createMealInitState } from "../../../../constants/initStates";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators, State } from "../../../../state";
 import { bindActionCreators } from "redux";
+import AddedStepItem from "../../creatorComponents/addedStepItem/AddedStepItem";
 
 interface IIngredient {
   id: number | string;
@@ -18,13 +19,12 @@ interface IIngredient {
   unit: string;
 }
 interface ISteps {
-  id: number | string;
   stepNum: number;
   description: string;
 }
 interface IMeal {
   id: number;
-  user_id: number;
+  user_id: number | string;
   name: string;
   image: string;
   videoUrl: string;
@@ -38,6 +38,7 @@ const CreateMealForm = () => {
 
   const dispatch = useDispatch();
   const searchResults = useSelector((state: State) => state.ingredientSearch);
+  const user = useSelector((state: State) => state.user);
   const { getIngredientByName } = bindActionCreators(actionCreators, dispatch);
   useEffect(() => {
     if (searchInput.length >= 2) {
@@ -45,11 +46,21 @@ const CreateMealForm = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchInput]);
+  useEffect(() => {
+    setNewMeal({ ...newMeal, user_id: user.id });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleSearch = (value: string) => {
     getIngredientByName(value);
   };
   const handleAddIngredient = (ingredient: IIngredient) => {
+    const alreadyIn = newMeal.ingredients.find(
+      (item) => item.id === ingredient.id
+    );
+    if (alreadyIn) {
+      return;
+    }
     let newIng = [...newMeal.ingredients, ingredient];
     setNewMeal({ ...newMeal, ingredients: newIng });
     setSearchInput("");
@@ -69,6 +80,10 @@ const CreateMealForm = () => {
     });
 
     setNewMeal({ ...newMeal, ingredients: updatedValues });
+  };
+  const addStep = (value: ISteps) => {
+    let newStep = [...newMeal.steps, value];
+    setNewMeal({ ...newMeal, steps: newStep });
   };
   const handleSubmit = () => {
     console.log(newMeal);
@@ -126,6 +141,7 @@ const CreateMealForm = () => {
                   <BsSearch />
                 </div>
               </div>
+
               {searchInput.length > 1 && (
                 <div className="searchResults">
                   <div className="searchResults__content">
@@ -172,14 +188,19 @@ const CreateMealForm = () => {
           <div className="cookingSteps__content">
             <div className="titleAndAction">
               <p className="formName">Steps</p>
-              <div className="addBTN">
-                <RiAddCircleLine />
-                <p>Add Step</p>
-              </div>
             </div>
             <div className="steps">
-              <AddStepInput />
-              <AddStepInput />
+              <AddStepInput addStep={addStep} />
+              <div className="displaySteps">
+                <div className="displaySteps__content">
+                  {newMeal.steps.length > 0 &&
+                    newMeal.steps.map((step) => {
+                      return (
+                        <AddedStepItem step={step} key={step.description} />
+                      );
+                    })}
+                </div>
+              </div>
             </div>
           </div>
         </div>
