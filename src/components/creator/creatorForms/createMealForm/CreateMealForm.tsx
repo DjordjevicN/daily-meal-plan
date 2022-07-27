@@ -12,6 +12,8 @@ import { bindActionCreators } from "redux";
 
 interface IIngredient {
   id: number | string;
+  name: string;
+  img: string;
   amount: number;
   unit: string;
 }
@@ -47,12 +49,26 @@ const CreateMealForm = () => {
   const handleSearch = (value: string) => {
     getIngredientByName(value);
   };
-  const handleAddIngredient = (ingredientId: number | string) => {
-    // OVO MORA DA SE PRERADI
-    // MORA DA VRACA AREJ OBJEKATA id, amount, sliku, unit....
-    // let newIng = [...newMeal.ingredients, ingredientId];
-    // setNewMeal({ ...newMeal, ingredients: newIng });
-    // setSearchInput("");
+  const handleAddIngredient = (ingredient: IIngredient) => {
+    let newIng = [...newMeal.ingredients, ingredient];
+    setNewMeal({ ...newMeal, ingredients: newIng });
+    setSearchInput("");
+  };
+  const handleRemoveIngredient = (ingredientId: number | string) => {
+    let newIng = newMeal.ingredients.filter((item) => item.id !== ingredientId);
+    setNewMeal({ ...newMeal, ingredients: newIng });
+  };
+  const updateAmountsOfIng = (value: IIngredient) => {
+    const currentIng = newMeal.ingredients;
+    let updatedValues = currentIng.map((item) => {
+      if (item.id === value.id) {
+        item.amount = value.amount;
+        item.unit = value.unit;
+      }
+      return item;
+    });
+
+    setNewMeal({ ...newMeal, ingredients: updatedValues });
   };
   const handleSubmit = () => {
     console.log(newMeal);
@@ -102,6 +118,7 @@ const CreateMealForm = () => {
               <div className="inputBlock">
                 <input
                   type="text"
+                  value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
                   placeholder="Find Ingredient"
                 />
@@ -137,12 +154,16 @@ const CreateMealForm = () => {
             </div>
             <div className="addedIngredients">
               <div className="addedIngredients__content">
-                <AddedIngredientItem />
-                <AddedIngredientItem />
-                <AddedIngredientItem />
-                <AddedIngredientItem />
-                <AddedIngredientItem />
-                <AddedIngredientItem />
+                {newMeal.ingredients.map((ingredient) => {
+                  return (
+                    <AddedIngredientItem
+                      key={ingredient.id}
+                      ingredient={ingredient}
+                      handleRemoveIngredient={handleRemoveIngredient}
+                      updateAmountsOfIng={updateAmountsOfIng}
+                    />
+                  );
+                })}
               </div>
             </div>
           </div>
