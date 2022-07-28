@@ -141,3 +141,18 @@ export const createMeal = (value: any) => {
     dispatch(createMealSteps(response.data.insertId, value));
   };
 };
+
+// GET USERS MEALS
+export const getUsersMeals = (value: number) => {
+  return async (dispatch: any) => {
+    const response = await axios.post(`${baseUrl}/get_users_meals`, {
+      value,
+    });
+    console.log(response);
+
+    dispatch({
+      type: ActionType.GET_USERS_MEALS,
+      payload: response.data,
+    });
+  };
+};

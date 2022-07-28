@@ -4,4 +4,5 @@ export enum ActionType {
   GET_ALL_INGREDIENTS = "get_all_ingredients",
   LOGIN_USER = "login_user",
   GET_ING_BY_NAME = "get_ing_by_name",
+  GET_USERS_MEALS = "get_users_meals",
 }

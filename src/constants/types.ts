@@ -50,3 +50,22 @@ export interface IData {
   name: string;
   contents: IFood[];
 }
+export interface IMealInformation {
+  id: number | string;
+  day_id: number;
+  plan_id: number;
+  name: string;
+  price: number;
+  calories: number;
+  carbs: number;
+  protein: number;
+  fat: number;
+  img: string;
+  base_amount: number;
+  current_amount: number;
+  percentage_amount: number;
+  weight: number;
+  meal_type: number;
+  videoUrl: string;
+  user_id: number | string;
+}
