@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "./Creator.scss";
+import UsersMeals from "./creatorComponents/usersMeals/UsersMeals";
 import CreateIngredient from "./creatorForms/createIngredient/CreateIngredient";
 import CreateMealForm from "./creatorForms/createMealForm/CreateMealForm";
 
 const Creator = () => {
   const [isCreatePlan, setIsCreatePlan] = useState(false);
-  const [isCreateMeal, setIsCreateMeal] = useState(true);
+  const [isCreateMeal, setIsCreateMeal] = useState(false);
   const [isCreateIngredient, setIsCreateIngredient] = useState(false);
 
   return (
@@ -29,10 +30,13 @@ const Creator = () => {
           </div>
           <div className="createMealBlock">
             <div className="createMealBlock__content">
+              <UsersMeals />
               <button onClick={() => setIsCreateMeal(!isCreateMeal)}>
                 Create Meal
               </button>
-              {isCreateMeal && <CreateMealForm />}
+              {isCreateMeal && (
+                <CreateMealForm setIsCreateMeal={setIsCreateMeal} />
+              )}
             </div>
           </div>
           <div className="createIngredientBlock">

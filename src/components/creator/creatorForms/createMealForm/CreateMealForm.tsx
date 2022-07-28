@@ -3,7 +3,7 @@ import "./createMealForm.scss";
 import { BsSearch } from "react-icons/bs";
 import AddedIngredientItem from "../../creatorComponents/addedIngredientItem/AddedIngredientItem";
 import SearchResultItem from "../../creatorComponents/searchResultItem/SearchResultItem";
-import { RiAddCircleLine } from "react-icons/ri";
+
 import AddStepInput from "../../creatorComponents/addStepInput/AddStepInput";
 import { createMealInitState } from "../../../../constants/initStates";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,6 +19,8 @@ interface IIngredient {
   unit: string;
 }
 interface ISteps {
+  id?: number | string;
+  identNum: number;
   stepNum: number;
   description: string;
 }
@@ -31,15 +33,20 @@ interface IMeal {
   ingredients: IIngredient[];
   steps: ISteps[];
 }
-
-const CreateMealForm = () => {
+interface IProps {
+  setIsCreateMeal: React.Dispatch<React.SetStateAction<boolean>>;
+}
+const CreateMealForm: React.FC<IProps> = ({ setIsCreateMeal }) => {
   const [searchInput, setSearchInput] = useState("");
   const [newMeal, setNewMeal] = useState<IMeal>(createMealInitState);
 
   const dispatch = useDispatch();
   const searchResults = useSelector((state: State) => state.ingredientSearch);
   const user = useSelector((state: State) => state.user);
-  const { getIngredientByName } = bindActionCreators(actionCreators, dispatch);
+  const { getIngredientByName, createMeal } = bindActionCreators(
+    actionCreators,
+    dispatch
+  );
   useEffect(() => {
     if (searchInput.length >= 2) {
       handleSearch(searchInput);
@@ -85,8 +92,26 @@ const CreateMealForm = () => {
     let newStep = [...newMeal.steps, value];
     setNewMeal({ ...newMeal, steps: newStep });
   };
+  const removeStep = (stepIdentNum: number) => {
+    let newIng = newMeal.steps.filter((item) => item.identNum !== stepIdentNum);
+    setNewMeal({ ...newMeal, steps: newIng });
+  };
+  const updateStep = (value: ISteps) => {
+    const currentIng = newMeal.steps;
+    let updatedValues = currentIng.map((item) => {
+      if (item.identNum === value.identNum) {
+        item.stepNum = value.stepNum;
+        item.description = value.description;
+      }
+      return item;
+    });
+
+    setNewMeal({ ...newMeal, steps: updatedValues });
+  };
   const handleSubmit = () => {
-    console.log(newMeal);
+    createMeal(newMeal);
+    setNewMeal(createMealInitState);
+    setIsCreateMeal(false);
   };
 
   return (
@@ -100,6 +125,7 @@ const CreateMealForm = () => {
                 <p className="label">Name</p>
                 <input
                   type="text"
+                  value={newMeal.name}
                   onChange={(e) => {
                     setNewMeal({ ...newMeal, name: e.target.value });
                   }}
@@ -196,7 +222,12 @@ const CreateMealForm = () => {
                   {newMeal.steps.length > 0 &&
                     newMeal.steps.map((step) => {
                       return (
-                        <AddedStepItem step={step} key={step.description} />
+                        <AddedStepItem
+                          step={step}
+                          key={step.identNum}
+                          removeStep={removeStep}
+                          updateStep={updateStep}
+                        />
                       );
                     })}
                 </div>

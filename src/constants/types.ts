@@ -10,6 +10,7 @@ export interface IIngredients {
   id: number | string;
   meal_id: number;
   name: string;
+  barcode?: string;
   price: number;
   calories: number;
   carbs: number;

@@ -7,6 +7,8 @@
   border-radius: 8px;
   margin-top: 10px;
   box-shadow: $box-shadow;
+
+  width: 101.5%;
   .actions {
     position: absolute;
     right: 10px;
@@ -18,12 +20,65 @@
   }
   &__content {
     padding: 10px;
+
     .stepNum {
       font-size: 20px;
       color: $orange-main;
     }
     .stepDescription {
       margin-top: 10px;
+    }
+  }
+  .updateStepInput {
+    border-radius: 8px;
+    margin-top: 10px;
+    width: 100%;
+    &__content {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      .inputBox {
+        margin: 0 auto;
+        width: 95%;
+        p {
+          color: $orange-main;
+          margin-top: 20px;
+        }
+        .stepNum {
+          width: 97%;
+          height: 30px;
+          padding: 8px 0 8px 8px;
+          outline: none;
+          border-radius: 8px;
+          border: $input-border;
+
+          box-shadow: $box-shadow;
+        }
+        .textareaInput {
+          padding: 8px 0 8px 8px;
+          margin: 0 auto;
+          width: 97%;
+          min-height: 100px;
+          resize: vertical;
+          outline: none;
+          border-radius: 8px;
+          border: $input-border;
+          box-shadow: $box-shadow;
+        }
+      }
+
+      .updateBTN {
+        margin-top: 20px;
+        width: 98.3%;
+        display: grid;
+        place-items: center;
+        color: white;
+        cursor: pointer;
+        height: 24px;
+        border-radius: 8px;
+        background-color: $button-ok;
+        padding: 8px 0 8px 8px;
+      }
     }
   }
 }

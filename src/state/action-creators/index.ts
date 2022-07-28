@@ -10,8 +10,6 @@ const baseUrl = isLocal()
   : "https://jelovnik.nikola-djordjevic.com";
 // USER
 export const getUser = (value: any) => {
-  console.log(value);
-
   return async (dispatch: Dispatch<Action>) => {
     const response = await axios.post(`${baseUrl}${routes.GET_USER}`, {
       value,
@@ -61,12 +59,9 @@ export const getAllIngredients = () => {
 };
 export const getIngredientByName = (value: any) => {
   return async (dispatch: Dispatch<Action>) => {
-    console.log(value);
-
     const response = await axios.post(`${baseUrl}/get_ingredient_by_name`, {
       value,
     });
-    console.log(response.data.results);
 
     dispatch({
       type: ActionType.GET_ING_BY_NAME,
@@ -75,11 +70,7 @@ export const getIngredientByName = (value: any) => {
   };
 };
 export const addNewIngredients = (value: any) => {
-  console.log(value);
-
   return async (dispatch: any) => {
-    console.log(value);
-
     await axios.post(`${baseUrl}/add_ingredients`, value);
     dispatch(getAllIngredients());
   };
@@ -101,5 +92,52 @@ export const editIngredients = (value: any) => {
   return async (dispatch: any) => {
     await axios.post(`${baseUrl}/edit_ingredients`, { value });
     dispatch(getAllIngredients());
+  };
+};
+// CREATE GLUE INGREDIENT
+export const createIngredientInMeal = (mealId: any, value: any) => {
+  return async (dispatch: any) => {
+    value.ingredients.forEach(async (item: any) => {
+      const data = {
+        meal_id: mealId,
+        ingredientId: item.id,
+      };
+      await axios.post(`${baseUrl}/ingredient_in_meal`, {
+        data,
+      });
+    });
+  };
+};
+// CREATE GLUE INGREDIENT
+export const createMealSteps = (mealId: any, value: any) => {
+  return async (dispatch: any) => {
+    value.steps.forEach(async (item: any) => {
+      const data = {
+        meal_id: mealId,
+        title: item.stepNum,
+        description: item.description,
+      };
+      await axios.post(`${baseUrl}/add_meal_step`, {
+        data,
+      });
+    });
+  };
+};
+
+// CREATE MEAL
+export const createMeal = (value: any) => {
+  return async (dispatch: any) => {
+    const mealInfo = {
+      user_id: value.user_id,
+      name: value.name,
+      image: value.image,
+      videoUrl: value.videoUrl,
+    };
+
+    const response = await axios.post(`${baseUrl}/create_meal`, {
+      mealInfo,
+    });
+    dispatch(createIngredientInMeal(response.data.insertId, value));
+    dispatch(createMealSteps(response.data.insertId, value));
   };
 };

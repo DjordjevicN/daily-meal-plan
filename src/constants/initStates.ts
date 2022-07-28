@@ -5,6 +5,7 @@ export const initAddIngredientModalState = {
   calories: 0,
   carbs: 0,
   protein: 0,
+  barcode: "",
   fat: 0,
   img: {},
   base_amount: 0,
