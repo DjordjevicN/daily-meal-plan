@@ -28,7 +28,7 @@ interface IMeal {
   id: number;
   user_id: number | string;
   name: string;
-  image: string;
+  image: any;
   videoUrl: string;
   ingredients: IIngredient[];
   steps: ISteps[];
@@ -136,7 +136,10 @@ const CreateMealForm: React.FC<IProps> = ({ setIsCreateMeal }) => {
                 <input
                   type="file"
                   onChange={(e) => {
-                    setNewMeal({ ...newMeal, image: e.target.value });
+                    setNewMeal({
+                      ...newMeal,
+                      image: e.target.files ? e.target.files[0] : null,
+                    });
                   }}
                 />
               </div>

@@ -6,6 +6,7 @@ import { AiTwotoneDelete, AiFillEdit } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators, State } from "../../../../state";
 import { bindActionCreators } from "redux";
+import { baseUrl } from "../../../../constants/utilFunc";
 
 interface IProps {
   details: IMealInformation;
@@ -49,7 +50,14 @@ const SingleMealDisplay: React.FC<IProps> = ({ details }) => {
       >
         <div className="singleMeal__content">
           <div className="image">
-            <img src="images/noimage.png" alt="meal" />
+            <img
+              src={
+                details.img
+                  ? `${baseUrl()}/uploads/${details.img}`
+                  : "images/noimage.png"
+              }
+              alt="meal"
+            />
           </div>
           <div className="mealTitle">
             <p>{details.name}</p>

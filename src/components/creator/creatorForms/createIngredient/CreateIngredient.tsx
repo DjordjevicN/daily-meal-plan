@@ -26,13 +26,12 @@ const CreateIngredient: React.FC<IProps> = (props) => {
   const [modalState, setModalState] = useState<IIngState>(
     initAddIngredientModalState
   );
-
   const dispatch = useDispatch();
-
   const { addNewIngredients } = bindActionCreators(actionCreators, dispatch);
+
   const handleAddNew = (event: React.FormEvent) => {
     event.preventDefault();
-    // handleFile();
+
     addNewIngredients(modalState);
     props.setIsCreateIngredient(false);
     setModalState(initAddIngredientModalState);

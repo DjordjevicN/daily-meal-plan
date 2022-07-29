@@ -4,6 +4,7 @@ import { Dispatch } from "redux";
 import axios from "axios";
 import { isLocal } from "../../constants/utilFunc";
 import routes from "../../constants/routes";
+import FormData from "form-data";
 
 const baseUrl = isLocal()
   ? "http://localhost:3001"
@@ -20,6 +21,15 @@ export const getUser = (value: any) => {
     });
   };
 };
+
+const handleFile = async (value: any) => {
+  const formData = new FormData();
+  formData.append("picture", value.files);
+  formData.append("tableName", value.tableName);
+  formData.append("itemId", `${value.itemId}`);
+  await axios.post(`${baseUrl}/picture`, formData);
+};
+
 export const loginUser = (value: any) => {
   return async (dispatch: Dispatch<Action>) => {
     const response = await axios.post(`${baseUrl}${routes.LOGIN_USER}`, value);
@@ -71,8 +81,16 @@ export const getIngredientByName = (value: any) => {
 };
 export const addNewIngredients = (value: any) => {
   return async (dispatch: any) => {
-    await axios.post(`${baseUrl}/add_ingredients`, value);
+    console.log(value);
+
+    const response = await axios.post(`${baseUrl}/add_ingredients`, value);
+    const imageData = {
+      tableName: "ingredients",
+      files: value.img,
+      itemId: response.data.insertId,
+    };
     dispatch(getAllIngredients());
+    dispatch(handleFile(imageData));
   };
 };
 export const deleteIngredients = (value: any) => {
@@ -144,16 +162,23 @@ export const createMeal = (value: any) => {
     const mealInfo = {
       user_id: value.user_id,
       name: value.name,
-      image: value.image,
       videoUrl: value.videoUrl,
     };
 
     const response = await axios.post(`${baseUrl}/create_meal`, {
       mealInfo,
     });
+
+    const imageData = {
+      tableName: "meal",
+      files: value.image,
+      itemId: response.data.insertId,
+    };
+
     dispatch(createIngredientInMeal(response.data.insertId, value));
     dispatch(createMealSteps(response.data.insertId, value));
     dispatch(getUsersMeals(mealInfo.user_id));
+    dispatch(handleFile(imageData));
   };
 };
 
