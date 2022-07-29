@@ -148,10 +148,33 @@ export const getUsersMeals = (value: number) => {
     const response = await axios.post(`${baseUrl}/get_users_meals`, {
       value,
     });
-    console.log(response);
 
     dispatch({
       type: ActionType.GET_USERS_MEALS,
+      payload: response.data,
+    });
+  };
+};
+// GET MEALS INGREDIENTS
+export const getMealsIngredients = (value: number) => {
+  return async (dispatch: any) => {
+    const response = await axios.post(`${baseUrl}/get_meals_ingredients`, {
+      value,
+    });
+    dispatch({
+      type: ActionType.GET_MEALS_INGREDIENTS,
+      payload: response.data,
+    });
+  };
+};
+// GET MEALS STEPS
+export const getMealsSteps = (value: number) => {
+  return async (dispatch: any) => {
+    const response = await axios.post(`${baseUrl}/get_meals_steps`, {
+      value,
+    });
+    dispatch({
+      type: ActionType.GET_MEALS_STEPS,
       payload: response.data,
     });
   };

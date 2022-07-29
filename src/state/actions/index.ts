@@ -1,4 +1,10 @@
-import { IIngredients, IUser, IMealInformation } from "../../constants/types";
+import {
+  IIngredients,
+  IUser,
+  IMealInformation,
+  IIngredientsProp,
+  IStep,
+} from "../../constants/types";
 import { ActionType } from "./../action-types/index";
 
 interface GetUserAction {
@@ -25,10 +31,20 @@ interface GetUsersMeals {
   type: ActionType.GET_USERS_MEALS;
   payload: IMealInformation[];
 }
+interface GetMealsIngredients {
+  type: ActionType.GET_MEALS_INGREDIENTS;
+  payload: IIngredientsProp[];
+}
+interface GetMealsSteps {
+  type: ActionType.GET_MEALS_STEPS;
+  payload: IStep[];
+}
 export type Action =
   | CreateUser
   | GetAllIngredientsAction
   | GetUserAction
   | LoginUserAction
   | GetIngByName
-  | GetUsersMeals;
+  | GetUsersMeals
+  | GetMealsIngredients
+  | GetMealsSteps;

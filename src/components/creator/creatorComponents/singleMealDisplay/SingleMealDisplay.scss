@@ -31,6 +31,7 @@
 }
 
 .displayMeal {
+  overflow-y: scroll;
   position: fixed;
   top: 0;
   left: 0;
@@ -41,12 +42,100 @@
   place-items: center;
   &__content {
     width: 50%;
+    border-radius: 16px;
     background-color: white;
+    position: relative;
+    padding: 20px;
+    margin-top: 30px;
+    margin-bottom: 100px;
     .exitBtn {
       position: absolute;
       top: 20px;
-      left: 20px;
+      right: 20px;
       cursor: pointer;
+    }
+    .mainInfo {
+      display: flex;
+      justify-content: space-between;
+      .image {
+        img {
+          width: 100%;
+        }
+      }
+      .titleAndIngredients {
+        margin: 0 auto;
+        .titleBox {
+          display: flex;
+          align-items: center;
+          a {
+            text-decoration: none;
+            padding-left: 10px;
+            font-weight: 700;
+            color: $orange-main;
+          }
+          .title {
+            font-size: 36px;
+            line-height: 30px;
+            font-weight: 900;
+            color: $font-dark;
+          }
+        }
+
+        .ingredientBlock {
+          margin-top: 30px;
+          .singleIngredient {
+            margin-top: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &--image {
+              display: flex;
+              align-items: center;
+              img {
+                width: 30px;
+              }
+            }
+            .ingredientName {
+              margin-left: 10px;
+              font-size: 16px;
+              font-weight: 700;
+            }
+          }
+        }
+      }
+    }
+    .line {
+      background-color: $orange-main;
+    }
+    .nutrition {
+      width: 100%;
+      &__content {
+        width: 50%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+    .recipeSteps {
+      width: 100%;
+      &__content {
+        .steps {
+          &__content {
+            .stepBlock {
+              margin-top: 20px;
+              .stepTitle {
+                font-size: 20px;
+                font-weight: 700;
+                color: $orange-main;
+              }
+              .stepDescription {
+                margin-top: 10px;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -69,3 +69,26 @@ export interface IMealInformation {
   videoUrl: string;
   user_id: number | string;
 }
+export interface IIngredientsProp {
+  id: number | string;
+  name: string;
+  price: number;
+  calories: number;
+  carbs: number;
+  protein: number;
+  fat: number;
+  img: string;
+  base_amount: number;
+  current_amount: number;
+  percentage_amount: number;
+  amount: number | string;
+  unit: string;
+}
+export interface IStep {
+  id: number | string;
+  meal_id: number | string;
+  title: string;
+  description: string;
+  video: string;
+  image: string;
+}
