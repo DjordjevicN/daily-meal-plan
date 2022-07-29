@@ -101,6 +101,8 @@ export const createIngredientInMeal = (mealId: any, value: any) => {
       const data = {
         meal_id: mealId,
         ingredientId: item.id,
+        amount: item.amount,
+        unit: item.unit,
       };
       await axios.post(`${baseUrl}/ingredient_in_meal`, {
         data,
@@ -123,7 +125,19 @@ export const createMealSteps = (mealId: any, value: any) => {
     });
   };
 };
+// GET USERS MEALS
+export const getUsersMeals = (value: number) => {
+  return async (dispatch: any) => {
+    const response = await axios.post(`${baseUrl}/get_users_meals`, {
+      value,
+    });
 
+    dispatch({
+      type: ActionType.GET_USERS_MEALS,
+      payload: response.data,
+    });
+  };
+};
 // CREATE MEAL
 export const createMeal = (value: any) => {
   return async (dispatch: any) => {
@@ -139,22 +153,10 @@ export const createMeal = (value: any) => {
     });
     dispatch(createIngredientInMeal(response.data.insertId, value));
     dispatch(createMealSteps(response.data.insertId, value));
+    dispatch(getUsersMeals(mealInfo.user_id));
   };
 };
 
-// GET USERS MEALS
-export const getUsersMeals = (value: number) => {
-  return async (dispatch: any) => {
-    const response = await axios.post(`${baseUrl}/get_users_meals`, {
-      value,
-    });
-
-    dispatch({
-      type: ActionType.GET_USERS_MEALS,
-      payload: response.data,
-    });
-  };
-};
 // GET MEALS INGREDIENTS
 export const getMealsIngredients = (value: number) => {
   return async (dispatch: any) => {
@@ -177,5 +179,14 @@ export const getMealsSteps = (value: number) => {
       type: ActionType.GET_MEALS_STEPS,
       payload: response.data,
     });
+  };
+};
+// DELETE MEAL
+export const deleteMeal = (value: { userId: number; mealId: number }) => {
+  return async (dispatch: any) => {
+    await axios.post(`${baseUrl}/delete_meal`, {
+      value,
+    });
+    dispatch(getUsersMeals(value.userId));
   };
 };

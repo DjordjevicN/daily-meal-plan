@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { IMealInformation } from "../../../../constants/types";
 import "./SingleMealDisplay.scss";
 import { GrClose } from "react-icons/gr";
+import { AiTwotoneDelete, AiFillEdit } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators, State } from "../../../../state";
 import { bindActionCreators } from "redux";
@@ -15,8 +16,9 @@ const SingleMealDisplay: React.FC<IProps> = ({ details }) => {
     (state: State) => state.mealsIngredients
   );
   const mealsSteps = useSelector((state: State) => state.mealSteps);
+  const user = useSelector((state: State) => state.user);
 
-  const { getMealsIngredients, getMealsSteps } = bindActionCreators(
+  const { getMealsIngredients, getMealsSteps, deleteMeal } = bindActionCreators(
     actionCreators,
     dispatch
   );
@@ -26,6 +28,13 @@ const SingleMealDisplay: React.FC<IProps> = ({ details }) => {
   const getRecipe = (value: number) => {
     getMealsIngredients(value);
     getMealsSteps(value);
+  };
+  const handleDeleteMeal = () => {
+    const data = {
+      userId: +user.id,
+      mealId: +details.id,
+    };
+    deleteMeal(data);
   };
 
   return (
@@ -57,6 +66,7 @@ const SingleMealDisplay: React.FC<IProps> = ({ details }) => {
             >
               <GrClose />
             </div>
+
             <div className="mainInfo">
               <div className="image">
                 <img src="images/noimage.png" alt="food" />
@@ -94,6 +104,24 @@ const SingleMealDisplay: React.FC<IProps> = ({ details }) => {
                 </div>
               </div>
             </div>
+            {details.user_id === user.id && (
+              <div className="mealControl">
+                <div className="mealControl__content">
+                  <div className="deleteBtn" onClick={() => handleDeleteMeal()}>
+                    <AiTwotoneDelete />
+                    <p>Delete Meal</p>
+                  </div>
+                  <div
+                    className="editBtn"
+                    // onClick={() => setIsDisplayMealOpen(false)}
+                  >
+                    <AiFillEdit />
+                    <p>Edit Meal</p>
+                  </div>
+                </div>
+              </div>
+            )}
+
             <div className="line"></div>
             <div className="nutrition">
               <div className="nutrition__content">
