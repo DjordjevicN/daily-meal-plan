@@ -12,7 +12,7 @@ const baseUrl = isLocal()
 // USER
 export const getUser = (value: any) => {
   return async (dispatch: Dispatch<Action>) => {
-    const response = await axios.post(`${baseUrl}${routes.GET_USER}`, {
+    const response = await axios.post(`${baseUrl}${routes.GET_USER_BY_ID}`, {
       value,
     });
     dispatch({
@@ -60,7 +60,7 @@ export const updateUser = (value: any) => {
 // INGREDIENTS
 export const getAllIngredients = () => {
   return async (dispatch: Dispatch<Action>) => {
-    const response = await axios.get(`${baseUrl}/get_all_ingredients`);
+    const response = await axios.get(`${baseUrl}${routes.GET_ALL_INGREDIENTS}`);
     dispatch({
       type: ActionType.GET_ALL_INGREDIENTS,
       payload: response.data.results,
@@ -69,9 +69,12 @@ export const getAllIngredients = () => {
 };
 export const getIngredientByName = (value: any) => {
   return async (dispatch: Dispatch<Action>) => {
-    const response = await axios.post(`${baseUrl}/get_ingredient_by_name`, {
-      value,
-    });
+    const response = await axios.post(
+      `${baseUrl}${routes.GET_INGREDIENTS_BY_NAME}`,
+      {
+        value,
+      }
+    );
 
     dispatch({
       type: ActionType.GET_ING_BY_NAME,
@@ -83,7 +86,10 @@ export const addNewIngredients = (value: any) => {
   return async (dispatch: any) => {
     console.log(value);
 
-    const response = await axios.post(`${baseUrl}/add_ingredients`, value);
+    const response = await axios.post(
+      `${baseUrl}${routes.ADD_INGREDIENT}`,
+      value
+    );
     const imageData = {
       tableName: "ingredients",
       files: value.img,
@@ -95,20 +101,20 @@ export const addNewIngredients = (value: any) => {
 };
 export const deleteIngredients = (value: any) => {
   return async (dispatch: any) => {
-    await axios.post(`${baseUrl}/delete_ing`, { value });
+    await axios.post(`${baseUrl}${routes.DELETE_INGREDIENT}`, { value });
     dispatch(getAllIngredients());
   };
 };
 export const buyIngredients = (value: any) => {
   return async (dispatch: any) => {
-    await axios.post(`${baseUrl}/purchase_made`, { value });
+    await axios.post(`${baseUrl}${routes.PURCHASE_INGREDIENT}`, { value });
     dispatch(getAllIngredients());
   };
 };
 
 export const editIngredients = (value: any) => {
   return async (dispatch: any) => {
-    await axios.post(`${baseUrl}/edit_ingredients`, { value });
+    await axios.post(`${baseUrl}${routes.EDIT_INGREDIENT}`, { value });
     dispatch(getAllIngredients());
   };
 };
@@ -122,7 +128,7 @@ export const createIngredientInMeal = (mealId: any, value: any) => {
         amount: item.amount,
         unit: item.unit,
       };
-      await axios.post(`${baseUrl}/ingredient_in_meal`, {
+      await axios.post(`${baseUrl}${routes.CREATE_INGREDIENT_IN_MEAL}`, {
         data,
       });
     });
@@ -137,7 +143,7 @@ export const createMealSteps = (mealId: any, value: any) => {
         title: item.stepNum,
         description: item.description,
       };
-      await axios.post(`${baseUrl}/add_meal_step`, {
+      await axios.post(`${baseUrl}${routes.CREATE_MEAL_STEP}`, {
         data,
       });
     });
@@ -146,9 +152,12 @@ export const createMealSteps = (mealId: any, value: any) => {
 // GET USERS MEALS
 export const getUsersMeals = (value: number) => {
   return async (dispatch: any) => {
-    const response = await axios.post(`${baseUrl}/get_users_meals`, {
-      value,
-    });
+    const response = await axios.post(
+      `${baseUrl}${routes.GET_MEAL_BY_USER_ID}`,
+      {
+        value,
+      }
+    );
 
     dispatch({
       type: ActionType.GET_USERS_MEALS,
@@ -165,7 +174,7 @@ export const createMeal = (value: any) => {
       videoUrl: value.videoUrl,
     };
 
-    const response = await axios.post(`${baseUrl}/create_meal`, {
+    const response = await axios.post(`${baseUrl}${routes.CREATE_MEAL}`, {
       mealInfo,
     });
 
@@ -185,9 +194,12 @@ export const createMeal = (value: any) => {
 // GET MEALS INGREDIENTS
 export const getMealsIngredients = (value: number) => {
   return async (dispatch: any) => {
-    const response = await axios.post(`${baseUrl}/get_meals_ingredients`, {
-      value,
-    });
+    const response = await axios.post(
+      `${baseUrl}${routes.GET_MEAL_INGREDIENTS}`,
+      {
+        value,
+      }
+    );
     dispatch({
       type: ActionType.GET_MEALS_INGREDIENTS,
       payload: response.data,
@@ -197,7 +209,7 @@ export const getMealsIngredients = (value: number) => {
 // GET MEALS STEPS
 export const getMealsSteps = (value: number) => {
   return async (dispatch: any) => {
-    const response = await axios.post(`${baseUrl}/get_meals_steps`, {
+    const response = await axios.post(`${baseUrl}${routes.GET_MEALS_STEPS}`, {
       value,
     });
     dispatch({

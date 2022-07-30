@@ -17,9 +17,6 @@ interface IIngState {
   protein?: number;
   fat?: number;
   img?: any;
-  base_amount?: number;
-  current_amount?: number;
-  percentage_amount?: number;
 }
 
 const CreateIngredient: React.FC<IProps> = (props) => {
@@ -79,51 +76,7 @@ const CreateIngredient: React.FC<IProps> = (props) => {
                 />
               </div>
             </div>
-            <div className="inputBlock">
-              <p className="inputLabel">Base amount</p>
-              <div className="inputEl">
-                <input
-                  type="number"
-                  value={modalState.base_amount}
-                  onChange={(e) => {
-                    setModalState({
-                      ...modalState,
-                      base_amount: +e.target.value,
-                    });
-                  }}
-                />
-              </div>
-            </div>
-            <div className="inputBlock">
-              <p className="inputLabel">Current amount</p>
-              <div className="inputEl">
-                <input
-                  type="number"
-                  value={modalState.current_amount}
-                  onChange={(e) => {
-                    setModalState({
-                      ...modalState,
-                      current_amount: +e.target.value,
-                    });
-                  }}
-                />
-              </div>
-            </div>
-            <div className="inputBlock">
-              <p className="inputLabel">percentage amount</p>
-              <div className="inputEl">
-                <input
-                  type="number"
-                  value={modalState.percentage_amount}
-                  onChange={(e) => {
-                    setModalState({
-                      ...modalState,
-                      percentage_amount: +e.target.value,
-                    });
-                  }}
-                />
-              </div>
-            </div>
+
             <div className="inputBlock">
               <p className="inputLabel">Calories</p>
               <div className="inputEl">
@@ -162,6 +115,18 @@ const CreateIngredient: React.FC<IProps> = (props) => {
                   value={modalState.fat}
                   onChange={(e) => {
                     setModalState({ ...modalState, fat: +e.target.value });
+                  }}
+                />
+              </div>
+            </div>
+            <div className="inputBlock">
+              <p className="inputLabel">Protein</p>
+              <div className="inputEl">
+                <input
+                  type="number"
+                  value={modalState.protein}
+                  onChange={(e) => {
+                    setModalState({ ...modalState, protein: +e.target.value });
                   }}
                 />
               </div>

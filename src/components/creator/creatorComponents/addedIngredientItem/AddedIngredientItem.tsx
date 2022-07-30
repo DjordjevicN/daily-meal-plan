@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FiMinus } from "react-icons/fi";
 import "./addedIngredientItem.scss";
+import { baseUrl } from "../../../../constants/utilFunc";
 
 interface IIngredient {
   id: number | string;
@@ -31,7 +32,14 @@ const AddedIngredientItem: React.FC<IProps> = ({
     <div className="addedIngredientItem">
       <div className="addedIngredientItem__content">
         <div className="image">
-          <img src="images/heroimg.png" alt="" />
+          <img
+            src={
+              ingredient.img
+                ? `${baseUrl()}/uploads/${ingredient.img}`
+                : "images/noimage.png"
+            }
+            alt="meal"
+          />
         </div>
         <div className="ingName">
           <p>{ingredient.name}</p>

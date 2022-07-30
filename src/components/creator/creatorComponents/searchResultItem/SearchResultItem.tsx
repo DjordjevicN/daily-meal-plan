@@ -1,6 +1,7 @@
 import React from "react";
 import { IIngredients } from "../../../../constants/types";
 import "./searchResultItem.scss";
+import { baseUrl } from "../../../../constants/utilFunc";
 
 interface IIngredient {
   id: number | string;
@@ -30,8 +31,14 @@ const SearchResultItem: React.FC<IProps> = ({
     <div className="resultItem" onClick={() => handleAddIngredient(ingredient)}>
       <div className="resultItem__content">
         <div className="image">
-          <img src="images/noimage.png" alt="food" />
-          {/* <img src={ingredientInfo.img ?? "images/noimage.png"} alt="food" /> */}
+          <img
+            src={
+              ingredientInfo.img
+                ? `${baseUrl()}/uploads/${ingredientInfo.img}`
+                : "images/noimage.png"
+            }
+            alt="meal"
+          />
         </div>
         <div className="resultName">
           <p>{ingredientInfo.name}</p>

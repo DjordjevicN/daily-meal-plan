@@ -77,7 +77,14 @@ const SingleMealDisplay: React.FC<IProps> = ({ details }) => {
 
             <div className="mainInfo">
               <div className="image">
-                <img src="images/noimage.png" alt="food" />
+                <img
+                  src={
+                    details.img
+                      ? `${baseUrl()}/uploads/${details.img}`
+                      : "images/noimage.png"
+                  }
+                  alt="meal"
+                />
               </div>
               <div className="titleAndIngredients">
                 <div className="titleBox">
@@ -95,7 +102,14 @@ const SingleMealDisplay: React.FC<IProps> = ({ details }) => {
                       return (
                         <div className="singleIngredient" key={item.id}>
                           <div className="singleIngredient--image">
-                            <img src="images/noimage.png" alt="food" />
+                            <img
+                              src={
+                                item.img
+                                  ? `${baseUrl()}/uploads/${item.img}`
+                                  : "images/noimage.png"
+                              }
+                              alt="meal"
+                            />
 
                             <p className="ingredientName">{item.name}</p>
                           </div>

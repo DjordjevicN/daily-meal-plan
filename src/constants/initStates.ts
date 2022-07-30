@@ -7,10 +7,7 @@ export const initAddIngredientModalState = {
   protein: 0,
   barcode: "",
   fat: 0,
-  img: {},
-  base_amount: 0,
-  current_amount: 0,
-  percentage_amount: 20,
+  img: "",
 };
 
 export const calorieCalculatorInitState = {
