@@ -63,6 +63,7 @@
     .mainInfo {
       display: flex;
       justify-content: space-between;
+
       .image {
         img {
           width: 100%;
@@ -71,6 +72,18 @@
       }
       .titleAndIngredients {
         margin: 0 auto;
+        position: relative;
+        .smallEditMainInfoBtn {
+          position: absolute;
+          top: 0px;
+          left: -20px;
+          color: $font-light;
+          transition: 0.3s;
+          cursor: pointer;
+          &:hover {
+            color: $orange-main;
+          }
+        }
         .titleBox {
           display: flex;
           align-items: center;
@@ -90,7 +103,18 @@
 
         .ingredientBlock {
           margin-top: 30px;
-
+          position: relative;
+          .smallEditIngredientsBtn {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            color: $font-light;
+            transition: 0.3s;
+            cursor: pointer;
+            &:hover {
+              color: $orange-main;
+            }
+          }
           .singleIngredient {
             margin-top: 5px;
             display: flex;
@@ -127,24 +151,13 @@
         display: flex;
         align-items: center;
         .deleteBtn {
-          background-color: $orange-main;
           border-radius: 8px;
           display: flex;
           align-items: center;
           padding: 5px 15px;
-          color: white;
-          p {
-            margin-left: 10px;
-          }
-        }
-        .editBtn {
-          margin-left: 20px;
-          background-color: $orange-main;
-          border-radius: 8px;
-          display: flex;
-          align-items: center;
-          padding: 5px 15px;
-          color: white;
+          color: $orange-main;
+          cursor: pointer;
+
           p {
             margin-left: 10px;
           }
@@ -165,7 +178,19 @@
     }
     .recipeSteps {
       width: 100%;
+      position: relative;
       &__content {
+        .smallEditStepsBtn {
+          position: absolute;
+          top: 0px;
+          right: 0px;
+          color: $font-light;
+          transition: 0.3s;
+          cursor: pointer;
+          &:hover {
+            color: $orange-main;
+          }
+        }
         .steps {
           &__content {
             .stepBlock {
@@ -179,6 +204,42 @@
                 margin-top: 10px;
               }
             }
+          }
+        }
+        .edit {
+          width: 90%;
+          .updateSteps {
+            margin-top: 30px;
+            &__content {
+              display: flex;
+              flex-direction: column;
+              input {
+                margin-top: 5px;
+                height: 28px;
+                border-radius: 8px;
+                padding: 2px 5px;
+                border: $input-border;
+              }
+              textarea {
+                margin-top: 5px;
+                width: 100%;
+                min-height: 100px;
+                resize: vertical;
+                outline: none;
+                border-radius: 8px;
+                border: $input-border;
+              }
+            }
+          }
+          .updateStepsBTN {
+            display: grid;
+            place-items: center;
+            margin-top: 20px;
+            color: white;
+            background-color: $orange-main;
+            height: 28px;
+            border-radius: 8px;
+            cursor: pointer;
           }
         }
       }

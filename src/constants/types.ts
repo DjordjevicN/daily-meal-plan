@@ -92,3 +92,6 @@ export interface IStep {
   video: string;
   image: string;
 }
+export interface IInitControlState {
+  editMealOpen: boolean;
+}

@@ -25,6 +25,7 @@ const SingleMealDisplay: React.FC<IProps> = ({ details }) => {
   );
 
   const [isDisplayMealOpen, setIsDisplayMealOpen] = useState(false);
+  const [editStepsInput, setEditStepsInput] = useState(false);
 
   const getRecipe = (value: number) => {
     getMealsIngredients(value);
@@ -87,6 +88,12 @@ const SingleMealDisplay: React.FC<IProps> = ({ details }) => {
                 />
               </div>
               <div className="titleAndIngredients">
+                <div
+                  className="smallEditMainInfoBtn"
+                  onClick={() => console.log("edit ingredients in meal")}
+                >
+                  <AiFillEdit />
+                </div>
                 <div className="titleBox">
                   <p className="title">{details.name}</p>
                   {details.videoUrl && (
@@ -97,6 +104,12 @@ const SingleMealDisplay: React.FC<IProps> = ({ details }) => {
                 </div>
 
                 <div className="ingredientBlock">
+                  <div
+                    className="smallEditIngredientsBtn"
+                    onClick={() => console.log("edit ingredients in meal")}
+                  >
+                    <AiFillEdit />
+                  </div>
                   {mealsIngredients.length > 0 &&
                     mealsIngredients.map((item) => {
                       return (
@@ -133,13 +146,6 @@ const SingleMealDisplay: React.FC<IProps> = ({ details }) => {
                     <AiTwotoneDelete />
                     <p>Delete Meal</p>
                   </div>
-                  <div
-                    className="editBtn"
-                    // onClick={() => setIsDisplayMealOpen(false)}
-                  >
-                    <AiFillEdit />
-                    <p>Edit Meal</p>
-                  </div>
                 </div>
               </div>
             )}
@@ -168,21 +174,46 @@ const SingleMealDisplay: React.FC<IProps> = ({ details }) => {
             <div className="line"></div>
             <div className="recipeSteps">
               <div className="recipeSteps__content">
-                {mealsSteps.length > 0 &&
-                  mealsSteps.map((item) => {
-                    return (
-                      <div className="steps" key={item.id}>
-                        <div className="steps__content">
-                          <div className="stepBlock">
-                            <p className="stepTitle">{`Step ${item.title}`}</p>
-                            <p className="stepDescription">
-                              {item.description}
-                            </p>
+                <div
+                  className="smallEditStepsBtn"
+                  onClick={() => setEditStepsInput(!editStepsInput)}
+                >
+                  <AiFillEdit />
+                </div>
+                {editStepsInput ? (
+                  <div className="edit">
+                    {mealsSteps.length > 0 &&
+                      mealsSteps.map((item) => {
+                        return (
+                          <div className="updateSteps" key={item.id}>
+                            <div className="updateSteps__content">
+                              <input type="text" value={item.title} />
+                              <textarea value={item.description}></textarea>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                    );
-                  })}
+                        );
+                      })}
+                    <p className="updateStepsBTN">Update</p>
+                  </div>
+                ) : (
+                  <div className="display">
+                    {mealsSteps.length > 0 &&
+                      mealsSteps.map((item) => {
+                        return (
+                          <div className="steps" key={item.id}>
+                            <div className="steps__content">
+                              <div className="stepBlock">
+                                <p className="stepTitle">{`Step ${item.title}`}</p>
+                                <p className="stepDescription">
+                                  {item.description}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                  </div>
+                )}
               </div>
             </div>
           </div>

@@ -4,6 +4,7 @@ import {
   IMealInformation,
   IIngredientsProp,
   IStep,
+  IInitControlState,
 } from "../../constants/types";
 import { ActionType } from "./../action-types/index";
 
@@ -39,6 +40,7 @@ interface GetMealsSteps {
   type: ActionType.GET_MEALS_STEPS;
   payload: IStep[];
 }
+
 export type Action =
   | CreateUser
   | GetAllIngredientsAction

@@ -63,7 +63,6 @@ const Creator = () => {
                   Create Meal
                 </button>
               </div>
-
               {isCreateMeal && (
                 <CreateMealForm setIsCreateMeal={setIsCreateMeal} />
               )}

@@ -9,6 +9,7 @@ import FormData from "form-data";
 const baseUrl = isLocal()
   ? "http://localhost:3001"
   : "https://jelovnik.nikola-djordjevic.com";
+
 // USER
 export const getUser = (value: any) => {
   return async (dispatch: Dispatch<Action>) => {
