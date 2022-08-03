@@ -5,9 +5,9 @@ import { baseUrl } from "../../../../constants/utilFunc";
 
 interface IIngredient {
   id: number | string;
-  name: string;
-  img: string;
-  amount: number;
+  name: string | string;
+  img: string | string;
+  amount: number | string;
   unit: string;
 }
 interface IProps {

@@ -91,6 +91,8 @@ export interface IStep {
   description: string;
   video: string;
   image: string;
+  identNum: number | string;
+  stepNum: number | string;
 }
 export interface IInitControlState {
   editMealOpen: boolean;

@@ -45,6 +45,7 @@
   background-color: rgba(56, 56, 56, 0.548);
   display: grid;
   place-items: center;
+  z-index: 100;
   &__content {
     width: 50%;
     border-radius: 16px;
@@ -150,7 +151,7 @@
       &__content {
         display: flex;
         align-items: center;
-        .deleteBtn {
+        .actionBtn {
           border-radius: 8px;
           display: flex;
           align-items: center;
@@ -174,6 +175,7 @@
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
+        text-align: center;
       }
     }
     .recipeSteps {
@@ -245,4 +247,7 @@
       }
     }
   }
+}
+.updateModal {
+  width: 100%;
 }

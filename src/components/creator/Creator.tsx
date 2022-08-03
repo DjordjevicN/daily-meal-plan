@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import "./Creator.scss";
 import UsersMeals from "./creatorComponents/usersMeals/UsersMeals";
+import EditIngredient from "./creatorComponents/editIngredient/EditIngredient";
 import CreateIngredient from "./creatorForms/createIngredient/CreateIngredient";
 import CreateMealForm from "./creatorForms/createMealForm/CreateMealForm";
+import Plan from "./creatorForms/createPlan/plan/Plan";
 
 const Creator = () => {
-  const [isCreatePlan, setIsCreatePlan] = useState(false);
+  const [isCreatePlan, setIsCreatePlan] = useState(true);
   const [isCreateMeal, setIsCreateMeal] = useState(false);
   const [isCreateIngredient, setIsCreateIngredient] = useState(false);
 
@@ -40,7 +42,7 @@ const Creator = () => {
                 </button>
               </div>
 
-              {isCreatePlan && <div className="creator_form">form</div>}
+              {isCreatePlan && <Plan />}
             </div>
           </div>
           <div className="line"></div>
@@ -82,6 +84,7 @@ const Creator = () => {
                   </p>
                 </div>
               </div>
+              <EditIngredient />
               <div className="action">
                 <button
                   onClick={() => setIsCreateIngredient(!isCreateIngredient)}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IMealInformation } from "../../../../constants/types";
 import "./SingleMealDisplay.scss";
 import { GrClose } from "react-icons/gr";
@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators, State } from "../../../../state";
 import { bindActionCreators } from "redux";
 import { baseUrl } from "../../../../constants/utilFunc";
+import CreateMealForm from "../../creatorForms/createMealForm/CreateMealForm";
+import { color } from "../../../../constants/color";
 
 interface IProps {
   details: IMealInformation;
@@ -25,7 +27,8 @@ const SingleMealDisplay: React.FC<IProps> = ({ details }) => {
   );
 
   const [isDisplayMealOpen, setIsDisplayMealOpen] = useState(false);
-  const [editStepsInput, setEditStepsInput] = useState(false);
+  const [update, setUpdate] = useState(false);
+  const [editView, setEditView] = useState(false);
 
   const getRecipe = (value: number) => {
     getMealsIngredients(value);
@@ -37,6 +40,10 @@ const SingleMealDisplay: React.FC<IProps> = ({ details }) => {
       mealId: +details.id,
     };
     deleteMeal(data);
+  };
+  const switchViewToEditMod = () => {
+    setUpdate(true);
+    setEditView(true);
   };
 
   return (
@@ -68,154 +75,152 @@ const SingleMealDisplay: React.FC<IProps> = ({ details }) => {
 
       {isDisplayMealOpen && (
         <div className="displayMeal">
-          <div className="displayMeal__content">
+          <div
+            className="displayMeal__content"
+            style={{
+              backgroundColor: editView ? `${color.silverBox}` : "white",
+            }}
+          >
             <div
               className="exitBtn"
-              onClick={() => setIsDisplayMealOpen(false)}
+              onClick={() => {
+                setEditView(false);
+                setIsDisplayMealOpen(false);
+              }}
             >
               <GrClose />
             </div>
-
-            <div className="mainInfo">
-              <div className="image">
-                <img
-                  src={
-                    details.img
-                      ? `${baseUrl()}/uploads/${details.img}`
-                      : "images/noimage.png"
-                  }
-                  alt="meal"
+            {editView ? (
+              <div className="updateModal">
+                <CreateMealForm
+                  setEditView={setEditView}
+                  setIsDisplayMealOpen={setIsDisplayMealOpen}
+                  isUpdate={update}
+                  mealInfo={details}
                 />
               </div>
-              <div className="titleAndIngredients">
-                <div
-                  className="smallEditMainInfoBtn"
-                  onClick={() => console.log("edit ingredients in meal")}
-                >
-                  <AiFillEdit />
-                </div>
-                <div className="titleBox">
-                  <p className="title">{details.name}</p>
-                  {details.videoUrl && (
-                    <a rel="noreferrer" href={details.videoUrl} target="_blank">
-                      VIDEO
-                    </a>
-                  )}
-                </div>
-
-                <div className="ingredientBlock">
-                  <div
-                    className="smallEditIngredientsBtn"
-                    onClick={() => console.log("edit ingredients in meal")}
-                  >
-                    <AiFillEdit />
+            ) : (
+              <div>
+                <div className="mainInfo">
+                  <div className="image">
+                    <img
+                      src={
+                        details.img
+                          ? `${baseUrl()}/uploads/${details.img}`
+                          : "images/noimage.png"
+                      }
+                      alt="meal"
+                    />
                   </div>
-                  {mealsIngredients.length > 0 &&
-                    mealsIngredients.map((item) => {
-                      return (
-                        <div className="singleIngredient" key={item.id}>
-                          <div className="singleIngredient--image">
-                            <img
-                              src={
-                                item.img
-                                  ? `${baseUrl()}/uploads/${item.img}`
-                                  : "images/noimage.png"
-                              }
-                              alt="meal"
-                            />
+                  <div className="titleAndIngredients">
+                    <div className="titleBox">
+                      <p className="title">{details.name}</p>
+                      {details.videoUrl && (
+                        <a
+                          rel="noreferrer"
+                          href={details.videoUrl}
+                          target="_blank"
+                        >
+                          VIDEO
+                        </a>
+                      )}
+                    </div>
 
-                            <p className="ingredientName">{item.name}</p>
-                          </div>
+                    <div className="ingredientBlock">
+                      {mealsIngredients.length > 0 &&
+                        mealsIngredients.map((item) => {
+                          return (
+                            <div className="singleIngredient" key={item.id}>
+                              <div className="singleIngredient--image">
+                                <img
+                                  src={
+                                    item.img
+                                      ? `${baseUrl()}/uploads/${item.img}`
+                                      : "images/noimage.png"
+                                  }
+                                  alt="meal"
+                                />
 
-                          <div className="singleIngredient--amount">
-                            <p>
-                              {item.unit && `${item.amount}`}
-                              <span>{item.unit && `${item.unit}`}</span>
-                            </p>
-                          </div>
-                        </div>
-                      );
-                    })}
+                                <p className="ingredientName">{item.name}</p>
+                              </div>
+
+                              <div className="singleIngredient--amount">
+                                <p>
+                                  {item.amount && `${item.amount}`}
+                                  <span>{item.unit && `${item.unit}`}</span>
+                                </p>
+                              </div>
+                            </div>
+                          );
+                        })}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            {details.user_id === user.id && (
-              <div className="mealControl">
-                <div className="mealControl__content">
-                  <div className="deleteBtn" onClick={() => handleDeleteMeal()}>
-                    <AiTwotoneDelete />
-                    <p>Delete Meal</p>
+                {details.user_id === user.id && (
+                  <div className="mealControl">
+                    <div className="mealControl__content">
+                      <div
+                        className="actionBtn"
+                        onClick={() => handleDeleteMeal()}
+                      >
+                        <AiTwotoneDelete />
+                        <p>Delete Meal</p>
+                      </div>
+                      <div
+                        className="actionBtn"
+                        onClick={() => switchViewToEditMod()}
+                      >
+                        <AiFillEdit />
+                        <p>Edit Meal</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                <div className="line"></div>
+                <div className="nutrition">
+                  <div className="nutrition__content">
+                    <div className="nutBox">
+                      <p>0</p>
+                      <p>Calories</p>
+                    </div>
+                    <div className="nutBox">
+                      <p>0</p>
+                      <p>Carbs</p>
+                    </div>
+                    <div className="nutBox">
+                      <p>0</p>
+                      <p>Fat</p>
+                    </div>
+                    <div className="nutBox">
+                      <p>0</p>
+                      <p>Protein</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="line"></div>
+                <div className="recipeSteps">
+                  <div className="recipeSteps__content">
+                    <div className="display">
+                      {mealsSteps.length > 0 &&
+                        mealsSteps.map((item) => {
+                          return (
+                            <div className="steps" key={item.id}>
+                              <div className="steps__content">
+                                <div className="stepBlock">
+                                  <p className="stepTitle">{`Step ${item.title}`}</p>
+                                  <p className="stepDescription">
+                                    {item.description}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                    </div>
                   </div>
                 </div>
               </div>
             )}
-
-            <div className="line"></div>
-            <div className="nutrition">
-              <div className="nutrition__content">
-                <div className="nutBox">
-                  <p>{details.calories ? details.calories : 0}</p>
-                  <p>Calories</p>
-                </div>
-                <div className="nutBox">
-                  <p>{details.carbs ? details.carbs : 0}</p>
-                  <p>Carbs</p>
-                </div>
-                <div className="nutBox">
-                  <p>{details.fat ? details.fat : 0}</p>
-                  <p>Fat</p>
-                </div>
-                <div className="nutBox">
-                  <p>{details.protein ? details.protein : 0}</p>
-                  <p>Protein</p>
-                </div>
-              </div>
-            </div>
-            <div className="line"></div>
-            <div className="recipeSteps">
-              <div className="recipeSteps__content">
-                <div
-                  className="smallEditStepsBtn"
-                  onClick={() => setEditStepsInput(!editStepsInput)}
-                >
-                  <AiFillEdit />
-                </div>
-                {editStepsInput ? (
-                  <div className="edit">
-                    {mealsSteps.length > 0 &&
-                      mealsSteps.map((item) => {
-                        return (
-                          <div className="updateSteps" key={item.id}>
-                            <div className="updateSteps__content">
-                              <input type="text" value={item.title} />
-                              <textarea value={item.description}></textarea>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    <p className="updateStepsBTN">Update</p>
-                  </div>
-                ) : (
-                  <div className="display">
-                    {mealsSteps.length > 0 &&
-                      mealsSteps.map((item) => {
-                        return (
-                          <div className="steps" key={item.id}>
-                            <div className="steps__content">
-                              <div className="stepBlock">
-                                <p className="stepTitle">{`Step ${item.title}`}</p>
-                                <p className="stepDescription">
-                                  {item.description}
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        );
-                      })}
-                  </div>
-                )}
-              </div>
-            </div>
           </div>
         </div>
       )}

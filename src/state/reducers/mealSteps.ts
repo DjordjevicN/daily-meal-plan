@@ -10,6 +10,8 @@ const initState = [
     description: "",
     video: "",
     image: "",
+    identNum: 0,
+    stepNum: 0,
   },
 ];
 
