@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import "./addStepInput.scss";
 
 interface ISteps {
-  identNum: number;
-  stepNum: number;
+  identNum: number | string;
+  stepNum: number | string;
   description: string;
 }
 interface IProps {

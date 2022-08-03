@@ -100,6 +100,19 @@ export const addNewIngredients = (value: any) => {
     dispatch(handleFile(imageData));
   };
 };
+
+export const upgradeIngredient = (value: any) => {
+  return async (dispatch: any) => {
+    await axios.post(`${baseUrl}${routes.EDIT_INGREDIENT}`, { value });
+    const imageData = {
+      tableName: "ingredients",
+      files: value.img,
+      itemId: value.id,
+    };
+    dispatch(handleFile(imageData));
+  };
+};
+
 export const deleteIngredients = (value: any) => {
   return async (dispatch: any) => {
     await axios.post(`${baseUrl}${routes.DELETE_INGREDIENT}`, { value });
@@ -226,5 +239,46 @@ export const deleteMeal = (value: { userId: number; mealId: number }) => {
       value,
     });
     dispatch(getUsersMeals(value.userId));
+  };
+};
+// DELETE Ingredients in meal MEAL
+export const deleteIngredientsInMeal = (value: { mealId: number }) => {
+  return async (dispatch: any) => {
+    await axios.post(`${baseUrl}/delete_ingredients_in_meal`, {
+      value,
+    });
+  };
+};
+export const deleteMealSteps = (value: { mealId: number }) => {
+  return async (dispatch: any) => {
+    await axios.post(`${baseUrl}/delete_meal_steps`, {
+      value,
+    });
+  };
+};
+
+export const updateMeal = (value: any) => {
+  return async (dispatch: any) => {
+    const mealInfo = {
+      id: value.id,
+      user_id: value.user_id,
+      name: value.name,
+      videoUrl: value.videoUrl,
+    };
+
+    await axios.post(`${baseUrl}${routes.UPDATE_MEAL}`, {
+      mealInfo,
+    });
+    const imageData = {
+      tableName: "meal",
+      files: value.image,
+      itemId: value.id,
+    };
+    dispatch(deleteIngredientsInMeal(value.id));
+    dispatch(createIngredientInMeal(value.id, value));
+    dispatch(deleteMealSteps(value.id));
+    dispatch(createMealSteps(value.id, value));
+    dispatch(getUsersMeals(value.user_id));
+    dispatch(handleFile(imageData));
   };
 };

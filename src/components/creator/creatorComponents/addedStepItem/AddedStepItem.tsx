@@ -5,9 +5,10 @@ import "./addedStepItem.scss";
 
 interface ISteps {
   id?: number | string;
-  identNum: number;
-  stepNum: number;
+  identNum: number | string;
+  stepNum: number | string;
   description: string;
+  title?: number | string;
 }
 
 interface IProps {
@@ -25,10 +26,11 @@ const AddedStepItem: React.FC<IProps> = ({ step, removeStep, updateStep }) => {
     if (description.length < 5 && stepNum === 0) return;
 
     const newStep = {
-      identNum: step.identNum,
-      stepNum: stepNum,
+      identNum: step.identNum ?? step.id,
+      stepNum: stepNum ?? step.title,
       description: description,
     };
+    console.log(newStep);
 
     updateStep(newStep);
   };
@@ -39,7 +41,7 @@ const AddedStepItem: React.FC<IProps> = ({ step, removeStep, updateStep }) => {
         <div className="EditBtn" onClick={() => setIsEditOpen(!isEditOpen)}>
           <MdModeEditOutline />
         </div>
-        <div className="exitBtn" onClick={() => removeStep(step.identNum)}>
+        <div className="exitBtn" onClick={() => removeStep(+step.identNum)}>
           <GrClose />
         </div>
       </div>
@@ -75,7 +77,7 @@ const AddedStepItem: React.FC<IProps> = ({ step, removeStep, updateStep }) => {
         </div>
       ) : (
         <div className="addedStep__content">
-          <p className="stepNum">{`Step ${step.stepNum}`}</p>
+          <p className="stepNum">{`Step ${step.title ?? step.stepNum}`}</p>
           <p className="stepDescription">{step.description}</p>
         </div>
       )}

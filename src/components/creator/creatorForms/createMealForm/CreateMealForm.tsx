@@ -15,13 +15,13 @@ interface IIngredient {
   id: number | string;
   name: string;
   img: string;
-  amount: number;
+  amount: number | string;
   unit: string;
 }
 interface ISteps {
   id?: number | string;
-  identNum: number;
-  stepNum: number;
+  identNum: number | string;
+  stepNum: number | string;
   description: string;
 }
 interface IMeal {
@@ -34,20 +34,29 @@ interface IMeal {
   steps: ISteps[];
 }
 interface IProps {
-  setIsCreateMeal: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsCreateMeal?: React.Dispatch<React.SetStateAction<boolean>>;
+  isUpdate?: boolean;
+  mealInfo?: any;
+  setIsDisplayMealOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+  setEditView?: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const CreateMealForm: React.FC<IProps> = ({ setIsCreateMeal }) => {
+const CreateMealForm: React.FC<IProps> = (props) => {
   const [searchInput, setSearchInput] = useState("");
   const [newMeal, setNewMeal] = useState<IMeal>(createMealInitState);
 
   const dispatch = useDispatch();
   const searchResults = useSelector((state: State) => state.ingredientSearch);
   const user = useSelector((state: State) => state.user);
+  const mealSteps = useSelector((state: State) => state.mealSteps);
+  const mealsIngredients = useSelector(
+    (state: State) => state.mealsIngredients
+  );
 
-  const { getIngredientByName, createMeal } = bindActionCreators(
+  const { getIngredientByName, createMeal, updateMeal } = bindActionCreators(
     actionCreators,
     dispatch
   );
+
   useEffect(() => {
     if (searchInput.length >= 2) {
       handleSearch(searchInput);
@@ -58,6 +67,22 @@ const CreateMealForm: React.FC<IProps> = ({ setIsCreateMeal }) => {
     setNewMeal({ ...newMeal, user_id: user.id });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (props.isUpdate) {
+      setNewMeal({
+        ...newMeal,
+        id: props.mealInfo.id,
+        name: props.mealInfo.name,
+        videoUrl: props.mealInfo.videoUrl,
+        user_id: props.mealInfo.user_id,
+        image: props.mealInfo.img,
+        ingredients: mealsIngredients,
+        steps: mealSteps,
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.isUpdate]);
 
   const handleSearch = (value: string) => {
     getIngredientByName(value);
@@ -100,19 +125,23 @@ const CreateMealForm: React.FC<IProps> = ({ setIsCreateMeal }) => {
   const updateStep = (value: ISteps) => {
     const currentIng = newMeal.steps;
     let updatedValues = currentIng.map((item) => {
-      if (item.identNum === value.identNum) {
+      if (item.identNum === value.identNum || value.identNum === item.id) {
         item.stepNum = value.stepNum;
         item.description = value.description;
       }
       return item;
     });
-
     setNewMeal({ ...newMeal, steps: updatedValues });
   };
   const handleSubmit = () => {
     createMeal(newMeal);
     setNewMeal(createMealInitState);
-    setIsCreateMeal(false);
+    props.setIsCreateMeal && props.setIsCreateMeal(false);
+  };
+  const handleUpdate = () => {
+    updateMeal(newMeal);
+    props.setIsDisplayMealOpen && props.setIsDisplayMealOpen(false);
+    props.setEditView && props.setEditView(false);
   };
 
   return (
@@ -228,7 +257,7 @@ const CreateMealForm: React.FC<IProps> = ({ setIsCreateMeal }) => {
                       return (
                         <AddedStepItem
                           step={step}
-                          key={step.identNum}
+                          key={step.id}
                           removeStep={removeStep}
                           updateStep={updateStep}
                         />
@@ -239,9 +268,15 @@ const CreateMealForm: React.FC<IProps> = ({ setIsCreateMeal }) => {
             </div>
           </div>
         </div>
-        <p className="submitBTN" onClick={() => handleSubmit()}>
-          Create
-        </p>
+        {props.isUpdate ? (
+          <p className="submitBTN" onClick={() => handleUpdate()}>
+            Update
+          </p>
+        ) : (
+          <p className="submitBTN" onClick={() => handleSubmit()}>
+            Create
+          </p>
+        )}
       </div>
     </div>
   );

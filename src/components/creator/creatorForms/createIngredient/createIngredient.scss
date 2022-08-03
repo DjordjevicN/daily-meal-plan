@@ -7,7 +7,7 @@
   position: fixed;
   top: 0;
   right: 0;
-  background-color: #f8f8f8;
+  background-color: $rightBar-bg;
   box-shadow: -3px 3px 15px rgba(92, 92, 92, 0.527);
   &__content {
     .modalTitle {

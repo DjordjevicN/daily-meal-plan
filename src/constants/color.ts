@@ -10,4 +10,5 @@ export const color = {
   proteinColor: "#9163e3",
   carbsColor: "#e7bb43",
   fatColor: "#81bfbb",
+  silverBox: "#f3f3f3",
 };
