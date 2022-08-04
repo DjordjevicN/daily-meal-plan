@@ -1,7 +1,7 @@
 export const mealConst: { [key: number]: string } = {
-  1: "Breakfast",
-  2: "Soup",
-  3: "Lunch",
-  4: "Sneak",
-  5: "Diner",
+  0: "Breakfast",
+  1: "Soup",
+  2: "Lunch",
+  3: "Sneak",
+  4: "Diner",
 };

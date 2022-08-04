@@ -288,24 +288,6 @@ export const updateAmountAndUnitOfMeal = (value: any) => {
     });
   };
 };
-export const getAllMealsInDays = (value: any) => {
-  return async (dispatch: any) => {
-    const response = await axios.post(`${baseUrl}/get_all_meals_in_days`, {
-      value,
-    });
-    console.log(response.data);
-
-    await dispatch({
-      type: ActionType.CLEAN_STATE,
-    });
-    setTimeout(() => {
-      dispatch({
-        type: ActionType.GET_ALL_MEALS_IN_DAYS,
-        payload: response.data,
-      });
-    }, 500);
-  };
-};
 
 export const addMealToDay = (value: any) => {
   return async (dispatch: any) => {
@@ -313,16 +295,12 @@ export const addMealToDay = (value: any) => {
     const checkResponse = await axios.post(`${baseUrl}/check_if_meal_to_day`, {
       dayId,
     });
-    console.log(checkResponse);
-
     if (checkResponse.data.length === 0) {
       await axios.post(`${baseUrl}/add_meal_to_day`, {
         value,
       });
     } else {
       value.id = checkResponse.data[0].id;
-      console.log(value);
-
       await axios.post(`${baseUrl}/update_meal_to_day`, {
         value,
       });
@@ -387,6 +365,20 @@ export const getPlanDays = (value: any) => {
     });
     dispatch({
       type: ActionType.GET_PLANE_DAYS,
+      payload: response.data,
+    });
+  };
+};
+
+export const getMealsInDay = (value: any) => {
+  return async (dispatch: any) => {
+    const response = await axios.post(`${baseUrl}/get_meals_in_day`, {
+      value,
+    });
+    console.log(response.data);
+
+    dispatch({
+      type: ActionType.GET_ALL_MEALS_IN_DAYS,
       payload: response.data,
     });
   };

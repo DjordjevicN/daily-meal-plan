@@ -58,9 +58,7 @@ function Menu() {
                   Dashboard
                 </a>
               )}
-              <a className="link-item link" href="/dashboard">
-                Dashboard
-              </a>
+
               {!isUserLoggedIn() && (
                 <button
                   className="link-item button"
@@ -88,9 +86,7 @@ function Menu() {
                   Dashboard
                 </Link>
               )}
-              <Link className="link-item" to="/dashboard">
-                Dashboard
-              </Link>
+
               {!isUserLoggedIn() && (
                 <button
                   className="link-item button"

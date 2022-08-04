@@ -45,7 +45,11 @@ const Creator = () => {
                 <button onClick={() => setIsCreatePlan(!isCreatePlan)}>
                   Meal Plan
                 </button>
-                <button className="createPlanBtn" onClick={() => createPlan()}>
+                <button
+                  disabled
+                  className="createPlanBtn"
+                  onClick={() => createPlan()}
+                >
                   Create Meal Plan
                 </button>
               </div>

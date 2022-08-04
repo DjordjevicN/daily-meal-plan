@@ -10,17 +10,20 @@ import { actionCreators, State } from "../../../../../state";
 import { bindActionCreators } from "redux";
 
 interface IProps {
-  meal: any;
-  empty: boolean;
-  mealNum: number;
+  mealData: any;
 }
+const initState = {
+  img: "",
+};
 
-const MealOrganizer: React.FC<IProps> = ({ meal, empty, mealNum }) => {
+const MealOrganizer: React.FC<IProps> = ({ mealData }) => {
   const dispatch = useDispatch();
   const [openEdit, setOpenEdit] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  const [mealAmount, setMealAmount] = useState(0);
-  const [mealUnit, setMealUnit] = useState("");
+  const [mealAmount, setMealAmount] = useState(mealData.amount);
+  const [mealUnit, setMealUnit] = useState(mealData.unit);
+  const [singleMeal, setSingleMeal] = useState(initState);
+
   const [searchResults, setSearchResults] = useState<IMealInformation[]>([]);
   const { addMealToDay, updateAmountAndUnitOfMeal } = bindActionCreators(
     actionCreators,
@@ -33,12 +36,23 @@ const MealOrganizer: React.FC<IProps> = ({ meal, empty, mealNum }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchValue]);
-
+  useEffect(() => {
+    getMeal();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const getMeal = async () => {
+    const value = mealData.meal_id;
+    if (value) {
+      const response = await axios.post(`${baseUrl()}/get_meal_by_id`, {
+        value,
+      });
+      setSingleMeal(response.data);
+    }
+  };
   const handleSearch = async () => {
     const value = {
       searchValue: searchValue,
     };
-
     const response = await axios.post(`${baseUrl()}/get_meal_by_name_type`, {
       value,
     });
@@ -50,11 +64,9 @@ const MealOrganizer: React.FC<IProps> = ({ meal, empty, mealNum }) => {
   const handleAddToMealInDay = (mealId: number) => {
     const data = {
       meal_id: mealId,
-      day_id: meal.id,
+      day_id: mealData.id,
       // meal_type: empty ? mealNum : meal.meal_type,
     };
-    console.log(data);
-
     addMealToDay(data);
     setOpenEdit(false);
   };
@@ -74,9 +86,7 @@ const MealOrganizer: React.FC<IProps> = ({ meal, empty, mealNum }) => {
       <div className="mealOrganizer__content">
         <div className="topBar">
           <div className="mealName">
-            <p className="name">
-              {empty ? mealConst[mealNum] : mealConst[meal.meal_type]}
-            </p>
+            <p className="name">{mealConst[mealData.meal_type]}</p>
             <div>
               <button onClick={() => setOpenEdit(!openEdit)}>Search</button>
               <button>Delete</button>
@@ -125,18 +135,20 @@ const MealOrganizer: React.FC<IProps> = ({ meal, empty, mealNum }) => {
             <div className="image">
               <img
                 src={
-                  meal.img
-                    ? `${baseUrl()}/uploads/${meal.img}`
+                  singleMeal.img.length > 0
+                    ? `${baseUrl()}/uploads/${singleMeal.img}`
                     : "images/noimage.png"
                 }
                 alt="meal"
               />
             </div>
-            <p className="title">{empty ? "No meal" : meal.name}</p>
+
+            <p className="title">{mealData.name ? mealData.name : "No meal"}</p>
             <div className="amount">
               <input
                 type="text"
                 className="weight"
+                value={mealAmount}
                 onChange={(e) => {
                   setMealAmount(+e.target.value);
                 }}
@@ -146,6 +158,7 @@ const MealOrganizer: React.FC<IProps> = ({ meal, empty, mealNum }) => {
                   setMealUnit(e.target.value);
                 }}
               >
+                <option value={mealUnit}>{mealUnit}</option>
                 <option value="gr">gr</option>
                 <option value="Kg">Kg</option>
                 <option value="piece">piece</option>
@@ -155,7 +168,6 @@ const MealOrganizer: React.FC<IProps> = ({ meal, empty, mealNum }) => {
                 <option value="L">L</option>
                 <option value="cm">cm</option>
                 <option value="m">m</option>
-                <option value={meal.unit}>{`>${meal.unit}<`}</option>
               </select>
             </div>
           </div>

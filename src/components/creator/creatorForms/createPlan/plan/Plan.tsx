@@ -11,7 +11,7 @@ const Plan = () => {
   const user = useSelector((state: State) => state.user);
   const usersPlan = useSelector((state: State) => state.usersPlan);
 
-  const { getPlanById, getPlanDays } = bindActionCreators(
+  const { getPlanById, getPlanDays, getMealsInDay } = bindActionCreators(
     actionCreators,
     dispatch
   );
@@ -19,6 +19,7 @@ const Plan = () => {
   useEffect(() => {
     getPlanById(user.plan_id);
     getPlanDays(user.plan_id);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -29,10 +30,10 @@ const Plan = () => {
           <div className="days">
             <p>{usersPlan.name}</p>
             <div className="days__content">
-              {/* {planDays.length > 5 &&
-              planDays.map((item) => {
-                return <Day key={item.id} dayInfo={item} />;
-              })} */}
+              {usersPlan.days.length > 5 &&
+                usersPlan.days.map((item: any) => {
+                  return <Day key={item.id} dayInfo={item} />;
+                })}
             </div>
           </div>
         )}

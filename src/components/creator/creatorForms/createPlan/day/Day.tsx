@@ -7,48 +7,39 @@ import { baseUrl } from "../../../../../constants/utilFunc";
 import { bindActionCreators } from "redux";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators, State } from "../../../../../state";
+import { dayConst } from "../../../../../constants/dayConst";
 import axios from "axios";
 
 interface IProps {
   dayInfo: IDay;
 }
 const Day: React.FC<IProps> = ({ dayInfo }) => {
-  const [dailyMeals, setDailyMeals] = useState([]);
-  // const dispatch = useDispatch();
-  // const user = useSelector((state: State) => state.user);
-  // const planDays = useSelector((state: State) => state.usersPlanDays);
+  const [mealsInDay, setMealsInDay] = useState([]);
+  const dispatch = useDispatch();
+  const usersPlan = useSelector((state: State) => state.usersPlan);
+  const { getMealsInDay } = bindActionCreators(actionCreators, dispatch);
 
-  // const { getAllMealsInDays } = bindActionCreators(actionCreators, dispatch);
-  const mealsNo = [0, 1, 2, 3, 4];
-  const getMeals = async () => {
-    let value = {
-      day_id: dayInfo.id,
-      plan_id: dayInfo.plan_id,
-    };
-    // getAllMealsInDays(data);
-    const response = await axios.post(`${baseUrl()}/get_all_meals_in_days`, {
-      value,
-    });
-    setDailyMeals(response.data);
-  };
   useEffect(() => {
-    getMeals();
+    getMealInDay();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  const getMealInDay = async () => {
+    const value = dayInfo.id;
+    const response = await axios.post(`${baseUrl()}/get_meals_in_day`, {
+      value,
+    });
+    setMealsInDay(response.data);
+  };
   return (
     <div className="day">
       <div className="day__content">
-        <p className="dayName">{dayInfo.name}</p>
+        <p className="dayName">{dayConst[dayInfo.weekDay_id]}</p>
         <div className="meals">
-          {mealsNo.map((item: any) => {
+          {mealsInDay.map((item: any) => {
+            console.log(item);
             return (
               <>
-                <MealOrganizer
-                  meal={dailyMeals[item] ? dailyMeals[item] : dayInfo}
-                  mealNum={item + 1}
-                  empty={dailyMeals[item] ? false : true}
-                />
+                <MealOrganizer key={item.id} mealData={item} />
                 <div className="line"></div>
               </>
             );

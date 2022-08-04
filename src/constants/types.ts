@@ -103,4 +103,5 @@ export interface IDay {
   date_id: number | string;
   name: string;
   calorie_limit: number | string;
+  weekDay_id: number;
 }
