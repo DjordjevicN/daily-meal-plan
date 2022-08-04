@@ -4,8 +4,10 @@
     .days {
       width: 100%;
       &__content {
+        width: 100%;
         display: grid;
-        grid-template-columns: repeat(auto-fill, 250px);
+        grid-template-columns: repeat(auto-fill, 300px);
+        gap: 5px;
       }
     }
   }

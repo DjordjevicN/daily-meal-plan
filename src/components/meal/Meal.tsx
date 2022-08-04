@@ -18,9 +18,10 @@ const Meal: React.FC<Props> = ({ meal }) => {
         </div>
 
         <p className="calories_count">{`Calories`}</p>
-        {meal.contents.map((food) => {
-          return <FoodItems food={food} key={food.id} />;
-        })}
+        {meal.contents &&
+          meal.contents.map((food) => {
+            return <FoodItems food={food} key={food.id} />;
+          })}
       </div>
     </div>
   );

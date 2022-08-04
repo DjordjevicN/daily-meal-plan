@@ -5,6 +5,7 @@ import ingredientSearch from "./ingredientSearch";
 import mealsIngredients from "./mealsIngredients";
 import usersMeals from "./usersMeals";
 import mealSteps from "./mealSteps";
+import usersPlan from "./usersPlan";
 
 const reducers = combineReducers({
   user: userReducer,
@@ -13,6 +14,7 @@ const reducers = combineReducers({
   usersMeals: usersMeals,
   mealsIngredients: mealsIngredients,
   mealSteps: mealSteps,
+  usersPlan: usersPlan,
 });
 export default reducers;
 export type State = ReturnType<typeof reducers>;

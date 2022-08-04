@@ -3,8 +3,8 @@ import { baseUrl } from "../../../../constants/utilFunc";
 import { GrClose } from "react-icons/gr";
 import "./ingredientEditResults.scss";
 
-import { useDispatch, useSelector } from "react-redux";
-import { actionCreators, State } from "../../../../state";
+import { useDispatch } from "react-redux";
+import { actionCreators } from "../../../../state";
 import { bindActionCreators } from "redux";
 
 interface IIngredient {

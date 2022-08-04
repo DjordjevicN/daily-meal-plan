@@ -1,22 +1,41 @@
-import React from "react";
+import React, { useEffect } from "react";
+
 import Day from "../day/Day";
 import "./plan.scss";
+import { bindActionCreators } from "redux";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators, State } from "../../../../../state";
 
 const Plan = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state: State) => state.user);
+  const usersPlan = useSelector((state: State) => state.usersPlan);
+
+  const { getPlanById, getPlanDays } = bindActionCreators(
+    actionCreators,
+    dispatch
+  );
+
+  useEffect(() => {
+    getPlanById(user.plan_id);
+    getPlanDays(user.plan_id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className="plan">
       <div className="plan__content">
-        <div className="days">
-          <div className="days__content">
-            <Day />
-            <Day />
-            <Day />
-            <Day />
-            <Day />
-            <Day />
-            <Day />
+        {usersPlan && (
+          <div className="days">
+            <p>{usersPlan.name}</p>
+            <div className="days__content">
+              {/* {planDays.length > 5 &&
+              planDays.map((item) => {
+                return <Day key={item.id} dayInfo={item} />;
+              })} */}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

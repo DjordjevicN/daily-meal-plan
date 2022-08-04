@@ -4,7 +4,7 @@ import {
   IMealInformation,
   IIngredientsProp,
   IStep,
-  IInitControlState,
+  IDay,
 } from "../../constants/types";
 import { ActionType } from "./../action-types/index";
 
@@ -40,6 +40,21 @@ interface GetMealsSteps {
   type: ActionType.GET_MEALS_STEPS;
   payload: IStep[];
 }
+interface getDays {
+  type: ActionType.GET_PLANE_DAYS;
+  payload: IDay[];
+}
+interface GetAllMealsInDays {
+  type: ActionType.GET_ALL_MEALS_IN_DAYS;
+  payload: any;
+}
+interface GetPlanById {
+  type: ActionType.GET_PLAN_BY_ID;
+  payload: any;
+}
+interface CleanState {
+  type: ActionType.CLEAN_STATE;
+}
 
 export type Action =
   | CreateUser
@@ -49,4 +64,8 @@ export type Action =
   | GetIngByName
   | GetUsersMeals
   | GetMealsIngredients
-  | GetMealsSteps;
+  | GetMealsSteps
+  | getDays
+  | GetAllMealsInDays
+  | CleanState
+  | GetPlanById;

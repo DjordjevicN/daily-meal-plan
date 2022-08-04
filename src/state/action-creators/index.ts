@@ -49,6 +49,7 @@ export const createUser = (value: any) => {
     await axios.post(`${baseUrl}${routes.CREATE_USER}`, value);
   };
 };
+
 export const updateUser = (value: any) => {
   return async (dispatch: any) => {
     const response = await axios.post(`${baseUrl}${routes.UPDATE_USER}`, value);
@@ -85,8 +86,6 @@ export const getIngredientByName = (value: any) => {
 };
 export const addNewIngredients = (value: any) => {
   return async (dispatch: any) => {
-    console.log(value);
-
     const response = await axios.post(
       `${baseUrl}${routes.ADD_INGREDIENT}`,
       value
@@ -280,5 +279,115 @@ export const updateMeal = (value: any) => {
     dispatch(createMealSteps(value.id, value));
     dispatch(getUsersMeals(value.user_id));
     dispatch(handleFile(imageData));
+  };
+};
+export const updateAmountAndUnitOfMeal = (value: any) => {
+  return async (dispatch: any) => {
+    await axios.post(`${baseUrl}/update_amount_and_unit_of_meal`, {
+      value,
+    });
+  };
+};
+export const getAllMealsInDays = (value: any) => {
+  return async (dispatch: any) => {
+    const response = await axios.post(`${baseUrl}/get_all_meals_in_days`, {
+      value,
+    });
+    console.log(response.data);
+
+    await dispatch({
+      type: ActionType.CLEAN_STATE,
+    });
+    setTimeout(() => {
+      dispatch({
+        type: ActionType.GET_ALL_MEALS_IN_DAYS,
+        payload: response.data,
+      });
+    }, 500);
+  };
+};
+
+export const addMealToDay = (value: any) => {
+  return async (dispatch: any) => {
+    const dayId = value.day_id;
+    const checkResponse = await axios.post(`${baseUrl}/check_if_meal_to_day`, {
+      dayId,
+    });
+    console.log(checkResponse);
+
+    if (checkResponse.data.length === 0) {
+      await axios.post(`${baseUrl}/add_meal_to_day`, {
+        value,
+      });
+    } else {
+      value.id = checkResponse.data[0].id;
+      console.log(value);
+
+      await axios.post(`${baseUrl}/update_meal_to_day`, {
+        value,
+      });
+    }
+  };
+};
+// ****************************
+// CREATE PLAN KOMBO
+
+export const createMealInDay = (day_id: number, meal_type: number) => {
+  return async (dispatch: any) => {
+    const value = {
+      day_id: day_id,
+      meal_type: meal_type,
+    };
+    await axios.post(`${baseUrl}/create_meal_in_day`, value);
+  };
+};
+export const createDay = (plan_id: number, weekDay_id: number) => {
+  return async (dispatch: any) => {
+    const value = {
+      plan_id: plan_id,
+      weekDay_id: weekDay_id,
+    };
+    const response = await axios.post(`${baseUrl}/create_day`, value);
+
+    for (let i = 0; i < 5; i++) {
+      let day_id = response.data.insertId;
+      let meal_type = i;
+      dispatch(createMealInDay(day_id, meal_type));
+    }
+  };
+};
+export const createPlan = () => {
+  return async (dispatch: any) => {
+    const response = await axios.post(`${baseUrl}/create_plan`);
+    for (let i = 0; i < 7; i++) {
+      let plan_id = response.data.insertId;
+      let weekDay_id = i;
+      dispatch(createDay(plan_id, weekDay_id));
+    }
+  };
+};
+// ****************************
+
+export const getPlanById = (value: any) => {
+  console.log(value);
+
+  return async (dispatch: any) => {
+    const response = await axios.post(`${baseUrl}/get_plan_by_id`, { value });
+    dispatch({
+      type: ActionType.GET_PLAN_BY_ID,
+      payload: response.data[0],
+    });
+  };
+};
+
+export const getPlanDays = (value: any) => {
+  return async (dispatch: any) => {
+    const response = await axios.post(`${baseUrl}/get_plan_days`, {
+      value,
+    });
+    dispatch({
+      type: ActionType.GET_PLANE_DAYS,
+      payload: response.data,
+    });
   };
 };

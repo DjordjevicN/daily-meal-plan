@@ -48,7 +48,7 @@ export interface IFood {
 export interface IData {
   meal_no: number;
   name: string;
-  contents: IFood[];
+  contents?: IFood[];
 }
 export interface IMealInformation {
   id: number | string;
@@ -96,4 +96,11 @@ export interface IStep {
 }
 export interface IInitControlState {
   editMealOpen: boolean;
+}
+export interface IDay {
+  id: number | string;
+  plan_id: number | string;
+  date_id: number | string;
+  name: string;
+  calorie_limit: number | string;
 }

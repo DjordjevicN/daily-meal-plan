@@ -5,11 +5,16 @@ import EditIngredient from "./creatorComponents/editIngredient/EditIngredient";
 import CreateIngredient from "./creatorForms/createIngredient/CreateIngredient";
 import CreateMealForm from "./creatorForms/createMealForm/CreateMealForm";
 import Plan from "./creatorForms/createPlan/plan/Plan";
+import { useDispatch } from "react-redux";
+import { actionCreators } from "../../state";
+import { bindActionCreators } from "redux";
 
 const Creator = () => {
   const [isCreatePlan, setIsCreatePlan] = useState(true);
   const [isCreateMeal, setIsCreateMeal] = useState(false);
   const [isCreateIngredient, setIsCreateIngredient] = useState(false);
+  const dispatch = useDispatch();
+  const { createPlan } = bindActionCreators(actionCreators, dispatch);
 
   return (
     <div className="creator">
@@ -38,6 +43,9 @@ const Creator = () => {
               {/* <UsersMeals /> */}
               <div className="action">
                 <button onClick={() => setIsCreatePlan(!isCreatePlan)}>
+                  Meal Plan
+                </button>
+                <button className="createPlanBtn" onClick={() => createPlan()}>
                   Create Meal Plan
                 </button>
               </div>

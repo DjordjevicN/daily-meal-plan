@@ -30,7 +30,6 @@ const AddedStepItem: React.FC<IProps> = ({ step, removeStep, updateStep }) => {
       stepNum: stepNum ?? step.title,
       description: description,
     };
-    console.log(newStep);
 
     updateStep(newStep);
   };
