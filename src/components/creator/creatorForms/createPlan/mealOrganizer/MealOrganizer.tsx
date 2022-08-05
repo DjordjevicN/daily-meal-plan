@@ -5,8 +5,8 @@ import { baseUrl } from "../../../../../constants/utilFunc";
 import { IMealInformation } from "../../../../../constants/types";
 import { mealConst } from "../../../../../constants/mealConst";
 
-import { useSelector, useDispatch } from "react-redux";
-import { actionCreators, State } from "../../../../../state";
+import { useDispatch } from "react-redux";
+import { actionCreators } from "../../../../../state";
 import { bindActionCreators } from "redux";
 
 interface IProps {
@@ -14,16 +14,17 @@ interface IProps {
 }
 const initState = {
   img: "",
+  name: "",
 };
 
 const MealOrganizer: React.FC<IProps> = ({ mealData }) => {
   const dispatch = useDispatch();
+  const [preventAction, setPreventAction] = useState(true);
   const [openEdit, setOpenEdit] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [mealAmount, setMealAmount] = useState(mealData.amount);
   const [mealUnit, setMealUnit] = useState(mealData.unit);
   const [singleMeal, setSingleMeal] = useState(initState);
-
   const [searchResults, setSearchResults] = useState<IMealInformation[]>([]);
   const { addMealToDay, updateAmountAndUnitOfMeal } = bindActionCreators(
     actionCreators,
@@ -40,23 +41,30 @@ const MealOrganizer: React.FC<IProps> = ({ mealData }) => {
     getMeal();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  useEffect(() => {
+    if (!preventAction) {
+      handleUpdateAmounts();
+    }
+    setPreventAction(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mealAmount, mealUnit]);
   const getMeal = async () => {
     const value = mealData.meal_id;
     if (value) {
       const response = await axios.post(`${baseUrl()}/get_meal_by_id`, {
         value,
       });
-      setSingleMeal(response.data);
+      setSingleMeal(response.data[0]);
     }
   };
   const handleSearch = async () => {
     const value = {
       searchValue: searchValue,
     };
-    const response = await axios.post(`${baseUrl()}/get_meal_by_name_type`, {
+    const response = await axios.post(`${baseUrl()}/get_meal_by_name`, {
       value,
     });
-    if (response.statusText === "OK") {
+    if (response.status === 200) {
       setSearchResults(response.data);
     }
   };
@@ -65,21 +73,20 @@ const MealOrganizer: React.FC<IProps> = ({ mealData }) => {
     const data = {
       meal_id: mealId,
       day_id: mealData.id,
-      // meal_type: empty ? mealNum : meal.meal_type,
     };
     addMealToDay(data);
     setOpenEdit(false);
   };
 
-  // const handleUpdateAmounts = () => {
-  //   const data = {
-  //     id: meal.id,
-  //     amount: amount,
-  //     unit: unit,
-  //   };
-
-  //   updateAmountAndUnitOfMeal(data);
-  // };
+  const handleUpdateAmounts = () => {
+    const data = {
+      id: mealData.id,
+      amount: mealAmount,
+      unit: mealUnit,
+    };
+    setPreventAction(false);
+    updateAmountAndUnitOfMeal(data);
+  };
 
   return (
     <div className="mealOrganizer">
@@ -89,7 +96,7 @@ const MealOrganizer: React.FC<IProps> = ({ mealData }) => {
             <p className="name">{mealConst[mealData.meal_type]}</p>
             <div>
               <button onClick={() => setOpenEdit(!openEdit)}>Search</button>
-              <button>Delete</button>
+              {/* <button>Delete</button> */}
             </div>
           </div>
 
@@ -143,7 +150,9 @@ const MealOrganizer: React.FC<IProps> = ({ mealData }) => {
               />
             </div>
 
-            <p className="title">{mealData.name ? mealData.name : "No meal"}</p>
+            <p className="title">
+              {singleMeal.name.length > 1 ? singleMeal.name : "No meal"}
+            </p>
             <div className="amount">
               <input
                 type="text"

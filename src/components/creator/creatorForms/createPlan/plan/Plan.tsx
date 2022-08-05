@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-
 import Day from "../day/Day";
 import "./plan.scss";
 import { bindActionCreators } from "redux";
@@ -10,8 +9,7 @@ const Plan = () => {
   const dispatch = useDispatch();
   const user = useSelector((state: State) => state.user);
   const usersPlan = useSelector((state: State) => state.usersPlan);
-
-  const { getPlanById, getPlanDays, getMealsInDay } = bindActionCreators(
+  const { getPlanById, getPlanDays } = bindActionCreators(
     actionCreators,
     dispatch
   );
@@ -19,7 +17,6 @@ const Plan = () => {
   useEffect(() => {
     getPlanById(user.plan_id);
     getPlanDays(user.plan_id);
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

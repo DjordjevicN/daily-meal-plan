@@ -4,10 +4,8 @@ import "./day.scss";
 import MealOrganizer from "../mealOrganizer/MealOrganizer";
 import { IDay } from "../../../../../constants/types";
 import { baseUrl } from "../../../../../constants/utilFunc";
-import { bindActionCreators } from "redux";
-import { useSelector, useDispatch } from "react-redux";
-import { actionCreators, State } from "../../../../../state";
 import { dayConst } from "../../../../../constants/dayConst";
+import { MdExpandLess, MdExpandMore } from "react-icons/md";
 import axios from "axios";
 
 interface IProps {
@@ -15,9 +13,7 @@ interface IProps {
 }
 const Day: React.FC<IProps> = ({ dayInfo }) => {
   const [mealsInDay, setMealsInDay] = useState([]);
-  const dispatch = useDispatch();
-  const usersPlan = useSelector((state: State) => state.usersPlan);
-  const { getMealsInDay } = bindActionCreators(actionCreators, dispatch);
+  const [openDay, setOpenDay] = useState(true);
 
   useEffect(() => {
     getMealInDay();
@@ -30,21 +26,26 @@ const Day: React.FC<IProps> = ({ dayInfo }) => {
     });
     setMealsInDay(response.data);
   };
+
   return (
     <div className="day">
       <div className="day__content">
-        <p className="dayName">{dayConst[dayInfo.weekDay_id]}</p>
-        <div className="meals">
-          {mealsInDay.map((item: any) => {
-            console.log(item);
-            return (
-              <>
-                <MealOrganizer key={item.id} mealData={item} />
-                <div className="line"></div>
-              </>
-            );
-          })}
+        <div className="dayTitle" onClick={() => setOpenDay(!openDay)}>
+          <p className="dayName">{dayConst[dayInfo.weekDay_id]}</p>
+          {openDay ? <MdExpandLess /> : <MdExpandMore />}
         </div>
+        {openDay && (
+          <div className="meals">
+            {mealsInDay.map((item: any) => {
+              return (
+                <>
+                  <MealOrganizer key={item.id} mealData={item} />
+                  <div className="line"></div>
+                </>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

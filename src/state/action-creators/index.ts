@@ -347,8 +347,6 @@ export const createPlan = () => {
 // ****************************
 
 export const getPlanById = (value: any) => {
-  console.log(value);
-
   return async (dispatch: any) => {
     const response = await axios.post(`${baseUrl}/get_plan_by_id`, { value });
     dispatch({
@@ -375,8 +373,6 @@ export const getMealsInDay = (value: any) => {
     const response = await axios.post(`${baseUrl}/get_meals_in_day`, {
       value,
     });
-    console.log(response.data);
-
     dispatch({
       type: ActionType.GET_ALL_MEALS_IN_DAYS,
       payload: response.data,
