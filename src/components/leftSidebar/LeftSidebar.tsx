@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { GiKnifeFork } from "react-icons/gi";
 import { RiTodoLine, RiGridLine } from "react-icons/ri";
 import { FiSettings, FiLogOut } from "react-icons/fi";
@@ -6,6 +6,7 @@ import "./LeftSidebar.scss";
 import { pages } from "../../constants/pages";
 import { color } from "../../constants/color";
 import { TbArrowsLeftRight } from "react-icons/tb";
+import CalorieCalculator from "../calorieCalculator/CalorieCalculator";
 
 interface IProps {
   setPage: React.Dispatch<React.SetStateAction<string>>;
@@ -15,6 +16,11 @@ interface IProps {
 }
 
 const LeftSidebar: React.FC<IProps> = (props) => {
+  const [openCalculator, setOpenCalculator] = useState(false);
+
+  const logoutUser = () => {
+    localStorage.clear();
+  };
   return (
     <>
       <div
@@ -78,12 +84,16 @@ const LeftSidebar: React.FC<IProps> = (props) => {
               <FiSettings />
               {props.isMenuOpen ? <p>Creator</p> : null}
             </div>
-            <div id="calculate" className="link-item">
+            <div
+              id="calculate"
+              className="link-item"
+              onClick={() => setOpenCalculator(!openCalculator)}
+            >
               <RiGridLine />
 
               {props.isMenuOpen ? <p>Calculate</p> : null}
             </div>
-            <div className="link-item">
+            <div className="link-item" onClick={() => logoutUser()}>
               <FiLogOut />
               {props.isMenuOpen ? <p>Logout</p> : null}
             </div>
@@ -133,13 +143,23 @@ const LeftSidebar: React.FC<IProps> = (props) => {
               <RiGridLine />
               <p>Calculate</p>
             </div>
-            {/* <div className="link-item">
+            <div className="link-item" onClick={() => logoutUser()}>
               <FiLogOut />
               <p>Logout</p>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>
+      {openCalculator && (
+        <div className="calculateCaloriesModal">
+          <div className="calculateCaloriesModal__content">
+            <CalorieCalculator
+              recalculate={true}
+              setOpenCalculator={setOpenCalculator}
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 };

@@ -10,7 +10,7 @@ import { actionCreators } from "../../state";
 import { bindActionCreators } from "redux";
 
 const Creator = () => {
-  const [isCreatePlan, setIsCreatePlan] = useState(true);
+  const [isCreatePlan, setIsCreatePlan] = useState(false);
   const [isCreateMeal, setIsCreateMeal] = useState(false);
   const [isCreateIngredient, setIsCreateIngredient] = useState(false);
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ const Creator = () => {
               {/* <UsersMeals /> */}
               <div className="action">
                 <button onClick={() => setIsCreatePlan(!isCreatePlan)}>
-                  Meal Plan
+                  Open Meal Plan
                 </button>
                 <button
                   disabled

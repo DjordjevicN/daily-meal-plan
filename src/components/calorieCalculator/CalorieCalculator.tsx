@@ -3,25 +3,45 @@ import "./CalorieCalculator.scss";
 import { calorieCalculatorInitState } from "../../constants/initStates";
 import { ICaloriesCalculateState } from "../../constants/types";
 import { calculateCalorie } from "../../constants/utilFunc";
+import { useSelector } from "react-redux";
+import { State } from "../../state";
+import { useDispatch } from "react-redux";
+import { actionCreators } from "../../state";
+import { bindActionCreators } from "redux";
+import { GrClose } from "react-icons/gr";
 
-import CreateUserModal from "../../components/modals/createUserModal/CreateUserModal";
+interface IProps {
+  recalculate?: boolean;
+  setOpenCalculator?: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-const CalorieCalculator = () => {
+const CalorieCalculator: React.FC<IProps> = (props) => {
+  const dispatch = useDispatch();
+  const { updateUsersCalories } = bindActionCreators(actionCreators, dispatch);
   const [formState, setFormState] = useState<ICaloriesCalculateState>(
     calorieCalculatorInitState
   );
   const [showResult, setShowResult] = useState(false);
-  const [openCreateUserModal, setOpenCreateUserModal] = useState(false);
+
+  const user = useSelector((state: State) => state.user);
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     setShowResult(true);
   };
-
+  const updateUserCalories = () => {
+    const data = {
+      userId: user.id,
+      calories: calculateCalorie(formState),
+    };
+    updateUsersCalories(data);
+    props.setOpenCalculator?.(false);
+  };
   return (
     <div className="calculator_wrapper">
-      {openCreateUserModal && (
-        <CreateUserModal setOpenCreateUserModal={setOpenCreateUserModal} />
-      )}
+      <div className="exitBtn" onClick={() => props.setOpenCalculator?.(false)}>
+        <GrClose />
+      </div>
       <div className="content">
         <h2 className="title">Let’s Calculate Calorie Needs</h2>
         <div className="calculation">
@@ -30,9 +50,11 @@ const CalorieCalculator = () => {
               <h1>{`${calculateCalorie(formState)} cal a day`}</h1>
               <h2>Let us create a perfect meal for you every day</h2>
               <div className="actions">
-                <button onClick={() => setOpenCreateUserModal(true)}>
-                  Create Account
-                </button>
+                {props.recalculate && (
+                  <button onClick={() => updateUserCalories()}>
+                    Update account
+                  </button>
+                )}
               </div>
             </div>
           ) : (
@@ -103,7 +125,10 @@ const CalorieCalculator = () => {
                   <select
                     name="activity"
                     onChange={(e) => {
-                      setFormState({ ...formState, activity: e.target.value });
+                      setFormState({
+                        ...formState,
+                        activity: e.target.value,
+                      });
                     }}
                   >
                     <option value="low">Low</option>
@@ -121,7 +146,10 @@ const CalorieCalculator = () => {
                     type="number"
                     value={formState.bodyFat}
                     onChange={(e) => {
-                      setFormState({ ...formState, bodyFat: +e.target.value });
+                      setFormState({
+                        ...formState,
+                        bodyFat: +e.target.value,
+                      });
                     }}
                   />
                 </div>

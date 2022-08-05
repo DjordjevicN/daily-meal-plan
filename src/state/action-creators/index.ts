@@ -153,9 +153,10 @@ export const createMealSteps = (mealId: any, value: any) => {
     value.steps.forEach(async (item: any) => {
       const data = {
         meal_id: mealId,
-        title: item.stepNum,
+        title: item.stepNum ?? item.title,
         description: item.description,
       };
+
       await axios.post(`${baseUrl}${routes.CREATE_MEAL_STEP}`, {
         data,
       });
@@ -270,15 +271,16 @@ export const updateMeal = (value: any) => {
     });
     const imageData = {
       tableName: "meal",
-      files: value.image,
+      files: value.img,
       itemId: value.id,
     };
+
     dispatch(deleteIngredientsInMeal(value.id));
     dispatch(createIngredientInMeal(value.id, value));
     dispatch(deleteMealSteps(value.id));
     dispatch(createMealSteps(value.id, value));
-    dispatch(getUsersMeals(value.user_id));
     dispatch(handleFile(imageData));
+    dispatch(getUsersMeals(value.user_id));
   };
 };
 export const updateAmountAndUnitOfMeal = (value: any) => {
@@ -376,6 +378,13 @@ export const getMealsInDay = (value: any) => {
     dispatch({
       type: ActionType.GET_ALL_MEALS_IN_DAYS,
       payload: response.data,
+    });
+  };
+};
+export const updateUsersCalories = (value: any) => {
+  return async (dispatch: any) => {
+    await axios.post(`${baseUrl}/update_users_calories`, {
+      value,
     });
   };
 };

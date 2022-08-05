@@ -38,10 +38,10 @@ const Day: React.FC<IProps> = ({ dayInfo }) => {
           <div className="meals">
             {mealsInDay.map((item: any) => {
               return (
-                <>
-                  <MealOrganizer key={item.id} mealData={item} />
+                <div key={item.id}>
+                  <MealOrganizer mealData={item} />
                   <div className="line"></div>
-                </>
+                </div>
               );
             })}
           </div>

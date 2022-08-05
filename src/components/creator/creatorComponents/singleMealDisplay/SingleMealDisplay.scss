@@ -117,11 +117,11 @@
             }
           }
           .singleIngredient {
-            margin-top: 5px;
+            margin-top: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-
+            border-bottom: $input-border;
             &--image {
               display: flex;
               align-items: center;

@@ -26,8 +26,8 @@ const AddedStepItem: React.FC<IProps> = ({ step, removeStep, updateStep }) => {
     if (description.length < 5 && stepNum === 0) return;
 
     const newStep = {
-      identNum: step.identNum ?? step.id,
-      stepNum: stepNum ?? step.title,
+      identNum: step.id ?? step.identNum,
+      stepNum: step.title ?? stepNum,
       description: description,
     };
 
@@ -53,7 +53,7 @@ const AddedStepItem: React.FC<IProps> = ({ step, removeStep, updateStep }) => {
                 className="stepNum"
                 type="number"
                 placeholder="Step number"
-                value={stepNum}
+                value={step.title ?? stepNum}
                 onChange={(e) => setStepNum(+e.target.value)}
               />
               <p>Description</p>

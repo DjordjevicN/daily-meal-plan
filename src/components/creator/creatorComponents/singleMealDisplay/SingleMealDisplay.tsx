@@ -7,8 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators, State } from "../../../../state";
 import { bindActionCreators } from "redux";
 import { baseUrl } from "../../../../constants/utilFunc";
-import CreateMealForm from "../../creatorForms/createMealForm/CreateMealForm";
+// import CreateMealForm from "../../creatorForms/createMealForm/CreateMealForm";
 import { color } from "../../../../constants/color";
+import UpdateMealForm from "../../creatorForms/updateMealForm/UpdateMealForm";
 
 interface IProps {
   details: IMealInformation;
@@ -92,11 +93,10 @@ const SingleMealDisplay: React.FC<IProps> = ({ details }) => {
             </div>
             {editView ? (
               <div className="updateModal">
-                <CreateMealForm
-                  setEditView={setEditView}
-                  setIsDisplayMealOpen={setIsDisplayMealOpen}
-                  isUpdate={update}
-                  mealInfo={details}
+                <UpdateMealForm
+                  details={details}
+                  mealsSteps={mealsSteps}
+                  mealsIngredients={mealsIngredients}
                 />
               </div>
             ) : (
