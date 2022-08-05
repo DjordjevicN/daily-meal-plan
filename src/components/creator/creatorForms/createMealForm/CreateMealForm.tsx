@@ -115,7 +115,7 @@ const CreateMealForm: React.FC<IProps> = (props) => {
     });
     console.log(updatedValues);
 
-    // setNewMeal({ ...newMeal, steps: updatedValues });
+    setNewMeal({ ...newMeal, steps: updatedValues });
   };
   const handleSubmit = () => {
     createMeal(newMeal);

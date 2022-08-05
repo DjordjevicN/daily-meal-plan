@@ -36,6 +36,7 @@ export interface IUser {
   fat?: number | undefined;
   activity_level?: string;
   plan_id?: number;
+  todaysMeals?: any[];
 }
 export interface IFood {
   id: number;

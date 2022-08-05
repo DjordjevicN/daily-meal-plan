@@ -11,4 +11,5 @@ export enum ActionType {
   GET_ALL_MEALS_IN_DAYS = "get_all_meals_in_days",
   CLEAN_STATE = "clean_state",
   GET_PLAN_BY_ID = "get_plan_by_id",
+  GET_TODAYS_MEALS = "get_todays_meals",
 }

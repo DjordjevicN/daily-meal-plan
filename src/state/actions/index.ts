@@ -52,6 +52,10 @@ interface GetPlanById {
   type: ActionType.GET_PLAN_BY_ID;
   payload: any;
 }
+interface GetTodaysMeals {
+  type: ActionType.GET_TODAYS_MEALS;
+  payload: any;
+}
 interface CleanState {
   type: ActionType.CLEAN_STATE;
 }
@@ -68,4 +72,5 @@ export type Action =
   | getDays
   | GetAllMealsInDays
   | CleanState
-  | GetPlanById;
+  | GetPlanById
+  | GetTodaysMeals;

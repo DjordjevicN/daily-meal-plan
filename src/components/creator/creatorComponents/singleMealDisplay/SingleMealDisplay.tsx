@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators, State } from "../../../../state";
 import { bindActionCreators } from "redux";
 import { baseUrl } from "../../../../constants/utilFunc";
-// import CreateMealForm from "../../creatorForms/createMealForm/CreateMealForm";
 import { color } from "../../../../constants/color";
 import UpdateMealForm from "../../creatorForms/updateMealForm/UpdateMealForm";
 
@@ -28,7 +27,7 @@ const SingleMealDisplay: React.FC<IProps> = ({ details }) => {
   );
 
   const [isDisplayMealOpen, setIsDisplayMealOpen] = useState(false);
-  const [update, setUpdate] = useState(false);
+
   const [editView, setEditView] = useState(false);
 
   const getRecipe = (value: number) => {
@@ -43,7 +42,6 @@ const SingleMealDisplay: React.FC<IProps> = ({ details }) => {
     deleteMeal(data);
   };
   const switchViewToEditMod = () => {
-    setUpdate(true);
     setEditView(true);
   };
 

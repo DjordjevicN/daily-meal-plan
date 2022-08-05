@@ -9,7 +9,8 @@ const reducer = (state: IUser = userProfileInitState, action: Action) => {
       return state;
     case ActionType.LOGIN_USER:
       return action.payload;
-
+    case ActionType.GET_TODAYS_MEALS:
+      return { ...state, todaysMeals: action.payload };
     default:
       return state;
   }

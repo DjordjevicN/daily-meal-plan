@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { IFood } from "../../constants/types";
+
+import { baseUrl } from "../../constants/utilFunc";
+
 import "./FoodItems.scss";
 
 type Props = {
-  food: IFood;
+  food: any;
+  meal: any;
 };
 const FoodItems: React.FC<Props> = (props) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -14,10 +17,17 @@ const FoodItems: React.FC<Props> = (props) => {
         key={props.food.id}
         onClick={() => setIsModalOpen(true)}
       >
-        <img className="foodImage" src={props.food.img} alt="meal " />
+        <img
+          src={
+            props.food.img
+              ? `${baseUrl()}/uploads/${props.food.img}`
+              : "images/noimage.png"
+          }
+          alt="meal"
+        />
         <div className="foodInfo">
           <h5 className="foodTitle">{props.food.name}</h5>
-          <p className="foodWeight">{props.food.amount}</p>
+          <p className="foodWeight">{`${props.meal.amount} ${props.meal.unit}`}</p>
         </div>
       </div>
       {isModalOpen && (

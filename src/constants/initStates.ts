@@ -32,7 +32,8 @@ export const userProfileInitState = {
   calories: 0,
   fat: 0,
   activity_level: "",
-  plan_id: 1,
+  plan_id: 0,
+  todaysMeals: [],
 };
 export const createMealInitState = {
   id: 0,

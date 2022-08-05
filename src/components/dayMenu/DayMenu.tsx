@@ -1,13 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Meal from "../meal/Meal";
 import "./DayMenu.scss";
 import moment from "moment";
-import { data } from "../../Data";
+
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import GraphStats from "../graphStats/GraphStats";
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators, State } from "../../state";
+import { bindActionCreators } from "redux";
+import { dayConst } from "../../constants/dayConst";
 
-function DayMenu() {
+const DayMenu = () => {
+  const dispatch = useDispatch();
   const [dayId, setDayId] = useState<number>(+moment().format("e"));
+  const { getTodaysMeals } = bindActionCreators(actionCreators, dispatch);
+  const user = useSelector((state: State) => state.user);
+
+  useEffect(() => {
+    let plan_id = user?.plan_id ?? 0;
+    if (plan_id > 0) {
+      const data = {
+        plan_id: user.plan_id,
+        weekDay_id: dayId,
+      };
+
+      getTodaysMeals(data);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user.plan_id, dayId]);
+
   const nextDay = () => {
     if (dayId === 6) {
       setDayId(0);
@@ -23,38 +45,37 @@ function DayMenu() {
     }
   };
 
-  const todaysMeal = data.filter((item) => item.day === dayId);
-  const getNutritionStats = () => {
-    const food = todaysMeal[0].food;
-    let stats = {
-      calories: 0,
-      carbs: 0,
-      fat: 0,
-      protein: 0,
-      price: 0,
-    };
+  // const getNutritionStats = () => {
+  //   const food = todaysMeal[0].food;
+  //   let stats = {
+  //     calories: 0,
+  //     carbs: 0,
+  //     fat: 0,
+  //     protein: 0,
+  //     price: 0,
+  //   };
 
-    food.forEach((i) => {
-      i.contents.forEach((j) => {
-        if (j.calories) {
-          stats.calories = stats.calories += j.calories;
-        }
-        if (j.carbs) {
-          stats.carbs = stats.carbs += j.carbs;
-        }
-        if (j.fat) {
-          stats.fat = stats.fat += j.fat;
-        }
-        if (j.protein) {
-          stats.protein = stats.protein += j.protein;
-        }
-        if (j.price) {
-          stats.price = stats.price += j.price;
-        }
-      });
-    });
-    return stats;
-  };
+  //   food.forEach((i) => {
+  //     i.contents.forEach((j) => {
+  //       if (j.calories) {
+  //         stats.calories = stats.calories += j.calories;
+  //       }
+  //       if (j.carbs) {
+  //         stats.carbs = stats.carbs += j.carbs;
+  //       }
+  //       if (j.fat) {
+  //         stats.fat = stats.fat += j.fat;
+  //       }
+  //       if (j.protein) {
+  //         stats.protein = stats.protein += j.protein;
+  //       }
+  //       if (j.price) {
+  //         stats.price = stats.price += j.price;
+  //       }
+  //     });
+  //   });
+  //   return stats;
+  // };
 
   return (
     <div className="dayMenu">
@@ -68,7 +89,7 @@ function DayMenu() {
                 onClick={() => prevDay()}
               />
               <div className="box">
-                <p className="day">{`${todaysMeal[0].dayName} Plan`}</p>
+                <p className="day">{`${dayConst[dayId]}'s Plan`}</p>
               </div>
               <BsChevronCompactRight
                 className="icon"
@@ -81,22 +102,22 @@ function DayMenu() {
         <div className="menu">
           <div className="menu_content">
             <div className="meal">
-              {todaysMeal[0].food ? (
-                todaysMeal[0].food?.map((meal) => (
-                  <Meal meal={meal} key={meal.meal_no} />
+              {user?.todaysMeals ? (
+                user.todaysMeals.map((meal: any) => (
+                  <Meal meal={meal} key={meal.id} />
                 ))
               ) : (
                 <div>I WAS LAZY TO MAKE THIS PART ¯\_(ツ)_/¯</div>
               )}
             </div>
             <div className="stats">
-              <GraphStats nutritionStats={getNutritionStats()} />
+              {/* <GraphStats nutritionStats={getNutritionStats()} /> */}
             </div>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default DayMenu;

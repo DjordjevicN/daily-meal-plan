@@ -375,8 +375,10 @@ export const getMealsInDay = (value: any) => {
     const response = await axios.post(`${baseUrl}/get_meals_in_day`, {
       value,
     });
+    console.log(response);
+
     dispatch({
-      type: ActionType.GET_ALL_MEALS_IN_DAYS,
+      type: ActionType.GET_TODAYS_MEALS,
       payload: response.data,
     });
   };
@@ -386,5 +388,14 @@ export const updateUsersCalories = (value: any) => {
     await axios.post(`${baseUrl}/update_users_calories`, {
       value,
     });
+  };
+};
+export const getTodaysMeals = (value: any) => {
+  return async (dispatch: any) => {
+    const response = await axios.post(`${baseUrl}/get_todays_meals`, {
+      value,
+    });
+
+    dispatch(getMealsInDay(response.data[0].id));
   };
 };

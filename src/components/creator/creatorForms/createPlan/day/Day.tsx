@@ -12,8 +12,8 @@ interface IProps {
   dayInfo: IDay;
 }
 const Day: React.FC<IProps> = ({ dayInfo }) => {
-  const [mealsInDay, setMealsInDay] = useState([]);
   const [openDay, setOpenDay] = useState(true);
+  const [mealsInDay, setMealsInDay] = useState([]);
 
   useEffect(() => {
     getMealInDay();

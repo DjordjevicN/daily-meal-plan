@@ -7,10 +7,13 @@
   display: flex;
   align-items: center;
 
-  .foodImage {
-    width: 50px;
+  img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
     border-radius: 8px;
   }
+
   .foodInfo {
     padding-left: 18px;
     .foodTitle {
