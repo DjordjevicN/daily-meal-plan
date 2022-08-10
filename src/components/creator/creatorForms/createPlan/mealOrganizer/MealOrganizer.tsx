@@ -47,25 +47,19 @@ const MealOrganizer: React.FC<IProps> = ({ mealData }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchValue]);
   useEffect(() => {
-    getMeal();
+    getMeal(mealData.meal_id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [mealData.meal_id]);
+
   useEffect(() => {
     if (!preventAction) {
+      console.log("ite");
       handleUpdateAmounts();
     }
     setPreventAction(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mealAmount, mealUnit]);
-  const getMeal = async () => {
-    const value = mealData.meal_id;
-    if (value) {
-      const response = await axios.post(`${baseUrl()}/get_meal_by_id`, {
-        value,
-      });
-      setSingleMeal(response.data[0]);
-    }
-  };
+
   const handleSearch = async () => {
     const value = {
       searchValue: searchValue,
@@ -78,13 +72,40 @@ const MealOrganizer: React.FC<IProps> = ({ mealData }) => {
     }
   };
 
-  const handleAddToMealInDay = (mealId: number) => {
+  const getMeal = async (value: number) => {
+    if (value) {
+      const response = await axios.post(`${baseUrl()}/get_meal_by_id`, {
+        value,
+      });
+      setSingleMeal(response.data[0]);
+      setOpenEdit(false);
+    }
+  };
+  const getSingleMeal = async (id: number) => {
+    const value = {
+      id,
+    };
+    if (value) {
+      const response = await axios.post(`${baseUrl()}/update_meal_in_day`, {
+        value,
+      });
+      if (response.data.length > 0) {
+      }
+      console.log("single meal id", id, response.data[0].meal_id);
+
+      getMeal(response.data[0].meal_id);
+    }
+  };
+
+  const handleAddToMealInDay = async (mealId: number) => {
     const data = {
       meal_id: mealId,
       day_id: mealData.id,
     };
-    addMealToDay(data);
+
     setOpenEdit(false);
+    await addMealToDay(data);
+    await getSingleMeal(mealData.id);
   };
 
   const handleUpdateAmounts = () => {
@@ -93,7 +114,8 @@ const MealOrganizer: React.FC<IProps> = ({ mealData }) => {
       amount: mealAmount,
       unit: mealUnit,
     };
-    setPreventAction(false);
+    console.log(data);
+
     updateAmountAndUnitOfMeal(data);
   };
 
@@ -169,11 +191,13 @@ const MealOrganizer: React.FC<IProps> = ({ mealData }) => {
                 className="weight"
                 value={mealAmount}
                 onChange={(e) => {
+                  setPreventAction(false);
                   setMealAmount(+e.target.value);
                 }}
               ></input>
               <select
                 onChange={(e) => {
+                  setPreventAction(false);
                   setMealUnit(e.target.value);
                 }}
               >

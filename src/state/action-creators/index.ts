@@ -5,7 +5,7 @@ import axios from "axios";
 import { isLocal } from "../../constants/utilFunc";
 import routes from "../../constants/routes";
 import FormData from "form-data";
-import { IUser, IIngredients } from "../../constants/types";
+import { IUser } from "../../constants/types";
 
 const baseUrl = isLocal()
   ? "http://localhost:3001"
@@ -319,9 +319,10 @@ export const addMealToDay = (value: any) => {
       });
     } else {
       value.id = checkResponse.data[0].id;
-      await axios.post(`${baseUrl}/update_meal_to_day`, {
+      const response = await axios.post(`${baseUrl}/update_meal_to_day`, {
         value,
       });
+      return response;
     }
   };
 };
