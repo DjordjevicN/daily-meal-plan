@@ -13,6 +13,7 @@ import { GrClose } from "react-icons/gr";
 interface IProps {
   recalculate?: boolean;
   setOpenCalculator?: React.Dispatch<React.SetStateAction<boolean>>;
+  exitBtn?: boolean;
 }
 
 const CalorieCalculator: React.FC<IProps> = (props) => {
@@ -39,16 +40,22 @@ const CalorieCalculator: React.FC<IProps> = (props) => {
   };
   return (
     <div className="calculator_wrapper">
-      <div className="exitBtn" onClick={() => props.setOpenCalculator?.(false)}>
-        <GrClose />
-      </div>
+      {props.exitBtn && (
+        <div
+          className="exitBtn"
+          onClick={() => props.setOpenCalculator?.(false)}
+        >
+          <GrClose />
+        </div>
+      )}
+
       <div className="content">
         <h2 className="title">Let’s Calculate Calorie Needs</h2>
         <div className="calculation">
           {showResult ? (
             <div className="result">
               <h1>{`${calculateCalorie(formState)} cal a day`}</h1>
-              <h2>Let us create a perfect meal for you every day</h2>
+              <h2>Create account to and start following meal plan</h2>
               <div className="actions">
                 {props.recalculate && (
                   <button onClick={() => updateUserCalories()}>
@@ -66,7 +73,7 @@ const CalorieCalculator: React.FC<IProps> = (props) => {
                 <div className="inputEl">
                   <input
                     type="number"
-                    value={formState.age}
+                    value={formState.age!}
                     onChange={(e) => {
                       setFormState({ ...formState, age: +e.target.value });
                     }}
@@ -96,7 +103,7 @@ const CalorieCalculator: React.FC<IProps> = (props) => {
                 <div className="inputEl">
                   <input
                     type="number"
-                    value={formState.weight}
+                    value={formState.weight!}
                     onChange={(e) => {
                       setFormState({ ...formState, weight: +e.target.value });
                     }}
@@ -110,7 +117,7 @@ const CalorieCalculator: React.FC<IProps> = (props) => {
                 <div className="inputEl">
                   <input
                     type="number"
-                    value={formState.height}
+                    value={formState.height!}
                     onChange={(e) => {
                       setFormState({ ...formState, height: +e.target.value });
                     }}
@@ -127,33 +134,35 @@ const CalorieCalculator: React.FC<IProps> = (props) => {
                     onChange={(e) => {
                       setFormState({
                         ...formState,
-                        activity: e.target.value,
+                        activity: +e.target.value,
                       });
                     }}
                   >
-                    <option value="low">Low</option>
-                    <option value="medium">Medium</option>
-                    <option value="heigh">Heigh</option>
+                    <option value="-400">Low</option>
+                    <option value="-100">Medium</option>
+                    <option value="400">Heigh</option>
                   </select>
                 </div>
               </div>
               <div className="inputBlock">
-                <p className="inputLabel">
-                  Body Fat <span>*</span>
-                </p>
+                <p className="inputLabel">I want to</p>
                 <div className="inputEl">
-                  <input
-                    type="number"
-                    value={formState.bodyFat}
+                  <select
+                    name="I want to"
                     onChange={(e) => {
                       setFormState({
                         ...formState,
-                        bodyFat: +e.target.value,
+                        goal: +e.target.value,
                       });
                     }}
-                  />
+                  >
+                    <option value="20">Weight loss</option>
+                    <option value="0">Maintain weight</option>
+                    <option value="15">Weight gain</option>
+                  </select>
                 </div>
               </div>
+
               <div className="button">
                 <input type="submit" value="Calculate" />
               </div>

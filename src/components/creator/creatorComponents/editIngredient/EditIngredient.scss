@@ -11,10 +11,11 @@
     .searchBox {
       width: 100%;
       position: relative;
+      z-index: 1;
       input {
         width: 100%;
         height: 28px;
-        border: $input-border;
+        border: $silver-box;
         border-radius: 8px;
         outline: none;
         padding: 3px;
@@ -23,6 +24,21 @@
         position: absolute;
         top: 10px;
         right: 10px;
+      }
+    }
+    .resultBox {
+      background-color: $silver-box;
+      border-radius: 8px;
+      box-shadow: $box-shadow;
+      overflow-y: scroll;
+      @include resp(400px) {
+        padding: 10px;
+        margin: 0;
+        position: absolute;
+        top: 40px;
+        left: 0px;
+        max-width: 300px;
+        max-height: 400px;
       }
     }
   }

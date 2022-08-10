@@ -25,7 +25,7 @@ const Plan = () => {
       <div className="plan__content">
         {usersPlan && (
           <div className="days">
-            <p>{usersPlan.name}</p>
+            <div className="spaceLine"></div>
             <div className="days__content">
               {usersPlan.days.length > 5 &&
                 usersPlan.days.map((item: any) => {

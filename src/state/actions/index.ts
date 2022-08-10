@@ -20,6 +20,10 @@ interface CreateUser {
   type: ActionType.CREATE_USER;
   payload: IUser;
 }
+interface UpdateUser {
+  type: ActionType.CREATE_USER;
+  payload: IUser;
+}
 interface GetAllIngredientsAction {
   type: ActionType.GET_ALL_INGREDIENTS;
   payload: IIngredients[];
@@ -59,6 +63,9 @@ interface GetTodaysMeals {
 interface CleanState {
   type: ActionType.CLEAN_STATE;
 }
+interface CleanSearch {
+  type: ActionType.CLEAR_SEARCH;
+}
 
 export type Action =
   | CreateUser
@@ -73,4 +80,6 @@ export type Action =
   | GetAllMealsInDays
   | CleanState
   | GetPlanById
-  | GetTodaysMeals;
+  | GetTodaysMeals
+  | CleanSearch
+  | UpdateUser;

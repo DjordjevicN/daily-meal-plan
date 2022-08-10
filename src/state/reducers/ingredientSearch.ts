@@ -9,6 +9,8 @@ const reducer = (state: IIngredients[] = initState, action: Action) => {
   switch (action.type) {
     case ActionType.GET_ING_BY_NAME:
       return (state = action.payload);
+    case ActionType.CLEAR_SEARCH:
+      return (state = []);
 
     default:
       return state;

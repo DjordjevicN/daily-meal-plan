@@ -9,8 +9,17 @@ import { useDispatch } from "react-redux";
 import { actionCreators } from "../../../../../state";
 import { bindActionCreators } from "redux";
 
+interface MealData {
+  amount: number;
+  day_id: number;
+  id: number;
+  meal_id: number;
+  meal_type: number;
+  unit: string;
+}
+
 interface IProps {
-  mealData: any;
+  mealData: MealData;
 }
 const initState = {
   img: "",
@@ -104,13 +113,14 @@ const MealOrganizer: React.FC<IProps> = ({ mealData }) => {
             <div className="actions">
               <div className="search">
                 <input
+                  autoFocus
                   type="text"
                   placeholder="Find a meal"
                   onChange={(e) => setSearchValue(e.target.value)}
                 />
               </div>
 
-              {searchResults.length > 0 && (
+              {searchResults.length > 0 && searchValue.length > 0 && (
                 <div className="searchResults">
                   {searchResults.map((item) => {
                     return (
@@ -139,7 +149,7 @@ const MealOrganizer: React.FC<IProps> = ({ mealData }) => {
         </div>
         <div className="displayMeals">
           <div className="displayMeals__content">
-            <div className="image">
+            <div className="image" onClick={() => setOpenEdit(!openEdit)}>
               <img
                 src={
                   singleMeal.img.length > 0

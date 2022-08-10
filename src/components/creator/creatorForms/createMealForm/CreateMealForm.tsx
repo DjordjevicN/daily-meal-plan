@@ -64,7 +64,6 @@ const CreateMealForm: React.FC<IProps> = (props) => {
     setNewMeal({ ...newMeal, user_id: user.id });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(mealSteps);
 
   const handleSearch = (value: string) => {
     getIngredientByName(value);
@@ -113,7 +112,6 @@ const CreateMealForm: React.FC<IProps> = (props) => {
       }
       return item;
     });
-    console.log(updatedValues);
 
     setNewMeal({ ...newMeal, steps: updatedValues });
   };

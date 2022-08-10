@@ -9,17 +9,19 @@ import { GrClose } from "react-icons/gr";
 
 interface IProps {
   setOpenCreateUserModal: React.Dispatch<React.SetStateAction<boolean>>;
+  handleSwitchToLogin: () => void;
 }
 
 const CreateUserModal: React.FC<IProps> = (props) => {
   const [profileState, setProfileState] = useState<IUser>(userProfileInitState);
   const dispatch = useDispatch();
+  console.log(profileState);
 
   const { createUser } = bindActionCreators(actionCreators, dispatch);
   const handleCreateAccount = (event: React.FormEvent) => {
     event.preventDefault();
     createUser(profileState);
-    window.location.href = "/profile";
+    props.handleSwitchToLogin();
   };
 
   return (
@@ -72,7 +74,7 @@ const CreateUserModal: React.FC<IProps> = (props) => {
               />
             </div>
           </div>
-          <div className="inputBlock">
+          {/* <div className="inputBlock">
             <p className="inputLabel">Weight in kg</p>
             <div className="inputEl">
               <input
@@ -121,9 +123,9 @@ const CreateUserModal: React.FC<IProps> = (props) => {
                 }}
               />
             </div>
-          </div>
+          </div> */}
 
-          <div className="inputBlock">
+          {/* <div className="inputBlock">
             <p className="inputLabel">Activity level</p>
             <div className="inputEl">
               <select
@@ -140,7 +142,7 @@ const CreateUserModal: React.FC<IProps> = (props) => {
                 <option value="high">Heigh</option>
               </select>
             </div>
-          </div>
+          </div> */}
           <div className="button">
             <input type="submit" value="Create Account" />
           </div>

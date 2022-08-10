@@ -2,13 +2,16 @@
 @import "../../../../styles/mixins.scss";
 
 .createIngredient {
-  width: 450px;
+  max-width: 450px;
+  width: 100%;
   height: 100vh;
   position: fixed;
   top: 0;
   right: 0;
   background-color: $rightBar-bg;
   box-shadow: -3px 3px 15px rgba(92, 92, 92, 0.527);
+  z-index: 1;
+
   &__content {
     .modalTitle {
       font-size: 24px;
@@ -21,6 +24,7 @@
       position: absolute;
       top: 20px;
       right: 20px;
+      cursor: pointer;
     }
     .formBox {
       width: 75%;

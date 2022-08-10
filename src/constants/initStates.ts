@@ -11,12 +11,13 @@ export const initAddIngredientModalState = {
 };
 
 export const calorieCalculatorInitState = {
-  age: 0,
+  age: null,
   gender: "",
-  weight: 0,
-  height: 0,
-  activity: "",
-  bodyFat: 0,
+  weight: null,
+  height: null,
+  activity: null,
+  bodyFat: null,
+  goal: null,
 };
 export const userProfileInitState = {
   id: 0,

@@ -9,12 +9,17 @@ import "./EditIngredient.scss";
 const EditIngredient = () => {
   const [searchInput, setSearchInput] = useState("");
   const dispatch = useDispatch();
-  const { getIngredientByName } = bindActionCreators(actionCreators, dispatch);
+  const { getIngredientByName, clearSearchState } = bindActionCreators(
+    actionCreators,
+    dispatch
+  );
   const searchResults = useSelector((state: State) => state.ingredientSearch);
 
   useEffect(() => {
     if (searchInput.length >= 2) {
       getIngredientByName(searchInput);
+    } else {
+      clearSearchState();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchInput]);
@@ -26,11 +31,13 @@ const EditIngredient = () => {
           <input type="text" onChange={(e) => setSearchInput(e.target.value)} />
           <BiSearchAlt2 className="searchBtn" />
         </div>
-        <div className="resultBox">
-          {searchResults.map((item) => {
-            return <IngredientEditResults ingredient={item} key={item.id} />;
-          })}
-        </div>
+        {searchResults.length > 0 && searchInput.length > 0 && (
+          <div className="resultBox">
+            {searchResults.map((item) => {
+              return <IngredientEditResults ingredient={item} key={item.id} />;
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

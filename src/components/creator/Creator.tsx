@@ -27,6 +27,36 @@ const Creator = () => {
           </p>
         </div>
         <div className="creative">
+          <div className="createIngredientBlock">
+            <div className="createIngredientBlock__content">
+              <div className="blockTitle">
+                <div className="blockTitle__content">
+                  <h2>Create New Ingredient</h2>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Voluptas excepturi blanditiis delectus consequatur, sit
+                    eveniet dolores, inventore id molestias perferendis ipsum
+                    accusamus aperiam rem impedit at, dignissimos a ea modi.
+                  </p>
+                </div>
+              </div>
+              <EditIngredient />
+              <div className="action">
+                <button
+                  onClick={() => setIsCreateIngredient(!isCreateIngredient)}
+                >
+                  Create Ingredient
+                </button>
+              </div>
+
+              {isCreateIngredient && (
+                <CreateIngredient
+                  setIsCreateIngredient={setIsCreateIngredient}
+                />
+              )}
+            </div>
+          </div>
+          <div className="line"></div>
           <div className="createPlanBlock">
             <div className="createPlanBlock__content">
               <div className="blockTitle">
@@ -82,37 +112,8 @@ const Creator = () => {
               )}
             </div>
           </div>
-          <div className="line"></div>
-          <div className="createIngredientBlock">
-            <div className="createIngredientBlock__content">
-              <div className="blockTitle">
-                <div className="blockTitle__content">
-                  <h2>Create New Ingredient</h2>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Voluptas excepturi blanditiis delectus consequatur, sit
-                    eveniet dolores, inventore id molestias perferendis ipsum
-                    accusamus aperiam rem impedit at, dignissimos a ea modi.
-                  </p>
-                </div>
-              </div>
-              <EditIngredient />
-              <div className="action">
-                <button
-                  onClick={() => setIsCreateIngredient(!isCreateIngredient)}
-                >
-                  Create Ingredient
-                </button>
-              </div>
-
-              {isCreateIngredient && (
-                <CreateIngredient
-                  setIsCreateIngredient={setIsCreateIngredient}
-                />
-              )}
-            </div>
-          </div>
         </div>
+        <div className="line"></div>
       </div>
     </div>
   );

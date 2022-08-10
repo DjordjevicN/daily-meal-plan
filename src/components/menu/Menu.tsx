@@ -28,6 +28,10 @@ function Menu() {
     setOpenLoginModal(false);
     setOpenCreateAccModal(true);
   };
+  const handleSwitchToLogin = () => {
+    setOpenLoginModal(true);
+    setOpenCreateAccModal(false);
+  };
   const handleRedirect = () => {
     return (window.location.href = "/");
   };
@@ -40,7 +44,10 @@ function Menu() {
         />
       </RightSideBar>
       <RightSideBar isOpen={openCreateAccModal}>
-        <CreateUserModal setOpenCreateUserModal={setOpenCreateAccModal} />
+        <CreateUserModal
+          setOpenCreateUserModal={setOpenCreateAccModal}
+          handleSwitchToLogin={handleSwitchToLogin}
+        />
       </RightSideBar>
       <div className="mainNavMenu">
         <div className="content">

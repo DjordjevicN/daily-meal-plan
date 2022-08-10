@@ -7,14 +7,13 @@
   border: 1px solid rgba(236, 236, 236, 0.692);
   border-radius: 15px;
   max-width: 900px;
-  min-width: 700px;
   width: 70%;
   display: grid;
   place-items: center;
   margin: 0 auto;
   position: relative;
   @include resp(500px) {
-    width: 100%;
+    width: 98%;
   }
   .exitBtn {
     position: absolute;
@@ -79,7 +78,7 @@
           }
           p {
             text-align: left;
-            color: white;
+            color: $font-dark;
             padding-left: 7px;
           }
           .inputEl {

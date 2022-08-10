@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { IData } from "../../constants/types";
+// import { IData } from "../../constants/types";
 import "./Meal.scss";
 import { baseUrl } from "../../constants/utilFunc";
 import FoodItems from "../foodItems/FoodItems";
@@ -30,7 +30,6 @@ const Meal: React.FC<Props> = ({ meal }) => {
       setSingleMeal(response.data[0]);
     }
   };
-  console.log(singleMeal);
 
   return (
     <div className="meal__wrapper ">

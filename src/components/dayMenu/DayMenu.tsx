@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import Meal from "../meal/Meal";
 import "./DayMenu.scss";
 import moment from "moment";
-
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
-import GraphStats from "../graphStats/GraphStats";
+// import GraphStats from "../graphStats/GraphStats";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators, State } from "../../state";
 import { bindActionCreators } from "redux";
@@ -46,7 +45,7 @@ const DayMenu = () => {
   };
 
   // const getNutritionStats = () => {
-  //   const food = todaysMeal[0].food;
+  //   const food = user.todaysMeals;
   //   let stats = {
   //     calories: 0,
   //     carbs: 0,
@@ -55,8 +54,8 @@ const DayMenu = () => {
   //     price: 0,
   //   };
 
-  //   food.forEach((i) => {
-  //     i.contents.forEach((j) => {
+  //   food.forEach((i: any) => {
+  //     i.contents.forEach((j: any) => {
   //       if (j.calories) {
   //         stats.calories = stats.calories += j.calories;
   //       }
@@ -97,6 +96,7 @@ const DayMenu = () => {
               />
             </div>
           </div>
+          <div className="line"></div>
         </div>
 
         <div className="menu">
@@ -107,12 +107,18 @@ const DayMenu = () => {
                   <Meal meal={meal} key={meal.id} />
                 ))
               ) : (
-                <div>I WAS LAZY TO MAKE THIS PART ¯\_(ツ)_/¯</div>
+                <div>
+                  <p> ¯\_(ツ)_/¯</p>
+                  <p>THERE IS NO MEALS FOR TODAY.</p>
+                  <p> GO TO CREATOR TAB AND CREATE YOUR MEAL PLAN.</p>
+                </div>
               )}
             </div>
+            {/* 
             <div className="stats">
-              {/* <GraphStats nutritionStats={getNutritionStats()} /> */}
+              <GraphStats nutritionStats={getNutritionStats()} />
             </div>
+             */}
           </div>
         </div>
       </div>

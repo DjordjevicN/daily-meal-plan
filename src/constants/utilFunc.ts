@@ -12,16 +12,25 @@ export const calculateHowMuchToBuy = (
 
 export const calculateCalorie = (obj: ICaloriesCalculateState) => {
   const age = obj.age;
-  const height = obj.height * 2.54;
-  const weight = obj.weight / 2.2;
+  const height = obj.height! * 2.54;
+  const weight = obj.weight! / 2.2;
+  const activityLevel = obj.activity;
+  const goal = obj.goal;
   let result = 0;
+
   if (obj.gender === "male") {
-    result = Math.round(66.5 + 13.75 * weight + 5.003 * height - 6.75 * age);
+    result = Math.round(66.5 + 13.75 * weight + 5.003 * height - 6.75 * age!);
   } else {
-    result = Math.round(655.1 + 9.563 * weight + 1.85 * height - 4.676 * age);
+    result = Math.round(655.1 + 9.563 * weight + 1.85 * height - 4.676 * age!);
   }
 
-  return result + 400;
+  const goalResult = parseInt(((goal! / 100) * result).toFixed(2));
+
+  if (goal! > 0) {
+    return result + goalResult + 400 + activityLevel!;
+  } else {
+    return result - goalResult + 400 + activityLevel!;
+  }
 };
 export const isLocal = () => {
   return window.location.hostname === "localhost";

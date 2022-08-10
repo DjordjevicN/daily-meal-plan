@@ -46,34 +46,48 @@
   display: grid;
   place-items: center;
   z-index: 100;
+
   &__content {
     width: 50%;
+    max-width: 700px;
     border-radius: 16px;
     background-color: white;
     position: relative;
     padding: 20px;
     margin-top: 30px;
     margin-bottom: 100px;
+    @include resp(400px) {
+      width: 80%;
+    }
     .exitBtn {
       position: absolute;
       top: 20px;
       right: 20px;
       cursor: pointer;
+      z-index: 10;
     }
 
     .mainInfo {
       display: flex;
       justify-content: space-between;
 
+      @include resp(400px) {
+        flex-direction: column;
+      }
       .image {
         img {
           width: 100%;
           height: 200px;
+          @include resp(400px) {
+            height: auto;
+            margin-top: 20px;
+          }
         }
       }
       .titleAndIngredients {
         margin: 0 auto;
         position: relative;
+
         .smallEditMainInfoBtn {
           position: absolute;
           top: 0px;
@@ -88,6 +102,11 @@
         .titleBox {
           display: flex;
           align-items: center;
+          @include resp(400px) {
+            text-align: center;
+            width: 100%;
+            display: block;
+          }
           a {
             text-decoration: none;
             padding-left: 10px;
@@ -151,16 +170,25 @@
       &__content {
         display: flex;
         align-items: center;
+        @include resp(400px) {
+          margin-top: 20px;
+          justify-content: space-between;
+        }
         .actionBtn {
-          border-radius: 8px;
           display: flex;
           align-items: center;
           padding: 5px 15px;
           color: $orange-main;
+          text-align: center;
           cursor: pointer;
-
+          @include resp(400px) {
+            padding: 0;
+          }
           p {
             margin-left: 10px;
+            @include resp(400px) {
+              font-size: 16px;
+            }
           }
         }
       }
@@ -176,6 +204,9 @@
         display: flex;
         justify-content: space-between;
         text-align: center;
+        @include resp(400px) {
+          width: 100%;
+        }
       }
     }
     .recipeSteps {

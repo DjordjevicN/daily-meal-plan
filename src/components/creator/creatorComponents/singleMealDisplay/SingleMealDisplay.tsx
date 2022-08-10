@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { IMealInformation } from "../../../../constants/types";
+import {
+  IMealInformation,
+  IMealIngredientDisplay,
+} from "../../../../constants/types";
 import "./SingleMealDisplay.scss";
 import { GrClose } from "react-icons/gr";
 import { AiTwotoneDelete, AiFillEdit } from "react-icons/ai";
@@ -25,9 +28,7 @@ const SingleMealDisplay: React.FC<IProps> = ({ details }) => {
     actionCreators,
     dispatch
   );
-
   const [isDisplayMealOpen, setIsDisplayMealOpen] = useState(false);
-
   const [editView, setEditView] = useState(false);
 
   const getRecipe = (value: number) => {
@@ -126,7 +127,7 @@ const SingleMealDisplay: React.FC<IProps> = ({ details }) => {
 
                     <div className="ingredientBlock">
                       {mealsIngredients.length > 0 &&
-                        mealsIngredients.map((item) => {
+                        mealsIngredients.map((item: IMealIngredientDisplay) => {
                           return (
                             <div className="singleIngredient" key={item.id}>
                               <div className="singleIngredient--image">
@@ -162,14 +163,14 @@ const SingleMealDisplay: React.FC<IProps> = ({ details }) => {
                         onClick={() => handleDeleteMeal()}
                       >
                         <AiTwotoneDelete />
-                        <p>Delete Meal</p>
+                        <p>Delete</p>
                       </div>
                       <div
                         className="actionBtn"
                         onClick={() => switchViewToEditMod()}
                       >
                         <AiFillEdit />
-                        <p>Edit Meal</p>
+                        <p>Edit</p>
                       </div>
                     </div>
                   </div>
@@ -202,15 +203,18 @@ const SingleMealDisplay: React.FC<IProps> = ({ details }) => {
                       {mealsSteps.length > 0 &&
                         mealsSteps.map((item) => {
                           return (
-                            <div className="steps" key={item.id}>
-                              <div className="steps__content">
-                                <div className="stepBlock">
-                                  <p className="stepTitle">{`Step ${item.title}`}</p>
-                                  <p className="stepDescription">
-                                    {item.description}
-                                  </p>
+                            <div key={item.id}>
+                              <div className="steps">
+                                <div className="steps__content">
+                                  <div className="stepBlock">
+                                    <p className="stepTitle">{`Step ${item.title}`}</p>
+                                    <p className="stepDescription">
+                                      {item.description}
+                                    </p>
+                                  </div>
                                 </div>
                               </div>
+                              <div className="line"></div>
                             </div>
                           );
                         })}

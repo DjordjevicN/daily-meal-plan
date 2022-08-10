@@ -1,10 +1,11 @@
 export interface ICaloriesCalculateState {
-  age: number;
+  age: number | null;
   gender: string;
-  weight: number;
-  height: number;
-  activity?: string;
-  bodyFat?: number;
+  weight: number | null;
+  height: number | null;
+  activity: number | null;
+  bodyFat?: number | null;
+  goal: number | null;
 }
 export interface IIngredients {
   id: number | string;
@@ -73,25 +74,21 @@ export interface IMealInformation {
 export interface IIngredientsProp {
   id: number | string;
   name: string;
-  price: number;
-  calories: number;
-  carbs: number;
-  protein: number;
-  fat: number;
+  price?: number;
+  calories?: number;
+  carbs?: number;
+  protein?: number;
+  fat?: number;
   img: string;
-  base_amount: number;
-  current_amount: number;
-  percentage_amount: number;
-  amount: number | string;
-  unit: string;
+  unit?: string;
 }
 export interface IStep {
   id: number | string;
   meal_id: number | string;
-  title: string;
-  description: string;
-  video: string;
-  image: string;
+  title?: string;
+  description?: string;
+  video?: string;
+  image?: string;
   identNum: number | string;
   stepNum: number | string;
 }
@@ -105,4 +102,17 @@ export interface IDay {
   name: string;
   calorie_limit: number | string;
   weekDay_id: number;
+}
+export interface IMealIngredientDisplay {
+  amount: number;
+  calories: number;
+  carbs: number;
+  fat: number;
+  id: number;
+  img: string;
+  ingredient_id: number;
+  name: string;
+  price: number;
+  protein: number;
+  unit: string;
 }

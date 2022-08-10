@@ -50,7 +50,7 @@ const IngredientEditResults: React.FC<IProps> = (props) => {
               alt="meal"
             />
             <p className="name">{props.ingredient.name}</p>
-            <div className="nutrition">
+            {/* <div className="nutrition">
               <div className="nutrition-section">
                 <p className="carbs">
                   <span>Carbs: </span>
@@ -71,7 +71,7 @@ const IngredientEditResults: React.FC<IProps> = (props) => {
                   {props.ingredient.price}
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <button

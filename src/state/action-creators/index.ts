@@ -5,13 +5,14 @@ import axios from "axios";
 import { isLocal } from "../../constants/utilFunc";
 import routes from "../../constants/routes";
 import FormData from "form-data";
+import { IUser, IIngredients } from "../../constants/types";
 
 const baseUrl = isLocal()
   ? "http://localhost:3001"
   : "https://jelovnik.nikola-djordjevic.com";
 
 // USER
-export const getUser = (value: any) => {
+export const getUser = (value: number | string | null) => {
   return async (dispatch: Dispatch<Action>) => {
     const response = await axios.post(`${baseUrl}${routes.GET_USER_BY_ID}`, {
       value,
@@ -31,7 +32,7 @@ const handleFile = async (value: any) => {
   await axios.post(`${baseUrl}/picture`, formData);
 };
 
-export const loginUser = (value: any) => {
+export const loginUser = (value: { email: string; password: string }) => {
   return async (dispatch: Dispatch<Action>) => {
     const response = await axios.post(`${baseUrl}${routes.LOGIN_USER}`, value);
     if (response.data.error) {
@@ -44,13 +45,13 @@ export const loginUser = (value: any) => {
     });
   };
 };
-export const createUser = (value: any) => {
-  return async (dispatch: Dispatch<Action>) => {
+export const createUser = (value: IUser) => {
+  return async () => {
     await axios.post(`${baseUrl}${routes.CREATE_USER}`, value);
   };
 };
 
-export const updateUser = (value: any) => {
+export const updateUser = (value: IUser) => {
   return async (dispatch: any) => {
     const response = await axios.post(`${baseUrl}${routes.UPDATE_USER}`, value);
     if (response.status === 200) {
@@ -112,7 +113,7 @@ export const upgradeIngredient = (value: any) => {
   };
 };
 
-export const deleteIngredients = (value: any) => {
+export const deleteIngredients = (value: number | string) => {
   return async (dispatch: any) => {
     await axios.post(`${baseUrl}${routes.DELETE_INGREDIENT}`, { value });
     dispatch(getAllIngredients());
@@ -132,7 +133,7 @@ export const editIngredients = (value: any) => {
   };
 };
 // CREATE GLUE INGREDIENT
-export const createIngredientInMeal = (mealId: any, value: any) => {
+export const createIngredientInMeal = (mealId: number | string, value: any) => {
   return async (dispatch: any) => {
     value.ingredients.forEach(async (item: any) => {
       const data = {
@@ -148,7 +149,7 @@ export const createIngredientInMeal = (mealId: any, value: any) => {
   };
 };
 // CREATE GLUE INGREDIENT
-export const createMealSteps = (mealId: any, value: any) => {
+export const createMealSteps = (mealId: number, value: any) => {
   return async (dispatch: any) => {
     value.steps.forEach(async (item: any) => {
       const data = {
@@ -160,6 +161,21 @@ export const createMealSteps = (mealId: any, value: any) => {
       await axios.post(`${baseUrl}${routes.CREATE_MEAL_STEP}`, {
         data,
       });
+    });
+  };
+};
+export const createStep = (value: any) => {
+  return async (dispatch: any) => {
+    await axios.post(`${baseUrl}/add_step`, {
+      value,
+    });
+  };
+};
+
+export const updateMealSteps = (value: any) => {
+  return async (dispatch: any) => {
+    await axios.post(`${baseUrl}/update_step`, {
+      value,
     });
   };
 };
@@ -277,8 +293,8 @@ export const updateMeal = (value: any) => {
 
     dispatch(deleteIngredientsInMeal(value.id));
     dispatch(createIngredientInMeal(value.id, value));
-    dispatch(deleteMealSteps(value.id));
-    dispatch(createMealSteps(value.id, value));
+    // dispatch(deleteMealSteps(value.id));
+    // dispatch(createMealSteps(value.id, value));
     dispatch(handleFile(imageData));
     dispatch(getUsersMeals(value.user_id));
   };
@@ -375,7 +391,6 @@ export const getMealsInDay = (value: any) => {
     const response = await axios.post(`${baseUrl}/get_meals_in_day`, {
       value,
     });
-    console.log(response);
 
     dispatch({
       type: ActionType.GET_TODAYS_MEALS,
@@ -397,5 +412,13 @@ export const getTodaysMeals = (value: any) => {
     });
 
     dispatch(getMealsInDay(response.data[0].id));
+  };
+};
+
+export const clearSearchState = () => {
+  return async (dispatch: any) => {
+    dispatch({
+      type: ActionType.CLEAR_SEARCH,
+    });
   };
 };

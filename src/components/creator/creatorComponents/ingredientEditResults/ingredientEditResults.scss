@@ -3,14 +3,14 @@
 @import "../../../../styles/constants.scss";
 
 .ingredientEditResults {
-  background-color: $rightBar-bg;
-
-  border-radius: 8px;
-  padding: 4px;
-  margin-top: 10px;
   width: 100%;
+  min-width: 250px;
+  padding: 7px 0px;
   &__content {
-    width: 95%;
+    border-radius: 8px;
+    padding: 4px;
+    background-color: white;
+    width: 90%;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -20,6 +20,9 @@
       img {
         max-height: 100px;
         width: 100px;
+        @include resp(400px) {
+          width: 50px;
+        }
       }
       .name {
         padding-left: 20px;
@@ -58,14 +61,15 @@
   }
 }
 .updateIngredient {
-  width: 450px;
+  max-width: 450px;
+  width: 100%;
   height: 100vh;
   position: fixed;
   top: 0;
   right: 0;
   background-color: $rightBar-bg;
   box-shadow: -3px 3px 15px rgba(92, 92, 92, 0.527);
-
+  z-index: 1;
   &__content {
     width: 80%;
     margin: 0 auto;

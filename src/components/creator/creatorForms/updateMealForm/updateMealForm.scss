@@ -1,0 +1,196 @@
+@import "../../../../styles/colors.scss";
+@import "../../../../styles/mixins.scss";
+
+.updateMealForm {
+  max-width: 700px;
+
+  &__content {
+    width: 100%;
+
+    .mainInfo {
+      &__content {
+        width: 90%;
+        margin: 0 auto;
+        .formName {
+          font-size: 24px;
+          color: $orange-main;
+        }
+        .form {
+          margin-top: 30px;
+          .formInput {
+            margin-top: 15px;
+            input {
+              padding: 0px 10px;
+              width: 100%;
+              height: 30px;
+              border: $input-border;
+              border-radius: 8px;
+            }
+            input[type="file"] {
+              background: none;
+              border: none;
+            }
+          }
+        }
+      }
+    }
+
+    .ingredientsNeeded {
+      margin-top: 30px;
+      .formName {
+        width: 90%;
+        margin: 0 auto;
+        font-size: 24px;
+        color: $orange-main;
+        margin-bottom: 30px;
+      }
+      &__content {
+        width: 90%;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        @include resp(400px) {
+          grid-template-columns: 1fr;
+        }
+        .ingSearch {
+          width: 95%;
+          position: relative;
+          @include resp(400px) {
+            margin-bottom: 30px;
+            width: 100%;
+          }
+          .inputBlock {
+            position: relative;
+            input {
+              width: 100%;
+              height: 30px;
+              border: $input-border;
+              border-radius: 8px;
+              outline: none;
+            }
+            .searchButton {
+              position: absolute;
+              top: 7px;
+              right: 20px;
+            }
+          }
+          .searchResults {
+            position: absolute;
+            width: 100%;
+            top: 40px;
+            border-radius: 4px;
+            box-shadow: $box-shadow;
+            background-color: white;
+            &__content {
+              padding: 10px;
+            }
+          }
+        }
+      }
+    }
+    .cookingSteps {
+      margin-top: 30px;
+      &__content {
+        width: 90%;
+        margin: 0 auto;
+        .titleAndAction {
+          .formName {
+            font-size: 24px;
+            color: $orange-main;
+            margin-bottom: 30px;
+          }
+        }
+        .steps {
+          .updateMealStep {
+            margin-top: 20px;
+            &__content {
+              .actions {
+                margin-top: 20px;
+                text-align: right;
+                button {
+                  padding: 10px 30px;
+                  border: none;
+                  background-color: $orange-main;
+                  color: white;
+                  margin-left: 20px;
+                  cursor: pointer;
+                  border-radius: 4px;
+                }
+              }
+              .form {
+                p {
+                  margin-top: 20px;
+                }
+                input {
+                  width: 100%;
+                  height: 30px;
+                  border: $input-border;
+                  border-radius: 8px;
+                }
+                textarea {
+                  width: 98.5%;
+                  height: 100px;
+                  max-height: 150px;
+                  resize: vertical;
+                  border: $input-border;
+                  border-radius: 8px;
+                  padding: 5px;
+                }
+              }
+            }
+          }
+
+          .addNewStep {
+            margin-top: 30px;
+            &__content {
+              display: flex;
+              flex-direction: column;
+              .title {
+                font-size: 24px;
+                color: $orange-main;
+              }
+              .label {
+                margin-top: 20px;
+              }
+              input {
+                height: 30px;
+                border: $input-border;
+                border-radius: 8px;
+              }
+              textarea {
+                width: 98.5%;
+                height: 100px;
+                max-height: 150px;
+                resize: vertical;
+                border: $input-border;
+                border-radius: 8px;
+                padding: 5px;
+              }
+              .action {
+                button {
+                  padding: 7px 30px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .actionBox {
+      margin-top: 30px;
+
+      text-align: center;
+      button {
+        width: 91%;
+        height: 30px;
+
+        border: none;
+        background-color: $orange-main;
+        color: white;
+
+        cursor: pointer;
+        border-radius: 4px;
+      }
+    }
+  }
+}

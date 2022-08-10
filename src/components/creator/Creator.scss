@@ -15,6 +15,9 @@
     }
     .screenTitle {
       padding-top: 100px;
+      @include resp(400px) {
+        padding: 0;
+      }
       h2 {
         font-size: 36px;
         color: $orange-main;
@@ -24,7 +27,9 @@
       margin-top: 160px;
       width: 100%;
       text-align: left;
-
+      @include resp(400px) {
+        margin-top: 100px;
+      }
       .createPlanBlock {
         &__content {
           .blockTitle {
@@ -32,6 +37,9 @@
             &__content {
               width: 60%;
               margin: 0 auto;
+              @include resp(400px) {
+                width: 90%;
+              }
               h2 {
                 text-align: center;
               }
@@ -47,6 +55,9 @@
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
+            @include resp(400px) {
+              width: 90%;
+            }
             button {
               background-color: $orange-main;
               border: none;
@@ -68,7 +79,11 @@
           width: 100%;
           &__content {
             width: 60%;
+
             margin: 0 auto;
+            @include resp(400px) {
+              width: 90%;
+            }
             h2 {
               text-align: center;
             }
@@ -103,6 +118,9 @@
             &__content {
               width: 60%;
               margin: 0 auto;
+              @include resp(400px) {
+                width: 90%;
+              }
               h2 {
                 text-align: center;
               }

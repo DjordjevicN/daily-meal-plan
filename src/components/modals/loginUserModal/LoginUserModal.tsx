@@ -15,10 +15,12 @@ const LoginUserModal: React.FC<IProps> = (props) => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const { loginUser } = bindActionCreators(actionCreators, dispatch);
+
   const handleLogin = (event: React.FormEvent) => {
     event.preventDefault();
     const value = { email, password };
     loginUser(value);
+    window.location.href = "/dashboard";
   };
 
   return (

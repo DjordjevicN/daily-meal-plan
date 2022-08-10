@@ -22,7 +22,7 @@ function HomePage() {
             </div>
           </div>
           <div className="calculator">
-            <CalorieCalculator />
+            <CalorieCalculator exitBtn={false} />
           </div>
         </div>
       </div>

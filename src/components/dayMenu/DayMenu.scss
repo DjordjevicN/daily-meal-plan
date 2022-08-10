@@ -3,12 +3,13 @@
 
 .dayMenu {
   width: 100%;
+
   .content {
     padding: 15px 15px 0 15px;
     width: 93%;
     margin: 0 auto;
     margin-bottom: 60px;
-    @include resp(330px) {
+    @include resp(400px) {
       padding: 0;
     }
     .screenNavigation {
@@ -20,23 +21,26 @@
       .navContent {
         display: flex;
         align-items: center;
+        flex-direction: column;
+
         @include resp(1122px) {
-          flex-direction: column;
         }
         .screenTitle {
           font-size: 36px;
           color: $orange-main;
           font-weight: 900;
+          width: 100%;
           @include resp(330px) {
             font-size: 24px;
           }
         }
         .nav-item {
+          margin: 0 auto;
           display: flex;
           align-items: center;
-          padding-left: 30px;
-          @include resp(1122px) {
-            padding-left: 0px;
+
+          @include resp(400px) {
+            justify-content: space-between;
           }
           .box {
             width: 300px;
@@ -49,8 +53,9 @@
             .day {
               padding: 0 20px;
               font-size: 24px;
-              @include resp(330px) {
+              @include resp(400px) {
                 font-size: 16px;
+                padding: 0;
               }
             }
           }

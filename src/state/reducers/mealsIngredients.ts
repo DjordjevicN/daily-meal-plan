@@ -1,6 +1,5 @@
 import { Action } from "../actions/index";
 import { ActionType } from "../action-types";
-import { IIngredientsProp } from "../../constants/types";
 
 const initState = [
   {
@@ -20,7 +19,7 @@ const initState = [
   },
 ];
 
-const reducer = (state: IIngredientsProp[] = initState, action: Action) => {
+const reducer = (state: any = initState, action: Action) => {
   switch (action.type) {
     case ActionType.GET_MEALS_INGREDIENTS:
       return (state = action.payload);

@@ -58,14 +58,14 @@ const LeftSidebar: React.FC<IProps> = (props) => {
             </div>
             <div
               id="shopping"
-              className="link-item"
-              onClick={() => props.setPage(pages.SHOPPING)}
-              style={{
-                color:
-                  pages.SHOPPING === props.page
-                    ? color.orangeMain
-                    : color.fontLight,
-              }}
+              className="link-item shopping"
+              // onClick={() => props.setPage(pages.SHOPPING)}
+              // style={{
+              //   color:
+              //     pages.SHOPPING === props.page
+              //       ? color.orangeMain
+              //       : color.fontLight,
+              // }}
             >
               <RiTodoLine />
               {props.isMenuOpen ? <p>Shopping</p> : null}
@@ -93,7 +93,13 @@ const LeftSidebar: React.FC<IProps> = (props) => {
 
               {props.isMenuOpen ? <p>Calculate</p> : null}
             </div>
-            <div className="link-item" onClick={() => logoutUser()}>
+            <div
+              className="link-item"
+              onClick={() => {
+                logoutUser();
+                window.location.href = "/";
+              }}
+            >
               <FiLogOut />
               {props.isMenuOpen ? <p>Logout</p> : null}
             </div>
@@ -103,6 +109,16 @@ const LeftSidebar: React.FC<IProps> = (props) => {
       <div className="mobileMenu">
         <div className="content">
           <div className="mobile_navigation">
+            <div
+              className="link-item"
+              onClick={() => {
+                logoutUser();
+                window.location.href = "/";
+              }}
+            >
+              <FiLogOut />
+              {/* <p>Logout</p> */}
+            </div>
             <div
               id="mealplan"
               className="link-item"
@@ -115,7 +131,7 @@ const LeftSidebar: React.FC<IProps> = (props) => {
               }}
             >
               <GiKnifeFork />
-              <p>Meal Plan</p>
+              {/* <p>Meal Plan</p> */}
             </div>
             <div
               id="shopping"
@@ -129,23 +145,29 @@ const LeftSidebar: React.FC<IProps> = (props) => {
               }}
             >
               <RiTodoLine />
-              <p>Shopping</p>
+              {/* <p>Shopping</p> */}
             </div>
             <div
               id="creator"
               className="link-item"
               onClick={() => props.setPage(pages.CREATOR)}
+              style={{
+                color:
+                  pages.CREATOR === props.page
+                    ? color.orangeMain
+                    : color.fontLight,
+              }}
             >
               <FiSettings />
-              <p>Creator</p>
+              {/* <p>Creator</p> */}
             </div>
-            <div id="calculate" className="link-item">
+            <div
+              id="calculate"
+              className="link-item"
+              onClick={() => setOpenCalculator(!openCalculator)}
+            >
               <RiGridLine />
-              <p>Calculate</p>
-            </div>
-            <div className="link-item" onClick={() => logoutUser()}>
-              <FiLogOut />
-              <p>Logout</p>
+              {/* <p>Calculate</p> */}
             </div>
           </div>
         </div>
@@ -156,6 +178,7 @@ const LeftSidebar: React.FC<IProps> = (props) => {
             <CalorieCalculator
               recalculate={true}
               setOpenCalculator={setOpenCalculator}
+              exitBtn={true}
             />
           </div>
         </div>

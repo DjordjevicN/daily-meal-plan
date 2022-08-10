@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { IMealInformation } from "../../../../constants/types";
+import {
+  IMealInformation,
+  IStep,
+  IIngredientsProp,
+} from "../../../../constants/types";
 import { BsSearch } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators, State } from "../../../../state";
@@ -7,14 +11,11 @@ import { bindActionCreators } from "redux";
 import AddedIngredientItem from "../../creatorComponents/addedIngredientItem/AddedIngredientItem";
 import SearchResultItem from "../../creatorComponents/searchResultItem/SearchResultItem";
 import { createMealInitState } from "../../../../constants/initStates";
-import AddStepInput from "../../creatorComponents/addStepInput/AddStepInput";
-import AddedStepItem from "../../creatorComponents/addedStepItem/AddedStepItem";
 
-interface IProps {
-  details: IMealInformation;
-  mealsSteps: any;
-  mealsIngredients: any;
-}
+import UpdateMealStep from "./UpdateMealStep";
+import AddNewStep from "./AddNewStep";
+import "./updateMealForm.scss";
+
 interface IIngredient {
   id: number | string;
   name: string;
@@ -22,12 +23,7 @@ interface IIngredient {
   amount: number | string;
   unit: string;
 }
-interface ISteps {
-  id?: number | string;
-  identNum: number | string;
-  stepNum: number | string;
-  description: string;
-}
+
 interface IMeal {
   id: number;
   user_id: number | string;
@@ -35,9 +31,13 @@ interface IMeal {
   img: any;
   videoUrl: string;
   ingredients: IIngredient[];
-  steps: ISteps[];
+  steps: IStep[];
 }
-
+interface IProps {
+  details: IMealInformation;
+  mealsSteps: IStep[];
+  mealsIngredients: IIngredient[];
+}
 const UpdateMealForm: React.FC<IProps> = ({
   details,
   mealsSteps,
@@ -48,10 +48,8 @@ const UpdateMealForm: React.FC<IProps> = ({
   const [newMeal, setNewMeal] = useState<IMeal>(createMealInitState);
   const searchResults = useSelector((state: State) => state.ingredientSearch);
 
-  const { getIngredientByName, updateMeal } = bindActionCreators(
-    actionCreators,
-    dispatch
-  );
+  const { getIngredientByName, updateMeal, updateMealSteps } =
+    bindActionCreators(actionCreators, dispatch);
 
   useEffect(() => {
     setNewMeal({
@@ -77,26 +75,26 @@ const UpdateMealForm: React.FC<IProps> = ({
   const handleSearch = (value: string) => {
     getIngredientByName(value);
   };
-  const addStep = (value: ISteps) => {
-    let newStep = [...newMeal.steps, value];
-    setNewMeal({ ...newMeal, steps: newStep });
-  };
-  const removeStep = (stepIdentNum: number) => {
-    let newIng = newMeal.steps.filter((item) => item.identNum !== stepIdentNum);
-    setNewMeal({ ...newMeal, steps: newIng });
-  };
-  const updateStep = (value: ISteps) => {
-    const currentIng = newMeal.steps;
-    let updatedValues = currentIng.map((item) => {
-      if (item.id === value.id) {
-        item.stepNum = value.stepNum;
-        item.description = value.description;
-      }
-      return item;
-    });
+  // const addStep = (value: ISteps) => {
+  //   let newStep = [...newMeal.steps, value];
+  //   setNewMeal({ ...newMeal, steps: newStep });
+  // };
+  // const removeStep = (stepIdentNum: number) => {
+  //   let newIng = newMeal.steps.filter((item) => item.identNum !== stepIdentNum);
+  //   setNewMeal({ ...newMeal, steps: newIng });
+  // };
+  // const updateStep = (value: ISteps) => {
+  //   const currentIng = newMeal.steps;
+  //   let updatedValues = currentIng.map((item) => {
+  //     if (item.id === value.id) {
+  //       item.stepNum = value.stepNum;
+  //       item.description = value.description;
+  //     }
+  //     return item;
+  //   });
 
-    setNewMeal({ ...newMeal, steps: updatedValues });
-  };
+  //   setNewMeal({ ...newMeal, steps: updatedValues });
+  // };
   const handleAddIngredient = (ingredient: IIngredient) => {
     const alreadyIn = newMeal.ingredients.find(
       (item) => item.id === ingredient.id
@@ -173,8 +171,8 @@ const UpdateMealForm: React.FC<IProps> = ({
         {/* INGREDIENTS  */}
 
         <div className="ingredientsNeeded">
+          <p className="formName">Ingredients</p>
           <div className="ingredientsNeeded__content">
-            <p className="formName">Ingredients</p>
             <div className="ingSearch">
               <div className="inputBlock">
                 <input
@@ -237,21 +235,14 @@ const UpdateMealForm: React.FC<IProps> = ({
               <p className="formName">Steps</p>
             </div>
             <div className="steps">
-              <AddStepInput addStep={addStep} />
               <div className="displaySteps">
                 <div className="displaySteps__content">
                   {newMeal.steps.length > 0 &&
                     newMeal.steps.map((step) => {
-                      return (
-                        <AddedStepItem
-                          step={step}
-                          key={step.id}
-                          removeStep={removeStep}
-                          updateStep={updateStep}
-                        />
-                      );
+                      return <UpdateMealStep key={step.id} step={step} />;
                     })}
                 </div>
+                <AddNewStep step={newMeal} />
               </div>
             </div>
           </div>

@@ -10,6 +10,7 @@
   left: 0;
   top: 0;
   transition: 0.3s;
+  z-index: 10;
   @include resp(615px) {
     display: none;
   }
@@ -69,6 +70,13 @@
           padding-left: 10px;
         }
       }
+      .shopping {
+        color: rgb(107, 107, 107);
+        cursor: default;
+        &:hover {
+          color: rgb(107, 107, 107);
+        }
+      }
     }
   }
 }
@@ -79,7 +87,9 @@
   left: 0;
   background-color: $blue-main;
   width: 100%;
-  height: 60px;
+  height: 80px;
+  border-radius: 10px 10px 0 0;
+  z-index: 1000;
   @include resp(615px) {
     display: grid;
     place-items: center;
@@ -93,6 +103,9 @@
       align-items: center;
       .link-item {
         color: $font-light;
+        @include resp(400px) {
+          font-size: 24px;
+        }
         @include resp(330px) {
           p {
             font-size: 13px;

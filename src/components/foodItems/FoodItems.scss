@@ -12,10 +12,15 @@
     height: 100px;
     object-fit: cover;
     border-radius: 8px;
+    @include resp(400px) {
+      width: 70px;
+      height: 70px;
+    }
   }
 
   .foodInfo {
     padding-left: 18px;
+
     .foodTitle {
       font-size: 20px;
       color: $font-dark;

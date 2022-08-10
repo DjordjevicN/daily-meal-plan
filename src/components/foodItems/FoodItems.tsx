@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-
 import { baseUrl } from "../../constants/utilFunc";
-
 import "./FoodItems.scss";
 
 type Props = {
@@ -15,7 +13,7 @@ const FoodItems: React.FC<Props> = (props) => {
       <div
         className="foodItems"
         key={props.food.id}
-        onClick={() => setIsModalOpen(true)}
+        // onClick={() => setIsModalOpen(true)}
       >
         <img
           src={
