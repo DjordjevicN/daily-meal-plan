@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { actionCreators, State } from "../../../../state";
+import { useDispatch } from "react-redux";
+import { actionCreators } from "../../../../state";
 import { bindActionCreators } from "redux";
 
 interface IProps {
