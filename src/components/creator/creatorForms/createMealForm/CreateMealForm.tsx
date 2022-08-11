@@ -47,7 +47,6 @@ const CreateMealForm: React.FC<IProps> = (props) => {
   const dispatch = useDispatch();
   const searchResults = useSelector((state: State) => state.ingredientSearch);
   const user = useSelector((state: State) => state.user);
-  const mealSteps = useSelector((state: State) => state.mealSteps);
 
   const { getIngredientByName, createMeal } = bindActionCreators(
     actionCreators,

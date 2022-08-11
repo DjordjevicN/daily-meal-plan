@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  IMealInformation,
-  IStep,
-  IIngredientsProp,
-} from "../../../../constants/types";
+import { IMealInformation, IStep } from "../../../../constants/types";
 import { BsSearch } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators, State } from "../../../../state";
@@ -48,8 +44,10 @@ const UpdateMealForm: React.FC<IProps> = ({
   const [newMeal, setNewMeal] = useState<IMeal>(createMealInitState);
   const searchResults = useSelector((state: State) => state.ingredientSearch);
 
-  const { getIngredientByName, updateMeal, updateMealSteps } =
-    bindActionCreators(actionCreators, dispatch);
+  const { getIngredientByName, updateMeal } = bindActionCreators(
+    actionCreators,
+    dispatch
+  );
 
   useEffect(() => {
     setNewMeal({

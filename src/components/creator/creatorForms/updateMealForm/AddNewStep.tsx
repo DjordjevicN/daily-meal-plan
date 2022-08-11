@@ -25,6 +25,7 @@ const AddNewStep: React.FC<IProps> = ({ step }) => {
 
   useEffect(() => {
     setNewStep({ ...newStep, meal_id: step.id });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [step]);
 
   const { createStep } = bindActionCreators(actionCreators, dispatch);
