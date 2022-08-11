@@ -20,7 +20,7 @@ const LoginUserModal: React.FC<IProps> = (props) => {
     event.preventDefault();
     const value = { email, password };
     loginUser(value);
-    window.location.href = "/dashboard";
+    // window.location.href = "/dashboard";
   };
 
   return (
