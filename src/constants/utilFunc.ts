@@ -39,7 +39,7 @@ export const baseUrl = () => {
   if (window.location.hostname === "localhost") {
     return "http://localhost:3001";
   } else {
-    return "http://jelovnik.nikola-djordjevic.com";
+    return "https://jelovnik.nikola-djordjevic.com";
   }
 };
 export const isUserLoggedIn = () => {
