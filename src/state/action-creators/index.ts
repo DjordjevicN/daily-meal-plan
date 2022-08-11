@@ -9,7 +9,7 @@ import { IUser } from "../../constants/types";
 
 const baseUrl = isLocal()
   ? "http://localhost:3001"
-  : "https://jelovnik.nikola-djordjevic.com";
+  : "http://jelovnik.nikola-djordjevic.com";
 
 // USER
 export const getUser = (value: number | string | null) => {
