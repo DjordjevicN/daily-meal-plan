@@ -15,7 +15,6 @@ interface IProps {
 const CreateUserModal: React.FC<IProps> = (props) => {
   const [profileState, setProfileState] = useState<IUser>(userProfileInitState);
   const dispatch = useDispatch();
-  console.log(profileState);
 
   const { createUser } = bindActionCreators(actionCreators, dispatch);
   const handleCreateAccount = (event: React.FormEvent) => {

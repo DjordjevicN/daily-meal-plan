@@ -2,19 +2,20 @@ import { Action } from "./../actions/index";
 import { ActionType } from "./../action-types/index";
 import { Dispatch } from "redux";
 import axios from "axios";
-import { isLocal } from "../../constants/utilFunc";
+// import { isLocal } from "../../constants/utilFunc";
 import routes from "../../constants/routes";
 import FormData from "form-data";
 import { IUser } from "../../constants/types";
+import { baseUrl } from "../../constants/utilFunc";
 
-const baseUrl = isLocal()
-  ? "http://localhost:3001"
-  : "https://jelovnik.nikola-djordjevic.com";
+// const baseUrl() = isLocal()
+//   ? "http://localhost:3001"
+//   : "https://jelovnik.nikola-djordjevic.com";
 
 // USER
 export const getUser = (value: number | string | null) => {
   return async (dispatch: Dispatch<Action>) => {
-    const response = await axios.post(`${baseUrl}${routes.GET_USER_BY_ID}`, {
+    const response = await axios.post(`${baseUrl()}${routes.GET_USER_BY_ID}`, {
       value,
     });
     dispatch({
@@ -29,12 +30,15 @@ const handleFile = async (value: any) => {
   formData.append("picture", value.files);
   formData.append("tableName", value.tableName);
   formData.append("itemId", `${value.itemId}`);
-  await axios.post(`${baseUrl}/picture`, formData);
+  await axios.post(`${baseUrl()}/picture`, formData);
 };
 
 export const loginUser = (value: { email: string; password: string }) => {
   return async (dispatch: Dispatch<Action>) => {
-    const response = await axios.post(`${baseUrl}${routes.LOGIN_USER}`, value);
+    const response = await axios.post(
+      `${baseUrl()}${routes.LOGIN_USER}`,
+      value
+    );
     if (response.data.error) {
       return console.log(response.data.msg);
     }
@@ -47,13 +51,16 @@ export const loginUser = (value: { email: string; password: string }) => {
 };
 export const createUser = (value: IUser) => {
   return async () => {
-    await axios.post(`${baseUrl}${routes.CREATE_USER}`, value);
+    await axios.post(`${baseUrl()}${routes.CREATE_USER}`, value);
   };
 };
 
 export const updateUser = (value: IUser) => {
   return async (dispatch: any) => {
-    const response = await axios.post(`${baseUrl}${routes.UPDATE_USER}`, value);
+    const response = await axios.post(
+      `${baseUrl()}${routes.UPDATE_USER}`,
+      value
+    );
     if (response.status === 200) {
       return dispatch(getUser(value.id));
     }
@@ -63,7 +70,9 @@ export const updateUser = (value: IUser) => {
 // INGREDIENTS
 export const getAllIngredients = () => {
   return async (dispatch: Dispatch<Action>) => {
-    const response = await axios.get(`${baseUrl}${routes.GET_ALL_INGREDIENTS}`);
+    const response = await axios.get(
+      `${baseUrl()}${routes.GET_ALL_INGREDIENTS}`
+    );
     dispatch({
       type: ActionType.GET_ALL_INGREDIENTS,
       payload: response.data.results,
@@ -73,7 +82,7 @@ export const getAllIngredients = () => {
 export const getIngredientByName = (value: any) => {
   return async (dispatch: Dispatch<Action>) => {
     const response = await axios.post(
-      `${baseUrl}${routes.GET_INGREDIENTS_BY_NAME}`,
+      `${baseUrl()}${routes.GET_INGREDIENTS_BY_NAME}`,
       {
         value,
       }
@@ -88,7 +97,7 @@ export const getIngredientByName = (value: any) => {
 export const addNewIngredients = (value: any) => {
   return async (dispatch: any) => {
     const response = await axios.post(
-      `${baseUrl}${routes.ADD_INGREDIENT}`,
+      `${baseUrl()}${routes.ADD_INGREDIENT}`,
       value
     );
     const imageData = {
@@ -103,7 +112,7 @@ export const addNewIngredients = (value: any) => {
 
 export const upgradeIngredient = (value: any) => {
   return async (dispatch: any) => {
-    await axios.post(`${baseUrl}${routes.EDIT_INGREDIENT}`, { value });
+    await axios.post(`${baseUrl()}${routes.EDIT_INGREDIENT}`, { value });
     const imageData = {
       tableName: "ingredients",
       files: value.img,
@@ -115,20 +124,20 @@ export const upgradeIngredient = (value: any) => {
 
 export const deleteIngredients = (value: number | string) => {
   return async (dispatch: any) => {
-    await axios.post(`${baseUrl}${routes.DELETE_INGREDIENT}`, { value });
+    await axios.post(`${baseUrl()}${routes.DELETE_INGREDIENT}`, { value });
     dispatch(getAllIngredients());
   };
 };
 export const buyIngredients = (value: any) => {
   return async (dispatch: any) => {
-    await axios.post(`${baseUrl}${routes.PURCHASE_INGREDIENT}`, { value });
+    await axios.post(`${baseUrl()}${routes.PURCHASE_INGREDIENT}`, { value });
     dispatch(getAllIngredients());
   };
 };
 
 export const editIngredients = (value: any) => {
   return async (dispatch: any) => {
-    await axios.post(`${baseUrl}${routes.EDIT_INGREDIENT}`, { value });
+    await axios.post(`${baseUrl()}${routes.EDIT_INGREDIENT}`, { value });
     dispatch(getAllIngredients());
   };
 };
@@ -142,7 +151,7 @@ export const createIngredientInMeal = (mealId: number | string, value: any) => {
         amount: item.amount,
         unit: item.unit,
       };
-      await axios.post(`${baseUrl}${routes.CREATE_INGREDIENT_IN_MEAL}`, {
+      await axios.post(`${baseUrl()}${routes.CREATE_INGREDIENT_IN_MEAL}`, {
         data,
       });
     });
@@ -158,7 +167,7 @@ export const createMealSteps = (mealId: number, value: any) => {
         description: item.description,
       };
 
-      await axios.post(`${baseUrl}${routes.CREATE_MEAL_STEP}`, {
+      await axios.post(`${baseUrl()}${routes.CREATE_MEAL_STEP}`, {
         data,
       });
     });
@@ -166,7 +175,7 @@ export const createMealSteps = (mealId: number, value: any) => {
 };
 export const createStep = (value: any) => {
   return async (dispatch: any) => {
-    await axios.post(`${baseUrl}/add_step`, {
+    await axios.post(`${baseUrl()}/add_step`, {
       value,
     });
   };
@@ -174,7 +183,7 @@ export const createStep = (value: any) => {
 
 export const updateMealSteps = (value: any) => {
   return async (dispatch: any) => {
-    await axios.post(`${baseUrl}/update_step`, {
+    await axios.post(`${baseUrl()}/update_step`, {
       value,
     });
   };
@@ -183,7 +192,7 @@ export const updateMealSteps = (value: any) => {
 export const getUsersMeals = (value: number) => {
   return async (dispatch: any) => {
     const response = await axios.post(
-      `${baseUrl}${routes.GET_MEAL_BY_USER_ID}`,
+      `${baseUrl()}${routes.GET_MEAL_BY_USER_ID}`,
       {
         value,
       }
@@ -204,7 +213,7 @@ export const createMeal = (value: any) => {
       videoUrl: value.videoUrl,
     };
 
-    const response = await axios.post(`${baseUrl}${routes.CREATE_MEAL}`, {
+    const response = await axios.post(`${baseUrl()}${routes.CREATE_MEAL}`, {
       mealInfo,
     });
 
@@ -225,7 +234,7 @@ export const createMeal = (value: any) => {
 export const getMealsIngredients = (value: number) => {
   return async (dispatch: any) => {
     const response = await axios.post(
-      `${baseUrl}${routes.GET_MEAL_INGREDIENTS}`,
+      `${baseUrl()}${routes.GET_MEAL_INGREDIENTS}`,
       {
         value,
       }
@@ -239,7 +248,7 @@ export const getMealsIngredients = (value: number) => {
 // GET MEALS STEPS
 export const getMealsSteps = (value: number) => {
   return async (dispatch: any) => {
-    const response = await axios.post(`${baseUrl}${routes.GET_MEALS_STEPS}`, {
+    const response = await axios.post(`${baseUrl()}${routes.GET_MEALS_STEPS}`, {
       value,
     });
     dispatch({
@@ -251,7 +260,7 @@ export const getMealsSteps = (value: number) => {
 // DELETE MEAL
 export const deleteMeal = (value: { userId: number; mealId: number }) => {
   return async (dispatch: any) => {
-    await axios.post(`${baseUrl}/delete_meal`, {
+    await axios.post(`${baseUrl()}/delete_meal`, {
       value,
     });
     dispatch(getUsersMeals(value.userId));
@@ -260,14 +269,14 @@ export const deleteMeal = (value: { userId: number; mealId: number }) => {
 // DELETE Ingredients in meal MEAL
 export const deleteIngredientsInMeal = (value: { mealId: number }) => {
   return async (dispatch: any) => {
-    await axios.post(`${baseUrl}/delete_ingredients_in_meal`, {
+    await axios.post(`${baseUrl()}/delete_ingredients_in_meal`, {
       value,
     });
   };
 };
 export const deleteMealSteps = (value: { mealId: number }) => {
   return async (dispatch: any) => {
-    await axios.post(`${baseUrl}/delete_meal_steps`, {
+    await axios.post(`${baseUrl()}/delete_meal_steps`, {
       value,
     });
   };
@@ -282,7 +291,7 @@ export const updateMeal = (value: any) => {
       videoUrl: value.videoUrl,
     };
 
-    await axios.post(`${baseUrl}${routes.UPDATE_MEAL}`, {
+    await axios.post(`${baseUrl()}${routes.UPDATE_MEAL}`, {
       mealInfo,
     });
     const imageData = {
@@ -301,7 +310,7 @@ export const updateMeal = (value: any) => {
 };
 export const updateAmountAndUnitOfMeal = (value: any) => {
   return async (dispatch: any) => {
-    await axios.post(`${baseUrl}/update_amount_and_unit_of_meal`, {
+    await axios.post(`${baseUrl()}/update_amount_and_unit_of_meal`, {
       value,
     });
   };
@@ -310,16 +319,19 @@ export const updateAmountAndUnitOfMeal = (value: any) => {
 export const addMealToDay = (value: any) => {
   return async (dispatch: any) => {
     const dayId = value.day_id;
-    const checkResponse = await axios.post(`${baseUrl}/check_if_meal_to_day`, {
-      dayId,
-    });
+    const checkResponse = await axios.post(
+      `${baseUrl()}/check_if_meal_to_day`,
+      {
+        dayId,
+      }
+    );
     if (checkResponse.data.length === 0) {
-      await axios.post(`${baseUrl}/add_meal_to_day`, {
+      await axios.post(`${baseUrl()}/add_meal_to_day`, {
         value,
       });
     } else {
       value.id = checkResponse.data[0].id;
-      const response = await axios.post(`${baseUrl}/update_meal_to_day`, {
+      const response = await axios.post(`${baseUrl()}/update_meal_to_day`, {
         value,
       });
       return response;
@@ -335,7 +347,7 @@ export const createMealInDay = (day_id: number, meal_type: number) => {
       day_id: day_id,
       meal_type: meal_type,
     };
-    await axios.post(`${baseUrl}/create_meal_in_day`, value);
+    await axios.post(`${baseUrl()}/create_meal_in_day`, value);
   };
 };
 export const createDay = (plan_id: number, weekDay_id: number) => {
@@ -344,7 +356,7 @@ export const createDay = (plan_id: number, weekDay_id: number) => {
       plan_id: plan_id,
       weekDay_id: weekDay_id,
     };
-    const response = await axios.post(`${baseUrl}/create_day`, value);
+    const response = await axios.post(`${baseUrl()}/create_day`, value);
 
     for (let i = 0; i < 5; i++) {
       let day_id = response.data.insertId;
@@ -355,7 +367,7 @@ export const createDay = (plan_id: number, weekDay_id: number) => {
 };
 export const createPlan = () => {
   return async (dispatch: any) => {
-    const response = await axios.post(`${baseUrl}/create_plan`);
+    const response = await axios.post(`${baseUrl()}/create_plan`);
     for (let i = 0; i < 7; i++) {
       let plan_id = response.data.insertId;
       let weekDay_id = i;
@@ -367,7 +379,7 @@ export const createPlan = () => {
 
 export const getPlanById = (value: any) => {
   return async (dispatch: any) => {
-    const response = await axios.post(`${baseUrl}/get_plan_by_id`, { value });
+    const response = await axios.post(`${baseUrl()}/get_plan_by_id`, { value });
     dispatch({
       type: ActionType.GET_PLAN_BY_ID,
       payload: response.data[0],
@@ -377,7 +389,7 @@ export const getPlanById = (value: any) => {
 
 export const getPlanDays = (value: any) => {
   return async (dispatch: any) => {
-    const response = await axios.post(`${baseUrl}/get_plan_days`, {
+    const response = await axios.post(`${baseUrl()}/get_plan_days`, {
       value,
     });
     dispatch({
@@ -389,7 +401,7 @@ export const getPlanDays = (value: any) => {
 
 export const getMealsInDay = (value: any) => {
   return async (dispatch: any) => {
-    const response = await axios.post(`${baseUrl}/get_meals_in_day`, {
+    const response = await axios.post(`${baseUrl()}/get_meals_in_day`, {
       value,
     });
 
@@ -401,14 +413,14 @@ export const getMealsInDay = (value: any) => {
 };
 export const updateUsersCalories = (value: any) => {
   return async (dispatch: any) => {
-    await axios.post(`${baseUrl}/update_users_calories`, {
+    await axios.post(`${baseUrl()}/update_users_calories`, {
       value,
     });
   };
 };
 export const getTodaysMeals = (value: any) => {
   return async (dispatch: any) => {
-    const response = await axios.post(`${baseUrl}/get_todays_meals`, {
+    const response = await axios.post(`${baseUrl()}/get_todays_meals`, {
       value,
     });
 

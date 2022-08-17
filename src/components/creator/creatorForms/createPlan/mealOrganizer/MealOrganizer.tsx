@@ -53,7 +53,6 @@ const MealOrganizer: React.FC<IProps> = ({ mealData }) => {
 
   useEffect(() => {
     if (!preventAction) {
-      console.log("ite");
       handleUpdateAmounts();
     }
     setPreventAction(true);
@@ -91,7 +90,6 @@ const MealOrganizer: React.FC<IProps> = ({ mealData }) => {
       });
       if (response.data.length > 0) {
       }
-      console.log("single meal id", id, response.data[0].meal_id);
 
       getMeal(response.data[0].meal_id);
     }
@@ -114,7 +112,6 @@ const MealOrganizer: React.FC<IProps> = ({ mealData }) => {
       amount: mealAmount,
       unit: mealUnit,
     };
-    console.log(data);
 
     updateAmountAndUnitOfMeal(data);
   };

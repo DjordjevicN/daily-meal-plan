@@ -1,19 +1,31 @@
 import React, { useState, useEffect } from "react";
-// import { IData } from "../../constants/types";
+
 import "./Meal.scss";
 import { baseUrl } from "../../constants/utilFunc";
 import FoodItems from "../foodItems/FoodItems";
 import { FiRefreshCcw } from "react-icons/fi";
 import axios from "axios";
 import { mealConst } from "../../constants/mealConst";
+
+interface IMeal {
+  amount: number;
+  day_id: number;
+  id: number;
+  meal_id: number;
+  meal_type: number;
+  unit: string;
+}
+
 type Props = {
-  meal: any;
+  meal: IMeal;
 };
 const initState = {
   img: "",
   name: "",
 };
 const Meal: React.FC<Props> = ({ meal }) => {
+  console.log(meal);
+
   const [singleMeal, setSingleMeal] = useState(initState);
   useEffect(() => {
     getMeal();
@@ -26,7 +38,6 @@ const Meal: React.FC<Props> = ({ meal }) => {
       const response = await axios.post(`${baseUrl()}/get_meal_by_id`, {
         value,
       });
-
       setSingleMeal(response.data[0]);
     }
   };
@@ -39,7 +50,6 @@ const Meal: React.FC<Props> = ({ meal }) => {
           <button>I ate this</button>
           <FiRefreshCcw className="icon" />
         </div>
-
         <p className="calories_count">{`Calories`}</p>
         {singleMeal && <FoodItems meal={meal} food={singleMeal} />}
       </div>
