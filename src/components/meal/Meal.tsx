@@ -23,24 +23,22 @@ const initState = {
   img: "",
   name: "",
 };
-const Meal: React.FC<Props> = ({ meal }) => {
-  console.log(meal);
 
+const getMeal = async (id: number) => {
+  const value = id;
+  if (value) {
+    const response = await axios.post(`${baseUrl()}/get_meal_by_id`, {
+      value,
+    });
+    return response.data[0];
+  }
+};
+
+const Meal: React.FC<Props> = ({ meal }) => {
   const [singleMeal, setSingleMeal] = useState(initState);
   useEffect(() => {
-    getMeal();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const getMeal = async () => {
-    const value = meal.meal_id;
-    if (value) {
-      const response = await axios.post(`${baseUrl()}/get_meal_by_id`, {
-        value,
-      });
-      setSingleMeal(response.data[0]);
-    }
-  };
+    getMeal(meal.meal_id).then(setSingleMeal);
+  }, [meal.meal_id]);
 
   return (
     <div className="meal__wrapper ">
