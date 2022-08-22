@@ -1,5 +1,5 @@
 import "./App.scss";
-import { Route, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/homePage/HomePage";
 import ShoppingPage from "./pages/shoppingPage/ShoppingPage";
 import UserProfilePage from "./pages/userProfilePage/UserProfilePage";
@@ -18,12 +18,12 @@ function App() {
 
   return (
     <div className="App">
-      <Switch>
-        <Route path="/" exact component={HomePage} />
-        <Route path="/shopping" component={ShoppingPage} />
-        <Route path="/profile" component={UserProfilePage} />
-        <Route path="/dashboard" component={Dashboard} />
-      </Switch>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/shopping" element={<ShoppingPage />} />
+        <Route path="/profile" element={<UserProfilePage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
     </div>
   );
 }
