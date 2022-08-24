@@ -4,6 +4,7 @@ import "./Navigation.scss";
 
 import Button from "../../atom/Button/Button";
 import { AiOutlineMenu } from "react-icons/ai";
+import LoginUserModal from "../../../components/modals/loginUserModal/LoginUserModal";
 
 const Navigation = () => {
   return (
@@ -16,7 +17,10 @@ const Navigation = () => {
           <AiOutlineMenu className="burger" />
         </div>
         <div className="links">
-          <Button label="Dashboard" onClick={() => console.log("lol")} />
+          <Button
+            label="Dashboard"
+            onClick={() => (window.location.href = "/dashboard")}
+          />
           <Button label="Login" type="monoButton" />
         </div>
       </div>
