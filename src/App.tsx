@@ -4,6 +4,7 @@ import HomePage from "./pages/homePage/HomePage";
 import ShoppingPage from "./pages/shoppingPage/ShoppingPage";
 import UserProfilePage from "./pages/userProfilePage/UserProfilePage";
 import Dashboard from "./pages/dashboard/Dashboard";
+import SignIn from "./pages/signIn/SignIn";
 
 import { useDispatch } from "react-redux";
 import { actionCreators } from "./state";
@@ -23,6 +24,8 @@ function App() {
         <Route path="/shopping" element={<ShoppingPage />} />
         <Route path="/profile" element={<UserProfilePage />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="*" element={<HomePage />} />
       </Routes>
     </div>
   );

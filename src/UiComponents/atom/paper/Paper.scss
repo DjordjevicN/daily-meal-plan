@@ -2,13 +2,14 @@
 @import "../../../styles/mixins.scss";
 
 .paper {
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
   border-radius: 40px;
   background-color: $monoBg;
   color: $monoFont;
-  // box-shadow: $monoPaperShadow;
+
   &__content {
     padding: 35px;
+    opacity: 0;
   }
 }

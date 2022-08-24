@@ -16,6 +16,14 @@ const paperAnimation = {
     ],
   },
 };
+const childAnimation = {
+  open: {
+    opacity: 1,
+  },
+  closed: {
+    opacity: 0,
+  },
+};
 
 const Paper = (props: any) => {
   return (
@@ -27,7 +35,14 @@ const Paper = (props: any) => {
         className="paper"
         style={props.style}
       >
-        <div className="paper__content">{props.children}</div>
+        <motion.div
+          className="paper__content"
+          whileInView="open"
+          variants={childAnimation}
+          transition={{ duration: 0.5, delay: 0.5 }}
+        >
+          {props.children}
+        </motion.div>
       </motion.div>
     </AnimatePresence>
   );

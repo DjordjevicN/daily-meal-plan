@@ -21,7 +21,11 @@ function HomePage() {
                 and update your shopping list, and make sure you are always set
                 with the right amount of good food!
               </p>
-              <Button label="SING IN" type="monoButton" />
+              <Button
+                onClick={() => (window.location.href = "/signin")}
+                label="SING IN"
+                type="monoButton"
+              />
             </div>
             <div className="rightSide">
               <div className="rightSide__content">
@@ -36,6 +40,13 @@ function HomePage() {
             <Calculator />
           </div>
         </div>
+      </div>
+      <div className="footer">
+        <footer>
+          <div className="sectionOne section"></div>
+          <div className="sectionTwo section"></div>
+          <div className="sectionThree section"></div>
+        </footer>
       </div>
     </>
   );

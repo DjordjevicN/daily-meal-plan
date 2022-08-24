@@ -1,0 +1,42 @@
+@import "../../styles/colors.scss";
+.signin {
+  background-color: $monoBg;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__content {
+    padding: 46px;
+    border-radius: 30px;
+    background-color: $monoBg;
+    width: 50%;
+    .warning {
+      h1 {
+        font-size: 36px;
+        color: $monoFont;
+        margin-top: 50px;
+      }
+      p {
+        margin-top: 24px;
+      }
+    }
+    .action {
+      margin-top: 50px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      a {
+        color: $monoFont;
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: 700;
+        transition: 0.5s;
+        &:hover {
+          color: $monoFont30;
+        }
+      }
+    }
+  }
+}
