@@ -1,19 +1,20 @@
 @import "../../../styles/colors.scss";
 @import "../../../styles/mixins.scss";
 
-.input {
+.select-wrapper {
   color: $monoFont;
   margin-bottom: 30px;
   text-align: left;
   &__content {
     padding: 20px 10px 20px 5px;
     border-radius: 25px;
+    box-shadow: $monoInputShadow;
     transition: 0.5s;
     &:hover {
       box-shadow: $monoInputShadowHover;
     }
 
-    input {
+    select {
       border: none;
       background: none;
       outline: none;
@@ -24,6 +25,8 @@
       @include resp(870px) {
         width: 60%;
       }
+    }
+    select > * {
     }
   }
   &__content > :first-child {

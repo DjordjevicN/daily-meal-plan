@@ -32,6 +32,7 @@ function HomePage() {
           </div>
 
           <div className="calculator">
+            <h2>Let’s Calculate Calories Needs</h2>
             <Calculator />
           </div>
         </div>
