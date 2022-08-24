@@ -15,8 +15,8 @@
     transition: 0.5s;
     background: linear-gradient(
       270deg,
-      rgba(244, 85, 86, 1) 0%,
-      rgba(252, 138, 68, 1) 100%
+      rgb(243, 155, 155) 0%,
+      rgb(243, 181, 142) 100%
     );
     box-shadow: $monoButtonShadow;
     &:hover {

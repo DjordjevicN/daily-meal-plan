@@ -12,16 +12,13 @@
   font-weight: 400;
   color: $monoFont30;
   text-align: center;
-  background: $monoButtonBackground;
   box-shadow: $monoButtonShadow;
   transition: 0.5s;
   &:hover {
     box-shadow: $monoButtonShadowHover;
-    background-color: white;
   }
   &:active {
     transition: 0.1s;
-    background: $monoButtonBackground;
     box-shadow: $monoButtonShadow;
   }
 }
