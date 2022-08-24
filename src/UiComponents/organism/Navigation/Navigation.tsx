@@ -4,6 +4,9 @@ import "./Navigation.scss";
 
 import Button from "../../atom/Button/Button";
 import { AiOutlineMenu } from "react-icons/ai";
+import { Link } from "react-router-dom";
+
+import ButtonShell from "../../atom/ButtonShell/ButtonShell";
 
 const Navigation = () => {
   return (
@@ -16,10 +19,9 @@ const Navigation = () => {
           <AiOutlineMenu className="burger" />
         </div>
         <div className="links">
-          <Button
-            label="Dashboard"
-            onClick={() => (window.location.href = "/dashboard")}
-          />
+          <ButtonShell>
+            <Link to="/dashboard">Dashboard</Link>
+          </ButtonShell>
           <Button
             label="Login"
             type="monoButton"

@@ -7,7 +7,9 @@
     width: 80%;
     max-width: 1300px;
     margin: 0px auto;
-
+    @include resp(500px) {
+      width: 95%;
+    }
     .hero {
       height: 100vh;
       display: flex;
@@ -22,6 +24,9 @@
         @include resp(1100px) {
           width: 100%;
         }
+        @include resp(500px) {
+          text-align: center;
+        }
         h1 {
           font-size: 48px;
           color: $monoFont;
@@ -31,6 +36,9 @@
           margin-top: 25px;
           color: $monoFont;
           margin-bottom: 90px;
+          @include resp(500px) {
+            text-align: left;
+          }
         }
       }
       .rightSide {
