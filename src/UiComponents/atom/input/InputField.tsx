@@ -6,12 +6,14 @@ import { motion, AnimatePresence } from "framer-motion";
 const inputAnimation = {
   open: {
     borderRadius: "25px",
+    opacity: 1,
     boxShadow: [
       "inset 0px 0px 0px #d3d3d3, inset 0px -0px 0px rgb(240, 240, 240)",
       "inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff",
     ],
   },
   closed: {
+    opacity: 0,
     borderRadius: "25px",
     boxShadow: [
       "inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff",
@@ -34,7 +36,7 @@ const InputField = (props: IProps) => {
         className="input"
         whileInView="open"
         variants={inputAnimation}
-        transition={{ duration: 0.5, delay: 0.5 }}
+        transition={{ duration: 0.5, delay: 1.5 }}
       >
         <div className="input__content">
           {props.icon ?? <GiOrangeSlice />}

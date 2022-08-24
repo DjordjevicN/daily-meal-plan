@@ -21,20 +21,21 @@ const Calculator = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log(calculateCalorie(formState));
     setShowResult(true);
   };
 
   return (
     <div className="calculator-wrapper">
-      <Paper style={{ maxWidth: "800px" }}>
-        {showResult ? (
+      {showResult ? (
+        <Paper>
           <div className="result">
             <h1>Based on Our calculations you need to eat </h1>
             <h1 className="number">{`${calculateCalorie(formState)}`}</h1>
             <h1>Calories a day</h1>
           </div>
-        ) : (
+        </Paper>
+      ) : (
+        <Paper style={{ maxWidth: "800px" }}>
           <form onSubmit={handleSubmit}>
             <InputField
               type="number"
@@ -44,17 +45,7 @@ const Calculator = () => {
               placeholder="Age"
               icon={<VscPerson />}
             />
-            <SelectInput
-              placeholder="Gender"
-              icon={<BsGenderAmbiguous />}
-              change={(inputValue: string) =>
-                setFormState({ ...formState, goal: +inputValue })
-              }
-              options={[
-                { id: 1, value: "male", option: "Male" },
-                { id: 2, value: "female", option: "Female" },
-              ]}
-            />
+
             <InputField
               type="number"
               change={(inputValue: string) =>
@@ -70,6 +61,17 @@ const Calculator = () => {
               }
               placeholder="Height"
               icon={<AiOutlineColumnHeight />}
+            />
+            <SelectInput
+              placeholder="Gender"
+              icon={<BsGenderAmbiguous />}
+              change={(inputValue: string) =>
+                setFormState({ ...formState, goal: +inputValue })
+              }
+              options={[
+                { id: 1, value: "male", option: "Male" },
+                { id: 2, value: "female", option: "Female" },
+              ]}
             />
             <SelectInput
               change={(inputValue: string) =>
@@ -96,11 +98,11 @@ const Calculator = () => {
               icon={<GiStairsGoal />}
             />
             <InputButton>
-              <input type="submit" />
+              <input type="submit" value="Calculate" />
             </InputButton>
           </form>
-        )}
-      </Paper>
+        </Paper>
+      )}
     </div>
   );
 };
