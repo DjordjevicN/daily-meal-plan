@@ -1,21 +1,46 @@
-.customButton {
+@import "../../../styles/colors.scss";
+@import "../../../styles/mixins.scss";
+
+.monoButton {
   outline: none;
   border: none;
   cursor: pointer;
-  width: 100%;
-  height: 60px;
-  border-radius: 30px;
+  width: 186px;
+  height: 56px;
+  border-radius: 25px;
   font-size: 20px;
-  font-weight: 700;
-  color: white;
+  font-weight: 400;
+  color: $monoFont30;
   text-align: center;
-  background-color: #24cfaa;
-  box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px #fff;
+  background: $monoButtonBackground;
+  box-shadow: $monoButtonShadow;
   transition: 0.5s;
   &:hover {
-    background-color: #2fdbb6;
+    box-shadow: $monoButtonShadowHover;
+    background-color: white;
   }
   &:active {
-    background-color: #1da88a;
+    transition: 0.1s;
+    background: $monoButtonBackground;
+    box-shadow: $monoButtonShadow;
+  }
+}
+
+.default {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 400;
+  color: $monoFont30;
+  width: 186px;
+  height: 56px;
+  transition: 0.5s;
+  &:hover {
+    color: $monoFont;
+  }
+  &:active {
+    color: $monoFont30;
+    transition: 0.1s;
   }
 }

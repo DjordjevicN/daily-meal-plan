@@ -1,28 +1,38 @@
 import React from "react";
-import CalorieCalculator from "../../components/calorieCalculator/CalorieCalculator";
+
 import "./HomePage.scss";
-import Menu from "../../components/menu/Menu";
+
+import Navigation from "../../UiComponents/organism/Navigation/Navigation";
+import Button from "../../UiComponents/atom/Button/Button";
+import Calculator from "../../UiComponents/organism/Calculator/Calculator";
 
 function HomePage() {
   return (
     <>
-      <Menu />
+      <Navigation />
       <div className="homePage">
-        <div className="bg" />
-        <div className="content">
+        <div className="homePage__content">
           <div className="hero">
-            <div className="content">
-              <h1 className="big">Let’s Automate Your Meals</h1>
-              <p className="small">
+            <div className="leftSide">
+              <h1>Let’s Automate Your Meals</h1>
+              <p>
                 Welcome to the platform that is going to make meal planning
                 easier! We will calculate your calorie needs, help you create
                 and update your shopping list, and make sure you are always set
                 with the right amount of good food!
               </p>
+              <Button label="SING IN" type="monoButton" />
+            </div>
+            <div className="rightSide">
+              <div className="rightSide__content">
+                <img src="images/iPhone.png" alt="phone" />
+                <div className="backgroundElement" />
+              </div>
             </div>
           </div>
+
           <div className="calculator">
-            <CalorieCalculator exitBtn={false} />
+            <Calculator />
           </div>
         </div>
       </div>

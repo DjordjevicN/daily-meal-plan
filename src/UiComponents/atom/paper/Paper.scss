@@ -1,10 +1,14 @@
-.paper {
-  width: 430px;
+@import "../../../styles/colors.scss";
+@import "../../../styles/mixins.scss";
 
-  height: 700px;
-  padding: 35px;
+.paper {
+  width: 95%;
+  margin: 0 auto;
   border-radius: 40px;
-  background-color: #ecf0f3; // seam as background
-  color: #555; // set this in constant
-  box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
+  background-color: $monoBg;
+  color: $monoFont;
+  box-shadow: $monoPaperShadow;
+  &__content {
+    padding: 35px;
+  }
 }

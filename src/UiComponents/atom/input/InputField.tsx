@@ -2,12 +2,22 @@ import React from "react";
 import "./inputField.scss";
 import { AiOutlineMail } from "react-icons/ai";
 
-const InputField = () => {
+interface IProps {
+  placeholder?: string;
+  type?: string;
+  icon?: any;
+}
+
+const InputField = (props: IProps) => {
   return (
     <div className="input">
       <div className="input__content">
-        <AiOutlineMail className="icon" />
-        <input type="text" placeholder="User name" />
+        {props.icon ?? <AiOutlineMail />}
+
+        <input
+          type={props.type ?? "text"}
+          placeholder={props.placeholder ?? "User name"}
+        />
       </div>
     </div>
   );
