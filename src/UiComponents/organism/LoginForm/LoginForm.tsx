@@ -17,7 +17,7 @@ const LoginForm = () => {
             <InputField />
             <InputField />
           </div>
-          <Button label="Login" />
+          <Button label="Login" type="monoButton" />
         </Paper>
       </div>
     </div>
