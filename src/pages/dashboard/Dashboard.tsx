@@ -43,12 +43,6 @@ const Dashboard = () => {
 
   return (
     <div className="layout">
-      {/* <LeftSidebar
-        setPage={setPage}
-        page={page}
-        isMenuOpen={isMenuOpen}
-        setIsMenuOpen={setIsMenuOpen}
-      /> */}
       <DashNavigation
         setPage={setPage}
         page={page}

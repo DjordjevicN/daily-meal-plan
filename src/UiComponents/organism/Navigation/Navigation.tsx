@@ -4,8 +4,11 @@ import "./Navigation.scss";
 import { AiOutlineMenu } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import ButtonShell from "../../atom/ButtonShell/ButtonShell";
+import { useSelector } from "react-redux";
+import { State } from "../../../state";
 
 const Navigation = () => {
+  const user = useSelector((state: State) => state.user);
   const [openBurger, setOpenBurger] = useState(false);
   return (
     <div className="navigation">
@@ -23,7 +26,9 @@ const Navigation = () => {
           {openBurger && (
             <div className="dropdown">
               <ButtonShell>
-                <Link to="/dashboard">Dashboard</Link>
+                <Link to={user.id === 0 ? "/login" : "/dashboard"}>
+                  Dashboard
+                </Link>
               </ButtonShell>
               <hr />
               <ButtonShell>
@@ -34,7 +39,7 @@ const Navigation = () => {
         </div>
         <div className="links">
           <ButtonShell>
-            <Link to="/dashboard">Dashboard</Link>
+            <Link to={user.id === 0 ? "/login" : "/dashboard"}>Dashboard</Link>
           </ButtonShell>
 
           <ButtonShell type="mono">

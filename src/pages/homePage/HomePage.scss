@@ -43,27 +43,28 @@
       }
       .rightSide {
         width: 50%;
+        height: 50%;
         position: relative;
         @include resp(1100px) {
           display: none;
         }
         &__content {
-          .backgroundElement {
-            margin: 0 auto;
-            width: 500px;
-            height: 500px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
 
-            background: linear-gradient(
-              270deg,
-              rgba(244, 85, 86, 1) 0%,
-              rgba(252, 138, 68, 1) 100%
-            );
-            border-radius: 50%;
-          }
           img {
             position: absolute;
-            margin-left: -140px;
-            margin-top: -40px;
+          }
+          .device {
+            top: 20px;
+            right: 0px;
+            transform: "rotate(100deg)";
+            opacity: 0;
+          }
+          .circle {
+            top: 25px;
+            width: 550px;
           }
         }
       }

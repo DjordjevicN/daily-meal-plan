@@ -29,6 +29,7 @@
           text-align: left;
           width: 160px;
           margin: 30px auto;
+          cursor: pointer;
         }
 
         .navigation {
@@ -66,27 +67,30 @@
       }
     }
     .mobileNav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      z-index: 100;
-      border-radius: 8px 8px 0 0;
       @include respUp(700px) {
         display: none;
       }
-      background-color: white;
-      height: 150px;
+      position: fixed;
+      bottom: 0px;
+      left: 0;
+      z-index: 100;
+      border-radius: 8px 8px 0 0;
+      height: 130px;
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
       &__content {
-        width: 100%;
+        background-color: white;
+        padding: 15px 10px;
+        border-radius: 18px;
+        width: 85%;
         display: flex;
         justify-content: space-around;
+        box-shadow: 0px 0px 2px #a8a8a8, 0px 0px 0px 5px #ecf0f3,
+          8px 8px 7px #a7aaaf, -8px -8px 7px #fff;
         .link-item {
           font-size: 24px;
-          box-shadow: $monoButtonShadow;
           display: flex;
           justify-content: center;
           align-items: center;

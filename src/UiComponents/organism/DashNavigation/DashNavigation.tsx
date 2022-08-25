@@ -5,6 +5,8 @@ import { RiGridLine, RiTodoLine } from "react-icons/ri";
 import "./DashNavigation.scss";
 import { pages } from "../../../constants/pages";
 import { color } from "../../../constants/color";
+import { useNavigate } from "react-router-dom";
+import { AiOutlineHome } from "react-icons/ai";
 
 interface IProps {
   setPage: React.Dispatch<React.SetStateAction<string>>;
@@ -14,17 +16,18 @@ interface IProps {
 }
 
 const DashNavigation = (props: IProps) => {
+  const navigate = useNavigate();
   const [openCalculator, setOpenCalculator] = useState(false);
-  //   const logoutUser = () => {
-  //     // localStorage.clear();
-  //   };
+  const logoutUser = () => {
+    localStorage.clear();
+  };
   return (
     <div className="DashNavigation">
       <div className="DashNavigation__content">
         {/* DESKTOP  */}
         <div className="desktopNav">
           <div className="desktopNav__content">
-            <div className="navTitle">
+            <div className="navTitle" onClick={() => navigate("/")}>
               <p>Meal</p>
               <p>Planer</p>
             </div>
@@ -84,7 +87,7 @@ const DashNavigation = (props: IProps) => {
               <div
                 className="link-item"
                 onClick={() => {
-                  //   logoutUser();
+                  logoutUser();
                   window.location.href = "/";
                 }}
               >
@@ -104,7 +107,7 @@ const DashNavigation = (props: IProps) => {
                 window.location.href = "/";
               }}
             >
-              <FiLogOut />
+              <AiOutlineHome />
             </div>
             <div
               id="mealplan"

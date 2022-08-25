@@ -3,6 +3,26 @@ import Navigation from "../../UiComponents/organism/Navigation/Navigation";
 import Calculator from "../../UiComponents/organism/Calculator/Calculator";
 import ButtonShell from "../../UiComponents/atom/ButtonShell/ButtonShell";
 import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+
+const deviceAnimation = {
+  open: {
+    right: "130px",
+    transform: ["rotate(-20deg)", "rotate(0deg)"],
+    opacity: 1,
+  },
+  closed: {
+    width: "0%",
+  },
+};
+// const circleAnimation = {
+//   open: {
+//     width: "100%",
+//   },
+//   closed: {
+//     width: "0%",
+//   },
+// };
 
 function HomePage() {
   return (
@@ -25,10 +45,26 @@ function HomePage() {
               </ButtonShell>
             </div>
             <div className="rightSide">
-              <div className="rightSide__content">
-                <img src="images/iPhone.png" alt="phone" />
-                <div className="backgroundElement" />
-              </div>
+              <AnimatePresence>
+                <div className="rightSide__content">
+                  <motion.img
+                    className="circle"
+                    src="/images/circle.png"
+                    alt=""
+                    // whileInView="open"
+                    // variants={circleAnimation}
+                    // transition={{ duration: 0.5, delay: 0.1 }}
+                  />
+                  <motion.img
+                    className="device"
+                    src="/images/device.png"
+                    alt=""
+                    whileInView="open"
+                    variants={deviceAnimation}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                  />
+                </div>
+              </AnimatePresence>
             </div>
           </div>
 
