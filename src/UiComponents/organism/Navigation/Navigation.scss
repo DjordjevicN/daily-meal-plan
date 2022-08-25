@@ -26,28 +26,41 @@
     .links > button {
       margin-right: 16px;
     }
-    .burger {
-      display: none;
-      font-size: 24px;
-      color: $monoFont;
-      cursor: pointer;
-      padding: 10px;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      box-shadow: 0px 0px 2px #a8a8a8, 0px 0px 0px 5px #ecf0f3,
-        8px 8px 15px #a7aaaf, -8px -8px 15px #fff;
-      transition: 0.5s;
-      &:hover {
-        box-shadow: 0px 0px 2px #a8a8a8, 0px 0px 0px 5px #ecf0f3,
-          4px 4px 15px #a7aaaf, -4px -4px 15px #fff;
+    .burgerWrapper {
+      position: relative;
+      .burger__content {
+        .burger {
+          display: none;
+          font-size: 24px;
+          color: $monoFont;
+          cursor: pointer;
+          padding: 10px;
+          border-radius: 50%;
+          width: 30px;
+          height: 30px;
+          box-shadow: 0px 0px 2px #a8a8a8, 0px 0px 0px 5px #ecf0f3,
+            8px 8px 15px #a7aaaf, -8px -8px 15px #fff;
+          transition: 0.5s;
+          &:hover {
+            box-shadow: 0px 0px 2px #a8a8a8, 0px 0px 0px 5px #ecf0f3,
+              4px 4px 15px #a7aaaf, -4px -4px 15px #fff;
+          }
+          &:active {
+            box-shadow: 0px 0px 2px #a8a8a8, 0px 0px 0px 5px #ecf0f3,
+              4px 4px 15px #a7aaaf, -4px -4px 15px #fff;
+          }
+          @include resp(750px) {
+            display: block;
+          }
+        }
       }
-      &:active {
+      .dropdown {
         box-shadow: 0px 0px 2px #a8a8a8, 0px 0px 0px 5px #ecf0f3,
-          4px 4px 15px #a7aaaf, -4px -4px 15px #fff;
-      }
-      @include resp(750px) {
-        display: block;
+          8px 8px 15px #a7aaaf, -8px -8px 15px #fff;
+        transition: 0.5s;
+        position: absolute;
+        top: 70px;
+        right: 20px;
       }
     }
   }

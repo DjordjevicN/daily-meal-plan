@@ -20,8 +20,8 @@ function HomePage() {
                 with the right amount of good food!
               </p>
 
-              <ButtonShell type="mono" customStyle={{ width: "100px" }}>
-                <Link to="/signin">Sing In</Link>
+              <ButtonShell type="mono" customStyle={{ width: "150px" }}>
+                <Link to="/signin">Create Account</Link>
               </ButtonShell>
             </div>
             <div className="rightSide">
