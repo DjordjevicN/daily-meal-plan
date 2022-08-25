@@ -3,7 +3,6 @@ import Meal from "../meal/Meal";
 import "./DayMenu.scss";
 import moment from "moment";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
-// import GraphStats from "../graphStats/GraphStats";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators, State } from "../../state";
 import { bindActionCreators } from "redux";
@@ -81,7 +80,6 @@ const DayMenu = () => {
       <div className="content">
         <div className="screenNavigation">
           <div className="navContent">
-            <p className="screenTitle">Meal Plan</p>
             <div className="nav-item">
               <BsChevronCompactLeft
                 className="icon"
@@ -95,8 +93,8 @@ const DayMenu = () => {
                 onClick={() => nextDay()}
               />
             </div>
+            <p className="calorieGoal">2600 - 3100</p>
           </div>
-          <div className="line"></div>
         </div>
 
         <div className="menu">

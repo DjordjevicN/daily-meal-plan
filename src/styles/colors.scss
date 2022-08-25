@@ -29,9 +29,11 @@ $monoPaperShadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
 $monoInputShadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
 $monoInputShadowHover: inset 6px 6px 6px #cbced1, inset -6px -6px 6px #fff;
 
-$monoButtonShadow: 0px 0px 2px #a8a8a8, 0px 0px 0px 5px #ecf0f3,
+$monoButtonShadow: 0px 0px 2px #a8a8a8, 0px 0px 0px 5px #ffffff,
   8px 8px 15px #a7aaaf, -8px -8px 15px #fff;
 $monoButtonShadowHover: 0px 0px 2px #a8a8a8, 0px 0px 0px 5px #ecf0f3,
   4px 4px 15px #a7aaaf, -4px -4px 15px #fff;
 
 $monoButtonBackground: linear-gradient(165deg, #f2f2f2 0%, #fff 50%);
+$monoFrame: 0px 0px 2px #a8a8a8, 0px 0px 0px 5px #ffffff, 8px 8px 7px #a7aaaf,
+  -8px -8px 7px #fff;
