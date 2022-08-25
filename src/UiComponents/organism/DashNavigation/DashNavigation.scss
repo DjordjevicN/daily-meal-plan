@@ -1,0 +1,100 @@
+@import "../../../styles/colors.scss";
+@import "../../../styles/mixins.scss";
+
+.DashNavigation {
+  &__content {
+    .desktopNav {
+      width: 260px;
+      height: 100vh;
+      background-color: white;
+      position: fixed;
+      left: 0;
+      top: 0;
+      transition: 0.3s;
+      border-right: 2px dashed rgb(190, 190, 190);
+      z-index: 10;
+      @include resp(700px) {
+        display: none;
+      }
+
+      &__content {
+        width: 90%;
+        height: 90%;
+        margin: 100px auto 0 auto;
+        .navTitle {
+          color: black;
+          font-weight: 900;
+          font-size: 3.5rem;
+          line-height: 2.8rem;
+          text-align: left;
+          width: 160px;
+          margin: 30px auto;
+        }
+
+        .navigation {
+          margin-top: 30px;
+          width: 235px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          font-size: 20px;
+
+          .link-item {
+            display: flex;
+            align-items: center;
+            width: 150px;
+            margin-top: 30px;
+            cursor: pointer;
+            color: $monoFont30;
+
+            &:hover {
+              color: $monoFont;
+              transition: 0.1s;
+            }
+            p {
+              padding-left: 16px;
+            }
+          }
+          //   .shopping {
+          //     color: rgb(107, 107, 107);
+          //     cursor: default;
+          //     &:hover {
+          //       color: rgb(107, 107, 107);
+          //     }
+          //   }
+        }
+      }
+    }
+    .mobileNav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      border-radius: 8px 8px 0 0;
+      @include respUp(700px) {
+        display: none;
+      }
+      background-color: white;
+      height: 150px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &__content {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        .link-item {
+          font-size: 24px;
+          box-shadow: $monoButtonShadow;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 10px;
+          border-radius: 8px;
+          color: $monoFont30;
+        }
+      }
+    }
+  }
+}

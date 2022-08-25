@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import LeftSidebar from "../../components/leftSidebar/LeftSidebar";
+
 import "./dashboard.scss";
 import DayMenu from "../../components/dayMenu/DayMenu";
 import ShoppingPage from "../shoppingPage/ShoppingPage";
 import { pages } from "../../constants/pages";
 import Creator from "../../components/creator/Creator";
+import DashNavigation from "../../UiComponents/organism/DashNavigation/DashNavigation";
 
 const Dashboard = () => {
   const [page, setPage] = useState(pages.MEAL_PLAN);
@@ -42,7 +43,13 @@ const Dashboard = () => {
 
   return (
     <div className="layout">
-      <LeftSidebar
+      {/* <LeftSidebar
+        setPage={setPage}
+        page={page}
+        isMenuOpen={isMenuOpen}
+        setIsMenuOpen={setIsMenuOpen}
+      /> */}
+      <DashNavigation
         setPage={setPage}
         page={page}
         isMenuOpen={isMenuOpen}
