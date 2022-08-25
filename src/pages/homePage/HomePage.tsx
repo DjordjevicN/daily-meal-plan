@@ -1,10 +1,9 @@
 import React from "react";
-
 import "./HomePage.scss";
-
 import Navigation from "../../UiComponents/organism/Navigation/Navigation";
-import Button from "../../UiComponents/atom/Button/Button";
 import Calculator from "../../UiComponents/organism/Calculator/Calculator";
+import ButtonShell from "../../UiComponents/atom/ButtonShell/ButtonShell";
+import { Link } from "react-router-dom";
 
 function HomePage() {
   return (
@@ -21,11 +20,10 @@ function HomePage() {
                 and update your shopping list, and make sure you are always set
                 with the right amount of good food!
               </p>
-              <Button
-                onClick={() => (window.location.href = "/signin")}
-                label="SING IN"
-                type="monoButton"
-              />
+
+              <ButtonShell type="mono">
+                <Link to="/signin">Sing In</Link>
+              </ButtonShell>
             </div>
             <div className="rightSide">
               <div className="rightSide__content">

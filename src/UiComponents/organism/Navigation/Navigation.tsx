@@ -1,8 +1,6 @@
 import React from "react";
 import Avatar from "../../atom/avatar/Avatar";
 import "./Navigation.scss";
-
-import Button from "../../atom/Button/Button";
 import { AiOutlineMenu } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
@@ -22,11 +20,9 @@ const Navigation = () => {
           <ButtonShell>
             <Link to="/dashboard">Dashboard</Link>
           </ButtonShell>
-          <Button
-            label="Login"
-            type="monoButton"
-            onClick={() => (window.location.href = "/login")}
-          />
+          <ButtonShell type="mono">
+            <Link to="/login">Log In</Link>
+          </ButtonShell>
         </div>
       </div>
     </div>
