@@ -1,4 +1,3 @@
-import React from "react";
 import "./HomePage.scss";
 import Navigation from "../../UiComponents/organism/Navigation/Navigation";
 import Calculator from "../../UiComponents/organism/Calculator/Calculator";
@@ -21,7 +20,7 @@ function HomePage() {
                 with the right amount of good food!
               </p>
 
-              <ButtonShell type="mono">
+              <ButtonShell type="mono" customStyle={{ width: "100px" }}>
                 <Link to="/signin">Sing In</Link>
               </ButtonShell>
             </div>

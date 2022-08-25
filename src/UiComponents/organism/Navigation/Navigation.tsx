@@ -1,9 +1,7 @@
-import React from "react";
 import Avatar from "../../atom/avatar/Avatar";
 import "./Navigation.scss";
 import { AiOutlineMenu } from "react-icons/ai";
 import { Link } from "react-router-dom";
-
 import ButtonShell from "../../atom/ButtonShell/ButtonShell";
 
 const Navigation = () => {

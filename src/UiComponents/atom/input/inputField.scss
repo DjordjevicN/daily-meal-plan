@@ -22,6 +22,7 @@
       font-size: 18px;
       color: $monoFont30;
       width: 90%;
+      background-color: transparent;
 
       @include resp(870px) {
         width: 60%;

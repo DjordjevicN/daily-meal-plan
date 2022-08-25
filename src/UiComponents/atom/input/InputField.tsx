@@ -42,6 +42,7 @@ const InputField = (props: IProps) => {
           {props.icon ?? <GiOrangeSlice />}
 
           <input
+            autoComplete="off"
             type={props.type ?? "text"}
             placeholder={props.placeholder ?? "SET PLACEHOLDER"}
             onChange={(e) => props.change(e.target.value)}

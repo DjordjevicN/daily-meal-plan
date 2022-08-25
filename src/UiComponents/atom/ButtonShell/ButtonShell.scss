@@ -1,10 +1,15 @@
 @import "../../../styles/colors.scss";
 @import "../../../styles/mixins.scss";
+#ButtonShell {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
 .mono {
   outline: none;
   border: none;
   cursor: pointer;
-  width: 186px;
+  padding: 0 40px;
   height: 56px;
   border-radius: 25px;
   font-size: 20px;

@@ -1,6 +1,4 @@
-import React from "react";
 import Avatar from "../../UiComponents/atom/avatar/Avatar";
-
 import Paper from "../../UiComponents/atom/paper/Paper";
 
 import "./SignIn.scss";
@@ -8,7 +6,7 @@ const SignIn = () => {
   return (
     <div className="signin">
       <div className="signin__content">
-        <Paper>
+        <Paper style={{ maxWidth: "500px" }}>
           <div className="warning">
             <Avatar size="150px" />
             <h1>Project is currently in closed alpha phase</h1>
