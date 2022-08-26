@@ -4,14 +4,14 @@ import "./ShoppingPage.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators, State } from "../../state";
 import { bindActionCreators } from "redux";
-import { RiAddCircleFill } from "react-icons/ri";
 
 import AddIngredientModal from "../../components/modals/addIngredientModal/AddIngredientModal";
+import ButtonShell from "../../UiComponents/atom/ButtonShell/ButtonShell";
+import { GoPlusSmall } from "react-icons/go";
 
 const ShoppingPage = () => {
-  const [addIngModal, setAddIngModal] = useState<boolean>(false);
-
   const dispatch = useDispatch();
+  const [addIngModal, setAddIngModal] = useState<boolean>(false);
   const { getAllIngredients } = bindActionCreators(actionCreators, dispatch);
   useEffect(() => {
     getAllIngredients();
@@ -24,23 +24,28 @@ const ShoppingPage = () => {
 
   return (
     <>
-      <div className="shopping">
-        <div className="content">
-          <div className="addNewIngredient">
-            <RiAddCircleFill
-              onClick={() => {
-                setAddIngModal(true);
-              }}
-            />
-          </div>
+      <div className="shoppingPage">
+        <div className="shoppingPage__content">
           <div className="table">
             {allIngredients.map((ingredient) => {
               return <TableRow key={ingredient.id} ingredient={ingredient} />;
             })}
           </div>
+          {addIngModal && (
+            <AddIngredientModal setAddIngModal={setAddIngModal} />
+          )}
+          <div className="addNewIngredient">
+            <ButtonShell
+              onClick={() => {
+                setAddIngModal(true);
+              }}
+              type="mono"
+            >
+              <GoPlusSmall />
+            </ButtonShell>
+          </div>
         </div>
       </div>
-      {addIngModal && <AddIngredientModal setAddIngModal={setAddIngModal} />}
     </>
   );
 };

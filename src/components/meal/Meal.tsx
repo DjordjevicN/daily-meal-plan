@@ -49,8 +49,6 @@ const Meal: React.FC<Props> = ({ meal }) => {
   useEffect(() => {
     getMeal(meal.meal_id).then(setSingleMeal);
   }, [meal.meal_id]);
-  console.log(meal);
-  console.log(singleMeal);
 
   return (
     <AnimatePresence>

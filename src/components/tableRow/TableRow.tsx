@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { IIngredients } from "../../constants/types";
 import "./TableRow.scss";
-import { color } from "../../constants/color";
-import { calcWhenToBuy, calculateHowMuchToBuy } from "../../constants/utilFunc";
+
+import {
+  // calcWhenToBuy,
+  calculateHowMuchToBuy,
+  baseUrl,
+} from "../../constants/utilFunc";
 import BuyAndEditModal from "../modals/buyAndEditModal/BuyAndEditModal";
+import ButtonShell from "../../UiComponents/atom/ButtonShell/ButtonShell";
+import { RiShoppingCartLine } from "react-icons/ri";
 
 interface IProps {
   ingredient: IIngredients;
@@ -12,44 +18,49 @@ interface IProps {
 const TableRow = ({ ingredient }: IProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const indicateIfNeeded = () => {
-    return (
-      calcWhenToBuy(ingredient.percentage_amount, ingredient.base_amount) >
-      ingredient.current_amount
-    );
-  };
+  // const indicateIfNeeded = () => {
+  //   return (
+  //     calcWhenToBuy(ingredient.percentage_amount, ingredient.base_amount) >
+  //     ingredient.current_amount
+  //   );
+  // };
 
   return (
     <div>
       <div className="tableRow" onClick={() => setIsOpen(!isOpen)}>
-        <div
-          className="status"
-          style={{
-            backgroundColor: indicateIfNeeded()
-              ? color.mainRed
-              : color.mainBlue,
-          }}
-        ></div>
-        <div className="avatar">
-          <img src="" alt="" />
+        <div className="image">
+          <img
+            src={
+              ingredient.img
+                ? `${baseUrl()}/uploads/${ingredient.img}`
+                : "images/noimage.png"
+            }
+            alt="meal"
+          />
         </div>
-        <div className="name">
-          <p>{ingredient.name}</p>
+        <div className="nameAndAmount">
+          <div className="name">
+            <p>{ingredient.name}</p>
+          </div>
+          <div className="purchaseAmount">
+            <p>Buy</p>
+            <p className="amount">{`${calculateHowMuchToBuy(
+              ingredient.base_amount,
+              ingredient.current_amount
+            )} gr`}</p>
+          </div>
         </div>
-        <div className="purchaseAmount">
-          <h6>to buy</h6>
-          <p>{`${calculateHowMuchToBuy(
-            ingredient.base_amount,
-            ingredient.current_amount
-          )} gr`}</p>
-        </div>
-        <div className="currentPrice">
-          <h6>current price</h6>
-          <p>{`${ingredient.price} din`}</p>
-        </div>
-        <div className="currentAmount">
-          <h6>current amount</h6>
-          <p>{`${ingredient.current_amount}`}</p>
+
+        <div className="buyButton">
+          <ButtonShell
+            type="monoCube"
+            customStyle={{
+              width: "56px",
+              height: "56px",
+            }}
+          >
+            <RiShoppingCartLine />
+          </ButtonShell>
         </div>
       </div>
       {isOpen && (

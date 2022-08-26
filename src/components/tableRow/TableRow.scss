@@ -2,33 +2,54 @@
 @import "../../styles/mixins.scss";
 
 .tableRow {
-  box-shadow: $box-shadow;
-  border-radius: 8px;
   display: grid;
-  grid-template-columns: 10px 100px 100px 1fr 1fr 1fr;
-  height: 60px;
+  grid-template-columns: 100px 150px 150px;
   align-items: center;
-  margin-top: 10px;
+  height: 100px;
+  border-radius: 8px;
+  margin-top: 30px;
+  box-shadow: $monoFrame;
   cursor: pointer;
-  @include resp(584px) {
-    grid-template-columns: 10px 60px 70px 1fr 1fr 1fr;
-  }
-  .status {
-    background-color: $secondary-blue;
-    height: inherit;
-  }
-  .avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+  // @include resp(584px) {
+  //   grid-template-columns: 100px 150px 100px;
+  // }
+
+  .image {
+    width: 100px;
+    height: 100%;
+    border-radius: 8px 0 0 8px;
     background-color: $secondary-blue;
     margin: 0 auto;
     display: grid;
     place-items: center;
-  }
-  .name {
-    p {
-      font-weight: 700;
+    img {
+      width: 100px;
+      height: 100%;
+      object-fit: cover;
     }
+  }
+  .nameAndAmount {
+    text-align: left;
+    margin-left: 20px;
+
+    .name {
+      p {
+        max-width: 100px;
+        font-weight: 700;
+        font-size: 1.7rem;
+        color: $monoFont;
+      }
+    }
+    .purchaseAmount {
+      display: flex;
+      .amount {
+        margin-left: 10px;
+        color: $monoFont;
+      }
+    }
+  }
+  .buyButton {
+    display: flex;
+    justify-content: right;
   }
 }

@@ -37,3 +37,12 @@ $monoButtonShadowHover: 0px 0px 2px #a8a8a8, 0px 0px 0px 5px #ecf0f3,
 $monoButtonBackground: linear-gradient(165deg, #f2f2f2 0%, #fff 50%);
 $monoFrame: 0px 0px 2px #a8a8a8, 0px 0px 0px 5px #ffffff, 8px 8px 7px #a7aaaf,
   -8px -8px 7px #fff;
+
+$monoCubeButton: inset 3px 3px 15px #a8a8a8, inset -3px -3px 15px #ffffff,
+  0px 0px 0px 5px #ffffff, 8px 8px 8px #a8a8a8, -8px -8px 15px #fff;
+
+$monoCubeButtonHover: inset 1px 1px 5px #a8a8a8, inset -1px -1px 5px #ffffff,
+  0px 0px 0px 5px #ffffff, 1px 1px 1px #a8a8a8, -3px -3px 15px #fff;
+
+$monoCubeButtonActive: inset 0px 0px 2px #a8a8a8, inset -0px -0px 2px #ffffff,
+  0px 0px 0px 5px #ffffff, 2px 2px 2px #a8a8a8, 0px 0px 15px #fff;

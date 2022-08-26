@@ -1,11 +1,12 @@
 @import "../../styles/colors.scss";
 @import "../../styles/mixins.scss";
-.shopping {
+
+.shoppingPage {
   width: 100%;
-  .content {
+  &__content {
     .table {
       width: 72%;
-      max-width: 800px;
+      max-width: 400px;
       margin: 0 auto;
       @include resp(584px) {
         width: 95%;
@@ -14,10 +15,14 @@
     .addNewIngredient {
       color: $button-default;
       font-size: 40px;
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
+      background-color: $monoBg;
+      margin: 50px 0 70px 0;
       cursor: pointer;
+      @include respUp(584px) {
+        position: fixed;
+        bottom: 50px;
+        right: 10px;
+      }
     }
   }
 }
