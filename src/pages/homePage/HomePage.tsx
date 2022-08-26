@@ -40,9 +40,11 @@ function HomePage() {
                 with the right amount of good food!
               </p>
 
-              <ButtonShell type="mono" customStyle={{ width: "150px" }}>
-                <Link to="/signin">Create Account</Link>
-              </ButtonShell>
+              <Link to="/signin">
+                <ButtonShell type="mono" customStyle={{ width: "150px" }}>
+                  Create Account
+                </ButtonShell>
+              </Link>
             </div>
             <div className="rightSide">
               <AnimatePresence>

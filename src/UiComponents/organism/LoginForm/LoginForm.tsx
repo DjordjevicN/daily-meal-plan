@@ -29,9 +29,11 @@ const LoginForm = () => {
   return (
     <div className="login">
       <div className="goBack">
-        <ButtonShell icon={<BiArrowBack />} type="mono">
-          <Link to="/">Go Back</Link>
-        </ButtonShell>
+        <Link to="/">
+          <ButtonShell icon={<BiArrowBack />} type="mono">
+            Go Back
+          </ButtonShell>
+        </Link>
       </div>
       <div className="login__content">
         <Paper>

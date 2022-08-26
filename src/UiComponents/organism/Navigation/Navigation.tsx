@@ -25,26 +25,26 @@ const Navigation = () => {
           </div>
           {openBurger && (
             <div className="dropdown">
-              <ButtonShell>
-                <Link to={user.id === 0 ? "/login" : "/dashboard"}>
-                  Dashboard
-                </Link>
-              </ButtonShell>
+              <Link to={user.id === 0 ? "/login" : "/dashboard"}>
+                <ButtonShell>Dashboard</ButtonShell>
+              </Link>
+
               <hr />
-              <ButtonShell>
-                <Link to="/login">Log In</Link>
-              </ButtonShell>
+
+              <Link to="/login">
+                <ButtonShell>Log In</ButtonShell>
+              </Link>
             </div>
           )}
         </div>
         <div className="links">
-          <ButtonShell>
-            <Link to={user.id === 0 ? "/login" : "/dashboard"}>Dashboard</Link>
-          </ButtonShell>
+          <Link to={user.id === 0 ? "/login" : "/dashboard"}>
+            <ButtonShell>Dashboard </ButtonShell>
+          </Link>
 
-          <ButtonShell type="mono">
-            <Link to="/login">Log In</Link>
-          </ButtonShell>
+          <Link to="/login">
+            <ButtonShell type="mono">Log in</ButtonShell>
+          </Link>
         </div>
       </div>
     </div>
