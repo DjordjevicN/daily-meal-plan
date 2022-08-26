@@ -4,7 +4,7 @@
 .dayMenu {
   width: 100%;
   .content {
-    padding: 15px 15px 0 15px;
+    padding: 0 15px 0 15px;
     width: 93%;
     margin: 0 auto;
     margin-bottom: 60px;
@@ -30,9 +30,6 @@
           color: $monoFont;
           font-weight: 900;
           width: 100%;
-          @include resp(330px) {
-            font-size: 24px;
-          }
         }
         .nav-item {
           margin: 0 auto;
@@ -53,10 +50,6 @@
             .day {
               padding: 0 20px;
               font-size: 24px;
-              @include resp(400px) {
-                font-size: 16px;
-                padding: 0;
-              }
             }
           }
 

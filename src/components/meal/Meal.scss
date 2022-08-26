@@ -3,59 +3,55 @@
 
 .meal__wrapper {
   width: 430px;
-  margin-top: 3px;
-  box-shadow: $box-shadow;
+  height: 250px;
+  box-shadow: $monoFrame;
   border-radius: 8px;
-  background-color: white;
-
-  @include resp(1122px) {
-    margin: 3px auto;
-  }
+  margin: 20px auto;
   @include resp(500px) {
-    width: 100%;
+    width: 95%;
   }
-
   .meal_content {
-    text-align: left;
-    padding: 5px 10px;
-    .nameAndAction {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      .meal_name {
-        font-size: 20px;
-        color: $font-dark;
-        font-weight: 700;
-      }
-      button {
-        border: 1px solid $orange-main;
-        background: none;
-        width: 100px;
-        height: 20px;
-        border-radius: 8px;
-        color: $orange-main;
-        font-weight: 700;
-        cursor: pointer;
-        transition: 0.3s;
-        &:hover {
-          background-color: $orange-main;
-          color: white;
-        }
-      }
-      .icon {
-        cursor: pointer;
-        color: $font-dark;
-        &:hover {
-          transition-duration: 0.3s;
-          transform: rotate(-180deg);
-        }
+    .image {
+      img {
+        width: 100%;
+        border-radius: 8px 8px 0 0;
+        height: 100px;
+        object-fit: cover;
       }
     }
-
-    .calories_count {
-      font-size: 14px;
-      color: $font-dark;
-      margin-bottom: 14px;
+    .split {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      width: 90%;
+      margin: 20px auto 0 auto;
+      .Information {
+        text-align: left;
+        color: $monoFont;
+        .mealType {
+          font-size: 20px;
+          font-weight: 900;
+        }
+        .mealName {
+          margin-top: 10px;
+          font-size: 20px;
+          font-weight: 700;
+        }
+        .mealServing {
+          span {
+            font-weight: 700;
+          }
+        }
+        .mealCalories {
+          span {
+            font-weight: 700;
+          }
+        }
+      }
+      .action {
+        margin: 0 auto;
+      }
     }
   }
 }
