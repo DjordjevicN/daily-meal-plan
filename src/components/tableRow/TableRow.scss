@@ -10,9 +10,9 @@
   margin-top: 30px;
   box-shadow: $monoFrame;
   cursor: pointer;
-  // @include resp(584px) {
-  //   grid-template-columns: 100px 150px 100px;
-  // }
+  @include resp(584px) {
+    grid-template-columns: 100px 150px 100px;
+  }
 
   .image {
     width: 100px;
