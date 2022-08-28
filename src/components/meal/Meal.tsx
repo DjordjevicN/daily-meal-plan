@@ -62,9 +62,9 @@ const Meal: React.FC<Props> = ({ meal }) => {
           <div className="image">
             <img
               src={
-                singleMeal.img
+                singleMeal?.img
                   ? `${baseUrl()}/uploads/${singleMeal.img}`
-                  : "images/noimage.png"
+                  : "images/mealPlaceholder.png"
               }
               alt="meal"
             />
@@ -72,12 +72,12 @@ const Meal: React.FC<Props> = ({ meal }) => {
           <div className="split">
             <div className="Information">
               <p className="mealType">{mealConst[meal.meal_type]}</p>
-              <p className="mealName">{singleMeal.name}</p>
+              <p className="mealName">{singleMeal?.name}</p>
               <p className="mealServing">
                 Serving <span>{`${meal.amount} ${meal.unit}`}</span>
               </p>
               <p className="mealCalories">
-                Calories <span>{singleMeal.calories ?? "No data"}</span>
+                Calories <span>{singleMeal?.calories ?? "No data"}</span>
               </p>
             </div>
             <div className="action">

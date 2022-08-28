@@ -4,6 +4,9 @@ import Calculator from "../../UiComponents/organism/Calculator/Calculator";
 import ButtonShell from "../../UiComponents/atom/ButtonShell/ButtonShell";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { useDispatch } from "react-redux";
+import { actionCreators } from "../../state";
+import { bindActionCreators } from "redux";
 
 const deviceAnimation = {
   open: {
@@ -25,6 +28,19 @@ const deviceAnimation = {
 // };
 
 function HomePage() {
+  const dispatch = useDispatch();
+  const { loginUser } = bindActionCreators(actionCreators, dispatch);
+
+  const startDemoAccount = () => {
+    // logout user
+    localStorage.clear();
+    // login as demo
+    const value = {
+      email: "guest@gmail.com",
+      password: "654654",
+    };
+    loginUser(value);
+  };
   return (
     <>
       <Navigation />
@@ -40,11 +56,19 @@ function HomePage() {
                 with the right amount of good food!
               </p>
 
-              <Link to="/signin">
+              {/* <Link to="/signin">
                 <ButtonShell type="mono" customStyle={{ width: "150px" }}>
                   Create Account
                 </ButtonShell>
-              </Link>
+              </Link> */}
+
+              <ButtonShell
+                type="mono"
+                customStyle={{ width: "150px" }}
+                onClick={() => startDemoAccount()}
+              >
+                Demo
+              </ButtonShell>
             </div>
             <div className="rightSide">
               <AnimatePresence>
@@ -76,13 +100,13 @@ function HomePage() {
           </div>
         </div>
       </div>
-      <div className="footer">
+      {/* <div className="footer">
         <footer>
           <div className="sectionOne section"></div>
           <div className="sectionTwo section"></div>
           <div className="sectionThree section"></div>
         </footer>
-      </div>
+      </div> */}
     </>
   );
 }

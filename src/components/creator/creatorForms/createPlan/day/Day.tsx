@@ -32,7 +32,7 @@ const Day: React.FC<IProps> = ({ dayInfo }) => {
       <div className="day__content">
         <div className="dayTitle" onClick={() => setOpenDay(!openDay)}>
           <p className="dayName">{dayConst[dayInfo.weekDay_id]}</p>
-          {openDay ? <MdExpandLess /> : <MdExpandMore />}
+          {/* {openDay ? <MdExpandLess /> : <MdExpandMore />} */}
         </div>
         {openDay && (
           <div className="meals">

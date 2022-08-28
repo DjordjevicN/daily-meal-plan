@@ -14,12 +14,7 @@ const BuyAndEditModal: React.FC<IProps> = (props) => {
   const [enableButtons, setEnableButtons] = useState(true);
   const [openEditIngredientModal, setOpenEditIngredientModal] = useState(false);
   const [modalState, setModalState] = useState(props.ingredient);
-  const [purchaseAmount, setPurchaseAmount] = useState<number>(
-    calculateHowMuchToBuy(
-      props.ingredient.base_amount,
-      props.ingredient.current_amount
-    )
-  );
+  const [purchaseAmount, setPurchaseAmount] = useState<number>(0);
 
   const dispatch = useDispatch();
   const { deleteIngredients, buyIngredients, editIngredients } =
@@ -28,14 +23,14 @@ const BuyAndEditModal: React.FC<IProps> = (props) => {
   const handleDeleteIngredient = () => {
     deleteIngredients(props.ingredient.id);
   };
-  const handleBuy = () => {
-    const purchaseItem = {
-      id: props.ingredient.id,
-      amount: purchaseAmount + props.ingredient.current_amount,
-    };
-    buyIngredients(purchaseItem);
-    props.setIsOpen(false);
-  };
+  // const handleBuy = () => {
+  //   const purchaseItem = {
+  //     id: props.ingredient.id,
+  //     amount: purchaseAmount + props.ingredient.current_amount,
+  //   };
+  //   buyIngredients(purchaseItem);
+  //   props.setIsOpen(false);
+  // };
   const handleSave = () => {
     editIngredients(modalState);
     setOpenEditIngredientModal(false);
@@ -199,7 +194,7 @@ const BuyAndEditModal: React.FC<IProps> = (props) => {
                 ? color.mainBlue
                 : color.buttonDisabled,
             }}
-            onClick={() => handleBuy()}
+            // onClick={() => handleBuy()}
           >
             BUY
           </button>

@@ -8,6 +8,7 @@ import { mealConst } from "../../../../../constants/mealConst";
 import { useDispatch } from "react-redux";
 import { actionCreators } from "../../../../../state";
 import { bindActionCreators } from "redux";
+import InputField from "../../../../../UiComponents/atom/input/InputField";
 
 interface MealData {
   amount: number;
@@ -124,18 +125,16 @@ const MealOrganizer: React.FC<IProps> = ({ mealData }) => {
             <p className="name">{mealConst[mealData.meal_type]}</p>
             <div>
               <button onClick={() => setOpenEdit(!openEdit)}>Search</button>
-              {/* <button>Delete</button> */}
             </div>
           </div>
 
           {openEdit && (
             <div className="actions">
               <div className="search">
-                <input
-                  autoFocus
-                  type="text"
+                <InputField
+                  autoFocus={true}
                   placeholder="Find a meal"
-                  onChange={(e) => setSearchValue(e.target.value)}
+                  change={(inputValue: string) => setSearchValue(inputValue)}
                 />
               </div>
 

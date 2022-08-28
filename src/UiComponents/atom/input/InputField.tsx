@@ -27,6 +27,7 @@ interface IProps {
   type?: string;
   icon?: any;
   change?: any;
+  autoFocus?: any;
 }
 
 const InputField = (props: IProps) => {
@@ -42,6 +43,7 @@ const InputField = (props: IProps) => {
           {props.icon ?? <GiOrangeSlice />}
 
           <input
+            autoFocus={props.autoFocus ?? false}
             autoComplete="off"
             type={props.type ?? "text"}
             placeholder={props.placeholder ?? "SET PLACEHOLDER"}

@@ -25,13 +25,10 @@ const Plan = () => {
       <div className="plan__content">
         {usersPlan && (
           <div className="days">
-            <div className="spaceLine"></div>
-            <div className="days__content">
-              {usersPlan.days.length > 5 &&
-                usersPlan.days.map((item: any) => {
-                  return <Day key={item.id} dayInfo={item} />;
-                })}
-            </div>
+            {usersPlan.days.length > 5 &&
+              usersPlan.days.map((item: any) => {
+                return <Day key={item.id} dayInfo={item} />;
+              })}
           </div>
         )}
       </div>

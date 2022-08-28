@@ -2,15 +2,10 @@ import { Action } from "./../actions/index";
 import { ActionType } from "./../action-types/index";
 import { Dispatch } from "redux";
 import axios from "axios";
-// import { isLocal } from "../../constants/utilFunc";
 import routes from "../../constants/routes";
 import FormData from "form-data";
 import { IUser } from "../../constants/types";
 import { baseUrl } from "../../constants/utilFunc";
-
-// const baseUrl() = isLocal()
-//   ? "http://localhost:3001"
-//   : "https://jelovnik.nikola-djordjevic.com";
 
 // USER
 export const getUser = (value: number | string | null) => {

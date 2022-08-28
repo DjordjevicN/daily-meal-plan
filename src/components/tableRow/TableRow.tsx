@@ -44,10 +44,7 @@ const TableRow = ({ ingredient }: IProps) => {
           </div>
           <div className="purchaseAmount">
             <p>Buy</p>
-            <p className="amount">{`${calculateHowMuchToBuy(
-              ingredient.base_amount,
-              ingredient.current_amount
-            )} gr`}</p>
+            <p className="amount">{`0 gr`}</p>
           </div>
         </div>
 

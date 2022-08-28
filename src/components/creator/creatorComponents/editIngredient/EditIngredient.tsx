@@ -33,9 +33,9 @@ const EditIngredient = () => {
         </div>
         {searchResults.length > 0 && searchInput.length > 0 && (
           <div className="resultBox">
-            {searchResults.map((item) => {
+            {/* {searchResults.map((item) => {
               return <IngredientEditResults ingredient={item} key={item.id} />;
-            })}
+            })} */}
           </div>
         )}
       </div>

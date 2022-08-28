@@ -18,11 +18,11 @@
     width: 100px;
     height: 100%;
     border-radius: 8px 0 0 8px;
-    background-color: $secondary-blue;
     margin: 0 auto;
     display: grid;
     place-items: center;
     img {
+      border-radius: 8px 0 0 8px;
       width: 100px;
       height: 100%;
       object-fit: cover;

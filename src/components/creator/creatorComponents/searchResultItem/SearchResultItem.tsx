@@ -28,7 +28,14 @@ const SearchResultItem: React.FC<IProps> = ({
   };
 
   return (
-    <div className="resultItem" onClick={() => handleAddIngredient(ingredient)}>
+    <div
+      className="resultItem"
+      onClick={
+        () => console.log("handleAddIngredient")
+
+        // handleAddIngredient(ingredient)
+      }
+    >
       <div className="resultItem__content">
         <div className="image">
           <img

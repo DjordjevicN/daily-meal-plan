@@ -45,6 +45,7 @@ const SingleMealDisplay: React.FC<IProps> = ({ details }) => {
   const switchViewToEditMod = () => {
     setEditView(true);
   };
+  console.log(details);
 
   return (
     <>
@@ -67,8 +68,14 @@ const SingleMealDisplay: React.FC<IProps> = ({ details }) => {
               alt="meal"
             />
           </div>
-          <div className="mealTitle">
-            <p>{details.name}</p>
+          <p className="mealTitle">{details.name}</p>
+          <div className="singleMeal-info">
+            <p className="mealCalories">
+              Calories <span>{details.calories ?? "0"}</span>
+            </p>
+            <p className="mealPrice">
+              Price <span>{details.price ?? "0"}</span>
+            </p>
           </div>
         </div>
       </div>
@@ -155,26 +162,7 @@ const SingleMealDisplay: React.FC<IProps> = ({ details }) => {
                     </div>
                   </div>
                 </div>
-                {details.user_id === user.id && (
-                  <div className="mealControl">
-                    <div className="mealControl__content">
-                      <div
-                        className="actionBtn"
-                        onClick={() => handleDeleteMeal()}
-                      >
-                        <AiTwotoneDelete />
-                        <p>Delete</p>
-                      </div>
-                      <div
-                        className="actionBtn"
-                        onClick={() => switchViewToEditMod()}
-                      >
-                        <AiFillEdit />
-                        <p>Edit</p>
-                      </div>
-                    </div>
-                  </div>
-                )}
+
                 <div className="line"></div>
                 <div className="nutrition">
                   <div className="nutrition__content">
@@ -220,6 +208,26 @@ const SingleMealDisplay: React.FC<IProps> = ({ details }) => {
                         })}
                     </div>
                   </div>
+                  {details.user_id === user.id && (
+                    <div className="mealControl">
+                      <div className="mealControl__content">
+                        <div
+                          className="actionBtn"
+                          onClick={() => handleDeleteMeal()}
+                        >
+                          <AiTwotoneDelete />
+                          <p>Delete</p>
+                        </div>
+                        <div
+                          className="actionBtn"
+                          onClick={() => switchViewToEditMod()}
+                        >
+                          <AiFillEdit />
+                          <p>Edit</p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             )}

@@ -3,12 +3,11 @@
 @import "../../../../../styles/constants.scss";
 
 .day {
-  width: 100%;
-
+  width: 310px;
   &__content {
     padding: 10px;
-    background-color: white;
-    box-shadow: $box-shadow;
+    background-color: $white;
+    box-shadow: $monoFrame;
     border-radius: 8px;
 
     .dayTitle {
@@ -16,18 +15,14 @@
       justify-content: space-between;
       align-items: center;
       cursor: pointer;
-      border-bottom: 2px solid $orange-main;
     }
     .dayName {
-      color: $orange-main;
-      font-size: 20px;
-
+      color: $monoFont30;
+      font-size: 1.3rem;
       text-transform: capitalize;
     }
     .meals {
-      .meal {
-        margin-top: 10px;
-      }
+      margin-top: 20px;
     }
   }
 }

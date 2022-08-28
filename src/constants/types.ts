@@ -9,18 +9,18 @@ export interface ICaloriesCalculateState {
 }
 export interface IIngredients {
   id: number | string;
-  meal_id: number;
+  meal_id?: number;
   name: string;
   barcode?: string;
-  price: number;
-  calories: number;
-  carbs: number;
-  protein: number;
-  fat: number;
-  img: string;
-  base_amount: number;
-  current_amount: number;
-  percentage_amount: number;
+  price?: number;
+  calories?: number;
+  carbs?: number;
+  protein?: number;
+  fat?: number;
+  img?: string;
+  base_amount?: number;
+  current_amount?: number;
+  percentage_amount?: number;
 }
 export interface IUser {
   id: number | string;

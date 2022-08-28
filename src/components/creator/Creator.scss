@@ -7,143 +7,192 @@
   &__content {
     width: 98%;
     margin: 0 auto;
-    .line {
-      height: 2px;
-      width: 100%;
-      background-color: rgb(187, 187, 187);
-      margin: 20px 0;
-    }
-    .screenTitle {
-      padding-top: 100px;
-      @include resp(400px) {
-        padding: 0;
-      }
-      h2 {
-        font-size: 36px;
-        color: $orange-main;
+    .addButton-wrap {
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: row-reverse;
+      align-items: center;
+      .actions {
+        width: 70%;
+        display: flex;
+        justify-content: space-around;
       }
     }
-    .creative {
-      margin-top: 160px;
-      width: 100%;
-      text-align: left;
-      @include resp(400px) {
-        margin-top: 100px;
-      }
-      .createPlanBlock {
-        &__content {
-          .blockTitle {
-            width: 100%;
-            &__content {
-              width: 60%;
-              margin: 0 auto;
-              @include resp(400px) {
-                width: 90%;
-              }
-              h2 {
-                text-align: center;
-              }
-              p {
-                margin: 30px 0;
-              }
-            }
-          }
-          .action {
-            text-align: right;
-            margin-top: 50px;
-            width: 50%;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            @include resp(400px) {
-              width: 90%;
-            }
-            button {
-              background-color: $orange-main;
-              border: none;
-              cursor: pointer;
-              color: white;
-              font-size: 16px;
-              padding: 10px 20px;
-              border-radius: 8px;
-            }
-            .createPlanBtn {
-              background-color: $button-ok;
-            }
-          }
+    .planer {
+      width: 97%;
+      margin: 60px auto 0 auto;
+      &__content {
+        .sectionTitle {
+          display: flex;
+          justify-content: space-between;
+          max-width: 600px;
         }
-      }
-      .createMealBlock {
-        margin-top: 30px;
-        .blockTitle {
-          width: 100%;
-          &__content {
-            width: 60%;
-
-            margin: 0 auto;
-            @include resp(400px) {
-              width: 90%;
-            }
-            h2 {
-              text-align: center;
-            }
-            p {
-              margin: 30px 0;
-            }
-          }
+        .plansDisplay {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 30px;
+          justify-content: space-between;
         }
-        &__content {
-          .action {
-            text-align: right;
-            margin-top: 50px;
-            button {
-              background-color: $orange-main;
-              border: none;
-              cursor: pointer;
-              color: white;
-              font-size: 16px;
-              padding: 10px 20px;
-              border-radius: 8px;
-            }
-          }
-        }
-      }
-      .createIngredientBlock {
-        margin-top: 30px;
-
-        &__content {
-          padding: 0 0 30px 0;
-          .blockTitle {
-            width: 100%;
-            &__content {
-              width: 60%;
-              margin: 0 auto;
-              @include resp(400px) {
-                width: 90%;
-              }
-              h2 {
-                text-align: center;
-              }
-              p {
-                margin: 30px 0;
-              }
-            }
-          }
-          .action {
-            text-align: right;
-            margin-top: 50px;
-            button {
-              background-color: $orange-main;
-              border: none;
-              cursor: pointer;
-              color: white;
-              font-size: 16px;
-              padding: 10px 20px;
-              border-radius: 8px;
-            }
+        .mealDisplay {
+          margin-top: 100px;
+          .sectionTitle {
+            text-align: left;
+            font-size: 2rem;
+            color: $monoFont;
+            font-weight: 600;
           }
         }
       }
     }
   }
 }
+
+// .creator {
+//   width: 100%;
+//   &__content {
+//     width: 98%;
+//     margin: 0 auto;
+//     .line {
+//       height: 2px;
+//       width: 100%;
+//       background-color: rgb(187, 187, 187);
+//       margin: 20px 0;
+//     }
+//     .screenTitle {
+//       padding-top: 100px;
+//       @include resp(400px) {
+//         padding: 0;
+//       }
+//       h2 {
+//         font-size: 36px;
+//         color: $orange-main;
+//       }
+//     }
+//     .creative {
+//       margin-top: 160px;
+//       width: 100%;
+//       text-align: left;
+//       @include resp(400px) {
+//         margin-top: 100px;
+//       }
+//       .createPlanBlock {
+//         &__content {
+//           .displayPlans {
+//             width: 100%;
+//             margin: 50px 0;
+//             &__content {
+//               width: 90%;
+//               margin: 0 auto;
+//               @include resp(400px) {
+//                 width: 90%;
+//               }
+//               h2 {
+//                 text-align: center;
+//               }
+//               .plansDisplay {
+//                 display: flex;
+//                 justify-content: space-between;
+//                 flex-wrap: wrap;
+//                 gap: 16px;
+//               }
+//             }
+//           }
+//           .action {
+//             text-align: right;
+//             margin-top: 50px;
+//             width: 50%;
+//             margin: 0 auto;
+//             display: flex;
+//             justify-content: space-between;
+//             @include resp(400px) {
+//               width: 90%;
+//             }
+//             button {
+//               background-color: $orange-main;
+//               border: none;
+//               cursor: pointer;
+//               color: white;
+//               font-size: 16px;
+//               padding: 10px 20px;
+//               border-radius: 8px;
+//             }
+//             .createPlanBtn {
+//               background-color: $button-ok;
+//             }
+//           }
+//         }
+//       }
+//       .createMealBlock {
+//         margin-top: 30px;
+//         .blockTitle {
+//           width: 100%;
+//           &__content {
+//             width: 60%;
+
+//             margin: 0 auto;
+//             @include resp(400px) {
+//               width: 90%;
+//             }
+//             h2 {
+//               text-align: center;
+//             }
+//             p {
+//               margin: 30px 0;
+//             }
+//           }
+//         }
+//         &__content {
+//           .action {
+//             text-align: right;
+//             margin-top: 50px;
+//             button {
+//               background-color: $orange-main;
+//               border: none;
+//               cursor: pointer;
+//               color: white;
+//               font-size: 16px;
+//               padding: 10px 20px;
+//               border-radius: 8px;
+//             }
+//           }
+//         }
+//       }
+//       .createIngredientBlock {
+//         margin-top: 30px;
+
+//         &__content {
+//           padding: 0 0 30px 0;
+//           .blockTitle {
+//             width: 100%;
+//             &__content {
+//               width: 60%;
+//               margin: 0 auto;
+//               @include resp(400px) {
+//                 width: 90%;
+//               }
+//               h2 {
+//                 text-align: center;
+//               }
+//               p {
+//                 margin: 30px 0;
+//               }
+//             }
+//           }
+//           .action {
+//             text-align: right;
+//             margin-top: 50px;
+//             button {
+//               background-color: $orange-main;
+//               border: none;
+//               cursor: pointer;
+//               color: white;
+//               font-size: 16px;
+//               padding: 10px 20px;
+//               border-radius: 8px;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
