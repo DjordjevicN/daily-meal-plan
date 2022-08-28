@@ -5,7 +5,6 @@ import MealOrganizer from "../mealOrganizer/MealOrganizer";
 import { IDay } from "../../../../../constants/types";
 import { baseUrl } from "../../../../../constants/utilFunc";
 import { dayConst } from "../../../../../constants/dayConst";
-import { MdExpandLess, MdExpandMore } from "react-icons/md";
 import axios from "axios";
 
 interface IProps {
@@ -32,7 +31,6 @@ const Day: React.FC<IProps> = ({ dayInfo }) => {
       <div className="day__content">
         <div className="dayTitle" onClick={() => setOpenDay(!openDay)}>
           <p className="dayName">{dayConst[dayInfo.weekDay_id]}</p>
-          {/* {openDay ? <MdExpandLess /> : <MdExpandMore />} */}
         </div>
         {openDay && (
           <div className="meals">

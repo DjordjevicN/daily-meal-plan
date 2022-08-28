@@ -4,7 +4,7 @@ import "./TableRow.scss";
 
 import {
   // calcWhenToBuy,
-  calculateHowMuchToBuy,
+  // calculateHowMuchToBuy,
   baseUrl,
 } from "../../constants/utilFunc";
 import BuyAndEditModal from "../modals/buyAndEditModal/BuyAndEditModal";

@@ -5,7 +5,7 @@ import { actionCreators } from "../../../state";
 import { IIngredients } from "../../../constants/types";
 import "./BuyAndEditModal.scss";
 import { color } from "../../../constants/color";
-import { calculateHowMuchToBuy } from "../../../constants/utilFunc";
+// import { calculateHowMuchToBuy } from "../../../constants/utilFunc";
 interface IProps {
   ingredient: IIngredients;
   setIsOpen: (value: boolean) => void;
@@ -17,8 +17,11 @@ const BuyAndEditModal: React.FC<IProps> = (props) => {
   const [purchaseAmount, setPurchaseAmount] = useState<number>(0);
 
   const dispatch = useDispatch();
-  const { deleteIngredients, buyIngredients, editIngredients } =
-    bindActionCreators(actionCreators, dispatch);
+  const {
+    deleteIngredients,
+    //  buyIngredients,
+    editIngredients,
+  } = bindActionCreators(actionCreators, dispatch);
 
   const handleDeleteIngredient = () => {
     deleteIngredients(props.ingredient.id);

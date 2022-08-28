@@ -2,7 +2,6 @@ import "./HomePage.scss";
 import Navigation from "../../UiComponents/organism/Navigation/Navigation";
 import Calculator from "../../UiComponents/organism/Calculator/Calculator";
 import ButtonShell from "../../UiComponents/atom/ButtonShell/ButtonShell";
-import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { actionCreators } from "../../state";

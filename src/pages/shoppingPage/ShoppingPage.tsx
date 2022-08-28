@@ -52,13 +52,13 @@ const ShoppingPage = () => {
           )}
           <div className="addNewIngredient">
             <ButtonShell
+              customStyle={{ backgroundColor: "#ecf0f3" }}
+              icon={<GoPlusSmall />}
               onClick={() => {
                 setAdditionalItems([...additionalItems, newShopItem]);
               }}
               type="mono"
-            >
-              <GoPlusSmall />
-            </ButtonShell>
+            />
           </div>
         </div>
       </div>
