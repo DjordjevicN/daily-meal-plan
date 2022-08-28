@@ -27,20 +27,24 @@
         flex-direction: column;
         .nav-item {
           width: 100%;
-
           display: flex;
           justify-content: space-between;
           align-items: center;
           .icon {
             font-size: 2rem;
+            width: 20px;
+            height: 20px;
           }
           .titleBox {
             .day {
               font-size: 1.6rem;
               font-weight: 700;
               color: $monoFont;
+
+              width: 200px;
             }
             .calorieGoal {
+              width: 200px;
               font-size: 1.3rem;
               font-weight: 700;
               color: $monoFont30;
