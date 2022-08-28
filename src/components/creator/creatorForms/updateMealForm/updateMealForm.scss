@@ -2,34 +2,24 @@
 @import "../../../../styles/mixins.scss";
 
 .updateMealForm {
-  max-width: 700px;
-
   &__content {
     width: 100%;
-
     .mainInfo {
       &__content {
         width: 90%;
         margin: 0 auto;
         .formName {
-          font-size: 24px;
-          color: $orange-main;
+          margin-top: 50px;
+          font-size: 2rem;
+          color: $monoFont;
+          font-weight: 700;
+          text-align: left;
         }
         .form {
-          margin-top: 30px;
+          margin-top: 60px;
+          text-align: left;
           .formInput {
-            margin-top: 15px;
-            input {
-              padding: 0px 10px;
-              width: 100%;
-              height: 30px;
-              border: $input-border;
-              border-radius: 8px;
-            }
-            input[type="file"] {
-              background: none;
-              border: none;
-            }
+            margin: 15px;
           }
         }
       }
@@ -40,8 +30,9 @@
       .formName {
         width: 90%;
         margin: 0 auto;
-        font-size: 24px;
-        color: $orange-main;
+        text-align: left;
+        font-size: 2rem;
+        color: $monoFont;
         margin-bottom: 30px;
       }
       &__content {
@@ -59,28 +50,12 @@
             margin-bottom: 30px;
             width: 100%;
           }
-          .inputBlock {
-            position: relative;
-            input {
-              width: 100%;
-              height: 30px;
-              border: $input-border;
-              border-radius: 8px;
-              outline: none;
-            }
-            .searchButton {
-              position: absolute;
-              top: 7px;
-              right: 20px;
-            }
-          }
+
           .searchResults {
             position: absolute;
             width: 100%;
             top: 40px;
             border-radius: 4px;
-            box-shadow: $box-shadow;
-            background-color: white;
             &__content {
               padding: 10px;
             }
@@ -95,18 +70,22 @@
         margin: 0 auto;
         .titleAndAction {
           .formName {
-            font-size: 24px;
-            color: $orange-main;
-            margin-bottom: 30px;
+            text-align: left;
+            font-size: 2rem;
+            color: $monoFont;
           }
         }
         .steps {
           .updateMealStep {
-            margin-top: 20px;
+            margin-top: 30px;
+            text-align: left;
+            padding-bottom: 30px;
+            border-bottom: 1px dashed $monoFont30;
             &__content {
               .actions {
                 margin-top: 20px;
-                text-align: right;
+                display: flex;
+                justify-content: flex-end;
                 button {
                   padding: 10px 30px;
                   border: none;
@@ -117,24 +96,12 @@
                   border-radius: 4px;
                 }
               }
-              .form {
-                p {
-                  margin-top: 20px;
+              .stepDisplay {
+                .stepTitle {
+                  font-size: 1.5rem;
                 }
-                input {
-                  width: 100%;
-                  height: 30px;
-                  border: $input-border;
-                  border-radius: 8px;
-                }
-                textarea {
-                  width: 98.5%;
-                  height: 100px;
-                  max-height: 150px;
-                  resize: vertical;
-                  border: $input-border;
-                  border-radius: 8px;
-                  padding: 5px;
+                .stepDescription {
+                  margin-top: 16px;
                 }
               }
             }
@@ -142,30 +109,17 @@
 
           .addNewStep {
             margin-top: 30px;
+            margin-bottom: 60px;
+            text-align: left;
             &__content {
               display: flex;
               flex-direction: column;
               .title {
-                font-size: 24px;
+                font-size: 2rem;
                 color: $orange-main;
+                margin-bottom: 30px;
               }
-              .label {
-                margin-top: 20px;
-              }
-              input {
-                height: 30px;
-                border: $input-border;
-                border-radius: 8px;
-              }
-              textarea {
-                width: 98.5%;
-                height: 100px;
-                max-height: 150px;
-                resize: vertical;
-                border: $input-border;
-                border-radius: 8px;
-                padding: 5px;
-              }
+
               .action {
                 button {
                   padding: 7px 30px;
@@ -177,7 +131,7 @@
       }
     }
     .actionBox {
-      margin-top: 30px;
+      padding: 30px 0;
 
       text-align: center;
       button {

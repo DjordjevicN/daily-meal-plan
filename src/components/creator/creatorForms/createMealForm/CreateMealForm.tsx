@@ -14,7 +14,7 @@ import { bindActionCreators } from "redux";
 interface IIngredient {
   id: number | string;
   name: string;
-  img: string;
+  img?: string;
   amount: number | string;
   unit: string;
 }

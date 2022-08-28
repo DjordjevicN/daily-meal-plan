@@ -199,6 +199,19 @@ export const getUsersMeals = (value: number) => {
     });
   };
 };
+export const getMealById = (value: number) => {
+  console.log(value);
+  return async (dispatch: any) => {
+    const response = await axios.post(`${baseUrl()}${routes.GET_MEAL_BY_ID}`, {
+      value,
+    });
+
+    dispatch({
+      type: ActionType.GET_MEAL_BY_ID,
+      payload: response.data[0],
+    });
+  };
+};
 // CREATE MEAL
 export const createMeal = (value: any) => {
   return async (dispatch: any) => {
@@ -297,8 +310,6 @@ export const updateMeal = (value: any) => {
 
     dispatch(deleteIngredientsInMeal(value.id));
     dispatch(createIngredientInMeal(value.id, value));
-    // dispatch(deleteMealSteps(value.id));
-    // dispatch(createMealSteps(value.id, value));
     dispatch(handleFile(imageData));
     dispatch(getUsersMeals(value.user_id));
   };

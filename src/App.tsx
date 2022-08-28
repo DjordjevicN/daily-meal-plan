@@ -2,10 +2,10 @@ import "./App.scss";
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/homePage/HomePage";
 import ShoppingPage from "./pages/shoppingPage/ShoppingPage";
+import SingleMealPage from "./pages/singleMealPage/SingleMealPage";
 import UserProfilePage from "./pages/userProfilePage/UserProfilePage";
 import Dashboard from "./pages/dashboard/Dashboard";
 import SignIn from "./pages/signIn/SignIn";
-
 import { useDispatch } from "react-redux";
 import { actionCreators } from "./state";
 import { bindActionCreators } from "redux";
@@ -27,6 +27,8 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/meal/:id" element={<SingleMealPage />} />
+
         <Route path="*" element={<HomePage />} />
       </Routes>
     </div>

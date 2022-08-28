@@ -5,8 +5,8 @@ import { baseUrl } from "../../../../constants/utilFunc";
 
 interface IIngredient {
   id: number | string;
-  name: string | string;
-  img: string | string;
+  name: string;
+  img?: string;
   amount: number | string;
   unit: string;
 }
@@ -27,6 +27,7 @@ const AddedIngredientItem: React.FC<IProps> = ({
     updateAmountsOfIng(ingState);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ingState]);
+  console.log(ingredient);
 
   return (
     <div className="addedIngredientItem">
@@ -46,12 +47,14 @@ const AddedIngredientItem: React.FC<IProps> = ({
         </div>
         <div className="measurementInputs">
           <input
+            value={ingredient.amount}
             type="number"
             onChange={(e) =>
               setIngState({ ...ingState, amount: +e.target.value })
             }
           />
           <select
+            value={ingredient.unit}
             onChange={(e) => setIngState({ ...ingState, unit: e.target.value })}
           >
             <option value="gr">gr</option>

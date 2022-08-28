@@ -6,23 +6,15 @@ import "./ingredientEditResults.scss";
 import { useDispatch } from "react-redux";
 import { actionCreators } from "../../../../state";
 import { bindActionCreators } from "redux";
+import ButtonShell from "../../../../UiComponents/atom/ButtonShell/ButtonShell";
 
-interface IIngredient {
-  calories: number | string;
-  carbs: number | string;
-  fat: number | string;
-  id: number | string;
-  img: any;
-  name: string;
-  price: number | string;
-  protein: number | string;
-  recipe_id?: number | null;
-}
 interface IProps {
-  ingredient: IIngredient;
+  ingredient: any;
 }
 
 const IngredientEditResults: React.FC<IProps> = (props) => {
+  console.log(props);
+
   const dispatch = useDispatch();
   const { upgradeIngredient, deleteIngredients } = bindActionCreators(
     actionCreators,
@@ -74,18 +66,12 @@ const IngredientEditResults: React.FC<IProps> = (props) => {
             </div> */}
           </div>
 
-          <button
-            className="editBtn"
-            onClick={() => setOpenEditModal(!openEditModal)}
-          >
+          <ButtonShell onClick={() => setOpenEditModal(!openEditModal)}>
             Edit
-          </button>
-          <button
-            className="editBtn"
-            onClick={() => deleteIngredients(modalState.id)}
-          >
+          </ButtonShell>
+          <ButtonShell onClick={() => deleteIngredients(modalState.id)}>
             Delete
-          </button>
+          </ButtonShell>
         </div>
       </div>
       {openEditModal && (

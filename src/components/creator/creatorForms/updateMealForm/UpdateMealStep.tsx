@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { actionCreators } from "../../../../state";
 import { bindActionCreators } from "redux";
+import ButtonShell from "../../../../UiComponents/atom/ButtonShell/ButtonShell";
+import InputField from "../../../../UiComponents/atom/input/InputField";
+import TextAreaInput from "../../../../UiComponents/atom/TextAreaInput/TextAreaInput";
 
 interface IProps {
   step: any;
@@ -27,33 +30,42 @@ const UpdateMealStep: React.FC<IProps> = (props) => {
       <div className="updateMealStep__content">
         {openEdit ? (
           <div className="form">
-            <p>Step</p>
-            <input
+            <InputField
               type="text"
               value={newStep.title}
-              onChange={(e) =>
-                setNewStep({ ...newStep, title: e.target.value })
+              change={(inputValue: string | number) =>
+                setNewStep({ ...newStep, title: inputValue })
               }
+              placeholder="Step Number"
             />
-            <p>Description</p>
-            <textarea
+
+            <TextAreaInput
+              placeholder="Step Description"
               value={newStep.description}
-              onChange={(e) =>
-                setNewStep({ ...newStep, description: e.target.value })
+              change={(inputValue: string) =>
+                setNewStep({ ...newStep, description: inputValue })
               }
             />
           </div>
         ) : (
           <div className="stepDisplay">
-            <h2>{`Step ${props.step.title}`}</h2>
-            <p>{props.step.description}</p>
+            <h2 className="stepTitle">{`Step ${props.step.title}`}</h2>
+            <p className="stepDescription">{props.step.description}</p>
           </div>
         )}
         <div className="actions">
-          <button onClick={() => setOpenEdit(!openEdit)}>
+          <ButtonShell
+            customStyle={{ width: "30px" }}
+            type="mono"
+            onClick={() => setOpenEdit(!openEdit)}
+          >
             {openEdit ? "Close" : "Edit"}
-          </button>
-          {openEdit && <button onClick={handleUpdate}>Add changes</button>}
+          </ButtonShell>
+          {openEdit && (
+            <ButtonShell type="mono" onClick={handleUpdate}>
+              Save changes
+            </ButtonShell>
+          )}
         </div>
       </div>
     </div>

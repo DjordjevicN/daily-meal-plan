@@ -2,14 +2,14 @@
 @import "../../../../styles/mixins.scss";
 
 .resultItem {
-  margin-top: 5px;
+  margin-top: 20px;
   width: 100%;
   cursor: pointer;
-  border: 1px solid $yellow-main;
   border-radius: 8px;
   transition: 0.3s;
+  box-shadow: $monoFrame;
   &:hover {
-    box-shadow: $box-shadow;
+    box-shadow: $monoFrame;
   }
   &__content {
     padding: 10px;

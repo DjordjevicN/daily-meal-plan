@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { actionCreators } from "../../../../state";
 import { bindActionCreators } from "redux";
+import InputField from "../../../../UiComponents/atom/input/InputField";
+import TextAreaInput from "../../../../UiComponents/atom/TextAreaInput/TextAreaInput";
+import ButtonShell from "../../../../UiComponents/atom/ButtonShell/ButtonShell";
 interface Step {
   id: number | string;
   img: string;
@@ -37,19 +40,24 @@ const AddNewStep: React.FC<IProps> = ({ step }) => {
     <div className="addNewStep">
       <div className="addNewStep__content">
         <p className="title">Add new step</p>
-        <p className="label">Step number</p>
-        <input
-          type="text"
-          onChange={(e) => setNewStep({ ...newStep, title: e.target.value })}
-        />
-        <p className="label">Description</p>
-        <textarea
-          onChange={(e) =>
-            setNewStep({ ...newStep, description: e.target.value })
+
+        <InputField
+          placeholder="Step number"
+          change={(inputField: string) =>
+            setNewStep({ ...newStep, title: inputField })
           }
-        ></textarea>
+        />
+
+        <TextAreaInput
+          placeholder="Meal Description"
+          change={(inputField: string) =>
+            setNewStep({ ...newStep, description: inputField })
+          }
+        />
         <div className="action">
-          <button onClick={handleAddNewStep}>Add</button>
+          <ButtonShell type="mono" onClick={handleAddNewStep}>
+            Add
+          </ButtonShell>
         </div>
       </div>
     </div>

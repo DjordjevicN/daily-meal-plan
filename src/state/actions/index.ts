@@ -66,6 +66,10 @@ interface CleanState {
 interface CleanSearch {
   type: ActionType.CLEAR_SEARCH;
 }
+interface GetMealById {
+  type: ActionType.GET_MEAL_BY_ID;
+  payload: any;
+}
 
 export type Action =
   | CreateUser
@@ -82,4 +86,5 @@ export type Action =
   | GetPlanById
   | GetTodaysMeals
   | CleanSearch
-  | UpdateUser;
+  | UpdateUser
+  | GetMealById;

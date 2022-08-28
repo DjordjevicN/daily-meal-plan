@@ -11,11 +11,13 @@ import { createMealInitState } from "../../../../constants/initStates";
 import UpdateMealStep from "./UpdateMealStep";
 import AddNewStep from "./AddNewStep";
 import "./updateMealForm.scss";
+import InputField from "../../../../UiComponents/atom/input/InputField";
+import ButtonShell from "../../../../UiComponents/atom/ButtonShell/ButtonShell";
 
 interface IIngredient {
   id: number | string;
   name: string;
-  img: string;
+  img?: string;
   amount: number | string;
   unit: string;
 }
@@ -73,15 +75,17 @@ const UpdateMealForm: React.FC<IProps> = ({
   const handleSearch = (value: string) => {
     getIngredientByName(value);
   };
-  // const addStep = (value: ISteps) => {
+  // const addStep = (value: IStep) => {
   //   let newStep = [...newMeal.steps, value];
   //   setNewMeal({ ...newMeal, steps: newStep });
   // };
   // const removeStep = (stepIdentNum: number) => {
+  //   console.log(stepIdentNum);
+
   //   let newIng = newMeal.steps.filter((item) => item.identNum !== stepIdentNum);
   //   setNewMeal({ ...newMeal, steps: newIng });
   // };
-  // const updateStep = (value: ISteps) => {
+  // const updateStep = (value: IStep) => {
   //   const currentIng = newMeal.steps;
   //   let updatedValues = currentIng.map((item) => {
   //     if (item.id === value.id) {
@@ -133,16 +137,6 @@ const UpdateMealForm: React.FC<IProps> = ({
             <p className="formName">Main info</p>
             <div className="form">
               <div className="formInput">
-                <p className="label">Name</p>
-                <input
-                  type="text"
-                  value={newMeal.name}
-                  onChange={(e) => {
-                    setNewMeal({ ...newMeal, name: e.target.value });
-                  }}
-                />
-              </div>
-              <div className="formInput">
                 <p className="label">Image</p>
                 <input
                   type="file"
@@ -154,15 +148,23 @@ const UpdateMealForm: React.FC<IProps> = ({
                   }}
                 />
               </div>
-              <div className="formInput">
-                <p className="label">Video URL</p>
-                <input
-                  type="text"
-                  onChange={(e) => {
-                    setNewMeal({ ...newMeal, videoUrl: e.target.value });
-                  }}
-                />
-              </div>
+              <InputField
+                value={details.name}
+                autoFocus
+                placeholder="Meal Name"
+                change={(inputValue: string) =>
+                  setNewMeal({ ...newMeal, name: inputValue })
+                }
+              />
+
+              <InputField
+                value={details.videoUrl}
+                autoFocus
+                placeholder="Video URL"
+                change={(inputValue: string) =>
+                  setNewMeal({ ...newMeal, videoUrl: inputValue })
+                }
+              />
             </div>
           </div>
         </div>
@@ -172,17 +174,12 @@ const UpdateMealForm: React.FC<IProps> = ({
           <p className="formName">Ingredients</p>
           <div className="ingredientsNeeded__content">
             <div className="ingSearch">
-              <div className="inputBlock">
-                <input
-                  type="text"
-                  value={searchInput}
-                  onChange={(e) => setSearchInput(e.target.value)}
-                  placeholder="Find Ingredient"
-                />
-                <div className="searchButton">
-                  <BsSearch />
-                </div>
-              </div>
+              <InputField
+                value={searchInput}
+                change={(inputValue: string) => setSearchInput(inputValue)}
+                icon={<BsSearch />}
+                placeholder="Find Ingredient"
+              />
 
               {searchInput.length > 1 && (
                 <div className="searchResults">
@@ -233,6 +230,7 @@ const UpdateMealForm: React.FC<IProps> = ({
               <p className="formName">Steps</p>
             </div>
             <div className="steps">
+              <AddNewStep step={newMeal} />
               <div className="displaySteps">
                 <div className="displaySteps__content">
                   {newMeal.steps.length > 0 &&
@@ -240,15 +238,14 @@ const UpdateMealForm: React.FC<IProps> = ({
                       return <UpdateMealStep key={step.id} step={step} />;
                     })}
                 </div>
-                <AddNewStep step={newMeal} />
               </div>
             </div>
           </div>
         </div>
         <div className="actionBox">
-          <button className="updateBTN" onClick={() => handleUpdateMeal()}>
-            Update
-          </button>
+          <ButtonShell type="mono" onClick={() => handleUpdateMeal()}>
+            <p>Update</p>
+          </ButtonShell>
         </div>
       </div>
     </div>

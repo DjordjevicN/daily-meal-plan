@@ -15,8 +15,3 @@ const reducer = (state: any = initState, action: Action) => {
   }
 };
 export default reducer;
-
-// return {
-//   ...state,
-//   days: [...state.days, ...action.payload],
-// };

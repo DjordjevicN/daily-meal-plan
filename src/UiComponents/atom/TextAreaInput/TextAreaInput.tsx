@@ -1,7 +1,16 @@
 import React from "react";
-import "./inputField.scss";
 import { GiOrangeSlice } from "react-icons/gi";
 import { motion, AnimatePresence } from "framer-motion";
+import "./TextAreaInput.scss";
+
+interface IProps {
+  placeholder?: string;
+  type?: string;
+  icon?: any;
+  change?: any;
+  autoFocus?: any;
+  value?: string;
+}
 
 const inputAnimation = {
   open: {
@@ -22,16 +31,7 @@ const inputAnimation = {
   },
 };
 
-interface IProps {
-  placeholder?: string;
-  type?: string;
-  icon?: any;
-  change?: any;
-  autoFocus?: any;
-  value?: string;
-}
-
-const InputField = (props: IProps) => {
+const TextAreaInput = (props: IProps) => {
   return (
     <AnimatePresence>
       <motion.div
@@ -43,18 +43,17 @@ const InputField = (props: IProps) => {
         <div className="input__content">
           {props.icon ?? <GiOrangeSlice />}
 
-          <input
+          <textarea
             autoFocus={props.autoFocus ?? false}
             autoComplete="off"
-            type={props.type ?? "text"}
             placeholder={props.placeholder ?? "SET PLACEHOLDER"}
             onChange={(e) => props.change(e.target.value)}
             value={props.value}
-          />
+          ></textarea>
         </div>
       </motion.div>
     </AnimatePresence>
   );
 };
 
-export default InputField;
+export default TextAreaInput;
