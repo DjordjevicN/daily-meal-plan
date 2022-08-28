@@ -27,20 +27,6 @@ const Dashboard = () => {
     }
   };
 
-  const getMargin = () => {
-    let viewportWidth = window.innerWidth;
-    let result = "0px";
-    if (viewportWidth < 615) {
-      return (result = "0px");
-    }
-    if (isMenuOpen) {
-      result = "260px";
-    } else {
-      result = "120px";
-    }
-    return result;
-  };
-
   return (
     <div className="layout">
       <DashNavigation
@@ -49,12 +35,7 @@ const Dashboard = () => {
         isMenuOpen={isMenuOpen}
         setIsMenuOpen={setIsMenuOpen}
       />
-      <div
-        className="dashboard"
-        style={{
-          marginLeft: getMargin(),
-        }}
-      >
+      <div className="dashboard">
         <div className="content">{getPage()}</div>
       </div>
     </div>

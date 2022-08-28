@@ -14,6 +14,7 @@
     .screenNavigation {
       box-shadow: $monoFrame;
       padding: 10px 0;
+
       border-radius: 10px;
       margin-bottom: 30px;
       width: 100%;
@@ -24,43 +25,26 @@
         display: flex;
         align-items: center;
         flex-direction: column;
-
-        .calorieGoal {
-          font-size: 1.7rem;
-          color: $monoFont;
-          font-weight: 900;
-          width: 100%;
-        }
         .nav-item {
-          margin: 0 auto;
+          width: 100%;
+
           display: flex;
+          justify-content: space-between;
           align-items: center;
-
-          @include resp(400px) {
-            justify-content: space-between;
-          }
-          .box {
-            width: 300px;
-            @include resp(500px) {
-              width: 200px;
-            }
-            @include resp(330px) {
-              width: 150px;
-            }
-            .day {
-              padding: 0 20px;
-              font-size: 24px;
-            }
-          }
-
           .icon {
-            border-radius: 50px;
-            padding: 7px;
-            font-size: 24px;
-            @include resp(330px) {
-              font-size: 20px;
+            font-size: 2rem;
+          }
+          .titleBox {
+            .day {
+              font-size: 1.6rem;
+              font-weight: 700;
+              color: $monoFont;
             }
-            cursor: pointer;
+            .calorieGoal {
+              font-size: 1.3rem;
+              font-weight: 700;
+              color: $monoFont30;
+            }
           }
         }
       }

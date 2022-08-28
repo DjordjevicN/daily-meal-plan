@@ -85,18 +85,18 @@ const DayMenu = () => {
                 className="icon"
                 onClick={() => prevDay()}
               />
-              <div className="box">
+              <div className="titleBox">
                 <p className="day">{`${dayConst[dayId]}'s Plan`}</p>
+                <p className="calorieGoal">2600 - 3100</p>
               </div>
+
               <BsChevronCompactRight
                 className="icon"
                 onClick={() => nextDay()}
               />
             </div>
-            <p className="calorieGoal">2600 - 3100</p>
           </div>
         </div>
-
         <div className="menu">
           <div className="menu_content">
             <div className="meal">
@@ -112,11 +112,6 @@ const DayMenu = () => {
                 </div>
               )}
             </div>
-            {/* 
-            <div className="stats">
-              <GraphStats nutritionStats={getNutritionStats()} />
-            </div>
-             */}
           </div>
         </div>
       </div>
