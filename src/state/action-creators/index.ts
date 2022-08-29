@@ -34,10 +34,12 @@ export const loginUser = (value: { email: string; password: string }) => {
       `${baseUrl()}${routes.LOGIN_USER}`,
       value
     );
+
     if (response.data.error) {
       return console.log(response.data.msg);
     }
     localStorage.setItem("userId", response.data[0].id.toString());
+
     dispatch({
       type: ActionType.LOGIN_USER,
       payload: response.data[0],
@@ -439,5 +441,85 @@ export const clearSearchState = () => {
     dispatch({
       type: ActionType.CLEAR_SEARCH,
     });
+  };
+};
+// SHOPPING LIST
+export const getAllShoppingItems = () => {
+  return async (dispatch: any) => {
+    const response = await axios.get(`${baseUrl()}/get_all_shopping_items`);
+
+    dispatch({
+      type: ActionType.GET_ALL_SHOPPING_ITEMS,
+      payload: response.data,
+    });
+  };
+};
+export const getShoppingItemsByUserId = (value: any) => {
+  return async (dispatch: any) => {
+    const response = await axios.post(
+      `${baseUrl()}/get_shopping_items_by_user_id`,
+      {
+        value,
+      }
+    );
+
+    dispatch({
+      type: ActionType.GET_SHOPPING_ITEMS_BY_USER_ID,
+      payload: response.data,
+    });
+  };
+};
+export const createShoppingListItem = (value: any) => {
+  return async (dispatch: any) => {
+    await axios.post(`${baseUrl()}/create_shopping_list_item`, {
+      value,
+    });
+
+    dispatch(getShoppingItemsByUserId(value.users_id));
+  };
+};
+export const deleteUsersShoppingList = (value: any) => {
+  return async (dispatch: any) => {
+    await axios.post(`${baseUrl()}/delete_users_shopping_list`, {
+      value,
+    });
+  };
+};
+export const switchHaveItem = (value: any) => {
+  return async (dispatch: any) => {
+    await axios.post(`${baseUrl()}/switch_have_item`, {
+      value,
+    });
+    dispatch(getShoppingItemsByUserId(value.users_id));
+  };
+};
+export const getPlansIngredients = (value: any, id: number) => {
+  return async (dispatch: any) => {
+    const response = await axios.post(
+      `${baseUrl()}/get_all_plans_ingredients`,
+      {
+        value,
+      }
+    );
+
+    response.data.length > 0 &&
+      response.data.forEach((item: any) => {
+        const value = {
+          name: item.name,
+          img: item.img,
+          unit: item.unit,
+          amount: item.totalAmount,
+          have: 0,
+          users_id: id,
+        };
+
+        return dispatch(createShoppingListItem(value));
+      });
+  };
+};
+export const deleteSingleShoppingItem = (value: any) => {
+  return async (dispatch: any) => {
+    await axios.post(`${baseUrl()}/delete_single_shopping_item`, { value });
+    dispatch(getShoppingItemsByUserId(value.userId));
   };
 };

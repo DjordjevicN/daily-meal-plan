@@ -1,3 +1,4 @@
+import { getAllShoppingItems } from "./../action-creators/index";
 import {
   IIngredients,
   IUser,
@@ -70,6 +71,14 @@ interface GetMealById {
   type: ActionType.GET_MEAL_BY_ID;
   payload: any;
 }
+interface GetAllShoppingItems {
+  type: ActionType.GET_ALL_SHOPPING_ITEMS;
+  payload: any;
+}
+interface GetShoppingItemsByUserId {
+  type: ActionType.GET_SHOPPING_ITEMS_BY_USER_ID;
+  payload: any;
+}
 
 export type Action =
   | CreateUser
@@ -87,4 +96,6 @@ export type Action =
   | GetTodaysMeals
   | CleanSearch
   | UpdateUser
-  | GetMealById;
+  | GetMealById
+  | GetAllShoppingItems
+  | GetShoppingItemsByUserId;

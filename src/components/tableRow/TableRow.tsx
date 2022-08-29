@@ -1,33 +1,54 @@
-import React, { useState } from "react";
-import { IIngredients } from "../../constants/types";
+import React from "react";
+// import { IIngredients } from "../../constants/types";
 import "./TableRow.scss";
 
-import {
-  // calcWhenToBuy,
-  // calculateHowMuchToBuy,
-  baseUrl,
-} from "../../constants/utilFunc";
-import BuyAndEditModal from "../modals/buyAndEditModal/BuyAndEditModal";
+import { baseUrl } from "../../constants/utilFunc";
 import ButtonShell from "../../UiComponents/atom/ButtonShell/ButtonShell";
+import { useDispatch } from "react-redux";
+import { actionCreators } from "../../state";
+import { bindActionCreators } from "redux";
 import { RiShoppingCartLine } from "react-icons/ri";
+import { FcCheckmark } from "react-icons/fc";
+import { motion } from "framer-motion";
 
 interface IProps {
-  ingredient: IIngredients;
+  ingredient: any;
+  userId: number;
 }
 
-const TableRow = ({ ingredient }: IProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+const TableRow = ({ ingredient, userId }: IProps) => {
+  const dispatch = useDispatch();
+  const { switchHaveItem, deleteSingleShoppingItem } = bindActionCreators(
+    actionCreators,
+    dispatch
+  );
 
-  // const indicateIfNeeded = () => {
-  //   return (
-  //     calcWhenToBuy(ingredient.percentage_amount, ingredient.base_amount) >
-  //     ingredient.current_amount
-  //   );
-  // };
+  const handleBuy = () => {
+    const value = {
+      item_id: +ingredient.id,
+      have: !ingredient.have,
+      users_id: userId,
+    };
+
+    switchHaveItem(value);
+  };
+  const handleDeleteShopItem = () => {
+    deleteSingleShoppingItem({ itemId: +ingredient.id, userId });
+  };
 
   return (
-    <div>
-      <div className="tableRow" onClick={() => setIsOpen(!isOpen)}>
+    <motion.div
+      drag="x"
+      dragConstraints={{ left: 0, right: 0 }}
+      onDragEnd={(event, info) => {
+        if (info.offset.x < -150) {
+          handleDeleteShopItem();
+        } else if (info.offset.x > 150) {
+          handleBuy();
+        }
+      }}
+    >
+      <div className="tableRow">
         <div className="image">
           <img
             src={
@@ -44,26 +65,24 @@ const TableRow = ({ ingredient }: IProps) => {
           </div>
           <div className="purchaseAmount">
             <p>Buy</p>
-            <p className="amount">{`0 gr`}</p>
+            <p className="amount">{`${ingredient.amount} gr`}</p>
           </div>
         </div>
 
         <div className="buyButton">
           <ButtonShell
+            onClick={() => handleBuy()}
             type="monoCube"
             customStyle={{
               width: "56px",
               height: "56px",
             }}
           >
-            <RiShoppingCartLine />
+            {ingredient.have ? <FcCheckmark /> : <RiShoppingCartLine />}
           </ButtonShell>
         </div>
       </div>
-      {isOpen && (
-        <BuyAndEditModal ingredient={ingredient} setIsOpen={setIsOpen} />
-      )}
-    </div>
+    </motion.div>
   );
 };
 

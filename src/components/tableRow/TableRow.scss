@@ -11,9 +11,6 @@
   box-shadow: $monoFrame;
   min-width: 300px;
   cursor: pointer;
-  @include resp(584px) {
-    grid-template-columns: 100px 100px 100px;
-  }
 
   .image {
     width: 100px;
@@ -34,9 +31,9 @@
 
     .name {
       p {
-        max-width: 100px;
+        max-width: 150px;
         font-weight: 700;
-        font-size: 1.7rem;
+        font-size: 1.3rem;
         color: $monoFont;
       }
     }

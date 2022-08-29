@@ -14,4 +14,6 @@ export enum ActionType {
   GET_PLAN_BY_ID = "get_plan_by_id",
   GET_TODAYS_MEALS = "get_todays_meals",
   CLEAR_SEARCH = "clear_search",
+  GET_ALL_SHOPPING_ITEMS = "get_all_shopping_items",
+  GET_SHOPPING_ITEMS_BY_USER_ID = "get_shopping_items_by_user_id",
 }

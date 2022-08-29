@@ -22,5 +22,35 @@
         right: 10px;
       }
     }
+    .noShoppingList-additional {
+      margin-top: 20px;
+    }
+  }
+  .newShoppingItem {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background-color: $monoBg;
+    box-shadow: $monoFrame;
+    &__content {
+      width: 90%;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 30px;
+      @include resp(500px) {
+        padding: 30px 0px;
+      }
+      .inputTitle {
+        margin: 30px 0;
+        font-weight: 700;
+        color: $monoFont;
+        font-size: 2rem;
+        @include resp(500px) {
+          font-size: 1rem;
+        }
+      }
+    }
   }
 }

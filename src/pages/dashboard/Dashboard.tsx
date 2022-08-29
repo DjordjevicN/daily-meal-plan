@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import "./dashboard.scss";
 import DayMenu from "../../components/dayMenu/DayMenu";
 import ShoppingPage from "../shoppingPage/ShoppingPage";
