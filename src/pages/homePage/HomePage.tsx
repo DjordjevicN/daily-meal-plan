@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { actionCreators } from "../../state";
 import { bindActionCreators } from "redux";
+import { Link, useNavigate } from "react-router-dom";
 
 const deviceAnimation = {
   open: {
@@ -28,6 +29,7 @@ const deviceAnimation = {
 
 function HomePage() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { loginUser } = bindActionCreators(actionCreators, dispatch);
 
   const startDemoAccount = () => {
@@ -39,6 +41,9 @@ function HomePage() {
       password: "654654",
     };
     loginUser(value);
+    setTimeout(() => {
+      navigate("/dashboard");
+    }, 1000);
   };
   return (
     <>
@@ -55,11 +60,14 @@ function HomePage() {
                 with the right amount of good food!
               </p>
 
-              {/* <Link to="/signin">
-                <ButtonShell type="mono" customStyle={{ width: "150px" }}>
+              <Link to="/signin">
+                <ButtonShell
+                  type="mono"
+                  customStyle={{ width: "150px", marginBottom: "30px" }}
+                >
                   Create Account
                 </ButtonShell>
-              </Link> */}
+              </Link>
 
               <ButtonShell
                 type="mono"

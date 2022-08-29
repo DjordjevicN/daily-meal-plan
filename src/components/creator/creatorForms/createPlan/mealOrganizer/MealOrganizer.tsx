@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { actionCreators } from "../../../../../state";
 import { bindActionCreators } from "redux";
 import InputField from "../../../../../UiComponents/atom/input/InputField";
+import ButtonShell from "../../../../../UiComponents/atom/ButtonShell/ButtonShell";
 
 interface MealData {
   amount: number;
@@ -124,7 +125,17 @@ const MealOrganizer: React.FC<IProps> = ({ mealData }) => {
           <div className="mealName">
             <p className="name">{mealConst[mealData.meal_type]}</p>
             <div>
-              <button onClick={() => setOpenEdit(!openEdit)}>Search</button>
+              <ButtonShell
+                customStyle={{
+                  padding: "0px",
+                  height: "20px",
+                  marginRight: "20px",
+                  width: "30px",
+                }}
+                onClick={() => setOpenEdit(!openEdit)}
+              >
+                Search
+              </ButtonShell>
             </div>
           </div>
 

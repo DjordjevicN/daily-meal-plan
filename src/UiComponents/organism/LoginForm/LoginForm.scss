@@ -9,8 +9,19 @@
   align-items: center;
   &__content {
     width: 60%;
+    @include resp(1200px) {
+      width: 70%;
+    }
+    @include resp(800px) {
+      width: 90%;
+    }
     @include resp(500px) {
       width: 100%;
+    }
+    input {
+      @include resp(500px) {
+        width: 100%;
+      }
     }
     .title {
       text-align: center;

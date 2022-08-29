@@ -4,6 +4,7 @@
 
 .creator {
   width: 100%;
+  margin-bottom: 100px;
   &__content {
     width: 98%;
     margin: 0 auto;
@@ -16,16 +17,65 @@
         width: 70%;
         display: flex;
         justify-content: space-around;
+        @include resp(700px) {
+          position: fixed;
+          top: 100px;
+          right: 40px;
+          flex-direction: column;
+          width: 150px;
+        }
+        #ButtonShell {
+          background-color: $monoBg;
+          @include resp(1287px) {
+            width: 100%;
+            font-size: 16px;
+            padding: 0;
+            font-weight: 400;
+          }
+          @include resp(1287px) {
+            font-size: 13px;
+          }
+          @include resp(1287px) {
+            margin-top: 20px;
+          }
+        }
       }
     }
     .planer {
       width: 97%;
       margin: 60px auto 0 auto;
+      @include resp(700px) {
+        margin: 0 auto;
+      }
       &__content {
         .sectionTitle {
           display: flex;
           justify-content: space-between;
           max-width: 600px;
+          @include resp(700px) {
+            flex-direction: column;
+            text-align: left;
+          }
+          .button-wrap {
+            @include resp(700px) {
+              margin-top: 10px;
+            }
+            #ButtonShell {
+              @include resp(700px) {
+                margin-left: 0;
+                width: 100%;
+                font-size: 13px;
+                padding: 0;
+                font-weight: 400;
+              }
+            }
+          }
+        }
+        .edit-plan {
+          margin-top: 60px;
+          @include resp(700px) {
+            margin-top: 0;
+          }
         }
         .plansDisplay {
           display: flex;

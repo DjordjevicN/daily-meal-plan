@@ -1,31 +1,70 @@
+import React, { useState } from "react";
+import { BiArrowBack } from "react-icons/bi";
+import { Link } from "react-router-dom";
 import Avatar from "../../UiComponents/atom/avatar/Avatar";
+import ButtonShell from "../../UiComponents/atom/ButtonShell/ButtonShell";
 import Paper from "../../UiComponents/atom/paper/Paper";
-
+import { useDispatch } from "react-redux";
+import { actionCreators } from "../../state";
+import { bindActionCreators } from "redux";
 import "./SignIn.scss";
+import InputField from "../../UiComponents/atom/input/InputField";
+import { AiOutlineMail } from "react-icons/ai";
+import { RiLockPasswordLine } from "react-icons/ri";
+import InputButton from "../../UiComponents/atom/InputButton/InputButton";
+import { IUser } from "../../constants/types";
+import { userProfileInitState } from "../../constants/initStates";
+
 const SignIn = () => {
+  const dispatch = useDispatch();
+  const [profileState, setProfileState] = useState<IUser>(userProfileInitState);
+  const { createUser } = bindActionCreators(actionCreators, dispatch);
+
+  const handleCreateAccount = (event: React.FormEvent) => {
+    event.preventDefault();
+    createUser(profileState!);
+  };
+
   return (
     <div className="signin">
+      <div className="goBack">
+        <Link to="/">
+          <ButtonShell icon={<BiArrowBack />} type="mono">
+            Go Back
+          </ButtonShell>
+        </Link>
+      </div>
       <div className="signin__content">
-        <Paper style={{ maxWidth: "500px" }}>
-          <div className="warning">
-            <Avatar size="150px" />
-            <h1>Project is currently in closed alpha phase</h1>
-            <p>
-              A Closed Alpha is an early testing period with a limited number of
-              users and a small sample of content from the full app. This is a
-              work-in-progress product and users are likely to experience some
-              issues that will affect their experience.
-            </p>
+        <Paper>
+          <Avatar size="100px" />
+          <div className="title">Create Account</div>
+          <div className="subTitle">
+            Create account and unlock your dashboard
           </div>
-          <div className="action">
-            <a href="/">Go Home</a>
-            <a
-              href="https://www.linkedin.com/in/nikola-djordjevic-503066193/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              LinkedIn
-            </a>
+          <div className="form">
+            <form onSubmit={handleCreateAccount}>
+              <InputField
+                placeholder="Email"
+                icon={<AiOutlineMail />}
+                change={(inputValue: string) =>
+                  setProfileState({ ...profileState, email: inputValue })
+                }
+              />
+              <InputField
+                type="password"
+                placeholder="password"
+                icon={<RiLockPasswordLine />}
+                change={(inputValue: string) =>
+                  setProfileState({
+                    ...profileState,
+                    password: inputValue,
+                  })
+                }
+              />
+              <InputButton>
+                <input type="submit" value="Create account" />
+              </InputButton>
+            </form>
           </div>
         </Paper>
       </div>

@@ -86,7 +86,7 @@ const DayMenu = () => {
                 onClick={() => prevDay()}
               />
               <div className="titleBox">
-                <p className="day">{`${dayConst[dayId]}'s Plan`}</p>
+                <p className="day">{`${dayConst[dayId]}`}</p>
                 <p className="calorieGoal">2600 - 3100</p>
               </div>
 

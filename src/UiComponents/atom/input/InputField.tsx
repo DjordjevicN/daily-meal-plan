@@ -38,7 +38,7 @@ const InputField = (props: IProps) => {
         className="input"
         whileInView="open"
         variants={inputAnimation}
-        transition={{ duration: 0.5, delay: 0.5 }}
+        transition={{ duration: 0.3, delay: 0.1 }}
       >
         <div className="input__content">
           {props.icon ?? <GiOrangeSlice />}

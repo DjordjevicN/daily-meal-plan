@@ -14,7 +14,7 @@ import ButtonShell from "../../UiComponents/atom/ButtonShell/ButtonShell";
 import { AiOutlineEdit } from "react-icons/ai";
 
 const Creator = () => {
-  const [isEditListOpen, setIsEditListOpen] = useState(true);
+  const [isEditListOpen, setIsEditListOpen] = useState(false);
   const [isCreatePlan, setIsCreatePlan] = useState(false);
   const [isEditPlan, setIsEditPlan] = useState(false);
   const [isCreateMeal, setIsCreateMeal] = useState(false);
@@ -100,9 +100,9 @@ const Creator = () => {
                 </ButtonShell>
               </div>
             </div>
-            <div className="editPlan">
-              <div className="edit-plan">{isEditPlan && <Plan />}</div>
-            </div>
+
+            <div className="edit-plan">{isEditPlan && <Plan />}</div>
+
             <div className="plansDisplay">
               {getAllPlans().length > 0 &&
                 getAllPlans().map((item) => {
