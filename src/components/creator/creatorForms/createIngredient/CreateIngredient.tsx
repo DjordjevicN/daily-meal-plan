@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { GrClose } from "react-icons/gr";
 import "./createIngredient.scss";
 import { initAddIngredientModalState } from "../../../../constants/initStates";
 import { useDispatch } from "react-redux";
 import { actionCreators } from "../../../../state";
 import { bindActionCreators } from "redux";
+import InputField from "../../../../UiComponents/atom/input/InputField";
+import InputButton from "../../../../UiComponents/atom/InputButton/InputButton";
 interface IProps {
   setIsCreateIngredient: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -37,99 +38,74 @@ const CreateIngredient: React.FC<IProps> = (props) => {
   return (
     <div className="createIngredient">
       <div className="createIngredient__content">
-        <div
-          className="exitBtn"
-          onClick={() => props.setIsCreateIngredient(false)}
-        >
-          <GrClose />
-        </div>
         <div className="modalTitle">
           <p>Create Ingredient</p>
         </div>
         <div className="formBox">
           <form onSubmit={handleAddNew}>
             <div className="inputBlock">
-              <p className="inputLabel">Name</p>
-              <div className="inputEl">
-                <input
-                  type="text"
-                  value={modalState.name}
-                  onChange={(e) => {
-                    setModalState({ ...modalState, name: e.target.value });
-                  }}
-                />
-              </div>
+              <InputField
+                placeholder="Name"
+                change={(inputValue: string) => {
+                  setModalState({ ...modalState, name: inputValue });
+                }}
+              />
             </div>
 
             <div className="inputBlock">
-              <p className="inputLabel">Price</p>
-              <div className="inputEl">
-                <input
-                  type="number"
-                  value={modalState.price}
-                  onChange={(e) => {
-                    setModalState({
-                      ...modalState,
-                      price: +e.target.value,
-                    });
-                  }}
-                />
-              </div>
+              <InputField
+                type="number"
+                placeholder="Price"
+                change={(inputValue: number) => {
+                  setModalState({
+                    ...modalState,
+                    price: +inputValue,
+                  });
+                }}
+              />
             </div>
 
             <div className="inputBlock">
-              <p className="inputLabel">Calories</p>
-              <div className="inputEl">
-                <input
-                  type="number"
-                  value={modalState.calories}
-                  onChange={(e) => {
-                    setModalState({
-                      ...modalState,
-                      calories: +e.target.value,
-                    });
-                  }}
-                />
-              </div>
+              <InputField
+                type="number"
+                placeholder="Calories"
+                change={(inputValue: number) => {
+                  setModalState({
+                    ...modalState,
+                    calories: +inputValue,
+                  });
+                }}
+              />
             </div>
             <div className="inputBlock">
-              <p className="inputLabel">Carbs</p>
-              <div className="inputEl">
-                <input
-                  type="number"
-                  value={modalState.carbs}
-                  onChange={(e) => {
-                    setModalState({
-                      ...modalState,
-                      carbs: +e.target.value,
-                    });
-                  }}
-                />
-              </div>
+              <InputField
+                placeholder="Carbs"
+                type="number"
+                change={(inputValue: number) => {
+                  setModalState({
+                    ...modalState,
+                    carbs: +inputValue,
+                  });
+                }}
+              />
             </div>
             <div className="inputBlock">
-              <p className="inputLabel">Fat</p>
-              <div className="inputEl">
-                <input
-                  type="number"
-                  value={modalState.fat}
-                  onChange={(e) => {
-                    setModalState({ ...modalState, fat: +e.target.value });
-                  }}
-                />
-              </div>
+              <InputField
+                placeholder="Fat"
+                type="number"
+                change={(inputValue: number) => {
+                  setModalState({ ...modalState, fat: +inputValue });
+                }}
+              />
             </div>
             <div className="inputBlock">
-              <p className="inputLabel">Protein</p>
-              <div className="inputEl">
-                <input
-                  type="number"
-                  value={modalState.protein}
-                  onChange={(e) => {
-                    setModalState({ ...modalState, protein: +e.target.value });
-                  }}
-                />
-              </div>
+              <InputField
+                placeholder="Protein"
+                type="number"
+                change={(inputValue: number) => {
+                  setModalState({ ...modalState, protein: +inputValue });
+                }}
+              />
             </div>
 
             <div className="fileInputBlock">
@@ -147,9 +123,9 @@ const CreateIngredient: React.FC<IProps> = (props) => {
                 />
               </div>
             </div>
-            <div className="inputBlock button">
+            <InputButton>
               <input type="submit" value="Add" />
-            </div>
+            </InputButton>
           </form>
         </div>
       </div>

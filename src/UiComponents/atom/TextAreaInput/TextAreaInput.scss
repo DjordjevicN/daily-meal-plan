@@ -21,11 +21,9 @@
       outline: none;
       font-size: 18px;
       color: $monoFont30;
-      width: 90%;
+      width: 100%;
       background-color: transparent;
-      @include resp(870px) {
-        width: 60%;
-      }
+      min-height: 200px;
     }
   }
   &__content > :first-child {

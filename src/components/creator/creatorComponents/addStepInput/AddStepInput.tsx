@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import ButtonShell from "../../../../UiComponents/atom/ButtonShell/ButtonShell";
+import InputField from "../../../../UiComponents/atom/input/InputField";
+import TextAreaInput from "../../../../UiComponents/atom/TextAreaInput/TextAreaInput";
 import "./addStepInput.scss";
 
 interface ISteps {
@@ -29,25 +32,21 @@ const AddStepInput: React.FC<IProps> = ({ addStep }) => {
     <div className="addStepInput">
       <div className="addStepInput__content">
         <div className="inputBox">
-          <p>Step</p>
-          <input
-            className="stepNum"
+          <InputField
             type="number"
             placeholder="Step number"
-            value={stepNum}
-            onChange={(e) => setStepNum(+e.target.value)}
+            change={(inputValue: number) => setStepNum(+inputValue)}
           />
-          <p>Description</p>
-          <textarea
-            value={description}
-            className="textareaInput"
-            onChange={(e) => setDescription(e.target.value)}
-          ></textarea>
+
+          <TextAreaInput
+            placeholder="Step Description"
+            change={(inputValue: string) => setDescription(inputValue)}
+          ></TextAreaInput>
         </div>
 
-        <div className="addBTN" onClick={() => handleAddStep()}>
+        <ButtonShell type="mono" onClick={() => handleAddStep()}>
           <p>Add Step</p>
-        </div>
+        </ButtonShell>
       </div>
     </div>
   );

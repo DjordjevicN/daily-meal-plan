@@ -524,18 +524,18 @@ export const getAllPlans = () => {
     });
   };
 };
-export const getUsersPlans = (value: any) => {
-  return async (dispatch: any) => {
-    const response = await axios.post(`${baseUrl()}/get_users_plans`, {
-      value,
-    });
+// export const getUsersPlans = (value: any) => {
+//   return async (dispatch: any) => {
+//     const response = await axios.post(`${baseUrl()}/get_users_plans`, {
+//       value,
+//     });
 
-    dispatch({
-      type: ActionType.GET_ALL_PLANS,
-      payload: response.data,
-    });
-  };
-};
+//     dispatch({
+//       type: ActionType.GET_ALL_PLANS,
+//       payload: response.data,
+//     });
+//   };
+// };
 export const activatePlan = (value: any) => {
   return async (dispatch: any) => {
     await axios.post(`${baseUrl()}/activate_plan`, { value });

@@ -8,86 +8,59 @@
     display: grid;
     grid-template-columns: 1fr 2fr 2fr;
     gap: 10px;
-    .submitBTN {
-      background-color: $orange-main;
-      text-align: center;
-      padding: 10px 20px;
-      color: white;
-      border-radius: 8px;
-      cursor: pointer;
+    @include resp(1100px) {
+      grid-template-columns: 1fr;
     }
     // MAIN INFO SECTION
     .mainInfo {
+      @include resp(1100px) {
+        box-shadow: $monoFrame;
+        padding: 20px;
+      }
       &__content {
-        width: 90%;
+        width: 100%;
         .formName {
-          font-size: 24px;
-          color: $orange-main;
-          font-weight: 400;
+          font-size: 1.5rem;
+          color: $monoFont;
+          font-weight: 700;
         }
         .form {
           display: flex;
           flex-direction: column;
           .formInput {
             margin-top: 20px;
-            .label {
-              color: $font-dark;
-            }
-            input {
-              width: 100%;
-              height: 30px;
-              border: none;
-              outline: none;
-              border-radius: 8px;
-              box-shadow: $box-shadow;
-              padding: 5px;
-            }
           }
         }
       }
     }
     // INGREDIENT SECTION
     .ingredientsNeeded {
-      width: 100%;
-
+      @include resp(1100px) {
+        margin-top: 30px;
+      }
       &__content {
         .formName {
-          font-size: 24px;
-          color: $orange-main;
-          font-weight: 400;
-          padding-left: 28px;
+          font-size: 1.5rem;
+          color: $monoFont;
+          font-weight: 700;
         }
         .ingSearch {
-          width: 90%;
-          margin: 40px auto;
+          margin-top: 30px;
           position: relative;
           .inputBlock {
             position: relative;
             display: flex;
-            background-color: white;
             padding: 1px 10px;
             border-radius: 8px;
-
-            input {
-              width: 97%;
-              padding: 10px;
-              border: none;
-              outline: none;
-              font-size: 16px;
-            }
-            .searchButton {
-              display: grid;
-              place-items: center;
-            }
           }
           .searchResults {
             position: absolute;
             width: 100%;
             height: 200px;
             overflow-y: scroll;
-            background-color: rgb(255, 255, 255);
-            margin-top: 5px;
+            top: 60px;
             box-shadow: $box-shadow;
+            background-color: $monoBg;
 
             &__content {
               width: 90%;
@@ -102,6 +75,7 @@
         }
 
         .addedIngredients {
+          margin-top: 30px;
           width: 100%;
           &__content {
             width: 90%;
@@ -112,33 +86,28 @@
     }
     // COOKING STEPS
     .cookingSteps {
+      padding: 10px;
+      @include resp(1100px) {
+        box-shadow: $monoFrame;
+        margin-top: 50px;
+      }
       &__content {
-        width: 95%;
+        width: 100%;
         margin: 0 auto;
 
         .titleAndAction {
           display: flex;
           align-items: center;
           .formName {
-            font-size: 24px;
-            color: $orange-main;
-            font-weight: 400;
+            font-size: 1.5rem;
+            color: $monoFont;
+            font-weight: 700;
+            text-align: center;
           }
-          .addBTN {
-            margin-left: 50px;
-            padding: 5px;
-            color: $orange-main;
-            display: flex;
-            align-items: center;
-            border-radius: 4px;
-            cursor: pointer;
-            &:hover {
-              background-color: $orange-main;
-              color: white;
-            }
-            p {
-              padding-left: 10px;
-            }
+        }
+        .steps {
+          .displaySteps {
+            margin-top: 60px;
           }
         }
       }

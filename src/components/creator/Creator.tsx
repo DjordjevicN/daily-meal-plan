@@ -15,7 +15,6 @@ import { AiOutlineEdit } from "react-icons/ai";
 
 const Creator = () => {
   const [isEditListOpen, setIsEditListOpen] = useState(false);
-  // const [isCreatePlan, setIsCreatePlan] = useState(false);
   const [isEditPlan, setIsEditPlan] = useState(false);
   const [isCreateMeal, setIsCreateMeal] = useState(false);
   const [isCreateIngredient, setIsCreateIngredient] = useState(false);
@@ -63,14 +62,22 @@ const Creator = () => {
                 + New Plan
               </ButtonShell>
               <ButtonShell
-                onClick={() => setIsCreateMeal(!isCreateMeal)}
+                onClick={() => {
+                  setIsEditListOpen(false);
+                  setIsCreateIngredient(false);
+                  setIsCreateMeal(!isCreateMeal);
+                }}
                 customStyle={{ borderRadius: "8px" }}
                 type="mono"
               >
                 + New Meal
               </ButtonShell>
               <ButtonShell
-                onClick={() => setIsCreateIngredient(!isCreateIngredient)}
+                onClick={() => {
+                  setIsEditListOpen(false);
+                  setIsCreateMeal(false);
+                  setIsCreateIngredient(!isCreateIngredient);
+                }}
                 customStyle={{ borderRadius: "8px" }}
                 type="mono"
               >
@@ -88,9 +95,7 @@ const Creator = () => {
                 />
               )}
             </div>
-            {/* <div className="currentPlan">
-              {isCreatePlan && <div>create plan</div>}
-            </div> */}
+
             <div className="crate-meal">
               {isCreateMeal && (
                 <CreateMealForm setIsCreateMeal={setIsCreateMeal} />

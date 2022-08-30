@@ -10,6 +10,8 @@ import { createMealInitState } from "../../../../constants/initStates";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators, State } from "../../../../state";
 import { bindActionCreators } from "redux";
+import ButtonShell from "../../../../UiComponents/atom/ButtonShell/ButtonShell";
+import InputField from "../../../../UiComponents/atom/input/InputField";
 
 interface IIngredient {
   id: number | string;
@@ -128,16 +130,6 @@ const CreateMealForm: React.FC<IProps> = (props) => {
             <p className="formName">Main info</p>
             <div className="form">
               <div className="formInput">
-                <p className="label">Name</p>
-                <input
-                  type="text"
-                  value={newMeal.name}
-                  onChange={(e) => {
-                    setNewMeal({ ...newMeal, name: e.target.value });
-                  }}
-                />
-              </div>
-              <div className="formInput">
                 <p className="label">Image</p>
                 <input
                   type="file"
@@ -150,11 +142,19 @@ const CreateMealForm: React.FC<IProps> = (props) => {
                 />
               </div>
               <div className="formInput">
-                <p className="label">Video URL</p>
-                <input
-                  type="text"
-                  onChange={(e) => {
-                    setNewMeal({ ...newMeal, videoUrl: e.target.value });
+                <InputField
+                  placeholder="Name"
+                  change={(inputValue: string) => {
+                    setNewMeal({ ...newMeal, name: inputValue });
+                  }}
+                />
+              </div>
+
+              <div className="formInput">
+                <InputField
+                  placeholder="Video URL"
+                  change={(inputValue: string) => {
+                    setNewMeal({ ...newMeal, videoUrl: inputValue });
                   }}
                 />
               </div>
@@ -165,17 +165,11 @@ const CreateMealForm: React.FC<IProps> = (props) => {
           <div className="ingredientsNeeded__content">
             <p className="formName">Ingredients</p>
             <div className="ingSearch">
-              <div className="inputBlock">
-                <input
-                  type="text"
-                  value={searchInput}
-                  onChange={(e) => setSearchInput(e.target.value)}
-                  placeholder="Find Ingredient"
-                />
-                <div className="searchButton">
-                  <BsSearch />
-                </div>
-              </div>
+              <InputField
+                icon={<BsSearch />}
+                change={(inputValue: string) => setSearchInput(inputValue)}
+                placeholder="Find Ingredient"
+              />
 
               {searchInput.length > 1 && (
                 <div className="searchResults">
@@ -244,9 +238,13 @@ const CreateMealForm: React.FC<IProps> = (props) => {
             </div>
           </div>
         </div>
-        <p className="submitBTN" onClick={() => handleSubmit()}>
+        <ButtonShell
+          customStyle={{ margin: "50px auto" }}
+          type="mono"
+          onClick={() => handleSubmit()}
+        >
           Create
-        </p>
+        </ButtonShell>
       </div>
     </div>
   );

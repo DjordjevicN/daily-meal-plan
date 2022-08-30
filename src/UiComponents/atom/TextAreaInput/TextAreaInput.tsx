@@ -1,5 +1,5 @@
 import React from "react";
-import { GiOrangeSlice } from "react-icons/gi";
+
 import { motion, AnimatePresence } from "framer-motion";
 import "./TextAreaInput.scss";
 
@@ -41,8 +41,6 @@ const TextAreaInput = (props: IProps) => {
         transition={{ duration: 0.5, delay: 0.5 }}
       >
         <div className="input__content">
-          {props.icon ?? <GiOrangeSlice />}
-
           <textarea
             autoFocus={props.autoFocus ?? false}
             autoComplete="off"

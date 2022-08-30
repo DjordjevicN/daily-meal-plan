@@ -2,13 +2,11 @@
 @import "../../../../styles/mixins.scss";
 
 .addedStep {
-  background-color: white;
   position: relative;
   border-radius: 8px;
-  margin-top: 10px;
-  box-shadow: $box-shadow;
+  box-shadow: $monoFrame;
 
-  width: 101.5%;
+  width: 100%;
   .actions {
     position: absolute;
     right: 10px;
@@ -19,14 +17,17 @@
     width: 50px;
   }
   &__content {
-    padding: 10px;
+    margin-top: 30px;
+    padding: 20px;
 
     .stepNum {
       font-size: 20px;
-      color: $orange-main;
+      text-align: left;
+      color: $monoFont;
     }
     .stepDescription {
       margin-top: 10px;
+      text-align: left;
     }
   }
   .updateStepInput {
@@ -39,9 +40,13 @@
       width: 100%;
       .inputBox {
         margin: 0 auto;
-        width: 95%;
+        width: 100%;
+
         p {
-          color: $orange-main;
+          text-align: left;
+          padding: 10px;
+          font-weight: 600;
+          color: $monoFont;
           margin-top: 20px;
         }
         .stepNum {
@@ -50,9 +55,8 @@
           padding: 8px 0 8px 8px;
           outline: none;
           border-radius: 8px;
-          border: $input-border;
-
-          box-shadow: $box-shadow;
+          border: none;
+          box-shadow: $monoInputShadow;
         }
         .textareaInput {
           padding: 8px 0 8px 8px;
@@ -62,22 +66,9 @@
           resize: vertical;
           outline: none;
           border-radius: 8px;
-          border: $input-border;
-          box-shadow: $box-shadow;
+          border: none;
+          box-shadow: $monoInputShadow;
         }
-      }
-
-      .updateBTN {
-        margin-top: 20px;
-        width: 98.3%;
-        display: grid;
-        place-items: center;
-        color: white;
-        cursor: pointer;
-        height: 24px;
-        border-radius: 8px;
-        background-color: $button-ok;
-        padding: 8px 0 8px 8px;
       }
     }
   }

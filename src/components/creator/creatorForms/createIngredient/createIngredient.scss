@@ -2,33 +2,22 @@
 @import "../../../../styles/mixins.scss";
 
 .createIngredient {
-  max-width: 450px;
-  width: 100%;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  right: 0;
-  background-color: $rightBar-bg;
-  box-shadow: -3px 3px 15px rgba(92, 92, 92, 0.527);
-  z-index: 1;
-
+  margin-bottom: 50px;
   &__content {
     .modalTitle {
-      font-size: 24px;
+      font-size: 2rem;
       font-weight: 700;
-      color: $orange-main;
+      color: $monoFont;
       text-align: center;
       margin: 50px 0;
     }
-    .exitBtn {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      cursor: pointer;
-    }
+
     .formBox {
       width: 75%;
       margin: 0 auto;
+      @include resp(500px) {
+        width: 100%;
+      }
       form {
         .fileInputBlock {
           margin-top: 15px;
@@ -36,25 +25,6 @@
         .inputBlock {
           margin-top: 15px;
           width: 100%;
-          .inputLabel {
-            color: $font-dark;
-          }
-          .inputEl {
-            width: 100%;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: $box-shadow;
-            display: grid;
-            place-items: center;
-            input {
-              border: none;
-              height: 30px;
-              width: 90%;
-              padding: 5px;
-              color: $font-dark;
-              outline: none;
-            }
-          }
         }
         .button {
           width: 100%;

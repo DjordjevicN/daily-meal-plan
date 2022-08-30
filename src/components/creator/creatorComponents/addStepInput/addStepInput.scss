@@ -8,42 +8,6 @@
     width: 100%;
     .inputBox {
       margin: 10px auto 0 auto;
-      p {
-        color: $font-dark;
-        margin-top: 20px;
-      }
-      .stepNum {
-        width: 100%;
-        height: 30px;
-        padding: 8px 0 8px 8px;
-        outline: none;
-        border-radius: 8px;
-        border: none;
-        box-shadow: $box-shadow;
-      }
-      .textareaInput {
-        padding: 8px 0 8px 8px;
-        width: 100%;
-        min-height: 100px;
-        resize: vertical;
-        outline: none;
-        border-radius: 8px;
-        border: none;
-        box-shadow: $box-shadow;
-      }
-    }
-
-    .addBTN {
-      margin-top: 20px;
-      width: 100%;
-      display: grid;
-      place-items: center;
-      color: white;
-      cursor: pointer;
-      height: 24px;
-      border-radius: 8px;
-      background-color: $orange-main;
-      padding: 8px 0 8px 8px;
     }
   }
 }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { GrClose } from "react-icons/gr";
 import { MdModeEditOutline } from "react-icons/md";
+import ButtonShell from "../../../../UiComponents/atom/ButtonShell/ButtonShell";
 import "./addedStepItem.scss";
 
 interface ISteps {
@@ -63,15 +64,16 @@ const AddedStepItem: React.FC<IProps> = ({ step, removeStep, updateStep }) => {
                 onChange={(e) => setDescription(e.target.value)}
               ></textarea>
             </div>
-            <div
-              className="updateBTN"
+            <ButtonShell
+              type="mono"
+              customStyle={{ margin: "30px auto", width: "50%" }}
               onClick={() => {
                 handleUpdateStep();
                 setIsEditOpen(false);
               }}
             >
               <p>Update Step</p>
-            </div>
+            </ButtonShell>
           </div>
         </div>
       ) : (
