@@ -5,8 +5,8 @@ import { baseUrl } from "../../../../../constants/utilFunc";
 import { IMealInformation } from "../../../../../constants/types";
 import { mealConst } from "../../../../../constants/mealConst";
 
-import { useDispatch } from "react-redux";
-import { actionCreators } from "../../../../../state";
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators, State } from "../../../../../state";
 import { bindActionCreators } from "redux";
 import InputField from "../../../../../UiComponents/atom/input/InputField";
 import ButtonShell from "../../../../../UiComponents/atom/ButtonShell/ButtonShell";
@@ -41,6 +41,11 @@ const MealOrganizer: React.FC<IProps> = ({ mealData }) => {
     actionCreators,
     dispatch
   );
+  const user = useSelector((state: State) => state.user);
+  const usersPlan = useSelector((state: State) => state.usersPlan);
+  const isCreator = () => {
+    return usersPlan.creator_id === user.id;
+  };
 
   useEffect(() => {
     if (searchValue.length > 2) {
@@ -125,17 +130,19 @@ const MealOrganizer: React.FC<IProps> = ({ mealData }) => {
           <div className="mealName">
             <p className="name">{mealConst[mealData.meal_type]}</p>
             <div>
-              <ButtonShell
-                customStyle={{
-                  padding: "0px",
-                  height: "20px",
-                  marginRight: "20px",
-                  width: "30px",
-                }}
-                onClick={() => setOpenEdit(!openEdit)}
-              >
-                Search
-              </ButtonShell>
+              {isCreator() && (
+                <ButtonShell
+                  customStyle={{
+                    padding: "0px",
+                    height: "20px",
+                    marginRight: "20px",
+                    width: "30px",
+                  }}
+                  onClick={() => setOpenEdit(!openEdit)}
+                >
+                  Search
+                </ButtonShell>
+              )}
             </div>
           </div>
 
@@ -178,7 +185,12 @@ const MealOrganizer: React.FC<IProps> = ({ mealData }) => {
         </div>
         <div className="displayMeals">
           <div className="displayMeals__content">
-            <div className="image" onClick={() => setOpenEdit(!openEdit)}>
+            <div
+              className="image"
+              onClick={() => {
+                isCreator() && setOpenEdit(!openEdit);
+              }}
+            >
               <img
                 src={
                   singleMeal.img.length > 0
@@ -194,6 +206,7 @@ const MealOrganizer: React.FC<IProps> = ({ mealData }) => {
             </p>
             <div className="amount">
               <input
+                disabled={!isCreator()}
                 type="text"
                 className="weight"
                 value={mealAmount}
@@ -203,6 +216,7 @@ const MealOrganizer: React.FC<IProps> = ({ mealData }) => {
                 }}
               ></input>
               <select
+                disabled={!isCreator()}
                 onChange={(e) => {
                   setPreventAction(false);
                   setMealUnit(e.target.value);

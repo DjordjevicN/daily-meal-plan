@@ -13,8 +13,6 @@ interface IProps {
 }
 
 const IngredientEditResults: React.FC<IProps> = (props) => {
-  console.log(props);
-
   const dispatch = useDispatch();
   const { upgradeIngredient, deleteIngredients } = bindActionCreators(
     actionCreators,

@@ -27,7 +27,6 @@ const AddedIngredientItem: React.FC<IProps> = ({
     updateAmountsOfIng(ingState);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ingState]);
-  console.log(ingredient);
 
   return (
     <div className="addedIngredientItem">

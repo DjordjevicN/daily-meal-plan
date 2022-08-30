@@ -25,8 +25,6 @@ const EditIngredient = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchInput]);
 
-  console.log(searchResults);
-
   return (
     <div className="editIngredient">
       <div className="editIngredient__content">

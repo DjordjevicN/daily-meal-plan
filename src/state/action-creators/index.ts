@@ -202,7 +202,6 @@ export const getUsersMeals = (value: number) => {
   };
 };
 export const getMealById = (value: number) => {
-  console.log(value);
   return async (dispatch: any) => {
     const response = await axios.post(`${baseUrl()}${routes.GET_MEAL_BY_ID}`, {
       value,
@@ -373,16 +372,7 @@ export const createDay = (plan_id: number, weekDay_id: number) => {
     }
   };
 };
-export const createPlan = () => {
-  return async (dispatch: any) => {
-    const response = await axios.post(`${baseUrl()}/create_plan`);
-    for (let i = 0; i < 7; i++) {
-      let plan_id = response.data.insertId;
-      let weekDay_id = i;
-      dispatch(createDay(plan_id, weekDay_id));
-    }
-  };
-};
+
 // ****************************
 
 export const getPlanById = (value: any) => {
@@ -521,5 +511,57 @@ export const deleteSingleShoppingItem = (value: any) => {
   return async (dispatch: any) => {
     await axios.post(`${baseUrl()}/delete_single_shopping_item`, { value });
     dispatch(getShoppingItemsByUserId(value.userId));
+  };
+};
+
+// PLANS
+export const getAllPlans = () => {
+  return async (dispatch: any) => {
+    const response = await axios.get(`${baseUrl()}/get_all_plans`);
+    dispatch({
+      type: ActionType.GET_ALL_PLANS,
+      payload: response.data,
+    });
+  };
+};
+export const getUsersPlans = (value: any) => {
+  return async (dispatch: any) => {
+    const response = await axios.post(`${baseUrl()}/get_users_plans`, {
+      value,
+    });
+
+    dispatch({
+      type: ActionType.GET_ALL_PLANS,
+      payload: response.data,
+    });
+  };
+};
+export const activatePlan = (value: any) => {
+  return async (dispatch: any) => {
+    await axios.post(`${baseUrl()}/activate_plan`, { value });
+    dispatch(getUser(value.userId));
+  };
+};
+export const deletePlan = (value: any) => {
+  return async (dispatch: any) => {
+    await axios.post(`${baseUrl()}/delete_plan`, { value });
+    dispatch(getAllPlans());
+  };
+};
+export const changePlaneName = (value: any) => {
+  return async (dispatch: any) => {
+    await axios.post(`${baseUrl()}/update_name`, { value });
+    dispatch(getAllPlans());
+  };
+};
+export const createPlan = (value: number) => {
+  return async (dispatch: any) => {
+    const response = await axios.post(`${baseUrl()}/create_plan`, { value });
+    for (let i = 0; i < 7; i++) {
+      let plan_id = response.data.insertId;
+      let weekDay_id = i;
+      dispatch(createDay(plan_id, weekDay_id));
+    }
+    dispatch(getAllPlans());
   };
 };

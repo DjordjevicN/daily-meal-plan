@@ -18,7 +18,6 @@ export const scrapeMeals = (value: any) => {
     const response = await axios.post(`${baseUrl}/scrape_meals`, {
       value,
     });
-    console.log(response.data);
 
     // eslint-disable-next-line array-callback-return
     response.data.map((item: any) => {
