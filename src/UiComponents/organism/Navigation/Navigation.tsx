@@ -10,6 +10,9 @@ import { State } from "../../../state";
 const Navigation = () => {
   const user = useSelector((state: State) => state.user);
   const [openBurger, setOpenBurger] = useState(false);
+  const logoutUser = () => {
+    localStorage.clear();
+  };
   return (
     <div className="navigation">
       <div className="navigation__content">
@@ -30,10 +33,20 @@ const Navigation = () => {
               </Link>
 
               <hr />
-
-              <Link to="/login">
-                <ButtonShell>Log In</ButtonShell>
-              </Link>
+              {user.id === 0 ? (
+                <Link to="/login">
+                  <ButtonShell>Log In</ButtonShell>
+                </Link>
+              ) : (
+                <ButtonShell
+                  onClick={() => {
+                    logoutUser();
+                    window.location.href = "/";
+                  }}
+                >
+                  Logout
+                </ButtonShell>
+              )}
             </div>
           )}
         </div>
