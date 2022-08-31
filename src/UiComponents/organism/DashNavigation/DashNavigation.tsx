@@ -75,7 +75,7 @@ const DashNavigation = (props: IProps) => {
                 <FiSettings />
                 {props.isMenuOpen ? <p>Creator</p> : null}
               </div>
-              <div
+              {/* <div
                 id="calculate"
                 className="link-item"
                 onClick={() => setOpenCalculator(!openCalculator)}
@@ -83,7 +83,7 @@ const DashNavigation = (props: IProps) => {
                 <RiGridLine />
 
                 {props.isMenuOpen ? <p>Calculate</p> : null}
-              </div>
+              </div> */}
               <div
                 className="link-item"
                 onClick={() => {
