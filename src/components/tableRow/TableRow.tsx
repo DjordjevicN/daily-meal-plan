@@ -38,15 +38,16 @@ const TableRow = ({ ingredient, userId }: IProps) => {
 
   return (
     <motion.div
-      drag="x"
-      dragConstraints={{ left: 0, right: 0 }}
-      onDragEnd={(event, info) => {
-        if (info.offset.x < -150) {
-          handleDeleteShopItem();
-        } else if (info.offset.x > 150) {
-          handleBuy();
-        }
-      }}
+      onClick={() => handleDeleteShopItem()}
+      // drag="x"
+      // dragConstraints={{ left: 0, right: 0 }}
+      // onDragEnd={(event, info) => {
+      //   if (info.offset.x < -150) {
+      //     handleDeleteShopItem();
+      //   } else if (info.offset.x > 150) {
+      //     handleBuy();
+      //   }
+      // }}
     >
       <div className="tableRow">
         <div className="image">
