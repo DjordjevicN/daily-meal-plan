@@ -48,5 +48,9 @@
   .buyButton {
     display: flex;
     justify-content: right;
+    .deleteBtn {
+      background-color: transparent;
+      border: none;
+    }
   }
 }

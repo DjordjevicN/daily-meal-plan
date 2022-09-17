@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // import { IIngredients } from "../../constants/types";
 import "./TableRow.scss";
 
@@ -10,6 +10,7 @@ import { bindActionCreators } from "redux";
 import { RiShoppingCartLine } from "react-icons/ri";
 import { FcCheckmark } from "react-icons/fc";
 import { motion } from "framer-motion";
+import Modal from "../../UiComponents/template/Modal/Modal";
 
 interface IProps {
   ingredient: any;
@@ -17,6 +18,7 @@ interface IProps {
 }
 
 const TableRow = ({ ingredient, userId }: IProps) => {
+  const [openModal, setOpenModal] = useState(false);
   const dispatch = useDispatch();
   const { switchHaveItem, deleteSingleShoppingItem } = bindActionCreators(
     actionCreators,
@@ -50,17 +52,26 @@ const TableRow = ({ ingredient, userId }: IProps) => {
     // }}
     >
       <div className="tableRow">
+        {openModal && (
+          <Modal
+            close={() => setOpenModal}
+            proceed={() => handleDeleteShopItem()}
+          >
+            <p>Delete Shopping Item ?</p>
+          </Modal>
+        )}
+
         <div className="image">
           <img
             src={
-              ingredient.img
+              ingredient.img !== "null"
                 ? `${baseUrl()}/uploads/${ingredient.img}`
-                : "images/noimage.png"
+                : "https://raw.githubusercontent.com/DjordjevicN/imagesRep/master/noimage.png"
             }
             alt="meal"
           />
         </div>
-        <button onClick={() => handleDeleteShopItem()}>Delete</button>
+
         <div className="nameAndAmount">
           <div className="name">
             <p>{ingredient.name}</p>
@@ -72,6 +83,9 @@ const TableRow = ({ ingredient, userId }: IProps) => {
         </div>
 
         <div className="buyButton">
+          <button className="deleteBtn" onClick={() => setOpenModal(true)}>
+            Delete
+          </button>
           <ButtonShell
             onClick={() => handleBuy()}
             type="monoCube"
