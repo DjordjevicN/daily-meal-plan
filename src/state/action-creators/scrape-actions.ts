@@ -1,13 +1,10 @@
 import axios from "axios";
-import { isLocal } from "../../constants/utilFunc";
 
-const baseUrl = isLocal()
-  ? "http://localhost:3001"
-  : "https://jelovnik.nikola-djordjevic.com";
+import { baseUrl } from "../../constants/utilFunc";
 
 export const addBasicFoods = (value: any) => {
   return async (dispatch: any) => {
-    await axios.post(`${baseUrl}/add_basic_foods`, {
+    await axios.post(`${baseUrl()}/add_basic_foods`, {
       value,
     });
   };
@@ -15,7 +12,7 @@ export const addBasicFoods = (value: any) => {
 
 export const scrapeMeals = (value: any) => {
   return async (dispatch: any) => {
-    const response = await axios.post(`${baseUrl}/scrape_meals`, {
+    const response = await axios.post(`${baseUrl()}/scrape_meals`, {
       value,
     });
 
