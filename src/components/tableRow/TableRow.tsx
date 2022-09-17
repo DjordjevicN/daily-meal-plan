@@ -55,13 +55,7 @@ const TableRow = ({ ingredient, userId }: IProps) => {
             src={
               ingredient.img !== "null"
                 ? `${baseUrl()}/uploads/${ingredient.img}`
-<<<<<<< Updated upstream
                 : "https://raw.githubusercontent.com/DjordjevicN/imagesRep/master/noimage.png"
-=======
-                : ingredient.imageCall
-                ? `${ingredient.imageCall}`
-                : "images/noimage.png"
->>>>>>> Stashed changes
             }
             alt="meal"
           />
