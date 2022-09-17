@@ -39,8 +39,6 @@ const AddNewStep: React.FC<IProps> = ({ step }) => {
   return (
     <div className="addNewStep">
       <div className="addNewStep__content">
-        <p className="title">Add new step</p>
-
         <InputField
           placeholder="Step number"
           change={(inputField: string) =>

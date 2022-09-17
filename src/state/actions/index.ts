@@ -83,6 +83,10 @@ interface GetAllPlans {
   type: ActionType.GET_ALL_PLANS;
   payload: any;
 }
+interface GetBasicFoods {
+  type: ActionType.GET_BASIC_FOOD;
+  payload: any;
+}
 
 export type Action =
   | CreateUser
@@ -103,4 +107,5 @@ export type Action =
   | GetMealById
   | GetAllShoppingItems
   | GetShoppingItemsByUserId
-  | GetAllPlans;
+  | GetAllPlans
+  | GetBasicFoods;

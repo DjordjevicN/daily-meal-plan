@@ -9,6 +9,7 @@ import plans from "./plans";
 
 import usersPlan from "./usersPlan";
 import mealDisplay from "./mealDisplay";
+import basicFoodTransfer from "./basicFoodTransfer";
 
 const reducers = combineReducers({
   user: userReducer,
@@ -20,6 +21,7 @@ const reducers = combineReducers({
   mealDisplay: mealDisplay,
   shoppingList: shoppingList,
   plans: plans,
+  basicFoodTransfer: basicFoodTransfer,
 });
 export default reducers;
 export type State = ReturnType<typeof reducers>;

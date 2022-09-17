@@ -19,6 +19,8 @@ const FoodItems: React.FC<Props> = (props) => {
           src={
             props.food.img
               ? `${baseUrl()}/uploads/${props.food.img}`
+              : props.food.imageCall
+              ? `${props.food.imageCall}`
               : "images/noimage.png"
           }
           alt="meal"

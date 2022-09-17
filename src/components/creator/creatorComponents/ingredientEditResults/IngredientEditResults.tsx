@@ -35,10 +35,13 @@ const IngredientEditResults: React.FC<IProps> = (props) => {
               src={
                 props.ingredient.img
                   ? `${baseUrl()}/uploads/${props.ingredient.img}`
+                  : props.ingredient.imageCall
+                  ? `${props.ingredient.imageCall}`
                   : "images/noimage.png"
               }
               alt="meal"
             />
+
             <p className="name">{props.ingredient.name}</p>
             {/* <div className="nutrition">
               <div className="nutrition-section">

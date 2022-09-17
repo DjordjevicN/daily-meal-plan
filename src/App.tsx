@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { actionCreators } from "./state";
 import { bindActionCreators } from "redux";
 import Login from "./pages/Login/Login";
+import FoodTransfer from "./pages/FoodTransfer/FoodTransfer";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/login" element={<Login />} />
         <Route path="/meal/:id" element={<SingleMealPage />} />
+        <Route path="/foodTransfer" element={<FoodTransfer />} />
 
         <Route path="*" element={<HomePage />} />
       </Routes>

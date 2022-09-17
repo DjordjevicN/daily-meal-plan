@@ -19,6 +19,7 @@ interface IIngredient {
   img?: string;
   amount: number | string;
   unit: string;
+  imageCall?: string;
 }
 interface ISteps {
   id?: number | string;

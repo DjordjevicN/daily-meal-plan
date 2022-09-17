@@ -43,15 +43,9 @@ const SelectInput = (props: IProps) => {
             name="activity"
             onChange={(e) => props.change(e.target.value)}
           >
-            <option disabled selected>
-              {props.placeholder}
-            </option>
+            <option disabled>{props.placeholder}</option>
             {props.options.map((item: any) => {
-              return (
-                <option key={item.id} value={item.value}>
-                  {item.option}
-                </option>
-              );
+              return <option key={item.id}>{item.option}</option>;
             })}
           </select>
         </div>

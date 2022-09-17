@@ -48,6 +48,7 @@ function HomePage() {
   return (
     <>
       <Navigation />
+
       <div className="homePage">
         <div className="homePage__content">
           <div className="hero">

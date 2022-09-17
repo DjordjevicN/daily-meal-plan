@@ -19,6 +19,12 @@ const Navigation = () => {
         <div className="logo">
           <Avatar />
         </div>
+        {user.id === 1 && (
+          <Link to="/foodTransfer">
+            <ButtonShell>Food Transfer</ButtonShell>
+          </Link>
+        )}
+
         <div className="burgerWrapper">
           <div
             className="burger__content"

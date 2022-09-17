@@ -11,7 +11,7 @@ interface IIngredient {
   unit: string;
 }
 interface IProps {
-  ingredient: IIngredient;
+  ingredient: any;
   handleRemoveIngredient: (value: number | string) => void;
   updateAmountsOfIng: (value: IIngredient) => void;
 }
@@ -36,6 +36,8 @@ const AddedIngredientItem: React.FC<IProps> = ({
             src={
               ingredient.img
                 ? `${baseUrl()}/uploads/${ingredient.img}`
+                : ingredient.imageCall
+                ? `${ingredient.imageCall}`
                 : "images/noimage.png"
             }
             alt="meal"

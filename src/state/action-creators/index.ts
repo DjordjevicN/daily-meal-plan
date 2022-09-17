@@ -106,6 +106,12 @@ export const addNewIngredients = (value: any) => {
     dispatch(handleFile(imageData));
   };
 };
+export const transferIngredient = (value: any) => {
+  return async (dispatch: any) => {
+    await axios.post(`${baseUrl()}${routes.ADD_INGREDIENT}`, value);
+    dispatch(getAllIngredients());
+  };
+};
 
 export const upgradeIngredient = (value: any) => {
   return async (dispatch: any) => {
@@ -563,5 +569,17 @@ export const createPlan = (value: number) => {
       dispatch(createDay(plan_id, weekDay_id));
     }
     dispatch(getAllPlans());
+  };
+};
+
+export const getFoodForTransfer = (value: any) => {
+  return async (dispatch: any) => {
+    const response = await axios.post(`${baseUrl()}/get_basic_food`, {
+      value,
+    });
+    dispatch({
+      type: ActionType.GET_BASIC_FOOD,
+      payload: response.data,
+    });
   };
 };

@@ -1,18 +1,11 @@
 import React from "react";
-import { IIngredients } from "../../../../constants/types";
+
 import "./searchResultItem.scss";
 import { baseUrl } from "../../../../constants/utilFunc";
 
-interface IIngredient {
-  id: number | string;
-  name: string;
-  img?: string;
-  amount: number | string;
-  unit: string;
-}
 interface IProps {
-  ingredientInfo: IIngredients;
-  handleAddIngredient: (value: IIngredient) => void;
+  ingredientInfo: any;
+  handleAddIngredient: (value: any) => void;
 }
 
 const SearchResultItem: React.FC<IProps> = ({
@@ -25,6 +18,7 @@ const SearchResultItem: React.FC<IProps> = ({
     img: ingredientInfo.img,
     amount: 100,
     unit: "gr",
+    imageCall: ingredientInfo.imageCall,
   };
 
   return (
@@ -33,8 +27,10 @@ const SearchResultItem: React.FC<IProps> = ({
         <div className="image">
           <img
             src={
-              ingredientInfo.img
-                ? `${baseUrl()}/uploads/${ingredientInfo.img}`
+              ingredient.img
+                ? `${baseUrl()}/uploads/${ingredient.img}`
+                : ingredient.imageCall
+                ? `${ingredient.imageCall}`
                 : "images/noimage.png"
             }
             alt="meal"
