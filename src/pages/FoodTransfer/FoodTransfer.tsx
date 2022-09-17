@@ -21,6 +21,7 @@ const FoodTransfer = () => {
     if (search.length > 2) {
       getFoodForTransfer(search);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
   const handleTransfer = (item: any) => {
