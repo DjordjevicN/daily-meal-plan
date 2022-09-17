@@ -39,22 +39,11 @@ const TableRow = ({ ingredient, userId }: IProps) => {
   };
 
   return (
-    <motion.div
-
-    // drag="x"
-    // dragConstraints={{ left: 0, right: 0 }}
-    // onDragEnd={(event, info) => {
-    //   if (info.offset.x < -150) {
-    //     handleDeleteShopItem();
-    //   } else if (info.offset.x > 150) {
-    //     handleBuy();
-    //   }
-    // }}
-    >
+    <motion.div>
       <div className="tableRow">
         {openModal && (
           <Modal
-            close={() => setOpenModal}
+            close={() => setOpenModal(false)}
             proceed={() => handleDeleteShopItem()}
           >
             <p>Delete Shopping Item ?</p>

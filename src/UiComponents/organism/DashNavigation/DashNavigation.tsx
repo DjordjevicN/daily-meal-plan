@@ -7,6 +7,8 @@ import { pages } from "../../../constants/pages";
 import { color } from "../../../constants/color";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineHome } from "react-icons/ai";
+import { useSelector } from "react-redux";
+import { State } from "../../../state";
 
 interface IProps {
   setPage: React.Dispatch<React.SetStateAction<string>>;
@@ -18,6 +20,9 @@ interface IProps {
 const DashNavigation = (props: IProps) => {
   const navigate = useNavigate();
   const [openCalculator, setOpenCalculator] = useState(false);
+  const user = useSelector((state: State) => state.user);
+  console.log(user);
+
   const logoutUser = () => {
     localStorage.clear();
   };
@@ -30,6 +35,9 @@ const DashNavigation = (props: IProps) => {
             <div className="navTitle" onClick={() => navigate("/")}>
               <p>Meal</p>
               <p>Planer</p>
+            </div>
+            <div className="loggedUser">
+              <p className="userEmail">{user.email}</p>
             </div>
 
             <div className="navigation">
