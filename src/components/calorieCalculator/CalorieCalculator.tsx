@@ -1,43 +1,43 @@
-import React, { useState } from "react";
-import "./CalorieCalculator.scss";
-import { calorieCalculatorInitState } from "../../constants/initStates";
-import { ICaloriesCalculateState } from "../../constants/types";
-import { calculateCalorie } from "../../constants/utilFunc";
-import { useSelector } from "react-redux";
-import { State } from "../../state";
-import { useDispatch } from "react-redux";
-import { actionCreators } from "../../state";
-import { bindActionCreators } from "redux";
-import { GrClose } from "react-icons/gr";
-
+import React, { useState } from "react"
+import "./CalorieCalculator.scss"
+import { calorieCalculatorInitState } from "../../constants/initStates"
+import { ICaloriesCalculateState } from "../../constants/types"
+import { calculateCalorie } from "../../constants/utilFunc"
+import { useSelector } from "react-redux"
+import { State } from "../../state"
+import { useDispatch } from "react-redux"
+import { actionCreators } from "../../state"
+import { bindActionCreators } from "redux"
+import { GrClose } from "react-icons/gr"
+// test
 interface IProps {
-  recalculate?: boolean;
-  setOpenCalculator?: React.Dispatch<React.SetStateAction<boolean>>;
-  exitBtn?: boolean;
+  recalculate?: boolean
+  setOpenCalculator?: React.Dispatch<React.SetStateAction<boolean>>
+  exitBtn?: boolean
 }
 
 const CalorieCalculator: React.FC<IProps> = (props) => {
-  const dispatch = useDispatch();
-  const { updateUsersCalories } = bindActionCreators(actionCreators, dispatch);
+  const dispatch = useDispatch()
+  const { updateUsersCalories } = bindActionCreators(actionCreators, dispatch)
   const [formState, setFormState] = useState<ICaloriesCalculateState>(
     calorieCalculatorInitState
-  );
-  const [showResult, setShowResult] = useState(false);
+  )
+  const [showResult, setShowResult] = useState(false)
 
-  const user = useSelector((state: State) => state.user);
+  const user = useSelector((state: State) => state.user)
 
   const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    setShowResult(true);
-  };
+    event.preventDefault()
+    setShowResult(true)
+  }
   const updateUserCalories = () => {
     const data = {
       userId: user.id,
       calories: calculateCalorie(formState),
-    };
-    updateUsersCalories(data);
-    props.setOpenCalculator?.(false);
-  };
+    }
+    updateUsersCalories(data)
+    props.setOpenCalculator?.(false)
+  }
   return (
     <div className="calculator_wrapper">
       {props.exitBtn && (
@@ -75,7 +75,7 @@ const CalorieCalculator: React.FC<IProps> = (props) => {
                     type="number"
                     value={formState.age!}
                     onChange={(e) => {
-                      setFormState({ ...formState, age: +e.target.value });
+                      setFormState({ ...formState, age: +e.target.value })
                     }}
                   />
                 </div>
@@ -88,7 +88,7 @@ const CalorieCalculator: React.FC<IProps> = (props) => {
                   <select
                     name="Gender"
                     onChange={(e) => {
-                      setFormState({ ...formState, gender: e.target.value });
+                      setFormState({ ...formState, gender: e.target.value })
                     }}
                   >
                     <option value="male">Male</option>
@@ -105,7 +105,7 @@ const CalorieCalculator: React.FC<IProps> = (props) => {
                     type="number"
                     value={formState.weight!}
                     onChange={(e) => {
-                      setFormState({ ...formState, weight: +e.target.value });
+                      setFormState({ ...formState, weight: +e.target.value })
                     }}
                   />
                 </div>
@@ -119,7 +119,7 @@ const CalorieCalculator: React.FC<IProps> = (props) => {
                     type="number"
                     value={formState.height!}
                     onChange={(e) => {
-                      setFormState({ ...formState, height: +e.target.value });
+                      setFormState({ ...formState, height: +e.target.value })
                     }}
                   />
                 </div>
@@ -135,7 +135,7 @@ const CalorieCalculator: React.FC<IProps> = (props) => {
                       setFormState({
                         ...formState,
                         activity: +e.target.value,
-                      });
+                      })
                     }}
                   >
                     <option value="-400">Low</option>
@@ -153,7 +153,7 @@ const CalorieCalculator: React.FC<IProps> = (props) => {
                       setFormState({
                         ...formState,
                         goal: +e.target.value,
-                      });
+                      })
                     }}
                   >
                     <option value="20">Weight loss</option>
@@ -171,7 +171,7 @@ const CalorieCalculator: React.FC<IProps> = (props) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CalorieCalculator;
+export default CalorieCalculator
