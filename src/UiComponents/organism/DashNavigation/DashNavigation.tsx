@@ -1,31 +1,30 @@
-import React, { useState } from "react";
-import { FiLogOut, FiSettings } from "react-icons/fi";
-import { GiKnifeFork } from "react-icons/gi";
-import { RiGridLine, RiTodoLine } from "react-icons/ri";
-import "./DashNavigation.scss";
-import { pages } from "../../../constants/pages";
-import { color } from "../../../constants/color";
-import { useNavigate } from "react-router-dom";
-import { AiOutlineHome } from "react-icons/ai";
-import { useSelector } from "react-redux";
-import { State } from "../../../state";
+import React, { useState } from "react"
+import { FiLogOut, FiSettings } from "react-icons/fi"
+import { GiKnifeFork } from "react-icons/gi"
+import { RiGridLine, RiTodoLine } from "react-icons/ri"
+import "./DashNavigation.scss"
+import { pages } from "../../../constants/pages"
+import { color } from "../../../constants/color"
+import { useNavigate } from "react-router-dom"
+import { AiOutlineHome } from "react-icons/ai"
+import { useSelector } from "react-redux"
+import { State } from "../../../state"
 
 interface IProps {
-  setPage: React.Dispatch<React.SetStateAction<string>>;
-  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  isMenuOpen: boolean;
-  page: string;
+  setPage: React.Dispatch<React.SetStateAction<string>>
+  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
+  isMenuOpen: boolean
+  page: string
 }
 
 const DashNavigation = (props: IProps) => {
-  const navigate = useNavigate();
-  const [openCalculator, setOpenCalculator] = useState(false);
-  const user = useSelector((state: State) => state.user);
-  console.log(user);
+  const navigate = useNavigate()
+  const [openCalculator, setOpenCalculator] = useState(false)
+  const user = useSelector((state: State) => state.user)
 
   const logoutUser = () => {
-    localStorage.clear();
-  };
+    localStorage.clear()
+  }
   return (
     <div className="DashNavigation">
       <div className="DashNavigation__content">
@@ -95,8 +94,8 @@ const DashNavigation = (props: IProps) => {
               <div
                 className="link-item"
                 onClick={() => {
-                  logoutUser();
-                  window.location.href = "/";
+                  logoutUser()
+                  window.location.href = "/"
                 }}
               >
                 <FiLogOut />
@@ -112,7 +111,7 @@ const DashNavigation = (props: IProps) => {
               className="link-item"
               onClick={() => {
                 // logoutUser();
-                window.location.href = "/";
+                window.location.href = "/"
               }}
             >
               <AiOutlineHome />
@@ -167,7 +166,7 @@ const DashNavigation = (props: IProps) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default DashNavigation;
+export default DashNavigation

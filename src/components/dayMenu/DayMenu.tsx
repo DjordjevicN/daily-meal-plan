@@ -1,47 +1,47 @@
-import React, { useState, useEffect } from "react";
-import Meal from "../meal/Meal";
-import "./DayMenu.scss";
-import moment from "moment";
-import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
-import { useDispatch, useSelector } from "react-redux";
-import { actionCreators, State } from "../../state";
-import { bindActionCreators } from "redux";
-import { dayConst } from "../../constants/dayConst";
+import React, { useState, useEffect } from "react"
+import Meal from "../meal/Meal"
+import "./DayMenu.scss"
+import moment from "moment"
+import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs"
+import { useDispatch, useSelector } from "react-redux"
+import { actionCreators, State } from "../../state"
+import { bindActionCreators } from "redux"
+import { dayConst } from "../../constants/dayConst"
 
 const DayMenu = () => {
-  const dispatch = useDispatch();
-  const [dayId, setDayId] = useState<number>(+moment().format("e"));
-  const { getTodaysMeals } = bindActionCreators(actionCreators, dispatch);
-  const user = useSelector((state: State) => state.user);
+  const dispatch = useDispatch()
+  const [dayId, setDayId] = useState<number>(+moment().format("e"))
+  const { getTodaysMeals } = bindActionCreators(actionCreators, dispatch)
+  const user = useSelector((state: State) => state.user)
 
   useEffect(() => {
-    let plan_id = user?.plan_id ?? 0;
+    let plan_id = user?.plan_id ?? 0
     if (plan_id > 0) {
       const data = {
         plan_id: user.plan_id,
         weekDay_id: dayId,
-      };
+      }
 
-      getTodaysMeals(data);
+      getTodaysMeals(data)
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user.plan_id, dayId]);
+  }, [user.plan_id, dayId])
 
   const nextDay = () => {
     if (dayId === 6) {
-      setDayId(0);
+      setDayId(0)
     } else {
-      setDayId(dayId + 1);
+      setDayId(dayId + 1)
     }
-  };
+  }
   const prevDay = () => {
     if (dayId === 0) {
-      setDayId(6);
+      setDayId(6)
     } else {
-      setDayId(dayId - 1);
+      setDayId(dayId - 1)
     }
-  };
+  }
 
   // const getNutritionStats = () => {
   //   const food = user.todaysMeals;
@@ -81,19 +81,13 @@ const DayMenu = () => {
         <div className="screenNavigation">
           <div className="navContent">
             <div className="nav-item">
-              <BsChevronCompactLeft
-                className="icon"
-                onClick={() => prevDay()}
-              />
-              <div className="titleBox">
+              <BsChevronCompactLeft className="icon" onClick={prevDay} />
+              <div className="titleBox" onClick={nextDay}>
                 <p className="day">{`${dayConst[dayId]}`}</p>
                 <p className="calorieGoal">2600 - 3100</p>
               </div>
 
-              <BsChevronCompactRight
-                className="icon"
-                onClick={() => nextDay()}
-              />
+              <BsChevronCompactRight className="icon" onClick={nextDay} />
             </div>
           </div>
         </div>
@@ -116,7 +110,7 @@ const DayMenu = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default DayMenu;
+export default DayMenu

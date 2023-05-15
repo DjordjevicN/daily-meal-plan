@@ -1,42 +1,42 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 // import { IIngredients } from "../../constants/types";
-import "./TableRow.scss";
+import "./TableRow.scss"
 
-import { baseUrl } from "../../constants/utilFunc";
-import ButtonShell from "../../UiComponents/atom/ButtonShell/ButtonShell";
-import { useDispatch } from "react-redux";
-import { actionCreators } from "../../state";
-import { bindActionCreators } from "redux";
-import { RiShoppingCartLine } from "react-icons/ri";
-import { FcCheckmark } from "react-icons/fc";
-import { motion } from "framer-motion";
-import Modal from "../../UiComponents/template/Modal/Modal";
+import { baseUrl } from "../../constants/utilFunc"
+import ButtonShell from "../../UiComponents/atom/ButtonShell/ButtonShell"
+import { useDispatch } from "react-redux"
+import { actionCreators } from "../../state"
+import { bindActionCreators } from "redux"
+import { RiShoppingCartLine } from "react-icons/ri"
+import { FcCheckmark } from "react-icons/fc"
+import { motion } from "framer-motion"
+import Modal from "../../UiComponents/template/Modal/Modal"
 
 interface IProps {
-  ingredient: any;
-  userId: number;
+  ingredient: any
+  userId: number
 }
 
 const TableRow = ({ ingredient, userId }: IProps) => {
-  const [openModal, setOpenModal] = useState(false);
-  const dispatch = useDispatch();
+  const [openModal, setOpenModal] = useState(false)
+  const dispatch = useDispatch()
   const { switchHaveItem, deleteSingleShoppingItem } = bindActionCreators(
     actionCreators,
     dispatch
-  );
+  )
 
   const handleBuy = () => {
     const value = {
       item_id: +ingredient.id,
       have: !ingredient.have,
       users_id: userId,
-    };
+    }
 
-    switchHaveItem(value);
-  };
+    switchHaveItem(value)
+  }
   const handleDeleteShopItem = () => {
-    deleteSingleShoppingItem({ itemId: +ingredient.id, userId });
-  };
+    deleteSingleShoppingItem({ itemId: +ingredient.id, userId })
+  }
 
   return (
     <motion.div>
@@ -72,9 +72,9 @@ const TableRow = ({ ingredient, userId }: IProps) => {
         </div>
 
         <div className="buyButton">
-          <button className="deleteBtn" onClick={() => setOpenModal(true)}>
+          {/* <button className="deleteBtn" onClick={() => setOpenModal(true)}>
             Delete
-          </button>
+          </button> */}
           <ButtonShell
             onClick={() => handleBuy()}
             type="monoCube"
@@ -88,7 +88,7 @@ const TableRow = ({ ingredient, userId }: IProps) => {
         </div>
       </div>
     </motion.div>
-  );
-};
+  )
+}
 
-export default TableRow;
+export default TableRow

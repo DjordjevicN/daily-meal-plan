@@ -1,81 +1,78 @@
-import { Action } from "./../actions/index";
-import { ActionType } from "./../action-types/index";
-import { Dispatch } from "redux";
-import axios from "axios";
-import routes from "../../constants/routes";
-import FormData from "form-data";
-import { IUser } from "../../constants/types";
-import { baseUrl } from "../../constants/utilFunc";
+import { Action } from "./../actions/index"
+import { ActionType } from "./../action-types/index"
+import { Dispatch } from "redux"
+import axios from "axios"
+import routes from "../../constants/routes"
+import FormData from "form-data"
+import { IUser } from "../../constants/types"
+import { baseUrl } from "../../constants/utilFunc"
 
 // USER
 export const getUser = (value: number | string | null) => {
   return async (dispatch: Dispatch<Action>) => {
     const response = await axios.post(`${baseUrl()}${routes.GET_USER_BY_ID}`, {
       value,
-    });
+    })
     dispatch({
       type: ActionType.LOGIN_USER,
       payload: response.data[0],
-    });
-  };
-};
+    })
+  }
+}
 
 const handleFile = async (value: any) => {
-  const formData = new FormData();
-  formData.append("picture", value.files);
-  formData.append("tableName", value.tableName);
-  formData.append("itemId", `${value.itemId}`);
-  await axios.post(`${baseUrl()}/picture`, formData);
-};
+  const formData = new FormData()
+  formData.append("picture", value.files)
+  formData.append("tableName", value.tableName)
+  formData.append("itemId", `${value.itemId}`)
+  await axios.post(`${baseUrl()}/picture`, formData)
+}
 
 export const loginUser = (value: { email: string; password: string }) => {
   return async (dispatch: Dispatch<Action>) => {
-    const response = await axios.post(
-      `${baseUrl()}${routes.LOGIN_USER}`,
-      value
-    );
+    const response = await axios.post(`${baseUrl()}${routes.LOGIN_USER}`, value)
 
     if (response.data.error) {
-      return console.log(response.data.msg);
+      return console.log(response.data.msg)
     }
-    localStorage.setItem("userId", response.data[0].id.toString());
+    localStorage.setItem("userId", response.data[0].id.toString())
 
     dispatch({
       type: ActionType.LOGIN_USER,
       payload: response.data[0],
-    });
-  };
-};
+    })
+  }
+}
 export const createUser = (value: IUser) => {
   return async () => {
-    await axios.post(`${baseUrl()}${routes.CREATE_USER}`, value);
-  };
-};
+    await axios.post(`${baseUrl()}${routes.CREATE_USER}`, value)
+  }
+}
 
 export const updateUser = (value: IUser) => {
   return async (dispatch: any) => {
     const response = await axios.post(
       `${baseUrl()}${routes.UPDATE_USER}`,
       value
-    );
+    )
     if (response.status === 200) {
-      return dispatch(getUser(value.id));
+      return dispatch(getUser(value.id))
     }
-  };
-};
+  }
+}
 
 // INGREDIENTS
 export const getAllIngredients = () => {
   return async (dispatch: Dispatch<Action>) => {
     const response = await axios.get(
       `${baseUrl()}${routes.GET_ALL_INGREDIENTS}`
-    );
+    )
     dispatch({
       type: ActionType.GET_ALL_INGREDIENTS,
       payload: response.data.results,
-    });
-  };
-};
+    })
+  }
+}
 export const getIngredientByName = (value: any) => {
   return async (dispatch: Dispatch<Action>) => {
     const response = await axios.post(
@@ -83,67 +80,67 @@ export const getIngredientByName = (value: any) => {
       {
         value,
       }
-    );
+    )
 
     dispatch({
       type: ActionType.GET_ING_BY_NAME,
       payload: response.data.results,
-    });
-  };
-};
+    })
+  }
+}
 export const addNewIngredients = (value: any) => {
   return async (dispatch: any) => {
     const response = await axios.post(
       `${baseUrl()}${routes.ADD_INGREDIENT}`,
       value
-    );
+    )
     const imageData = {
       tableName: "ingredients",
       files: value.img,
       itemId: response.data.insertId,
-    };
-    dispatch(getAllIngredients());
-    dispatch(handleFile(imageData));
-  };
-};
+    }
+    dispatch(getAllIngredients())
+    dispatch(handleFile(imageData))
+  }
+}
 export const transferIngredient = (value: any) => {
   return async (dispatch: any) => {
-    await axios.post(`${baseUrl()}${routes.ADD_INGREDIENT}`, value);
-    dispatch(getAllIngredients());
-  };
-};
+    await axios.post(`${baseUrl()}${routes.ADD_INGREDIENT}`, value)
+    dispatch(getAllIngredients())
+  }
+}
 
 export const upgradeIngredient = (value: any) => {
   return async (dispatch: any) => {
-    await axios.post(`${baseUrl()}${routes.EDIT_INGREDIENT}`, { value });
+    await axios.post(`${baseUrl()}${routes.EDIT_INGREDIENT}`, { value })
     const imageData = {
       tableName: "ingredients",
       files: value.img,
       itemId: value.id,
-    };
-    dispatch(handleFile(imageData));
-  };
-};
+    }
+    dispatch(handleFile(imageData))
+  }
+}
 
 export const deleteIngredients = (value: number | string) => {
   return async (dispatch: any) => {
-    await axios.post(`${baseUrl()}${routes.DELETE_INGREDIENT}`, { value });
-    dispatch(getAllIngredients());
-  };
-};
+    await axios.post(`${baseUrl()}${routes.DELETE_INGREDIENT}`, { value })
+    dispatch(getAllIngredients())
+  }
+}
 export const buyIngredients = (value: any) => {
   return async (dispatch: any) => {
-    await axios.post(`${baseUrl()}${routes.PURCHASE_INGREDIENT}`, { value });
-    dispatch(getAllIngredients());
-  };
-};
+    await axios.post(`${baseUrl()}${routes.PURCHASE_INGREDIENT}`, { value })
+    dispatch(getAllIngredients())
+  }
+}
 
 export const editIngredients = (value: any) => {
   return async (dispatch: any) => {
-    await axios.post(`${baseUrl()}${routes.EDIT_INGREDIENT}`, { value });
-    dispatch(getAllIngredients());
-  };
-};
+    await axios.post(`${baseUrl()}${routes.EDIT_INGREDIENT}`, { value })
+    dispatch(getAllIngredients())
+  }
+}
 // CREATE GLUE INGREDIENT
 export const createIngredientInMeal = (mealId: number | string, value: any) => {
   return async (dispatch: any) => {
@@ -153,13 +150,13 @@ export const createIngredientInMeal = (mealId: number | string, value: any) => {
         ingredientId: item.id,
         amount: item.amount,
         unit: item.unit,
-      };
+      }
       await axios.post(`${baseUrl()}${routes.CREATE_INGREDIENT_IN_MEAL}`, {
         data,
-      });
-    });
-  };
-};
+      })
+    })
+  }
+}
 // CREATE GLUE INGREDIENT
 export const createMealSteps = (mealId: number, value: any) => {
   return async (dispatch: any) => {
@@ -168,29 +165,29 @@ export const createMealSteps = (mealId: number, value: any) => {
         meal_id: mealId,
         title: item.stepNum ?? item.title,
         description: item.description,
-      };
+      }
 
       await axios.post(`${baseUrl()}${routes.CREATE_MEAL_STEP}`, {
         data,
-      });
-    });
-  };
-};
+      })
+    })
+  }
+}
 export const createStep = (value: any) => {
   return async (dispatch: any) => {
     await axios.post(`${baseUrl()}/add_step`, {
       value,
-    });
-  };
-};
+    })
+  }
+}
 
 export const updateMealSteps = (value: any) => {
   return async (dispatch: any) => {
     await axios.post(`${baseUrl()}/update_step`, {
       value,
-    });
-  };
-};
+    })
+  }
+}
 // GET USERS MEALS
 export const getUsersMeals = (value: number) => {
   return async (dispatch: any) => {
@@ -199,26 +196,26 @@ export const getUsersMeals = (value: number) => {
       {
         value,
       }
-    );
+    )
 
     dispatch({
       type: ActionType.GET_USERS_MEALS,
       payload: response.data,
-    });
-  };
-};
+    })
+  }
+}
 export const getMealById = (value: number) => {
   return async (dispatch: any) => {
     const response = await axios.post(`${baseUrl()}${routes.GET_MEAL_BY_ID}`, {
       value,
-    });
+    })
 
     dispatch({
       type: ActionType.GET_MEAL_BY_ID,
       payload: response.data[0],
-    });
-  };
-};
+    })
+  }
+}
 // CREATE MEAL
 export const createMeal = (value: any) => {
   return async (dispatch: any) => {
@@ -226,24 +223,24 @@ export const createMeal = (value: any) => {
       user_id: value.user_id,
       name: value.name,
       videoUrl: value.videoUrl,
-    };
+    }
 
     const response = await axios.post(`${baseUrl()}${routes.CREATE_MEAL}`, {
       mealInfo,
-    });
+    })
 
     const imageData = {
       tableName: "meal",
       files: value.image,
       itemId: response.data.insertId,
-    };
+    }
 
-    dispatch(createIngredientInMeal(response.data.insertId, value));
-    dispatch(createMealSteps(response.data.insertId, value));
-    dispatch(getUsersMeals(mealInfo.user_id));
-    dispatch(handleFile(imageData));
-  };
-};
+    dispatch(createIngredientInMeal(response.data.insertId, value))
+    dispatch(createMealSteps(response.data.insertId, value))
+    dispatch(getUsersMeals(mealInfo.user_id))
+    dispatch(handleFile(imageData))
+  }
+}
 
 // GET MEALS INGREDIENTS
 export const getMealsIngredients = (value: number) => {
@@ -253,49 +250,49 @@ export const getMealsIngredients = (value: number) => {
       {
         value,
       }
-    );
+    )
     dispatch({
       type: ActionType.GET_MEALS_INGREDIENTS,
       payload: response.data,
-    });
-  };
-};
+    })
+  }
+}
 // GET MEALS STEPS
 export const getMealsSteps = (value: number) => {
   return async (dispatch: any) => {
     const response = await axios.post(`${baseUrl()}${routes.GET_MEALS_STEPS}`, {
       value,
-    });
+    })
     dispatch({
       type: ActionType.GET_MEALS_STEPS,
       payload: response.data,
-    });
-  };
-};
+    })
+  }
+}
 // DELETE MEAL
 export const deleteMeal = (value: { userId: number; mealId: number }) => {
   return async (dispatch: any) => {
     await axios.post(`${baseUrl()}/delete_meal`, {
       value,
-    });
-    dispatch(getUsersMeals(value.userId));
-  };
-};
+    })
+    dispatch(getUsersMeals(value.userId))
+  }
+}
 // DELETE Ingredients in meal MEAL
 export const deleteIngredientsInMeal = (value: { mealId: number }) => {
   return async (dispatch: any) => {
     await axios.post(`${baseUrl()}/delete_ingredients_in_meal`, {
       value,
-    });
-  };
-};
+    })
+  }
+}
 export const deleteMealSteps = (value: { mealId: number }) => {
   return async (dispatch: any) => {
     await axios.post(`${baseUrl()}/delete_meal_steps`, {
       value,
-    });
-  };
-};
+    })
+  }
+}
 
 export const updateMeal = (value: any) => {
   return async (dispatch: any) => {
@@ -304,53 +301,53 @@ export const updateMeal = (value: any) => {
       user_id: value.user_id,
       name: value.name,
       videoUrl: value.videoUrl,
-    };
+    }
 
     await axios.post(`${baseUrl()}${routes.UPDATE_MEAL}`, {
       mealInfo,
-    });
+    })
     const imageData = {
       tableName: "meal",
       files: value.img,
       itemId: value.id,
-    };
+    }
 
-    dispatch(deleteIngredientsInMeal(value.id));
-    dispatch(createIngredientInMeal(value.id, value));
-    dispatch(handleFile(imageData));
-    dispatch(getUsersMeals(value.user_id));
-  };
-};
+    dispatch(deleteIngredientsInMeal(value.id))
+    dispatch(createIngredientInMeal(value.id, value))
+    dispatch(handleFile(imageData))
+    dispatch(getUsersMeals(value.user_id))
+  }
+}
 export const updateAmountAndUnitOfMeal = (value: any) => {
   return async (dispatch: any) => {
     await axios.post(`${baseUrl()}/update_amount_and_unit_of_meal`, {
       value,
-    });
-  };
-};
+    })
+  }
+}
 
 export const addMealToDay = (value: any) => {
   return async (dispatch: any) => {
-    const dayId = value.day_id;
+    const dayId = value.day_id
     const checkResponse = await axios.post(
       `${baseUrl()}/check_if_meal_to_day`,
       {
         dayId,
       }
-    );
+    )
     if (checkResponse.data.length === 0) {
       await axios.post(`${baseUrl()}/add_meal_to_day`, {
         value,
-      });
+      })
     } else {
-      value.id = checkResponse.data[0].id;
+      value.id = checkResponse.data[0].id
       const response = await axios.post(`${baseUrl()}/update_meal_to_day`, {
         value,
-      });
-      return response;
+      })
+      return response
     }
-  };
-};
+  }
+}
 // ****************************
 // CREATE PLAN KOMBO
 
@@ -359,97 +356,97 @@ export const createMealInDay = (day_id: number, meal_type: number) => {
     const value = {
       day_id: day_id,
       meal_type: meal_type,
-    };
-    await axios.post(`${baseUrl()}/create_meal_in_day`, value);
-  };
-};
+    }
+    await axios.post(`${baseUrl()}/create_meal_in_day`, value)
+  }
+}
 export const createDay = (plan_id: number, weekDay_id: number) => {
   return async (dispatch: any) => {
     const value = {
       plan_id: plan_id,
       weekDay_id: weekDay_id,
-    };
-    const response = await axios.post(`${baseUrl()}/create_day`, value);
+    }
+    const response = await axios.post(`${baseUrl()}/create_day`, value)
 
     for (let i = 0; i < 5; i++) {
-      let day_id = response.data.insertId;
-      let meal_type = i;
-      dispatch(createMealInDay(day_id, meal_type));
+      let day_id = response.data.insertId
+      let meal_type = i
+      dispatch(createMealInDay(day_id, meal_type))
     }
-  };
-};
+  }
+}
 
 // ****************************
 
 export const getPlanById = (value: any) => {
   return async (dispatch: any) => {
-    const response = await axios.post(`${baseUrl()}/get_plan_by_id`, { value });
+    const response = await axios.post(`${baseUrl()}/get_plan_by_id`, { value })
     dispatch({
       type: ActionType.GET_PLAN_BY_ID,
       payload: response.data[0],
-    });
-  };
-};
+    })
+  }
+}
 
 export const getPlanDays = (value: any) => {
   return async (dispatch: any) => {
     const response = await axios.post(`${baseUrl()}/get_plan_days`, {
       value,
-    });
+    })
     dispatch({
       type: ActionType.GET_PLANE_DAYS,
       payload: response.data,
-    });
-  };
-};
+    })
+  }
+}
 
 export const getMealsInDay = (value: any) => {
   return async (dispatch: any) => {
     const response = await axios.post(`${baseUrl()}/get_meals_in_day`, {
       value,
-    });
+    })
 
     dispatch({
       type: ActionType.GET_TODAYS_MEALS,
       payload: response.data,
-    });
-  };
-};
+    })
+  }
+}
 export const updateUsersCalories = (value: any) => {
   return async (dispatch: any) => {
     await axios.post(`${baseUrl()}/update_users_calories`, {
       value,
-    });
-  };
-};
+    })
+  }
+}
 export const getTodaysMeals = (value: any) => {
   return async (dispatch: any) => {
     const response = await axios.post(`${baseUrl()}/get_todays_meals`, {
       value,
-    });
+    })
 
-    dispatch(getMealsInDay(response.data[0].id));
-  };
-};
+    dispatch(getMealsInDay(response.data[0].id))
+  }
+}
 
 export const clearSearchState = () => {
   return async (dispatch: any) => {
     dispatch({
       type: ActionType.CLEAR_SEARCH,
-    });
-  };
-};
+    })
+  }
+}
 // SHOPPING LIST
 export const getAllShoppingItems = () => {
   return async (dispatch: any) => {
-    const response = await axios.get(`${baseUrl()}/get_all_shopping_items`);
+    const response = await axios.get(`${baseUrl()}/get_all_shopping_items`)
 
     dispatch({
       type: ActionType.GET_ALL_SHOPPING_ITEMS,
       payload: response.data,
-    });
-  };
-};
+    })
+  }
+}
 export const getShoppingItemsByUserId = (value: any) => {
   return async (dispatch: any) => {
     const response = await axios.post(
@@ -457,38 +454,38 @@ export const getShoppingItemsByUserId = (value: any) => {
       {
         value,
       }
-    );
+    )
 
     dispatch({
       type: ActionType.GET_SHOPPING_ITEMS_BY_USER_ID,
       payload: response.data,
-    });
-  };
-};
+    })
+  }
+}
 export const createShoppingListItem = (value: any) => {
   return async (dispatch: any) => {
     await axios.post(`${baseUrl()}/create_shopping_list_item`, {
       value,
-    });
+    })
 
-    dispatch(getShoppingItemsByUserId(value.users_id));
-  };
-};
+    dispatch(getShoppingItemsByUserId(value.users_id))
+  }
+}
 export const deleteUsersShoppingList = (value: any) => {
   return async (dispatch: any) => {
     await axios.post(`${baseUrl()}/delete_users_shopping_list`, {
       value,
-    });
-  };
-};
+    })
+  }
+}
 export const switchHaveItem = (value: any) => {
   return async (dispatch: any) => {
     await axios.post(`${baseUrl()}/switch_have_item`, {
       value,
-    });
-    dispatch(getShoppingItemsByUserId(value.users_id));
-  };
-};
+    })
+    dispatch(getShoppingItemsByUserId(value.users_id))
+  }
+}
 export const getPlansIngredients = (value: any, id: number) => {
   return async (dispatch: any) => {
     const response = await axios.post(
@@ -496,7 +493,7 @@ export const getPlansIngredients = (value: any, id: number) => {
       {
         value,
       }
-    );
+    )
 
     response.data.length > 0 &&
       response.data.forEach((item: any) => {
@@ -507,29 +504,29 @@ export const getPlansIngredients = (value: any, id: number) => {
           amount: item.totalAmount,
           have: 0,
           users_id: id,
-        };
+        }
 
-        return dispatch(createShoppingListItem(value));
-      });
-  };
-};
+        return dispatch(createShoppingListItem(value))
+      })
+  }
+}
 export const deleteSingleShoppingItem = (value: any) => {
   return async (dispatch: any) => {
-    await axios.post(`${baseUrl()}/delete_single_shopping_item`, { value });
-    dispatch(getShoppingItemsByUserId(value.userId));
-  };
-};
+    await axios.post(`${baseUrl()}/delete_single_shopping_item`, { value })
+    dispatch(getShoppingItemsByUserId(value.userId))
+  }
+}
 
 // PLANS
 export const getAllPlans = () => {
   return async (dispatch: any) => {
-    const response = await axios.get(`${baseUrl()}/get_all_plans`);
+    const response = await axios.get(`${baseUrl()}/get_all_plans`)
     dispatch({
       type: ActionType.GET_ALL_PLANS,
       payload: response.data,
-    });
-  };
-};
+    })
+  }
+}
 // export const getUsersPlans = (value: any) => {
 //   return async (dispatch: any) => {
 //     const response = await axios.post(`${baseUrl()}/get_users_plans`, {
@@ -544,42 +541,42 @@ export const getAllPlans = () => {
 // };
 export const activatePlan = (value: any) => {
   return async (dispatch: any) => {
-    await axios.post(`${baseUrl()}/activate_plan`, { value });
-    dispatch(getUser(value.userId));
-  };
-};
+    await axios.post(`${baseUrl()}/activate_plan`, { value })
+    dispatch(getUser(value.userId))
+  }
+}
 export const deletePlan = (value: any) => {
   return async (dispatch: any) => {
-    await axios.post(`${baseUrl()}/delete_plan`, { value });
-    dispatch(getAllPlans());
-  };
-};
+    await axios.post(`${baseUrl()}/delete_plan`, { value })
+    dispatch(getAllPlans())
+  }
+}
 export const changePlaneName = (value: any) => {
   return async (dispatch: any) => {
-    await axios.post(`${baseUrl()}/update_name`, { value });
-    dispatch(getAllPlans());
-  };
-};
+    await axios.post(`${baseUrl()}/update_name`, { value })
+    dispatch(getAllPlans())
+  }
+}
 export const createPlan = (value: number) => {
   return async (dispatch: any) => {
-    const response = await axios.post(`${baseUrl()}/create_plan`, { value });
+    const response = await axios.post(`${baseUrl()}/create_plan`, { value })
     for (let i = 0; i < 7; i++) {
-      let plan_id = response.data.insertId;
-      let weekDay_id = i;
-      dispatch(createDay(plan_id, weekDay_id));
+      let plan_id = response.data.insertId
+      let weekDay_id = i
+      dispatch(createDay(plan_id, weekDay_id))
     }
-    dispatch(getAllPlans());
-  };
-};
+    dispatch(getAllPlans())
+  }
+}
 
 export const getFoodForTransfer = (value: any) => {
   return async (dispatch: any) => {
     const response = await axios.post(`${baseUrl()}/get_basic_food`, {
       value,
-    });
+    })
     dispatch({
       type: ActionType.GET_BASIC_FOOD,
       payload: response.data,
-    });
-  };
-};
+    })
+  }
+}
