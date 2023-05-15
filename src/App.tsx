@@ -18,7 +18,6 @@ function App() {
   if (localStorage.getItem("userId")) {
     getUser(localStorage.getItem("userId"))
   }
-  console.log("App")
 
   return (
     <div className="App">

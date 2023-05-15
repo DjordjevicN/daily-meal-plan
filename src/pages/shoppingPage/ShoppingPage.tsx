@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from "react";
-import TableRow from "../../components/tableRow/TableRow";
-import "./ShoppingPage.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { actionCreators, State } from "../../state";
-import { bindActionCreators } from "redux";
+import React, { useEffect, useState } from "react"
+import TableRow from "../../components/tableRow/TableRow"
+import "./ShoppingPage.scss"
+import { useDispatch, useSelector } from "react-redux"
+import { actionCreators, State } from "../../state"
+import { bindActionCreators } from "redux"
 
-import AddIngredientModal from "../../components/modals/addIngredientModal/AddIngredientModal";
-import ButtonShell from "../../UiComponents/atom/ButtonShell/ButtonShell";
-import { GoPlusSmall } from "react-icons/go";
-import InputField from "../../UiComponents/atom/input/InputField";
-import SelectInput from "../../UiComponents/atom/SelectInput/SelectInput";
+import AddIngredientModal from "../../components/modals/addIngredientModal/AddIngredientModal"
+import ButtonShell from "../../UiComponents/atom/ButtonShell/ButtonShell"
+import { GoPlusSmall } from "react-icons/go"
+import InputField from "../../UiComponents/atom/input/InputField"
+import SelectInput from "../../UiComponents/atom/SelectInput/SelectInput"
 
 const ShoppingPage = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const shoppingList = useSelector((state: State) => {
-    return state.shoppingList;
-  });
+    return state.shoppingList
+  })
   const user = useSelector((state: State) => {
-    return state.user;
-  });
+    return state.user
+  })
 
-  const [addIngModal, setAddIngModal] = useState<boolean>(false);
+  const [addIngModal, setAddIngModal] = useState<boolean>(false)
   const [newShopItem, setNewShopItem] = useState({
     name: "",
     amount: 0,
@@ -28,27 +28,26 @@ const ShoppingPage = () => {
     img: "",
     users_id: user.id,
     have: 0,
-  });
-  const [openAddModal, setOpenAddModal] = useState(false);
+  })
+  const [openAddModal, setOpenAddModal] = useState(false)
 
   const {
     createShoppingListItem,
     getPlansIngredients,
     getShoppingItemsByUserId,
-  } = bindActionCreators(actionCreators, dispatch);
+  } = bindActionCreators(actionCreators, dispatch)
   useEffect(() => {
-    getShoppingItemsByUserId(user.id);
+    getShoppingItemsByUserId(user.id)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
-  // GET ALL INGREDIENTS FROM MEAL PLAN
   // GET SHOPPING ITEMS WHERE USER_IS THIS USER
   // ADD NEW ITEM TO THE SHOP
 
   const handleAddItemToShoppingList = () => {
-    createShoppingListItem(newShopItem);
-    setOpenAddModal(false);
-  };
+    createShoppingListItem(newShopItem)
+    setOpenAddModal(false)
+  }
 
   return (
     <div className="shoppingPage">
@@ -104,7 +103,7 @@ const ShoppingPage = () => {
                   ingredient={ingredient}
                   userId={+user.id}
                 />
-              );
+              )
             })
           ) : (
             <div>
@@ -124,7 +123,7 @@ const ShoppingPage = () => {
             customStyle={{ backgroundColor: "#ecf0f3" }}
             icon={<GoPlusSmall />}
             onClick={() => {
-              setOpenAddModal(!openAddModal);
+              setOpenAddModal(!openAddModal)
             }}
             type="mono"
           />
@@ -132,7 +131,7 @@ const ShoppingPage = () => {
             customStyle={{ backgroundColor: "#ecf0f3", marginTop: "30px" }}
             onClick={() => {
               shoppingList.length === 0 &&
-                getPlansIngredients(user.plan_id, +user.id);
+                getPlansIngredients(user.plan_id, +user.id)
             }}
             type="mono"
           >
@@ -141,7 +140,7 @@ const ShoppingPage = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ShoppingPage;
+export default ShoppingPage
