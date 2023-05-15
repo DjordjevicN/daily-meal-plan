@@ -14,22 +14,22 @@ import FoodTransfer from "./pages/FoodTransfer/FoodTransfer"
 
 function App() {
   const dispatch = useDispatch()
-  const { getUser } = bindActionCreators(actionCreators, dispatch)
-  if (localStorage.getItem("userId")) {
-    getUser(localStorage.getItem("userId"))
-  }
+  // const { getUser } = bindActionCreators(actionCreators, dispatch)
+  // if (localStorage.getItem("userId")) {
+  //   getUser(localStorage.getItem("userId"))
+  // }
 
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        {/* <Route path="/" element={<HomePage />} />
         <Route path="/shopping" element={<ShoppingPage />} />
         <Route path="/profile" element={<UserProfilePage />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/login" element={<Login />} />
         <Route path="/meal/:id" element={<SingleMealPage />} />
-        <Route path="/foodTransfer" element={<FoodTransfer />} />
+        <Route path="/foodTransfer" element={<FoodTransfer />} /> */}
 
         <Route path="*" element={<HomePage />} />
       </Routes>
