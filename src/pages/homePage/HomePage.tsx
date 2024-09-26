@@ -48,7 +48,7 @@ function HomePage() {
   return (
     <>
       <Navigation />
-
+      <p>aloooo</p>
       <div className="homePage">
         <div className="homePage__content">
           <div className="hero">
