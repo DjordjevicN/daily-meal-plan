@@ -1,14 +1,14 @@
-import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import LoginForm from "./components/LoginForm";
+import Navigation from "./components/Navigation";
+import Login from "./pages/Login";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App h-[100vh] bg-gray400">
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginForm />} />
+        <Route path="/login" element={<Login />} />
         {/* <Route path="/shopping" element={<ShoppingPage />} />
         <Route path="/profile" element={<UserProfilePage />} />
         <Route path="/dashboard" element={<Dashboard />} />
@@ -17,6 +17,7 @@ function App() {
         <Route path="/foodTransfer" element={<FoodTransfer />} /> */}
         <Route path="*" element={<HomePage />} />
       </Routes>
+      <Navigation />
     </div>
   );
 }

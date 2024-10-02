@@ -7,11 +7,13 @@ interface User {
 }
 
 interface UserState {
+  isLogged: boolean;
   user: User | null;
   age: number;
 }
 
 const initialState: UserState = {
+  isLogged: false,
   user: null,
   age: 0,
 };
@@ -22,9 +24,11 @@ export const userSlice = createSlice({
   reducers: {
     login: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
+      state.isLogged = true;
     },
     logout: (state) => {
       state.user = null;
+      state.isLogged = false;
     },
   },
 });
