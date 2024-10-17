@@ -1,0 +1,16 @@
+{
+  "meals": {
+    "meal1": {
+      "name": "Breakfast",
+      "description": "This is a breakfast meal"
+    },
+    "meal2": {
+      "name": "Lunch",
+      "description": "This is a lunch meal"
+    },
+    "meal3": {
+      "name": "Dinner",
+      "description": "This is a dinner meal"
+    }
+  }
+}

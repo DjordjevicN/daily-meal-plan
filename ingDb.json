@@ -1,0 +1,7 @@
+{
+  "ingredient": {
+    "name": "ingName",
+    "quantity": "ingQuantity",
+    "unit": "ingUnit"
+  }
+}
