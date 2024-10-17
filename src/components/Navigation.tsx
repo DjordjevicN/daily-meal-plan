@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { login, logout } from "../features/userSlice";
+import { useSelector } from "react-redux";
+// import { login, logout } from "../features/userSlice";
 import { RootState } from "../app/store";
 
 const Navigation = () => {
   const user = useSelector((state: RootState) => state.user.user);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // const handleLogout = () => {
   //   dispatch(logout());
