@@ -1,0 +1,31 @@
+import { useQuery, useMutation, useQueryClient } from "react-query";
+import { addUser, deleteUser, getUsers } from "../client/User";
+
+export const useUserData = () => {
+  return useQuery("users", getUsers);
+};
+
+export const useAddUser = (user) => {
+  const queryClient = useQueryClient();
+  return useMutation(addUser, {
+    onSuccess: (data) => {
+      queryClient.setQueryData("users", (oldData) => {
+        return { ...oldData, data: [...oldData.data, data.data] };
+      });
+    },
+  });
+};
+
+export const useDeleteUser = () => {
+  const queryClient = useQueryClient();
+  return useMutation(deleteUser, {
+    onSuccess: (data) => {
+      queryClient.setQueryData("users", (oldData) => {
+        return {
+          ...oldData,
+          data: oldData.data.filter((user) => user.id !== data.data.id),
+        };
+      });
+    },
+  });
+};

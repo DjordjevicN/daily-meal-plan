@@ -1,56 +1,58 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
 
-import { login } from "../features/userSlice";
-import { RootState } from "../app/store";
-import { useNavigate } from "react-router-dom";
 import { DevTool } from "@hookform/devtools";
-
+import {
+  useAddUser,
+  useDeleteUser,
+  useUserData,
+} from "../queryHooks/useUsersData";
 interface IFormInput {
   username: string;
   password: string;
 }
 
 const Login = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const isLogged = useSelector((state: RootState) => state.user.isLogged);
+  const { mutate: addUser } = useAddUser();
+  const { mutate: deleteUser } = useDeleteUser();
 
-  if (isLogged) {
-    navigate("/home");
-  }
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(data);
-    dispatch(login({ id: "123", name: data.username }));
-  };
   const {
     control,
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<IFormInput>();
+  const { data: users } = useUserData();
+
+  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+    addUser(data);
+    reset();
+  };
+
+  const handleDeleteUser = (id: string) => () => {
+    const user = users?.data.find((user: any) => user.id === id);
+    if (user.position === "admin") return;
+    deleteUser(id);
+  };
 
   return (
     <div className="">
-      <div>
-        <img src="/images/LOGO-MAIN.png" className="w-[40%] mx-auto" alt="" />
-      </div>
       <form
         className="max-w-[400px] w-[80%] mx-auto mt-32"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="flex flex-col gap-1">
           <input
-            {...register("username", { required: true })}
+            {...register("username")}
             id="username"
             type="text"
             placeholder="Enter your username"
           />
-          {errors.username && <p>Username is required.</p>}
+          {errors.username && <p>{errors.username.message}</p>}
         </div>
         <div className="flex flex-col gap-1 mt-3">
           <input
-            {...register("password", { required: "Password is required" })}
+            {...register("password")}
             id="password"
             type="password"
             placeholder="Enter your password"
@@ -60,8 +62,23 @@ const Login = () => {
         <div className="mt-3 ">
           <button type="submit">Login</button>
         </div>
-      </form>{" "}
+      </form>
       <DevTool control={control} />
+      <div>
+        <p>user list</p>
+        {users?.data.map((user: any) => {
+          return (
+            <div
+              className="bg-slate-500 flex gap-3 mb-3 p-3"
+              key={user.id}
+              onClick={handleDeleteUser(user.id)}
+            >
+              <p>{user.username}</p>
+              <p>{user.password}</p>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
