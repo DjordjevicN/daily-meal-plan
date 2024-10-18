@@ -12,6 +12,6 @@ export const deleteUser = async (id: string) => {
   return axios.delete(`http://localhost:4000/users/${id}`);
 };
 
-export const updateUser = async (id: string, user: any) => {
+export const updateUserById = async (id: string, user: any) => {
   return axios.put(`http://localhost:4000/users/${id}`, user);
 };

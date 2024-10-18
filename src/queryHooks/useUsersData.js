@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
-import { addUser, deleteUser, getUsers } from "../client/User";
+import { addUser, deleteUser, getUsers } from "../api/User";
 
 export const useUserData = () => {
   return useQuery("users", getUsers);
@@ -21,7 +21,9 @@ export const useAddUser = (user) => {
 };
 
 export const useDeleteUser = () => {
+  console.log("useDeleteUser");
   const queryClient = useQueryClient();
+
   return useMutation(deleteUser, {
     onSuccess: (data) => {
       queryClient.setQueryData("users", (oldData) => {

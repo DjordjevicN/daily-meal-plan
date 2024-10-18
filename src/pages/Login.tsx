@@ -63,7 +63,7 @@ const Login = () => {
           <button type="submit">Login</button>
         </div>
       </form>
-      <DevTool control={control} />
+
       <div>
         <p>user list</p>
         {users?.data.map((user: any) => {

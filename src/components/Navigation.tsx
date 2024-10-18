@@ -15,6 +15,9 @@ const Navigation = () => {
             <Link className="p-4 bg-slate-500" to="/today">
               Today
             </Link>
+            <Link className="p-4 bg-slate-500" to="/login">
+              login
+            </Link>
             <Link className="p-4 bg-slate-500" to="/creator">
               Creator
             </Link>
