@@ -10,6 +10,10 @@ export const useAddUser = (user) => {
   return useMutation(addUser, {
     onSuccess: (data) => {
       queryClient.setQueryData("users", (oldData) => {
+        if (!oldData || !oldData.data) {
+          console.log("oldData is undefined");
+          return { data: [data.data] };
+        }
         return { ...oldData, data: [...oldData.data, data.data] };
       });
     },
