@@ -2,11 +2,16 @@ import { useQuery, useMutation, useQueryClient } from "react-query";
 import {
   addIngredient,
   deleteIngredient,
+  getIngredient,
   getIngredients,
 } from "../api/ingredients";
 
 export const useIngredientData = () => {
   return useQuery("ingredients", getIngredients);
+};
+
+export const useIngredientById = (id) => {
+  return useQuery(["ingredient", id], () => getIngredient(id));
 };
 
 export const useAddIngredient = (ingredient) => {
