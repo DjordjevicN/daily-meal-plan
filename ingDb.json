@@ -1,7 +1,19 @@
 {
-  "ingredient": {
-    "name": "ingName",
-    "quantity": "ingQuantity",
-    "unit": "ingUnit"
-  }
+  "ingredients": [
+    {
+      "id": "4",
+      "image": "ingImage",
+      "description": "ingDescription",
+      "name": "ingName",
+      "quantity": "ingQuantity",
+      "unit": "ingUnit",
+      "nutrients": {
+        "calories": "ingCalories",
+        "carbs": "ingCarbs",
+        "fat": "ingFat",
+        "protein": "ingProtein",
+        "sugar": "ingSugar"
+      }
+    }
+  ]
 }

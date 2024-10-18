@@ -11,7 +11,9 @@
       "subscriptionEndDate": "",
       "createdAt": "2024-10-18T16:40:25.676Z",
       "updatedAt": "2024-10-18T16:40:25.676Z",
-      "mealPlanIds": ["1"]
+      "mealPlanIds": [
+        "1"
+      ]
     }
   ]
 }
