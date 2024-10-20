@@ -12,7 +12,7 @@ const Input: React.FC<InputProps> = ({ error, value, onChange, ...props }) => {
     <div className="mb-2">
       <input
         value={value}
-        className="bg-fgCard min-w-[300px] py-2 px-4 rounded-lg text-textColor"
+        className="bg-fgCard min-w-[300px] w-full py-2 px-4 rounded-lg text-textColor"
         onChange={onChange}
         {...props}
       />

@@ -1,27 +1,20 @@
 import React from "react";
-import { Typography } from "../components/Typography";
+import { EmptyShoppingList } from "../components/Shopping/EmptyShoppingList";
+import ShoppingListItem from "../components/Shopping/ShoppingListItem";
+import Input from "../components/Input";
 
 export const ShoppingList = () => {
-  const handleGenerate = () => {
-    console.log("Generate shopping list");
-  };
-  return (
-    <div className="bg-bgCard max-w-[500px] mx-auto flex justify-center items-center min-h-[100vh]">
-      <div className="text-center">
-        <Typography.H1 color="textColor" className="font-bold !mb-6">
-          Generate shopping list
-        </Typography.H1>
-        <Typography.H2 color="paragraph" className="!mb-6">
-          Shopping list will be generated <br />
-          based on your meal plan
-        </Typography.H2>
-        <button
-          className="mt-1 bg-brand text-white p-2 w-full rounded-lg"
-          onClick={handleGenerate}
-        >
-          Generate
-        </button>
+  const listItems = [1, 2, 3, 4, 5, 6, 7, 8];
+  return listItems.length > 0 ? (
+    <div className="px-3 pt-3">
+      <div className="mx-auto max-w-[500px]">
+        <Input placeholder="Search" />
+        {listItems.map((item) => (
+          <ShoppingListItem item={item} />
+        ))}
       </div>
     </div>
+  ) : (
+    <EmptyShoppingList />
   );
 };
