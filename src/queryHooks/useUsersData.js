@@ -21,7 +21,6 @@ export const useAddUser = (user) => {
 };
 
 export const useDeleteUser = () => {
-  console.log("useDeleteUser");
   const queryClient = useQueryClient();
 
   return useMutation(deleteUser, {

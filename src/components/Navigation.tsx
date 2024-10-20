@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Navigation = () => {
   return (
-    <div className="fixed bottom-3 w-full">
+    <div className="absolute top-3 w-full">
       <div className="max-w-80 w-[95%] mx-auto ">
         <div className="py-3 px-6 flex justify-between">
           <div className="flex gap-3">

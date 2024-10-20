@@ -1,5 +1,4 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
 import Input from "../components/Input";
 interface IFormInput {
   username: string;
@@ -18,7 +17,7 @@ const Login = () => {
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     // addUser(data);
-    console.log(data);
+
     reset();
     window.location.href = "/";
   };
@@ -61,7 +60,6 @@ const Login = () => {
             Login
           </button>
         </form>
-        <DevTool control={control} />
       </div>
     </div>
   );

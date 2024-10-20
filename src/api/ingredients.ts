@@ -19,3 +19,7 @@ export const updateIngredient = async (id: string, ingredient: any) => {
 export const getIngredient = async (id: string) => {
   return axios.get(`http://localhost:4001/ingredients/${id}`);
 };
+
+export const getIngredientByName = async (name: string) => {
+  return axios.get(`http://localhost:4001/ingredients?name=${name}`);
+};
