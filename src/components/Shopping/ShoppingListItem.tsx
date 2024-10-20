@@ -10,7 +10,7 @@ interface ShoppingListItemProps {
 const ShoppingListItem: React.FC<ShoppingListItemProps> = ({ item }) => {
   const [checked, setChecked] = React.useState(false);
   return (
-    <div className={`mb-3 flex items-center ${!checked && "opacity-[0.2]"}`}>
+    <div className={`mb-3 flex items-center ${checked && "opacity-[0.2]"}`}>
       <div className="w-14 h-14 rounded-lg border border-paragraph mr-3">
         <img src="" alt="" className="" />
       </div>

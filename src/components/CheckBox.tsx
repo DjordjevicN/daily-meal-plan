@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import check from "../assets/icons/check.svg";
 
 interface CheckBoxProps {
@@ -9,7 +9,7 @@ interface CheckBoxProps {
 export const CheckBox: React.FC<CheckBoxProps> = ({ onChange, className }) => {
   const [checked, setChecked] = React.useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!onChange) return;
     onChange(checked);
   }, [checked, onChange]);
@@ -18,7 +18,7 @@ export const CheckBox: React.FC<CheckBoxProps> = ({ onChange, className }) => {
       className={`${className} cursor-pointer`}
       onClick={() => setChecked(!checked)}
     >
-      {checked ? (
+      {!checked ? (
         <div className="w-4 h-4 rounded-sm border border-textColor"></div>
       ) : (
         <div className="w-4 h-4 rounded-sm border border-brand">

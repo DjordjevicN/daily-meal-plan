@@ -10,6 +10,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 const Input: React.FC<InputProps> = ({ error, value, onChange, ...props }) => {
   return (
     <div className="mb-2">
+      {props.label && <label className="text-textColor">{props.label}</label>}
       <input
         value={value}
         className="bg-fgCard min-w-[300px] w-full py-2 px-4 rounded-lg text-textColor"

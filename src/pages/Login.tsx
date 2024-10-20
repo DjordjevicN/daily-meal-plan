@@ -23,7 +23,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-[100vh] bg-bgCard">
+    <div className="flex justify-center items-center h-[100vh]">
       <div>
         <img
           src="/images/LOGO-MAIN.png"

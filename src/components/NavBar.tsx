@@ -10,7 +10,7 @@ export const NavBar = () => {
   return (
     <>
       <div className="flex justify-center">
-        <ul className="flex justify-between bg-menuColor p-6 w-full sm:max-w-[500px] sm:rounded-full sm:bottom-1  mx-auto absolute bottom-0">
+        <ul className="flex justify-between bg-menuColor p-6 w-full sm:max-w-[500px] sm:rounded-full sm:bottom-1  mx-auto fixed bottom-0">
           <li className="text-brand">
             <Link to="/plan">
               <img src={batch} alt="batch" />

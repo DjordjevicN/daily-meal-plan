@@ -3,6 +3,7 @@ import {
   addIngredient,
   deleteIngredient,
   getIngredient,
+  getIngredientByName,
   getIngredients,
 } from "../api/ingredients";
 
@@ -12,6 +13,12 @@ export const useIngredientData = () => {
 
 export const useIngredientById = (id) => {
   return useQuery(["ingredient", id], () => getIngredient(id));
+};
+
+export const useIngredientByName = (name) => {
+  return useQuery(["ingredient", name], () => getIngredientByName(name), {
+    enabled: !!name,
+  });
 };
 
 export const useAddIngredient = (ingredient) => {
