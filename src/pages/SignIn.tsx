@@ -28,7 +28,6 @@ export const SignIn = () => {
   } = useForm<IUser>();
 
   const { mutate: addUser } = useAddUser();
-  console.log(errors);
 
   const onSubmit = (data: any) => {
     const newUser: IUser = {
@@ -45,7 +44,7 @@ export const SignIn = () => {
     reset();
   };
   return (
-    <div className="flex justify-center items-center h-[100vh]">
+    <div className="flex justify-center items-center h-[100vh] bg-bgCard">
       <div className="">
         <div>
           <img

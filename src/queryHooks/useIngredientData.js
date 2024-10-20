@@ -33,8 +33,6 @@ export const useDeleteIngredient = () => {
   const queryClient = useQueryClient();
   return useMutation(deleteIngredient, {
     onSuccess: (data) => {
-      console.log(data);
-
       queryClient.setQueryData("ingredients", (oldData) => {
         return {
           ...oldData,

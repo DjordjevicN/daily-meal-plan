@@ -29,7 +29,6 @@ export const Ingredients = () => {
   const { mutate: addIngredient } = useAddIngredient();
 
   const handleDelete = (id: string) => async () => {
-    console.log("delete", id);
     deleteIngredient(id);
   };
 
@@ -50,8 +49,6 @@ export const Ingredients = () => {
     addIngredient(newIngredient);
     reset();
   };
-
-  console.log(ingredient);
 
   return (
     <div>

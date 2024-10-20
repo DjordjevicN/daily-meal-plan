@@ -1,5 +1,11 @@
+import { ShoppingList } from "./ShoppingList";
+
 const HomePage = () => {
-  return <div>HomePage</div>;
+  return (
+    <div>
+      <ShoppingList />
+    </div>
+  );
 };
 
 export default HomePage;

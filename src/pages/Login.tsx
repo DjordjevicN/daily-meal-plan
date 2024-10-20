@@ -1,5 +1,4 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
 import Input from "../components/Input";
 interface IFormInput {
   username: string;
@@ -18,13 +17,13 @@ const Login = () => {
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     // addUser(data);
-    console.log(data);
+
     reset();
     window.location.href = "/";
   };
 
   return (
-    <div className="flex justify-center items-center h-[100vh]">
+    <div className="flex justify-center items-center h-[100vh] bg-bgCard">
       <div>
         <img
           src="/images/LOGO-MAIN.png"
@@ -61,7 +60,6 @@ const Login = () => {
             Login
           </button>
         </form>
-        <DevTool control={control} />
       </div>
     </div>
   );
