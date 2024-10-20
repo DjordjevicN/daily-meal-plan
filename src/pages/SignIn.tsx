@@ -2,6 +2,7 @@ import { DevTool } from "@hookform/devtools";
 import moment from "moment";
 import { useForm } from "react-hook-form";
 import { useAddUser } from "../queryHooks/useUsersData";
+import Input from "../components/Input";
 
 interface IUser {
   id: string;
@@ -19,9 +20,10 @@ interface IUser {
 
 export const SignIn = () => {
   const {
-    control,
     register,
     handleSubmit,
+    setValue,
+    reset,
     formState: { errors },
   } = useForm<IUser>();
 
@@ -40,59 +42,59 @@ export const SignIn = () => {
       mealPlanIds: data.mealPlanIds || ["1"],
     };
     addUser(newUser);
+    reset();
   };
   return (
-    <div className="grid grid-cols-2 h-[100vh]">
-      <div
-        className="bg-slate-500"
-        style={{
-          backgroundSize: "cover",
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1432457990754-c8b5f21448de?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
-        }}
-      />
-      <div className="bg-slate-300 flex justify-center items-center">
-        <div className="max-w-56 mx-auto">
-          <p>Sign in</p>
+    <div className="flex justify-center items-center h-[100vh]">
+      <div className="">
+        <div>
+          <img
+            src="/images/LOGO-MAIN.png"
+            alt="logo"
+            className="w-52 mx-auto mb-5"
+          />
           <form onSubmit={handleSubmit(onSubmit)} className="mt-3">
-            <div className="flex flex-col">
-              <input
-                {...register("username", {
-                  required: { value: true, message: "Username is required" },
-                })}
-                className="mb-1"
-                type="text"
-                placeholder="User name"
-              />
-              {errors.username && <p>{errors.username.message}</p>}
-              <input
-                {...register("email", {
-                  validate: (value) => {
-                    if (!value?.includes("@")) {
-                      return "Invalid email";
-                    }
-                  },
-                })}
-                className="mb-1"
-                type="text"
-                placeholder="example@gmail.com"
-              />
-              {errors.email && <p>{errors.email.message}</p>}
-              <input
-                {...register("password", {
-                  required: { value: true, message: "Password is required" },
-                })}
-                className="mb-1"
-                type="password"
-                placeholder="Password"
-              />
-              {errors.password && <p>{errors.password.message}</p>}
-            </div>
-            <button className="mt-3 bg-slate-800 text-white p-3" type="submit">
+            <Input
+              {...register("username", {
+                required: { value: true, message: "Username is required" },
+              })}
+              type="text"
+              placeholder="User name"
+              onChange={async ({ target }) => {
+                setValue("username", (target as HTMLInputElement).value);
+              }}
+            />
+            <Input
+              {...register("email", {
+                validate: (value) => {
+                  if (!value?.includes("@")) {
+                    return "Invalid email";
+                  }
+                },
+              })}
+              type="text"
+              placeholder="Example@gmail.com"
+              onChange={async ({ target }) => {
+                setValue("email", (target as HTMLInputElement).value);
+              }}
+            />
+            <Input
+              {...register("password", {
+                required: { value: true, message: "Password is required" },
+              })}
+              type="password"
+              placeholder="Password"
+              onChange={async ({ target }) => {
+                setValue("password", (target as HTMLInputElement).value);
+              }}
+            />
+            <button
+              className="mt-1 bg-brand text-white p-2 w-full rounded-lg"
+              type="submit"
+            >
               Sign in
             </button>
-          </form>{" "}
-          <DevTool control={control} />
+          </form>
         </div>
       </div>
     </div>

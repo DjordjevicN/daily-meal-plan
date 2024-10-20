@@ -1,83 +1,67 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-
 import { DevTool } from "@hookform/devtools";
-import {
-  useAddUser,
-  useDeleteUser,
-  useUserData,
-} from "../queryHooks/useUsersData";
+import Input from "../components/Input";
 interface IFormInput {
   username: string;
   password: string;
 }
 
 const Login = () => {
-  const { mutate: addUser } = useAddUser();
-  const { mutate: deleteUser } = useDeleteUser();
-
   const {
     control,
     register,
+    setValue,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm<IFormInput>();
-  const { data: users } = useUserData();
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    addUser(data);
+    // addUser(data);
+    console.log(data);
     reset();
-  };
-
-  const handleDeleteUser = (id: string) => () => {
-    const user = users?.data.find((user: any) => user.id === id);
-    if (user.position === "admin") return;
-    deleteUser(id);
+    window.location.href = "/";
   };
 
   return (
-    <div className="">
-      <form
-        className="max-w-[400px] w-[80%] mx-auto mt-32"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <div className="flex flex-col gap-1">
-          <input
-            {...register("username")}
-            id="username"
-            type="text"
-            placeholder="Enter your username"
-          />
-          {errors.username && <p>{errors.username.message}</p>}
-        </div>
-        <div className="flex flex-col gap-1 mt-3">
-          <input
-            {...register("password")}
-            id="password"
-            type="password"
-            placeholder="Enter your password"
-          />
-          {errors.password && <p>{errors.password.message}</p>}
-        </div>
-        <div className="mt-3 ">
-          <button type="submit">Login</button>
-        </div>
-      </form>
-
+    <div className="flex justify-center items-center h-[100vh]">
       <div>
-        <p>user list</p>
-        {users?.data.map((user: any) => {
-          return (
-            <div
-              className="bg-slate-500 flex gap-3 mb-3 p-3"
-              key={user.id}
-              onClick={handleDeleteUser(user.id)}
-            >
-              <p>{user.username}</p>
-              <p>{user.password}</p>
-            </div>
-          );
-        })}
+        <img
+          src="/images/LOGO-MAIN.png"
+          alt="logo"
+          className="w-52 mx-auto mb-5"
+        />
+        <form className="mt-3" onSubmit={handleSubmit(onSubmit)}>
+          <Input
+            {...register("username", {
+              required: { value: true, message: "Username is required" },
+            })}
+            error={errors.username?.message}
+            type="text"
+            placeholder="User name"
+            onChange={async ({ target }) => {
+              setValue("username", (target as HTMLInputElement).value);
+            }}
+          />
+          <Input
+            {...register("password", {
+              required: { value: true, message: "Password is required" },
+            })}
+            error={errors.password?.message}
+            type="password"
+            placeholder="Password"
+            onChange={async ({ target }) => {
+              setValue("password", (target as HTMLInputElement).value);
+            }}
+          />
+          <button
+            className="mt-1 bg-brand text-white p-2 w-full rounded-lg"
+            type="submit"
+          >
+            Login
+          </button>
+        </form>
+        <DevTool control={control} />
       </div>
     </div>
   );

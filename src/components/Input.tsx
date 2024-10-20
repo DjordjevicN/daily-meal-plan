@@ -1,19 +1,22 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
+  error?: string;
 }
 
-const Input: React.FC<InputProps> = ({ label, ...props }) => {
+const Input: React.FC<InputProps> = ({ error, value, onChange, ...props }) => {
   return (
-    <div className="flex flex-col mb-4">
-      {label && (
-        <label className="mb-2 text-sm font-bold text-gray-700">{label}</label>
-      )}
+    <div className="mb-2">
       <input
-        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        value={value}
+        className="bg-fgCard min-w-[300px] py-2 px-4 rounded-lg text-textColor"
+        onChange={onChange}
         {...props}
       />
+      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
     </div>
   );
 };
