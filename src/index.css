@@ -3,12 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --brand: #95c11f;
-  --bgCard: #1e2021;
-  --fgCard: #27282b;
-  --paragraph: #cdcdcd;
-  --menuColor: #19191a;
-  --textColor: #f1f1f1;
+  --brand: #f20719;
+  --brand2: #f20707;
+  --light: #fff;
+  --dark: #0d0d0d;
+  --text-primary: #3a3a3a;
+  --text-secondary: #cdcdcd;
+  --white: #f2f2f2;
+  --salt: #f26d78;
 }
 
 * {

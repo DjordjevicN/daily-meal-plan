@@ -44,7 +44,7 @@ export const SignIn = () => {
     reset();
   };
   return (
-    <div className="flex justify-center items-center h-[100vh] bg-bgCard">
+    <div className="flex justify-center items-center h-[100vh]">
       <div className="">
         <div>
           <img
@@ -52,7 +52,7 @@ export const SignIn = () => {
             alt="logo"
             className="w-52 mx-auto mb-5"
           />
-          <form onSubmit={handleSubmit(onSubmit)} className="mt-3">
+          <form onSubmit={handleSubmit(onSubmit)} className="mt-3 w-full ">
             <Input
               {...register("username", {
                 required: { value: true, message: "Username is required" },
@@ -88,7 +88,7 @@ export const SignIn = () => {
               }}
             />
             <button
-              className="mt-1 bg-brand text-white p-2 w-full rounded-lg"
+              className="mt-1 bg-salt text-light p-2 w-full rounded-lg"
               type="submit"
             >
               Sign in

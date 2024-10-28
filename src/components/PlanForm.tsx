@@ -2,6 +2,8 @@ import { useId, useState } from "react";
 import arrowRight from "../assets/icons/arrow-right.svg";
 import { MealDisplayItem } from "./MealDisplayItem";
 import { AddBox } from "./AddBox";
+import { editMealForm } from "../features/appControlSlice";
+import { useDispatch } from "react-redux";
 
 const days = [
   "Monday",
@@ -36,6 +38,10 @@ const PlanForm = () => {
   const [day, setDay] = useState(0);
   const [meals, setMeals] = useState(mealsInit);
   const nextMealId = useId();
+  const breakfastMeals = meals.filter((item) => item.whenToEat === "Breakfast");
+  const lunchMeals = meals.filter((item) => item.whenToEat === "Lunch");
+  const dinerMeals = meals.filter((item) => item.whenToEat === "Diner");
+  const dispatch = useDispatch();
   const previousDay = () => {
     if (day === 0) {
       setDay(6);
@@ -43,6 +49,7 @@ const PlanForm = () => {
     }
     setDay(day - 1);
   };
+
   const nextDay = () => {
     if (day === 6) {
       setDay(0);
@@ -50,12 +57,17 @@ const PlanForm = () => {
     }
     setDay(day + 1);
   };
+
   const openMealSearch = () => {
     console.log("open meal search");
+
+    // copy meal to users database and edit that meal so you can keep original
   };
-  const breakfastMeals = meals.filter((item) => item.whenToEat === "Breakfast");
-  const lunchMeals = meals.filter((item) => item.whenToEat === "Lunch");
-  const dinerMeals = meals.filter((item) => item.whenToEat === "Diner");
+
+  const openMealEdit = (id: string) => {
+    console.log("open meal edit ", id);
+    dispatch(editMealForm(true));
+  };
 
   const addEmptyMeal = (type: string) => {
     const id = `${nextMealId}${meals.length}`;
@@ -71,6 +83,7 @@ const PlanForm = () => {
   const removeMeal = (id: string) => {
     setMeals(meals.filter((item) => item.id !== id));
   };
+
   return (
     <div className="mt-10">
       <div className="flex gap-3 justify-center">
@@ -81,7 +94,9 @@ const PlanForm = () => {
           <img src={arrowRight} alt="left" />
         </div>
         <div>
-          <div className="min-w-36 flex justify-center">{days[day]}</div>
+          <div className="min-w-36 flex justify-center font-bold">
+            {days[day]}
+          </div>
         </div>
         <div className="inline-block cursor-pointer" onClick={() => nextDay()}>
           <img src={arrowRight} alt="right" />
@@ -89,7 +104,6 @@ const PlanForm = () => {
       </div>
       <div className="">
         <div className="max-w-[500px] mx-auto">
-          <p className="mb-10">Create your meal plan</p>
           <div className="text-textColor font-bold text-2xl mb-3">
             Breakfast
           </div>
@@ -101,6 +115,7 @@ const PlanForm = () => {
                   meal={meal}
                   openMealSearch={openMealSearch}
                   removeMeal={() => removeMeal(meal.id)}
+                  editMeal={() => openMealEdit(meal.id)}
                 />
               );
             })}
@@ -115,6 +130,7 @@ const PlanForm = () => {
                   meal={meal}
                   openMealSearch={openMealSearch}
                   removeMeal={() => removeMeal(meal.id)}
+                  editMeal={() => openMealEdit(meal.id)}
                 />
               );
             })}
@@ -130,6 +146,7 @@ const PlanForm = () => {
                   meal={meal}
                   openMealSearch={openMealSearch}
                   removeMeal={() => removeMeal(meal.id)}
+                  editMeal={() => openMealEdit(meal.id)}
                 />
               );
             })}

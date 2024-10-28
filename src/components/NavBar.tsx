@@ -6,11 +6,13 @@ import { useState } from "react";
 import { NavBarMenu } from "./NavBarMenu";
 export const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const handleMenuToggle = () => {
+    setMenuOpen(!menuOpen);
+  };
   return (
     <>
       <div className="flex justify-center">
-        <ul className="flex justify-between bg-menuColor p-6 w-full sm:max-w-[500px] sm:rounded-full sm:bottom-1  mx-auto fixed bottom-0">
+        <ul className="flex justify-between bg-salt p-6 w-full sm:max-w-[500px] sm:rounded-full sm:bottom-1  mx-auto fixed bottom-0">
           <li className="text-brand">
             <Link to="/plan">
               <img src={batch} alt="batch" />
@@ -22,8 +24,8 @@ export const NavBar = () => {
             </Link>
           </li>
           <li
-            className="text-paragraph relative"
-            onClick={() => setMenuOpen(!menuOpen)}
+            className="text-paragraph relative cursor-pointer"
+            onClick={handleMenuToggle}
           >
             {menuOpen && (
               <div className="absolute bottom-12 right-0">
