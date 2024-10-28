@@ -13,10 +13,12 @@ import {
 } from "redux-persist";
 
 import userReducer from "../features/userSlice";
+import { appControlSlice } from "../features/appControlSlice";
 
 // Define the root reducer manually combining all reducers
 const rootReducer = combineReducers({
   user: userReducer, // include other reducers if needed
+  appControl: appControlSlice.reducer,
 });
 
 // Configuration object for redux-persist

@@ -12,10 +12,12 @@ export const MealDisplayItem = ({
   meal,
   openMealSearch = () => {},
   removeMeal = () => {},
+  editMeal = () => {},
 }: {
   meal: any;
   openMealSearch?: () => void;
   removeMeal?: () => void;
+  editMeal?: () => void;
 }) => {
   return (
     <div>
@@ -37,7 +39,22 @@ export const MealDisplayItem = ({
           </div>
           <CaloriesBlock nutrition={nutrition} />
           <div className="ml-4">
-            <SmallOptionMenu />
+            <SmallOptionMenu
+              options={[
+                {
+                  name: "Edit",
+                  action: () => {
+                    editMeal();
+                  },
+                },
+                {
+                  name: "Delete",
+                  action: () => {
+                    removeMeal();
+                  },
+                },
+              ]}
+            />
           </div>
         </div>
       ) : (
@@ -53,7 +70,7 @@ export const MealDisplayItem = ({
               {
                 name: "Edit",
                 action: () => {
-                  console.log("Edit");
+                  editMeal();
                 },
               },
               {

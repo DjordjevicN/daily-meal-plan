@@ -16,14 +16,12 @@ const Login = () => {
   } = useForm<IFormInput>();
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    // addUser(data);
-
     reset();
     window.location.href = "/";
   };
 
   return (
-    <div className="flex justify-center items-center h-[100vh]">
+    <div className="flex justify-center items-center min-h-[100vh]">
       <div>
         <img
           src="/images/LOGO-MAIN.png"
@@ -54,7 +52,7 @@ const Login = () => {
             }}
           />
           <button
-            className="mt-1 bg-brand text-white p-2 w-full rounded-lg"
+            className="mt-1 bg-salt text-light p-2 w-full rounded-lg"
             type="submit"
           >
             Login

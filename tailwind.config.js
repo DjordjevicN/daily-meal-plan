@@ -4,11 +4,13 @@ module.exports = {
     extend: {
       colors: {
         brand: "var(--brand)",
-        bgCard: "var(--bgCard)",
-        fgCard: "var(--fgCard)",
-        paragraph: "var(--paragraph)",
-        menuColor: "var(--menuColor)",
-        textColor: "var(--textColor)",
+        brand2: "var(--brand2)",
+        dark: "var(--dark)",
+        light: "var(--light)",
+        textPrimary: "var(--text-primary)",
+        textSecondary: "var(--text-secondary)",
+        white: "var(--white)",
+        salt: "var(--salt)",
       },
       screens: {
         sm: "640px", // Small devices (mobile)
