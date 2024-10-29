@@ -5,15 +5,22 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   value?: string;
   error?: string;
+  className?: string;
 }
 
-const Input: React.FC<InputProps> = ({ error, value, onChange, ...props }) => {
+const Input: React.FC<InputProps> = ({
+  error,
+  value,
+  onChange,
+  className,
+  ...props
+}) => {
   return (
-    <div className="mb-2 border rounded-lg">
+    <div className={`${className} border rounded-lg mb-2`}>
       {props.label && <label className="text-textColor">{props.label}</label>}
       <input
         value={value}
-        className="bg-fgCard min-w-[300px] w-full py-2 px-4 rounded-lg text-textColor"
+        className="min-w-[300px] w-full py-2 px-4 rounded-lg text-textPrimary bg-transparent"
         onChange={onChange}
         aria-invalid={!!error}
         aria-describedby={error ? "error-message" : undefined}

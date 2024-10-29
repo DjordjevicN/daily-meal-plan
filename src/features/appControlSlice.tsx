@@ -1,23 +1,23 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface AppControlState {
-  editMealForm: boolean;
+  mealFormData: any;
 }
 
 const initialState: AppControlState = {
-  editMealForm: false,
+  mealFormData: null,
 };
 
 export const appControlSlice = createSlice({
   name: "appControl",
   initialState,
   reducers: {
-    editMealForm: (state, action: PayloadAction<boolean>) => {
-      state.editMealForm = action.payload;
+    editMealFormData: (state, action: PayloadAction<any>) => {
+      state.mealFormData = action.payload;
     },
   },
 });
 
-export const { editMealForm } = appControlSlice.actions;
+export const { editMealFormData } = appControlSlice.actions;
 
 export default appControlSlice.reducer;

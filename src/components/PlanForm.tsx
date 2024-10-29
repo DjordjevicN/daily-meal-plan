@@ -2,7 +2,7 @@ import { useId, useState } from "react";
 import arrowRight from "../assets/icons/arrow-right.svg";
 import { MealDisplayItem } from "./MealDisplayItem";
 import { AddBox } from "./AddBox";
-import { editMealForm } from "../features/appControlSlice";
+import { editMealFormData } from "../features/appControlSlice";
 import { useDispatch } from "react-redux";
 
 const days = [
@@ -17,21 +17,25 @@ const days = [
 const mealsInit = [
   {
     id: "2",
-    name: "Kokice",
+    name: "jelo",
     caloriesTotal: 200,
     whenToEat: "Lunch",
-  },
-  {
-    id: "3",
-    name: "Hleb",
-    caloriesTotal: 200,
-    whenToEat: "Breakfast",
-  },
-  {
-    id: "4",
-    name: "Jaja",
-    caloriesTotal: 200,
-    whenToEat: "Diner",
+    description: "Kokice su dobre",
+    worksWellFor: ["Breakfast", "Lunch"],
+    ingredients: [
+      {
+        id: "1",
+        name: "Kokice",
+        calories: 200,
+        quantity: 200,
+      },
+      {
+        id: "2",
+        name: "jaja",
+        calories: 200,
+        quantity: 200,
+      },
+    ],
   },
 ];
 const PlanForm = () => {
@@ -60,13 +64,44 @@ const PlanForm = () => {
 
   const openMealSearch = () => {
     console.log("open meal search");
-
-    // copy meal to users database and edit that meal so you can keep original
   };
 
   const openMealEdit = (id: string) => {
-    console.log("open meal edit ", id);
-    dispatch(editMealForm(true));
+    console.log("get meal with id", id);
+    console.log(
+      "copy meal to users database and edit that meal so you can keep original"
+    );
+
+    dispatch(
+      editMealFormData({
+        id: "2",
+        name: "jelo",
+        caloriesTotal: 200,
+        whenToEat: "Lunch",
+        description: "Kokice su dobre",
+        worksWellFor: ["Breakfast", "Lunch"],
+        ingredients: [
+          {
+            id: "2",
+            name: "jelo",
+            image: "",
+            caloriesTotal: 200,
+            whenToEat: "Lunch",
+            description: "Kokice su dobre",
+            worksWellFor: ["Breakfast", "Lunch"],
+          },
+          {
+            id: "2",
+            name: "jelo",
+            image: "",
+            caloriesTotal: 200,
+            whenToEat: "Lunch",
+            description: "Kokice su dobre",
+            worksWellFor: ["Breakfast", "Lunch"],
+          },
+        ],
+      })
+    );
   };
 
   const addEmptyMeal = (type: string) => {
@@ -74,8 +109,12 @@ const PlanForm = () => {
     const newMeal = {
       id: id,
       name: "",
-      caloriesTotal: 0,
-      whenToEat: type,
+      impage: "",
+      caloriesTotal: 200,
+      whenToEat: "Lunch",
+      description: "Kokice su dobre",
+      worksWellFor: [],
+      ingredients: [],
     };
     setMeals([...meals, newMeal]);
   };
