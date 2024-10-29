@@ -11,6 +11,7 @@ module.exports = {
         textSecondary: "var(--text-secondary)",
         white: "var(--white)",
         salt: "var(--salt)",
+        white90: "var(--white90)",
       },
       screens: {
         sm: "640px", // Small devices (mobile)

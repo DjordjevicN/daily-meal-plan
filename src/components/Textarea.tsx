@@ -16,15 +16,15 @@ const Textarea: React.FC<TextareaProps> = ({
   ...props
 }) => {
   return (
-    <div className="mb-2">
+    <div className="mb-2 w-full">
       {label && (
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-textPrimary mb-1">
           {label}
         </label>
       )}
       <textarea
         value={value}
-        className="bg-fgCard min-w-[300px] min-h-10 w-full py-2 px-4 rounded-lg text-textColor"
+        className="bg-transparent border min-w-[300px] min-h-10 w-full py-2 px-4 rounded-lg text-textColor"
         onChange={onChange}
         {...props}
       />
