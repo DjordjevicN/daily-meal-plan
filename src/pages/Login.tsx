@@ -7,7 +7,6 @@ interface IFormInput {
 
 const Login = () => {
   const {
-    control,
     register,
     setValue,
     handleSubmit,

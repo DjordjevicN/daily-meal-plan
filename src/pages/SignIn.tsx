@@ -1,4 +1,3 @@
-import { DevTool } from "@hookform/devtools";
 import moment from "moment";
 import { useForm } from "react-hook-form";
 import { useAddUser } from "../queryHooks/useUsersData";
@@ -19,13 +18,7 @@ interface IUser {
 }
 
 export const SignIn = () => {
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    reset,
-    formState: { errors },
-  } = useForm<IUser>();
+  const { register, handleSubmit, setValue, reset } = useForm<IUser>();
 
   const { mutate: addUser } = useAddUser();
 
