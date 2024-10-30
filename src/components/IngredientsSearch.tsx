@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useIngredientByName } from "../queryHooks/useIngredientData";
 import Input from "./Input";
 
@@ -13,9 +13,14 @@ const IngredientsSearch: React.FC<IngredientsSearchProps> = ({
   const { data: ingredientData } = useIngredientByName(search);
 
   const ingredient = ingredientData?.data;
-
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
   return (
-    <div>
+    <div className="absolute top-0 left-0 z-10 h-full bg-white w-full">
       <Input
         label="Search ingredients..."
         value={search}

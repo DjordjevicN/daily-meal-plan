@@ -20,7 +20,7 @@ const Input: React.FC<InputProps> = ({
       {props.label && <label className="text-textColor">{props.label}</label>}
       <input
         value={value}
-        className="min-w-[300px] w-full py-2 px-4 rounded-lg text-textPrimary bg-transparent"
+        className="min-w-[100px] w-full py-2 px-4 rounded-lg text-textPrimary bg-transparent"
         onChange={onChange}
         aria-invalid={!!error}
         aria-describedby={error ? "error-message" : undefined}

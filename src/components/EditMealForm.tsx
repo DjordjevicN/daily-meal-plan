@@ -9,7 +9,8 @@ import UnitsDropdownProps from "./UnitsDropdownProps";
 import Button from "./Button";
 import { editMealFormData } from "../features/appControlSlice";
 import { useState } from "react";
-
+import plus from "../assets/icons/plus.svg";
+import IngredientsSearch from "./IngredientsSearch";
 export const EditMealForm = () => {
   const { mealFormData } = useSelector((state: RootState) => state.appControl);
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ export const EditMealForm = () => {
     { id: "asd", description: "Step 1" },
     { id: "asdd", description: "Step 2" },
   ]);
+  const [openSearch, setOpenSearch] = useState(false);
 
   const handleClose = () => {
     dispatch(editMealFormData(null));
@@ -28,7 +30,7 @@ export const EditMealForm = () => {
   };
 
   const openMealSearch = () => {
-    console.log("open meal search");
+    setOpenSearch(true);
   };
 
   const newStep = () => {
@@ -39,7 +41,7 @@ export const EditMealForm = () => {
   const removeStep = (id: string) => {
     setSteps(steps.filter((step) => step.id !== id));
   };
-  console.log(steps);
+
   const handleDescriptionChange = (e: any, id: string) => {
     console.log(e.target.value);
     setSteps(
@@ -51,8 +53,16 @@ export const EditMealForm = () => {
       })
     );
   };
+  const addRecipeToList = (id: string, e: React.MouseEvent) => {
+    console.log("add recipe to list", id, e);
+  };
+  console.log(openSearch);
+
   return (
     <>
+      {openSearch && (
+        <IngredientsSearch addIngredientToMeal={addRecipeToList} />
+      )}
       {mealFormData && (
         <div className="min-h-[100vh] bg-white absolute top-0 w-full p-4 pb-[200px]">
           <Header title="Customize" />
@@ -87,16 +97,12 @@ export const EditMealForm = () => {
 
             <div className="flex gap-3 mt-5 bg-white90 p-4 rounded mb-3">
               <ImageUploader onImageUpload={setPreview} />
-              <div className="">
+              <div>
                 <p className="mb-3 text-dark text-xl font-semibold">
                   Ingredient Name
                 </p>
                 <div className="flex items-center gap-3">
-                  <Input
-                    type="text"
-                    placeholder="Weight"
-                    className="max-w-32"
-                  />
+                  <Input type="text" placeholder="Weight" className="" />
                   <UnitsDropdownProps
                     value="g"
                     onChange={() => console.log("changed")}
@@ -105,29 +111,44 @@ export const EditMealForm = () => {
                 <Textarea placeholder="Additional Description" />
               </div>
             </div>
-            <Button color="secondary" onClick={openMealSearch}>
-              +Add ingredient
+            <Button
+              color="secondary"
+              className="flex gap-1 items-center"
+              onClick={openMealSearch}
+            >
+              <img src={plus} alt="add" />
+              <p> Add ingredient</p>
             </Button>
             <div>
               {steps.map((step) => (
-                <div key={step.id} className="flex justify-between">
-                  <Textarea
-                    value={step.description}
-                    placeholder="Step Description"
-                    onChange={(e) => handleDescriptionChange(e, step.id)}
-                  />
-                  <Button
-                    color="secondary"
-                    className="w-2 h-2"
-                    onClick={() => removeStep(step.id)}
-                  >
-                    x
-                  </Button>
-                </div>
+                <>
+                  <div className="flex justify-end items-center mb-5">
+                    <Button
+                      color="text"
+                      className="h-2"
+                      onClick={() => removeStep(step.id)}
+                    >
+                      <p> Remove Step</p>
+                    </Button>
+                  </div>
+                  <div key={step.id}>
+                    <Textarea
+                      className="w-full"
+                      value={step.description}
+                      placeholder="Step Description"
+                      onChange={(e) => handleDescriptionChange(e, step.id)}
+                    />
+                  </div>
+                </>
               ))}
             </div>
-            <Button color="secondary" className="" onClick={newStep}>
-              +Add Step
+            <Button
+              color="secondary"
+              className="flex items-center gap-1"
+              onClick={newStep}
+            >
+              <img src={plus} alt="" />
+              <p>Ad Step</p>
             </Button>
             <div className="flex gap-2 mt-8">
               <Button color="cancel" onClick={handleClose}>
