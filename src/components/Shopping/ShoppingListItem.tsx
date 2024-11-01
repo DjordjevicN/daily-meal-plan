@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography } from "../Typography";
 import weightIcon from "../../assets/icons/weight.svg";
-import { CheckBox } from "../CheckBox";
+// import { CheckBox } from "../CheckBox";
 
 interface ShoppingListItemProps {
   item: any;
@@ -21,10 +21,11 @@ const ShoppingListItem: React.FC<ShoppingListItemProps> = ({ item }) => {
           <Typography.P color="textColor">100g</Typography.P>
         </div>
       </div>
-      <CheckBox
+      {/* <CheckBox
         className="ml-auto"
+        value={checked}
         onChange={(value: boolean) => setChecked(value)}
-      />
+      /> */}
     </div>
   );
 };

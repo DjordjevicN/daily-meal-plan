@@ -1,38 +1,21 @@
-import React, { useEffect } from "react";
-import check from "../assets/icons/check.svg";
+import React from "react";
+import { useFormContext } from "react-hook-form";
 
-interface CheckBoxProps {
-  onChange?: (value: boolean) => void;
+interface CheckboxProps {
+  name: string;
+  label: string;
   className?: string;
-  label?: string;
-  value?: boolean;
 }
 
-export const CheckBox: React.FC<CheckBoxProps> = ({
-  onChange,
-  className,
-  label,
-  value,
-}) => {
-  const [checked, setChecked] = React.useState(value || false);
+const Checkbox: React.FC<CheckboxProps> = ({ name, label, className }) => {
+  const { register } = useFormContext();
 
-  useEffect(() => {
-    if (!onChange) return;
-    onChange(checked);
-  }, [checked, onChange]);
   return (
-    <div
-      className={`${className} cursor-pointer flex items-center`}
-      onClick={() => setChecked(!checked)}
-    >
-      {!checked ? (
-        <div className="w-4 h-4 rounded-sm border border-textColor"></div>
-      ) : (
-        <div className="w-4 h-4 rounded-sm border border-dark">
-          <img src={check} alt="" className="" />
-        </div>
-      )}
-      {label && <p className="text-textColor ml-2">{label}</p>}
-    </div>
+    <label className={className}>
+      {label}
+      <input type="checkbox" {...register(name)} />
+    </label>
   );
 };
+
+export default Checkbox;
