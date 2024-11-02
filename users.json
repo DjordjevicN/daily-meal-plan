@@ -1,17 +1,18 @@
 {
   "users": [
     {
-      "id": "5317",
+      "id": "1",
       "username": "Admin",
       "password": "123",
       "role": "admin",
       "avatar": "https://i.pravatar.cc/300",
-      "email": "",
+      "email": "nikola@gmail.com",
       "subscriptionLevel": 0,
       "subscriptionEndDate": "",
       "createdAt": "2024-10-18T16:40:25.676Z",
       "updatedAt": "2024-10-18T16:40:25.676Z",
-      "mealPlanIds": ["1"]
+      "mealPlanIds": ["1"],
+      "recipes": ["2", "3"]
     }
   ]
 }

@@ -12,12 +12,12 @@ export const appControlSlice = createSlice({
   name: "appControl",
   initialState,
   reducers: {
-    editMealFormData: (state, action: PayloadAction<any>) => {
+    editRecipeFormData: (state, action: PayloadAction<any>) => {
       state.mealFormData = action.payload;
     },
   },
 });
 
-export const { editMealFormData } = appControlSlice.actions;
+export const { editRecipeFormData } = appControlSlice.actions;
 
 export default appControlSlice.reducer;

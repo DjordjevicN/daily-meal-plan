@@ -1,11 +1,11 @@
 interface AddBoxProps {
   type: string;
-  addEmptyMeal: (type: string) => void;
+  addRecipeMeal: (type: string) => void;
 }
 
-export const AddBox = ({ type, addEmptyMeal }: AddBoxProps) => {
+export const AddBox = ({ type, addRecipeMeal }: AddBoxProps) => {
   return (
-    <div onClick={() => addEmptyMeal(type)}>
+    <div onClick={() => addRecipeMeal(type)}>
       <p className="text-brand my-3 cursor-pointer inline-block">
         + Add {type}
       </p>

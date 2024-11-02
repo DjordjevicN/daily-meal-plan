@@ -1,12 +1,112 @@
 {
   "mealPlans": [
     {
-      "id": "da22",
-      "name": "asdasdasd",
-      "description": "asd",
-      "ingredients": [
-        "6428",
-        "6428"
+      "id": "1",
+      "owner": 1,
+      "name": "Meal Plan 1",
+      "created": "2020-01-01",
+      "price": 100,
+      "active": true,
+      "public": false,
+      "days": [
+        {
+          "day": "Monday",
+          "recipesSettings": [
+            {
+              "id": "wed1rwer",
+              "originalRecipeId": 1,
+              "quantity": 100,
+              "unit": "g",
+              "whenToEat": [
+                "breakfast"
+              ]
+            }
+          ]
+        },
+        {
+          "day": "Tuesday",
+          "recipesSettings": [
+            {
+              "id": "234234",
+              "originalRecipeId": 1,
+              "quantity": 100,
+              "unit": "g",
+              "whenToEat": [
+                "breakfast"
+              ]
+            }
+          ]
+        },
+        {
+          "day": "Wednesday",
+          "recipesSettings": [
+            {
+              "id": "23d4234",
+              "originalRecipeId": 1,
+              "quantity": 100,
+              "unit": "g",
+              "whenToEat": [
+                "breakfast"
+              ]
+            }
+          ]
+        },
+        {
+          "day": "Thursday",
+          "recipesSettings": [
+            {
+              "id": "234w234",
+              "originalRecipeId": 1,
+              "quantity": 100,
+              "unit": "g",
+              "whenToEat": [
+                "breakfast"
+              ]
+            }
+          ]
+        },
+        {
+          "day": "Friday",
+          "recipesSettings": [
+            {
+              "id": "23r4234",
+              "originalRecipeId": 1,
+              "quantity": 100,
+              "unit": "g",
+              "whenToEat": [
+                "breakfast"
+              ]
+            }
+          ]
+        },
+        {
+          "day": "Saturday",
+          "recipesSettings": [
+            {
+              "id": "23qa4234",
+              "originalRecipeId": 1,
+              "quantity": 100,
+              "unit": "g",
+              "whenToEat": [
+                "breakfast"
+              ]
+            }
+          ]
+        },
+        {
+          "day": "Sunday",
+          "recipesSettings": [
+            {
+              "id": "2342d34",
+              "originalRecipeId": 1,
+              "quantity": 100,
+              "unit": "g",
+              "whenToEat": [
+                "breakfast"
+              ]
+            }
+          ]
+        }
       ]
     }
   ]

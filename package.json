@@ -40,7 +40,7 @@
     "build-storybook": "storybook build",
     "serve-json-db1": "json-server --watch users.json --port 4000",
     "serve-json-db2": "json-server --watch ingDb.json --port 4001",
-    "serve-json-db3": "json-server --watch meal.json --port 4002",
+    "serve-json-db3": "json-server --watch recipes.json --port 4002",
     "serve-json-db4": "json-server --watch mealPlans.json --port 4003",
     "serve-all": "concurrently \"npm:serve-json-*\""
   },

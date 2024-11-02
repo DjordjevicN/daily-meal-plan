@@ -10,13 +10,13 @@ const nutrition = {
 
 export const MealDisplayItem = ({
   meal,
-  openMealSearch = () => {},
-  removeMeal = () => {},
+  openRecipeSearch = () => {},
+  removeRecipe = () => {},
   editMeal = () => {},
 }: {
   meal: any;
-  openMealSearch?: () => void;
-  removeMeal?: () => void;
+  openRecipeSearch?: () => void;
+  removeRecipe?: () => void;
   editMeal?: () => void;
 }) => {
   return (
@@ -50,7 +50,7 @@ export const MealDisplayItem = ({
                 {
                   name: "Delete",
                   action: () => {
-                    removeMeal();
+                    removeRecipe();
                   },
                 },
               ]}
@@ -61,7 +61,7 @@ export const MealDisplayItem = ({
         <div className="flex justify-between">
           <div
             className="w-24 h-24 rounded-xl border border-textColor flex justify-center items-center cursor-pointer"
-            onClick={openMealSearch}
+            onClick={openRecipeSearch}
           >
             <img src={plus} alt="" />
           </div>
@@ -76,7 +76,7 @@ export const MealDisplayItem = ({
               {
                 name: "Delete",
                 action: () => {
-                  removeMeal();
+                  removeRecipe();
                 },
               },
             ]}

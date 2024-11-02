@@ -1,37 +1,39 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import {
-  addMeal,
-  deleteMeal,
-  getMeal,
-  getMeals,
-  updateMeal,
-} from "../api/meals";
+  addRecipe,
+  deleteRecipe,
+  getRecipe,
+  getRecipes,
+  updateRecipe,
+} from "../api/recipes";
 
-export const useMealData = () => {
-  return useQuery("meals", getMeals);
+export const useRecipeData = () => {
+  return useQuery("recipes", getRecipes);
 };
 
-export const useAddMeal = (meal) => {
+export const useAddRecipe = () => {
   const queryClient = useQueryClient();
-  return useMutation(addMeal, {
+  return useMutation(addRecipe, {
     onSuccess: (data) => {
-      queryClient.setQueryData("meals", (oldData) => {
+      queryClient.setQueryData("recipes", (oldData) => {
         if (!oldData || !oldData.data) {
-          console.log("oldData is undefined");
           return { data: [data.data] };
         }
         return { ...oldData, data: [...oldData.data, data.data] };
       });
     },
+    onError: (error) => {
+      console.error("Error adding meal:", error);
+    },
   });
 };
 
-export const useDeleteMeal = () => {
+export const useDeleteRecipe = () => {
   const queryClient = useQueryClient();
 
-  return useMutation(deleteMeal, {
+  return useMutation(deleteRecipe, {
     onSuccess: (data) => {
-      queryClient.setQueryData("meals", (oldData) => {
+      queryClient.setQueryData("recipes", (oldData) => {
         return {
           ...oldData,
           data: oldData.data.filter((meal) => meal.id !== data.data.id),
@@ -40,12 +42,12 @@ export const useDeleteMeal = () => {
     },
   });
 };
-export const useUpdateMeal = () => {
+export const useUpdateRecipe = () => {
   const queryClient = useQueryClient();
 
-  return useMutation(updateMeal, {
+  return useMutation(updateRecipe, {
     onSuccess: (data) => {
-      queryClient.setQueryData("meals", (oldData) => {
+      queryClient.setQueryData("recipes", (oldData) => {
         return {
           ...oldData,
           data: oldData.data.map((meal) =>
@@ -58,5 +60,5 @@ export const useUpdateMeal = () => {
 };
 
 export const useMealById = (id) => {
-  return useQuery(["meal", id], () => getMeal(id));
+  return useQuery(["recipe", id], () => getRecipe(id));
 };

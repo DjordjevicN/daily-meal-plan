@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
-import { addUser, deleteUser, getUsers } from "../api/User";
+import { addUser, deleteUser, getUsers, getUserByEmail } from "../api/User";
 
 export const useUserData = () => {
   return useQuery("users", getUsers);
@@ -33,4 +33,8 @@ export const useDeleteUser = () => {
       });
     },
   });
+};
+
+export const useGetUserByEmail = (email) => {
+  return useQuery(["user", email], () => getUserByEmail(email));
 };

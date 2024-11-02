@@ -38,7 +38,7 @@ export const SignIn = () => {
   };
   return (
     <div className="flex justify-center items-center h-[100vh]">
-      <div className="">
+      <div className="min-w-[320px]">
         <div>
           <img
             src="/images/LOGO-MAIN.png"

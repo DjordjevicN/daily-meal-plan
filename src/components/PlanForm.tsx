@@ -2,7 +2,7 @@ import { useId, useState } from "react";
 import arrowRight from "../assets/icons/arrow-right.svg";
 import { MealDisplayItem } from "./MealDisplayItem";
 import { AddBox } from "./AddBox";
-import { editMealFormData } from "../features/appControlSlice";
+import { editRecipeFormData } from "../features/appControlSlice";
 import { useDispatch } from "react-redux";
 
 const days = [
@@ -14,37 +14,26 @@ const days = [
   "Saturday",
   "Sunday",
 ];
-const mealsInit = [
-  {
-    id: "2",
-    name: "jelo",
-    caloriesTotal: 200,
-    whenToEat: "Lunch",
-    description: "Kokice su dobre",
-    worksWellFor: ["Breakfast", "Lunch"],
-    ingredients: [
-      {
-        id: "1",
-        name: "Kokice",
-        calories: 200,
-        quantity: 200,
-      },
-      {
-        id: "2",
-        name: "jaja",
-        calories: 200,
-        quantity: 200,
-      },
-    ],
-  },
-];
+
 const PlanForm = () => {
   const [day, setDay] = useState(0);
-  const [meals, setMeals] = useState(mealsInit);
-  const nextMealId = useId();
-  const breakfastMeals = meals.filter((item) => item.whenToEat === "Breakfast");
-  const lunchMeals = meals.filter((item) => item.whenToEat === "Lunch");
-  const dinerMeals = meals.filter((item) => item.whenToEat === "Diner");
+  interface IRecipe {
+    id: string;
+    name: string;
+    image: string;
+    caloriesTotal: number | null;
+    whenToEat: string;
+    description: string;
+    worksWellFor: string[];
+    recipes: any[];
+  }
+
+  const [recipes, setRecipes] = useState<IRecipe[]>([]);
+
+  const nextRecipeId = useId();
+  const breakfast = recipes.filter((item) => item.whenToEat === "Breakfast");
+  const lunch = recipes.filter((item) => item.whenToEat === "Lunch");
+  const dinner = recipes.filter((item) => item.whenToEat === "Diner");
   const dispatch = useDispatch();
   const previousDay = () => {
     if (day === 0) {
@@ -62,65 +51,31 @@ const PlanForm = () => {
     setDay(day + 1);
   };
 
-  const openMealSearch = () => {
+  const openRecipeSearch = () => {
     console.log("open meal search");
   };
 
-  const openMealEdit = (id: string) => {
-    console.log("get meal with id", id);
-    console.log(
-      "copy meal to users database and edit that meal so you can keep original"
-    );
-
-    dispatch(
-      editMealFormData({
-        id: "2",
-        name: "jelo",
-        caloriesTotal: 200,
-        whenToEat: "Lunch",
-        description: "Kokice su dobre",
-        worksWellFor: ["Breakfast", "Lunch"],
-        ingredients: [
-          {
-            id: "2",
-            name: "jelo",
-            image: "",
-            caloriesTotal: 200,
-            whenToEat: "Lunch",
-            description: "Kokice su dobre",
-            worksWellFor: ["Breakfast", "Lunch"],
-          },
-          {
-            id: "2",
-            name: "jelo",
-            image: "",
-            caloriesTotal: 200,
-            whenToEat: "Lunch",
-            description: "Kokice su dobre",
-            worksWellFor: ["Breakfast", "Lunch"],
-          },
-        ],
-      })
-    );
+  const openRecipeEdit = (id: string) => {
+    dispatch(editRecipeFormData(recipes.find((item) => item.id === id)));
   };
 
-  const addEmptyMeal = (type: string) => {
-    const id = `${nextMealId}${meals.length}`;
-    const newMeal = {
+  const addRecipeMeal = (type: string) => {
+    const id = `${nextRecipeId}${recipes.length}`;
+    const newRecipe = {
       id: id,
       name: "",
-      impage: "",
-      caloriesTotal: 200,
-      whenToEat: "Lunch",
-      description: "Kokice su dobre",
+      image: "",
+      caloriesTotal: null,
+      whenToEat: type,
+      description: "",
       worksWellFor: [],
-      ingredients: [],
+      recipes: [],
     };
-    setMeals([...meals, newMeal]);
+    setRecipes([...recipes, newRecipe]);
   };
 
-  const removeMeal = (id: string) => {
-    setMeals(meals.filter((item) => item.id !== id));
+  const removeRecipe = (id: string) => {
+    setRecipes(recipes.filter((item) => item.id !== id));
   };
 
   return (
@@ -147,50 +102,50 @@ const PlanForm = () => {
             Breakfast
           </div>
           <div className="flex flex-col gap-2">
-            {breakfastMeals.map((meal) => {
+            {breakfast.map((meal) => {
               return (
                 <MealDisplayItem
                   key={meal.id}
                   meal={meal}
-                  openMealSearch={openMealSearch}
-                  removeMeal={() => removeMeal(meal.id)}
-                  editMeal={() => openMealEdit(meal.id)}
+                  openRecipeSearch={openRecipeSearch}
+                  removeRecipe={() => removeRecipe(meal.id)}
+                  editMeal={() => openRecipeEdit(meal.id)}
                 />
               );
             })}
           </div>
-          <AddBox type="Breakfast" addEmptyMeal={addEmptyMeal} />
+          <AddBox type="Breakfast" addRecipeMeal={addRecipeMeal} />
           <div className="text-textColor font-bold text-2xl mb-3">Lunch</div>
           <div className="flex flex-col gap-2">
-            {lunchMeals.map((meal) => {
+            {lunch.map((meal) => {
               return (
                 <MealDisplayItem
                   key={meal.id}
                   meal={meal}
-                  openMealSearch={openMealSearch}
-                  removeMeal={() => removeMeal(meal.id)}
-                  editMeal={() => openMealEdit(meal.id)}
+                  openRecipeSearch={openRecipeSearch}
+                  removeRecipe={() => removeRecipe(meal.id)}
+                  editMeal={() => openRecipeEdit(meal.id)}
                 />
               );
             })}
           </div>
 
-          <AddBox type="Lunch" addEmptyMeal={addEmptyMeal} />
+          <AddBox type="Lunch" addRecipeMeal={addRecipeMeal} />
           <div className="text-textColor font-bold text-2xl mb-3">Diner</div>
           <div className="flex flex-col gap-2">
-            {dinerMeals.map((meal) => {
+            {dinner.map((meal) => {
               return (
                 <MealDisplayItem
                   key={meal.id}
                   meal={meal}
-                  openMealSearch={openMealSearch}
-                  removeMeal={() => removeMeal(meal.id)}
-                  editMeal={() => openMealEdit(meal.id)}
+                  openRecipeSearch={openRecipeSearch}
+                  removeRecipe={() => removeRecipe(meal.id)}
+                  editMeal={() => openRecipeEdit(meal.id)}
                 />
               );
             })}
           </div>
-          <AddBox type="Diner" addEmptyMeal={addEmptyMeal} />
+          <AddBox type="Diner" addRecipeMeal={addRecipeMeal} />
         </div>
       </div>
     </div>

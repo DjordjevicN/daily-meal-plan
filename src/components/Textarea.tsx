@@ -25,6 +25,13 @@ const Textarea: React.FC<TextareaProps> = ({
       <textarea
         value={value}
         className="bg-transparent border min-w-[100px] min-h-10 w-full py-2 px-4 rounded-lg text-textColor"
+        style={{
+          backgroundColor: "transparent",
+          borderColor: "#E5E7EB",
+          borderWidth: "1px",
+          borderRadius: "8px",
+          padding: "0.5rem 1rem",
+        }}
         onChange={onChange}
         {...props}
       />
