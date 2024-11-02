@@ -2,24 +2,24 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Input from "./Input";
 import Textarea from "./Textarea";
-import IngredientsSearch from "./IngredientsSearch";
-import { useAddMeal } from "../queryHooks/useMealData";
+
+import { useAddRecipe } from "../queryHooks/useRecipeData";
 
 const MealForm = () => {
   const { register, handleSubmit, setValue } = useForm();
   const [preview, setPreview] = useState<string | undefined>(undefined);
   const [ingredients, setIngredients] = useState<any[]>([]);
-  const { mutate: addMeal } = useAddMeal();
+  const { mutate: addRecipe } = useAddRecipe();
 
   const handleAddMeal = (data: any) => {
-    const newMeal = {
+    const newRecipe = {
       image: preview,
       name: data.name,
       description: data.description,
       ingredients: ingredients,
     };
-    addMeal(newMeal);
-    console.log(newMeal);
+    addRecipe(newRecipe);
+    console.log(newRecipe);
   };
 
   const addIngredientToMeal = (id: any, e: React.MouseEvent) => {
@@ -87,7 +87,10 @@ const MealForm = () => {
             placeholder="Description"
             onChange={({ target }) => setValue("description", target.value)}
           />
-          <IngredientsSearch addIngredientToMeal={addIngredientToMeal} />
+          {/* <IngredientsSearch
+            addIngredientToMeal={addIngredientToMeal}
+            closeSearch={() => console.log("close")}
+          /> */}
 
           <div className="mt-3 ">
             <button

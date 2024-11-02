@@ -2,7 +2,7 @@ import React from "react";
 
 interface UnitsDropdownProps {
   label?: string;
-  value: string;
+  value: string | undefined;
   onChange: (value: string) => void;
   error?: string;
   className?: string;

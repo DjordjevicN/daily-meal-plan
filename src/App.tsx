@@ -6,7 +6,8 @@ import { SignIn } from "./pages/SignIn";
 import { Creator } from "./pages/Creator";
 import { NavBar } from "./components/NavBar";
 import { ShoppingList } from "./pages/ShoppingList";
-import { EditMealForm } from "./components/EditMealForm";
+
+import { EditRecipeForm } from "./components/recipeForm/EditRecipeForm";
 
 function App() {
   const queryClient = new QueryClient();
@@ -21,7 +22,7 @@ function App() {
           <Route path="/shopping" element={<ShoppingList />} />
           <Route path="*" element={<HomePage />} />
         </Routes>
-        <EditMealForm />
+        <EditRecipeForm />
         <NavBar />
       </QueryClientProvider>
     </>

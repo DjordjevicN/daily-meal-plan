@@ -8,6 +8,62 @@
         "6428",
         "6428"
       ]
+    },
+    {
+      "id": "0d02",
+      "name": "jelo",
+      "description": "Kokice su dobre",
+      "breakfast": true,
+      "snack": false,
+      "lunch": true,
+      "dinner": false,
+      "prepTime": "30",
+      "yields": "6",
+      "image": null
+    },
+    {
+      "id": "4f75",
+      "nikola": 111
+    },
+    {
+      "id": "2239",
+      "nikola": 111
+    },
+    {
+      "id": "0bd5",
+      "name": "asdasdjelo",
+      "description": "Kokice su dobre",
+      "breakfast": true,
+      "snack": false,
+      "lunch": true,
+      "dinner": false,
+      "prepTime": "30",
+      "yields": "6",
+      "image": null
+    },
+    {
+      "id": "bead",
+      "name": "jelo",
+      "description": "Kokice su dobre",
+      "breakfast": true,
+      "snack": false,
+      "lunch": true,
+      "dinner": false,
+      "prepTime": "30",
+      "yields": "6",
+      "image": null
+    },
+    {
+      "id": "b1f1",
+      "name": "jelo",
+      "description": "Kokice su dobre",
+      "breakfast": true,
+      "snack": false,
+      "lunch": true,
+      "dinner": false,
+      "prepTime": "30",
+      "yields": "6",
+      "image": null
     }
   ]
 }
