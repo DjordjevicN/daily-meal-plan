@@ -15,3 +15,7 @@ export const deleteUser = async (id: string) => {
 export const updateUserById = async (id: string, user: any) => {
   return axios.put(`http://localhost:4000/users/${id}`, user);
 };
+
+export const getUserByEmail = async (email: string) => {
+  return axios.get(`http://localhost:4000/users?email=${email}`);
+};

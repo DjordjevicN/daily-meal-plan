@@ -2,6 +2,9 @@
   "recipes": [
     {
       "id": "9e65",
+      "public": true,
+      "owner": 1,
+      "price": 0,
       "name": "test",
       "description": "Kokice su dobre",
       "breakfast": true,

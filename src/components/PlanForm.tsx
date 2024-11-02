@@ -29,6 +29,7 @@ const PlanForm = () => {
   }
 
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
+
   const nextRecipeId = useId();
   const breakfast = recipes.filter((item) => item.whenToEat === "Breakfast");
   const lunch = recipes.filter((item) => item.whenToEat === "Lunch");
@@ -60,17 +61,17 @@ const PlanForm = () => {
 
   const addRecipeMeal = (type: string) => {
     const id = `${nextRecipeId}${recipes.length}`;
-    const newMeal = {
+    const newRecipe = {
       id: id,
       name: "",
       image: "",
       caloriesTotal: null,
-      whenToEat: "",
+      whenToEat: type,
       description: "",
       worksWellFor: [],
       recipes: [],
     };
-    setRecipes([...recipes, newMeal]);
+    setRecipes([...recipes, newRecipe]);
   };
 
   const removeRecipe = (id: string) => {
