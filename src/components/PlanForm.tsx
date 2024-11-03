@@ -4,30 +4,11 @@ import { MealDisplayItem } from "./MealDisplayItem";
 import { AddBox } from "./AddBox";
 import { editRecipeFormData } from "../features/appControlSlice";
 import { useDispatch } from "react-redux";
-
-const days = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
-];
+import { IRecipe } from "../utils/types";
+import { days } from "../utils/constants";
 
 const PlanForm = () => {
   const [day, setDay] = useState(0);
-  interface IRecipe {
-    id: string;
-    name: string;
-    image: string;
-    caloriesTotal: number | null;
-    whenToEat: string;
-    description: string;
-    worksWellFor: string[];
-    recipes: any[];
-  }
-
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
 
   const nextRecipeId = useId();

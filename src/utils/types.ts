@@ -1,3 +1,14 @@
+export interface IRecipe {
+  id: string;
+  name: string;
+  image: string;
+  caloriesTotal: number | null;
+  whenToEat: string;
+  description: string;
+  worksWellFor: string[];
+  recipes: any[];
+}
+
 export interface IRecipesSettings {
   id: string;
   originalRecipeId: number;

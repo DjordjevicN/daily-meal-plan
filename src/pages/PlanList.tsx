@@ -17,40 +17,29 @@ export const PlanList = () => {
   const user = users?.data[0];
   const { data: plans } = useMealPlanByOwnerId(user?.id);
   const usersPlans = plans?.data || [];
-  const deletePlan = useDeletePlan();
-  const addNewPlan = useAddNewPlan();
+  const { mutate: deletePlan } = useDeletePlan();
+  const { mutate: addNewPlan } = useAddNewPlan();
   const { mutate: updateUser } = useUpdateUserById();
 
   const createNewPlan = () => {
     const newId = Math.random().toString(36).substr(2, 9);
     const newPlan = { ...freshPlan, id: newId };
-    addNewPlan.mutate(newPlan);
+    addNewPlan(newPlan);
   };
   const removePlan = (id: string, event: React.MouseEvent) => {
     event.stopPropagation();
-    deletePlan.mutate(id);
+    deletePlan(id);
   };
 
   const activatePlan = async (id: string) => {
     const userData: User = {
-      id: "1",
-      username: "Admin",
-      password: "asdasdasdasdasdasdasdasdasdads",
-      role: "admin",
-      avatar: "https://i.pravatar.cc/300",
-      email: "nikola@gmail.com",
-      subscriptionLevel: 0,
-      subscriptionEndDate: "",
-      createdAt: "2024-10-18T16:40:25.676Z",
-      updatedAt: "2024-10-18T16:40:25.676Z",
-      mealPlanIds: ["1"],
+      ...user,
       activeMealPlanId: id,
-      recipes: ["2", "3"],
     };
-
-    console.log("updateUserPlans", userData);
     updateUser(userData);
+    window.location.href = "/creator";
   };
+
   return (
     <div className="max-w-[500px] mx-auto pb-20">
       <h1>Plan List</h1>
