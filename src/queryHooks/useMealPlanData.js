@@ -5,21 +5,30 @@ import {
   getMealPlanByOwnerId,
   addMealPlan,
   deleteMealPlan,
+  getMealPlanById,
 } from "../api/mealPlans";
 
 export const useMealPlanData = () => {
   return useQuery("mealPlans", getMealPlans, {
-    refetchOnWindowFocus: true, // Refetches when the window is refocused
-    refetchInterval: 5000, // Refetches every 5000ms (5 seconds)
-    staleTime: 0, // Adjust based on how frequently your data changes
+    refetchOnWindowFocus: true,
+    refetchInterval: 5000,
+    staleTime: 0,
+  });
+};
+
+export const useMealPlanById = (id) => {
+  return useQuery(["mealPlan", id], () => getMealPlanById(id), {
+    refetchOnWindowFocus: true,
+    refetchInterval: 5000,
+    staleTime: 0,
   });
 };
 
 export const useMealPlanByOwnerId = (ownerId) => {
   return useQuery(["mealPlan", ownerId], () => getMealPlanByOwnerId(ownerId), {
-    refetchOnWindowFocus: true, // Refetches when the window is refocused
-    refetchInterval: 5000, // Refetches every 5000ms (5 seconds)
-    staleTime: 0, // Adjust based on how frequently your data changes
+    refetchOnWindowFocus: true,
+    refetchInterval: 5000,
+    staleTime: 0,
   });
 };
 

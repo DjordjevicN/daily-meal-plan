@@ -17,7 +17,7 @@ import { appControlSlice } from "../features/appControlSlice";
 
 // Define the root reducer manually combining all reducers
 const rootReducer = combineReducers({
-  user: userReducer, // include other reducers if needed
+  user: userReducer,
   appControl: appControlSlice.reducer,
 });
 

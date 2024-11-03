@@ -88,6 +88,7 @@ const MealForm = () => {
             onChange={({ target }) => setValue("description", target.value)}
           />
           {/* <IngredientsSearch
+          isOpen={openSearch}
             addIngredientToMeal={addIngredientToMeal}
             closeSearch={() => console.log("close")}
           /> */}

@@ -32,10 +32,10 @@ export const EditRecipeForm = () => {
     const addInitialValues = () => {
       setValue("name", mealFormData.name);
       setValue("description", mealFormData.description);
-      setValue("breakfast", mealFormData.worksWellFor.includes("Breakfast"));
-      setValue("snack", mealFormData.worksWellFor.includes("Snack"));
-      setValue("lunch", mealFormData.worksWellFor.includes("Lunch"));
-      setValue("dinner", mealFormData.worksWellFor.includes("Dinner"));
+      setValue("breakfast", mealFormData.breakfast);
+      setValue("snack", mealFormData.snack);
+      setValue("lunch", mealFormData.lunch);
+      setValue("dinner", mealFormData.dinner);
       setValue("prepTime", mealFormData.prepTime);
       setValue("yields", mealFormData.yields);
       setValue("image", mealFormData.image);

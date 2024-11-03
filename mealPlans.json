@@ -1,7 +1,7 @@
 {
   "mealPlans": [
     {
-      "id": "1",
+      "id": "gi05pkxwz",
       "owner": 1,
       "name": "Meal Plan 1",
       "created": "2020-01-01",
@@ -13,13 +13,11 @@
           "day": "Monday",
           "recipesSettings": [
             {
-              "id": "wed1rwer",
-              "originalRecipeId": 1,
+              "id": "111111",
+              "originalRecipeId": "9e65",
               "quantity": 100,
               "unit": "g",
-              "whenToEat": [
-                "breakfast"
-              ]
+              "whenToEat": "breakfast"
             }
           ]
         },
@@ -31,9 +29,7 @@
               "originalRecipeId": 1,
               "quantity": 100,
               "unit": "g",
-              "whenToEat": [
-                "breakfast"
-              ]
+              "whenToEat": "breakfast"
             }
           ]
         },
@@ -45,9 +41,7 @@
               "originalRecipeId": 1,
               "quantity": 100,
               "unit": "g",
-              "whenToEat": [
-                "breakfast"
-              ]
+              "whenToEat": "breakfast"
             }
           ]
         },
@@ -59,9 +53,7 @@
               "originalRecipeId": 1,
               "quantity": 100,
               "unit": "g",
-              "whenToEat": [
-                "breakfast"
-              ]
+              "whenToEat": "breakfast"
             }
           ]
         },
@@ -73,9 +65,7 @@
               "originalRecipeId": 1,
               "quantity": 100,
               "unit": "g",
-              "whenToEat": [
-                "breakfast"
-              ]
+              "whenToEat": "breakfast"
             }
           ]
         },
@@ -87,9 +77,7 @@
               "originalRecipeId": 1,
               "quantity": 100,
               "unit": "g",
-              "whenToEat": [
-                "breakfast"
-              ]
+              "whenToEat": "breakfast"
             }
           ]
         },
@@ -101,91 +89,9 @@
               "originalRecipeId": 1,
               "quantity": 100,
               "unit": "g",
-              "whenToEat": [
-                "breakfast"
-              ]
+              "whenToEat": "breakfast"
             }
           ]
-        }
-      ]
-    },
-    {
-      "id": "nyp9v038f",
-      "image": "../assets/newPlaneIBg.webp",
-      "owner": "1",
-      "name": "",
-      "created": "",
-      "price": 0,
-      "active": false,
-      "public": false,
-      "days": [
-        {
-          "day": "Monday",
-          "recipesSettings": []
-        },
-        {
-          "day": "Tuesday",
-          "recipesSettings": []
-        },
-        {
-          "day": "Wednesday",
-          "recipesSettings": []
-        },
-        {
-          "day": "Thursday",
-          "recipesSettings": []
-        },
-        {
-          "day": "Friday",
-          "recipesSettings": []
-        },
-        {
-          "day": "Saturday",
-          "recipesSettings": []
-        },
-        {
-          "day": "Sunday",
-          "recipesSettings": []
-        }
-      ]
-    },
-    {
-      "id": "gi05pkxwz",
-      "image": "../assets/newPlaneIBg.webp",
-      "owner": "1",
-      "name": "",
-      "created": "",
-      "price": 0,
-      "active": false,
-      "public": false,
-      "days": [
-        {
-          "day": "Monday",
-          "recipesSettings": []
-        },
-        {
-          "day": "Tuesday",
-          "recipesSettings": []
-        },
-        {
-          "day": "Wednesday",
-          "recipesSettings": []
-        },
-        {
-          "day": "Thursday",
-          "recipesSettings": []
-        },
-        {
-          "day": "Friday",
-          "recipesSettings": []
-        },
-        {
-          "day": "Saturday",
-          "recipesSettings": []
-        },
-        {
-          "day": "Sunday",
-          "recipesSettings": []
         }
       ]
     }

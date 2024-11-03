@@ -14,7 +14,7 @@ export interface IRecipesSettings {
   originalRecipeId: number;
   quantity: number;
   unit: string;
-  whenToEat: string[];
+  whenToEat: string;
 }
 
 export interface IDay {
