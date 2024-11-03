@@ -1,5 +1,6 @@
 export const freshPlan = {
   id: "",
+  image: "../assets/newPlaneIBg.webp",
   owner: "1",
   name: "",
   created: "",
