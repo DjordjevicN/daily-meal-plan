@@ -1,0 +1,17 @@
+{
+  "days": [
+    {
+      "planId": "gi05pkxwz",
+      "day": "Monday",
+      "recipesSettings": [
+        {
+          "id": "111111",
+          "originalRecipeId": "9e65",
+          "quantity": 100,
+          "unit": "g",
+          "whenToEat": "breakfast"
+        }
+      ]
+    }
+  ]
+}

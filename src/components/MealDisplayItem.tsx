@@ -2,11 +2,12 @@ import { SmallOptionMenu } from "./SmallOptionMenu";
 import { CaloriesBlock } from "./CaloriesBlock";
 import plus from "../assets/icons/plus.svg";
 import { useState } from "react";
-import { days } from "../utils/constants";
 import IngredientsSearch from "./IngredientsSearch";
 import { useDispatch } from "react-redux";
 import { editRecipeFormData } from "../features/appControlSlice";
 import { useMealById } from "../queryHooks/useRecipeData";
+import UnitsDropdown from "./UnitsDropdown";
+import Input from "./Input";
 const nutrition = {
   calories: 72,
   carbs: 33,
@@ -36,6 +37,14 @@ export const MealDisplayItem = ({
   const openRecipeEdit = () => {
     dispatch(editRecipeFormData(recipe));
   };
+
+  const updateUnit = (unit: string) => {
+    console.log("unit", unit);
+  };
+  const updateQuantity = (quantity: string) => {
+    console.log("quantity", quantity);
+  };
+
   return (
     <>
       <IngredientsSearch
@@ -54,13 +63,21 @@ export const MealDisplayItem = ({
               />
             </div>
             <div className="ml-3">
-              <h1>{recipe.name}</h1>
+              <h1 className="text-xl font-bold mb-1">{recipe.name}</h1>
               <div className="flex gap-1">
-                <p>{meal.quantity}</p>
-                <p>{meal.unit}</p>
+                <Input
+                  type="text"
+                  value={meal.quantity}
+                  onChange={(e) => updateQuantity(e.target.value)}
+                />
+                <UnitsDropdown
+                  value={meal.unit}
+                  onChange={(value) => updateUnit(value)}
+                />
+                <p>{meal.calories}</p>
               </div>
             </div>
-            <CaloriesBlock nutrition={nutrition} />
+            {/* <CaloriesBlock nutrition={nutrition} /> */}
             <div className="ml-4">
               <SmallOptionMenu
                 options={[
