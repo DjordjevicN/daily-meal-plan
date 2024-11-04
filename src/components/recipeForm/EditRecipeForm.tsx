@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { useEffect, useState } from "react";
-import { set, useForm } from "react-hook-form";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { RootState } from "../../app/store";
 import { editRecipeFormData } from "../../features/appControlSlice";
@@ -32,10 +32,10 @@ export const EditRecipeForm = () => {
     const addInitialValues = () => {
       setValue("name", mealFormData.name);
       setValue("description", mealFormData.description);
-      setValue("breakfast", mealFormData.worksWellFor.includes("Breakfast"));
-      setValue("snack", mealFormData.worksWellFor.includes("Snack"));
-      setValue("lunch", mealFormData.worksWellFor.includes("Lunch"));
-      setValue("dinner", mealFormData.worksWellFor.includes("Dinner"));
+      setValue("breakfast", mealFormData.breakfast);
+      setValue("snack", mealFormData.snack);
+      setValue("lunch", mealFormData.lunch);
+      setValue("dinner", mealFormData.dinner);
       setValue("prepTime", mealFormData.prepTime);
       setValue("yields", mealFormData.yields);
       setValue("image", mealFormData.image);

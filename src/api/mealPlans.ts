@@ -6,6 +6,10 @@ export const getMealPlans = async () => {
   return axios.get("http://localhost:4003/mealPlans");
 };
 
+export const getMealPlanById = async (id: string) => {
+  return axios.get(`http://localhost:4003/mealPlans/${id}`);
+};
+
 export const addMealPlan = async (mealPlan: any) => {
   return axios.post("http://localhost:4003/mealPlans", mealPlan);
 };

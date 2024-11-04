@@ -1,9 +1,20 @@
+export interface IRecipe {
+  id: string;
+  name: string;
+  image: string;
+  caloriesTotal: number | null;
+  whenToEat: string;
+  description: string;
+  worksWellFor: string[];
+  recipes: any[];
+}
+
 export interface IRecipesSettings {
   id: string;
   originalRecipeId: number;
   quantity: number;
   unit: string;
-  whenToEat: string[];
+  whenToEat: string;
 }
 
 export interface IDay {
@@ -20,6 +31,7 @@ export interface IDay {
 
 export interface MealPlan {
   id: string;
+  image: string;
   owner: string;
   name: string;
   created: string;
@@ -27,4 +39,26 @@ export interface MealPlan {
   active: boolean;
   public: boolean;
   days: IDay[];
+}
+//
+
+export interface User {
+  id: string;
+  username: string;
+  password: string;
+  role: string;
+  avatar: string;
+  email: string;
+  subscriptionLevel: number;
+  subscriptionEndDate: string;
+  createdAt: string;
+  updatedAt: string;
+  mealPlanIds: string[];
+  activeMealPlanId: string;
+  recipes: string[];
+}
+
+export interface MutationVariables {
+  id: string;
+  user: User;
 }

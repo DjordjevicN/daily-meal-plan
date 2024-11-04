@@ -3,7 +3,7 @@
     {
       "id": "1",
       "username": "Admin",
-      "password": "123",
+      "password": "asdasdasdasdasdasdasdasdasdads",
       "role": "admin",
       "avatar": "https://i.pravatar.cc/300",
       "email": "nikola@gmail.com",
@@ -11,8 +11,14 @@
       "subscriptionEndDate": "",
       "createdAt": "2024-10-18T16:40:25.676Z",
       "updatedAt": "2024-10-18T16:40:25.676Z",
-      "mealPlanIds": ["1"],
-      "recipes": ["2", "3"]
+      "mealPlanIds": [
+        "1"
+      ],
+      "activeMealPlanId": "gi05pkxwz",
+      "recipes": [
+        "2",
+        "3"
+      ]
     }
   ]
 }
